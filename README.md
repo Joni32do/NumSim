@@ -15,6 +15,6 @@ Project for the lecture Numerische Simulation at the University of Stuttgart. De
 
 ## Contributors
 
-* Lukas Harsch - Race - @LHRaceIng
-* Arthur Lacerda Essel - @iatzak
-* Jonathan Schnitzler - @Joni32do
+* Lukas Harsch - [LHRaceIng](https://github.com/LHRaceIng)
+* Arthur Lacerda Essel - [iatzak](https://github.com/iatzak)
+* Jonathan Schnitzler - [Joni32do](https://github.com/Joni32do)
