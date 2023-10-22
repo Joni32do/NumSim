@@ -9,6 +9,7 @@ project(numsim)
 add_executable(${PROJECT_NAME}
    main.cpp
    output_writer/write_paraview_output.cpp
+   settings_parser/settings.cpp
 )
 
 # Add the project directory to include directories,
