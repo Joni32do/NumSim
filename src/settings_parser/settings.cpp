@@ -175,10 +175,13 @@ void Settings::setParameter(std::string parameterName, std::string value){
         Settings::maximumNumberOfIterations = atof(value.c_str());
 }
 
-// ALTERNATIVE IMPLEMENTATION OF setParameter
+
+// --- ALTERNATIVE IMPLEMENTATION OF setParameter ---
+//
 // Throws error in hash() I don't understand
 //
 // And it doesn't matter (is only unsignificantly faster and more readable)
+
 
 // void Settings::setParameter(std::string parameterName, std::string value){
 //     // value = value.c_str();
