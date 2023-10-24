@@ -55,7 +55,7 @@ Settings::LineContent Settings::readSingleLine(std::string line){
     Settings::LineContent lineContent;
     lineContent.isContent = false;
 
-    int idx_start = line.find_first_not_of(" \t"); // find first character that is not a whitespace
+    int idx_first_non_white = line.find_first_not_of(" \t"); // find first character that is not a whitespace
     int idx_equalSign = line.find_first_of("=");
 
     // Checks if line contains content
@@ -65,7 +65,7 @@ Settings::LineContent Settings::readSingleLine(std::string line){
         return lineContent;
 
     // if line only contains whitespace, skip line
-    if(idx_start == std::string::npos) // line only contains whitespace
+    if(idx_first_non_white == std::string::npos) // line only contains whitespace
         return lineContent;
 
     // if line does not contain a '=' sign, skip line
@@ -74,33 +74,25 @@ Settings::LineContent Settings::readSingleLine(std::string line){
 
 
     // --- Line contains content ---
+    // devide content on '=' and assign `parameterName` and `value` without whitespaces 
     lineContent.isContent = true;
 
-    line.erase(0, idx_start);
 
-    // TODO: Optimize this part
-    
-    // parse parameter name
-    //! second argument of substr is the number of characters in new str
+
+    //! 2nd argument of substr is the number of characters in new str
+    line.erase(0, idx_first_non_white);
     lineContent.parameterName = line.substr(0, line.find_first_of(" =\t"));
 
-    //! second argument of erase is the number of characters to erase
-    //! '=' is also to be erased
+    //! 2nd argument of erase is the number of characters to erase
     line.erase(0, line.find_first_of("=") + 1);
 
-    // parse value
-    // new variable for the sake of readability
-    std::string value = line;
-
     // remove whitespace at beginning of value
-    if(value.find_first_not_of(" \t") != 0)
-        value.erase(0, value.find_first_not_of(" \t"));
+    if(line.find_first_not_of(" \t") != 0)
+        line.erase(0, line.find_first_not_of(" \t"));
 
     // remove comments and whitespace at end of value
-    // the value std::npos in the second argument of subtr
-    // indicates all characters until the end of the string,
-    // thus no 'if' clause is needed
-    lineContent.value = value.substr(0, value.find_first_of(" #\t"));
+    // if `line.find_first_of() == std::npos` line is not changed
+    lineContent.value = line.substr(0, line.find_first_of(" #\t"));
 
     return lineContent;
 }
@@ -175,101 +167,3 @@ void Settings::setParameter(std::string parameterName, std::string value){
         Settings::maximumNumberOfIterations = atof(value.c_str());
 }
 
-
-// --- ALTERNATIVE IMPLEMENTATION OF setParameter ---
-//
-// Throws error in hash() I don't understand
-//
-// And it doesn't matter (is only unsignificantly faster and more readable)
-
-
-// void Settings::setParameter(std::string parameterName, std::string value){
-//     // value = value.c_str();
-//     switch (std::hash(parameterName.c_str()))
-//     {
-//         case std::hash("physicalSizeX"):
-//             Settings::physicalSize[0] = atof(value.c_str());
-//             break;
-//         case std::hash("physicalSizeY"):
-//             Settings::physicalSize[1] = atof(value.c_str());
-//             break;
-//         case std::hash("endTime"):
-//             Settings::endTime = atof(value.c_str());
-//             break;
-//         case std::hash("re"):
-//             Settings::re = atof(value.c_str());
-//             break;
-//         case std::hash("gX"):
-//             Settings::g[0] = atof(value.c_str());
-//             break;
-//         case std::hash("gY"):
-//             Settings::g[1] = atof(value.c_str());
-//             break;
-//         // Dirichlet BC
-//         case std::hash("dirichletBottomX"):
-//             Settings::dirichletBcBottom[0] = atof(value.c_str());
-//             break;
-//         case std::hash("dirichletBottomY"):
-//             Settings::dirichletBcBottom[1] = atof(value.c_str());
-//             break;
-//         case std::hash("dirichletTopX"):
-//             Settings::dirichletBcTop[0] = atof(value.c_str());
-//             break;
-//         case std::hash("dirichletTopY"):
-//             Settings::dirichletBcTop[1] = atof(value.c_str());
-//             break;
-//         case std::hash("dirichletLeftX"):
-//             Settings::dirichletBcLeft[0] = atof(value.c_str());
-//             break;
-//         case std::hash("dirichletLeftY"):
-//             Settings::dirichletBcLeft[1] = atof(value.c_str());
-//             break;
-//         case std::hash("dirichletRightX"):
-//             Settings::dirichletBcRight[0] = atof(value.c_str());
-//             break;
-//         case std::hash("dirichletRightY"):
-//             Settings::dirichletBcRight[1] = atof(value.c_str());
-//             break;
-//         // Discretization parameters
-//         case std::hash("nCellsX"):
-//             Settings::nCells[0] = atoi(value.c_str());
-//             break;
-//         case std::hash("nCellsY"):
-//             Settings::nCells[0] = atoi(value.c_str());
-//             break;
-//         case std::hash("useDonorCell"):
-//             if(value == "true" || value == "True")
-//                 Settings::useDonorCell = true;
-//             else if(value == "false" || value == "False")
-//                 Settings::useDonorCell = false;
-//             else
-//                 throw std::invalid_argument("useDonorCell must be a boolean (true or false).");
-//             break;
-//         case std::hash("alpha"):
-//             Settings::alpha = atof(value.c_str());
-//             break;
-//         case std::hash("tau"):
-//             Settings::tau = atof(value.c_str());
-//             break;
-//         case std::hash("maximumDt"):
-//             Settings::maximumDt = atof(value.c_str());
-//             break;
-//         // Solver parameters
-//         case std::hash("pressureSolver"):
-//             if(value == "SOR" || value == "GaussSeidel" || value == "CG")
-//                 Settings::pressureSolver = value;
-//             else
-//                 throw std::invalid_argument("Supported values for pressureSolver are SOR, CG and GaussSeidel.");
-//             break;
-//         case std::hash("omega"):
-//             Settings::omega = atof(value.c_str());
-//             break;
-//         case std::hash("epsilon"):
-//             Settings::epsilon = atof(value.c_str());
-//             break;
-//         case std::hash("maximumNumberOfIterations"):
-//             Settings::maximumNumberOfIterations = atof(value.c_str());
-//             break;
-//     }
-// 
-// }
