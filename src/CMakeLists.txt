@@ -17,6 +17,7 @@ add_executable(${PROJECT_NAME}
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})
 
 # Search for the external package "VTK"
+set(VTK_DIR /home/jonat/software/VTK-9.3.0.rc1/build)
 find_package(VTK)
 
 # Output various cmake variables for demonstration purpose

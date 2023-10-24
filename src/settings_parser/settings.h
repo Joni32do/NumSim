@@ -33,4 +33,17 @@ struct Settings
 
   //! output all settings to console
   void printSettings();
+
+  // TODO: This could be private but setting is struct
+  struct LineContent{
+    std::string parameterName;
+    std::string value;
+    bool isContent;
+  };
+
+  //! reads one line of the settings file
+  LineContent readSingleLine(std::string line);
+
+  // sets the parameter to the corresponding value
+  void setParameter(std::string parameterName, std::string value);
 };
