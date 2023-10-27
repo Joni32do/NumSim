@@ -2,6 +2,7 @@
 #include "settings_parser/settings.h"
 #include <iostream>
 #include <cstdlib>
+#include <memory>
 
 using namespace std;
 
@@ -26,13 +27,13 @@ int main(int argc, char *argv[])
   cout << "Filename: \"" << filename << "\"" << endl;
 
   // create Settings object
-  Settings settings;
+  std::shared_ptr<Settings> settings = std::make_shared<Settings>();
 
   // load settings from file
-  settings.loadFromFile(filename);
+  settings->loadFromFile(filename);
 
   // display all settings on console
-  settings.printSettings();
+  settings->printSettings();
 
   // write 5 output files
   for (int i = 0; i < 5; i++)

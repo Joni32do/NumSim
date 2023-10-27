@@ -43,8 +43,8 @@ install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${PROJECT_SOURCE_DIR}/../bui
 # Include additional compile options to enable more warnings
 add_compile_options(-Wall -Wextra)
 
-# Set the version of the C++ standard to use, we use C++14, published in 2014
-set(CMAKE_CXX_STANDARD 14)
+# Set the version of the C++ standard to use, we use C++17, published in 2014
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 message("CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
