@@ -6,3 +6,5 @@ make
 src/numsim ../settings.txt
 paraview out/output_*  # or manually open in paraview
 # You may need to change access with `chmod +x build.sh`
+
+#cmake -D CMAKE_PREFIX_PATH "home/.."
