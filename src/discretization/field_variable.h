@@ -2,7 +2,7 @@
 
 #include <array>
 #include <vector>
-#include "../array2D/array2D.h"
+#include "array2D/array2D.h"
 
 /**
  * @class FieldVariable

@@ -41,39 +41,39 @@ public:
     // get index
 
     // -- u --
-    // first valid index for u in x direction
+    //! first valid index for u in x direction
     int uIBegin() const;
-    // one after last valid index for u in x direction
+    //! one after last valid index for u in x direction
     int uIEnd() const;
 
-    // first valid index for u in y direction
+    //! first valid index for u in y direction
     int uJBegin() const;
     // one after last valid index for u in y direction
     int uJEnd() const;
 
     // -- v --
-    // first valid index for v in x direction
+    //! first valid index for v in x direction
     int vIBegin() const;
-    // one after last valid index for v in x direction
+    //! one after last valid index for v in x direction
     int vIEnd() const;
 
-    // first valid index for v in y direction
+    //! first valid index for v in y direction
     int vJBegin() const;
-    // one after last valid index for v in y direction
+    //! one after last valid index for v in y direction
     int vJEnd() const;
 
     // -- p --
-    // first valid index for p in x direction
+    //! first valid index for p in x direction
     int pIBegin() const;
-    // one after last valid index for p in x direction
+    //! one after last valid index for p in x direction
     int pIEnd() const;
     
-    // first valid index for p in y direction
+    //! first valid index for p in y direction
     int pJBegin() const;
-    // one after last valid index for p in y direction
+    //! one after last valid index for p in y direction
     int pJEnd() const;
 
-private:
+protected:
     const std::array<int, 2> nCells_;
     const std::array<double, 2> meshWidth_;
     FieldVariable u_;
