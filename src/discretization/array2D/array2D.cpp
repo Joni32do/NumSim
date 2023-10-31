@@ -4,7 +4,8 @@
 
 
 Array2D::Array2D(const std::array<int, 2> size): size_(size){
-    data_ = std::vector<double>(size[0]*size[1]);
+  // allocate data, initialize to 0
+  data_.resize(size_[0]*size_[1], 0.0);
 }
 
 //! This overwriters the () operator -> can be used ´arr(i,j) = 1.0´
