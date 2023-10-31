@@ -1,13 +1,23 @@
 #include "array2D.h"
 
-Array2D::Array2D(const int n_x, const int n_y): n_x(n_x), n_y(n_y){
-    points = std::vector<double>(n_x*n_y);
+
+
+Array2D::Array2D(const std::array<int, 2> size): size_(size){
+    data_ = std::vector<double>(size[0]*size[1]);
 }
 
-double Array2D::get_point(int i, int j){
-    return points[n_x*j+i];
+
+double Array2D::operator()(int i, int j){
+    return data_[j*size_[0]+i];
 }
 
-void Array2D::set_point(int i, int j, double value){
-    points[n_x*j+i] = value;
+double & Array2D::operator()(int i, int j) const{
+    const double val = data_[j*size_[0]+i]; 
+    return val&;
 }
+
+std::array<int,2> Array2D::size() const{
+    return size_;
+}
+    
+

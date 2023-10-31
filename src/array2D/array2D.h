@@ -1,14 +1,19 @@
 #include <vector>
+#include <array>
 
 class Array2D
 {
     public:
-        Array2D(const int n_x, const int n_y);
-        void set_point(int i, int j, double value);
-        double get_point(int i, int j);
+        Array2D(std::array<int,2> size);
+        // setter
+        double operator()(int i, int j);
+        // getter
+        double & operator()(int i, int j) const;
+        // size getter
+        std::array<int,2> size() const;
     
     private:
-        const int n_x, n_y;
-        std::vector<double> points;
+        const std::array<int,2> size_;
+        std::vector<double> data_;
 
 };
