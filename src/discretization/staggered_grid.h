@@ -2,6 +2,9 @@
 #include <vector>
 #include "field_variable.h"
 
+/**
+ * TODO: Write Doxygen Documentation
+*/
 class StaggeredGrid
 {
 public:
@@ -31,8 +34,8 @@ public:
     double & g(int i, int j);
     double & rhs(int i, int j);
 
-    double dx(int i, int j) const;
-    double dy(int i, int j) const;
+    double dx() const;
+    double dy() const;
 
 
     // get index
@@ -80,5 +83,3 @@ private:
     FieldVariable g_;
     FieldVariable rhs_;
 };
-
-}
