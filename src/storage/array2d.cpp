@@ -1,4 +1,4 @@
-#include "array2D.h"
+#include "array2d.h"
 #include <cassert>
 
 

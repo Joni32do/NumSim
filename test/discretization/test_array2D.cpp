@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "../../src/discretization/array2D/array2D.h"
+#include "src/storage/array2d.h"
 
 TEST(Array2D, Constructor){
     std::array<int,2> size = {2,3};	
