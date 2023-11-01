@@ -1,6 +1,8 @@
+#pragma once
+
 #include "array2D.h"
 #include "field_variable.h"
-#include <math>
+#include <cmath>
 
 
 FieldVariable::FieldVariable(std::array<int,2> size,
@@ -34,10 +36,10 @@ double FieldVariable::interpolateAt(double x, double y) const{
         double x_weight = i_float - i;
         double y_weight = j_float - j;
         // value lower left node
-        down_left = (1-x_weight)*(*this)(i,j);
-        down_right = (x_weight)*(*this)(i+1,j);
-        up_left = (1-x_weight)*(*this)(i,j+1);
-        up_right = (x_weight)*(*this)(i+1,j+1);
+        double down_left = (1-x_weight)*(*this)(i,j);
+        double down_right = (x_weight)*(*this)(i+1,j);
+        double up_left = (1-x_weight)*(*this)(i,j+1);
+        double up_right = (x_weight)*(*this)(i+1,j+1);
         return (1-y_weight)*(down_left + down_right) + y_weight*(up_left + up_right);
     }
 }

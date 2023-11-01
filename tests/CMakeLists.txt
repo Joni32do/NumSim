@@ -11,7 +11,9 @@ include_directories(${GTEST_INCLUDE_DIRS})
 # 'test1.cpp test2.cpp' are source files with tests
 add_executable(run_tests 
     test_array2D.cpp
+    test_field_variable.cpp
     ../src/storage/array2D.cpp
+    ../src/storage/field_variable.cpp
 )
 target_link_libraries(run_tests gtest gtest_main)
 
