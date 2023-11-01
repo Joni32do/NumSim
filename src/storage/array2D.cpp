@@ -1,9 +1,6 @@
-#include "array2d.h"
-#include <cassert>
+#include "array2D.h"
 
-
-
-Array2D::Array2D(const std::array<int, 2> size): size_(size){
+Array2D::Array2D(std::array<int, 2> size): size_(size){
   // allocate data, initialize to 0
   data_.resize(size_[0]*size_[1], 0.0);
 }
@@ -37,4 +34,3 @@ std::array<int,2> Array2D::size() const{
     return size_;
 }
     
-

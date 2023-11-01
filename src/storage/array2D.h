@@ -1,5 +1,7 @@
 #include <vector>
 #include <array>
+#include <cassert>
+
 
 /** This class represents a 2D array of double values.
  *  Internally they are stored consecutively in memory.
@@ -8,7 +10,7 @@
 class Array2D
 {
     public:
-        Array2D(std::array<int,2> size);
+        Array2D(std::array<int, 2> size);
         //! setter
         double &operator()(int i, int j);
         //! getter

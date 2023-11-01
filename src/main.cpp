@@ -1,8 +1,10 @@
 #include "output_writer/write_paraview_output.h"
 #include "settings_parser/settings.h"
+#include "storage/array2D.h"
 #include <iostream>
 #include <cstdlib>
 #include <memory>
+#include <vector>
 
 using namespace std;
 
@@ -20,6 +22,7 @@ int main(int argc, char *argv[])
       return EXIT_FAILURE;
   }
 
+  
   // read in the first argument
   string filename = argv[1];
 
@@ -36,10 +39,22 @@ int main(int argc, char *argv[])
   settings->printSettings();
 
   // write 5 output files
-  for (int i = 0; i < 5; i++)
-  {
-    writeParaviewOutput(i);
-  }
+  // for (int i = 0; i < 5; i++)
+  // {
+  //  writeParaviewOutput(i);
+  // }
+
+  Array2D testarr({8, 4});
+
+  testarr(2,3) = 5.45;
+
+  std::cout << "Hier :::" << "\n";
+  std::cout << testarr(2,3) << std::endl;
+  std::cout << testarr(1,1) << std::endl;
+  std::cout << testarr(10,10) << std::endl;
+
+
+
 
   return EXIT_SUCCESS;
 }

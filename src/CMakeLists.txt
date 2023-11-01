@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.14)
 
 # Define the project name.
 project(numsim)
@@ -10,6 +10,7 @@ add_executable(${PROJECT_NAME}
    main.cpp
    output_writer/write_paraview_output.cpp
    settings_parser/settings.cpp
+   storage/array2D.cpp
 )
 
 # Add the project directory to include directories,
