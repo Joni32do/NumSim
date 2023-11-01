@@ -4,6 +4,7 @@ cd build
 cmake ..
 make
 src/numsim ../settings.txt
+tests/run_tests
 #paraview out/output_*  # or manually open in paraview
 # You may need to change access with `chmod +x build.sh`
 
