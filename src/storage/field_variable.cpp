@@ -1,5 +1,3 @@
-#pragma once
-
 #include "array2D.h"
 #include "field_variable.h"
 #include <cmath>
