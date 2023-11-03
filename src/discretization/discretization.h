@@ -1,4 +1,5 @@
 #pragma once 
+
 #include <array>
 #include <vector>
 #include "staggered_grid.h"
@@ -16,12 +17,12 @@ class Discretization : public StaggeredGrid
         virtual double computeDuvDy(int i, int j) const = 0;
 
         // 2nd derivatives for diffusion
-        virtual double computeD2uDx2(int i, int j) const = 0;
-        virtual double computeD2uDy2(int i, int j) const = 0;
-        virtual double computeD2vDx2(int i, int j) const = 0;
-        virtual double computeD2uDy2(int i, int j) const = 0;
+        virtual double computeD2uDx2(int i, int j) const;
+        virtual double computeD2uDy2(int i, int j) const;
+        virtual double computeD2vDx2(int i, int j) const;
+        virtual double computeD2vDy2(int i, int j) const;
         
         // compute pressure derivatives
-        virtual double computeDpDx(int i, int j) const = 0;
-        virtual double computeDpDy(int i, int j) const = 0;
+        virtual double computeDpDx(int i, int j) const;
+        virtual double computeDpDy(int i, int j) const;
 };
