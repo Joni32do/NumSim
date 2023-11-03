@@ -1,6 +1,6 @@
 #include <array>
 #include <vector>
-#include "field_variable.h"
+#include "../storage/field_variable.h"
 
 /**
  * TODO: Write Doxygen Documentation
@@ -9,6 +9,7 @@ class StaggeredGrid
 {
 public:
     StaggeredGrid(std::array<int, 2> nCells, std::array<double, 2> meshWidth);
+    
     // get the mesh width, i.e. the length of a single cell in x and y direction 
     const std::array<double, 2> meshWidth() const;
     // get number of cells in each coordinate direction
