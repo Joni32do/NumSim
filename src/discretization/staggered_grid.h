@@ -10,17 +10,17 @@ class StaggeredGrid
 public:
     StaggeredGrid(std::array<int, 2> nCells, std::array<double, 2> meshWidth);
     
-    // get the mesh width, i.e. the length of a single cell in x and y direction 
+    //! get the mesh width, i.e. the length of a single cell in x and y direction 
     const std::array<double, 2> meshWidth() const;
-    // get number of cells in each coordinate direction
+    //! get number of cells in each coordinate direction
     const std::array<int, 2> nCells() const;
 
     // get the field variables
     const FieldVariable & u() const;
     const FieldVariable & v() const;
     const FieldVariable & p() const;
-    const FieldVariable & f() const;
-    const FieldVariable & g() const;
+
+    // TODO: Confusing that we dont need this for f, g, rhs
     
     double u(int i, int j) const;
     double & u(int i, int j);
