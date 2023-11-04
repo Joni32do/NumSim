@@ -18,6 +18,7 @@ add_executable(run_tests
     ../src/storage/array2D.cpp
     ../src/storage/field_variable.cpp
     ../src/discretization/staggered_grid.cpp
+    ../src/discretization/discretization.cpp
     ../src/discretization/donor_cell.cpp
     ../src/discretization/central_differences.cpp
 )
