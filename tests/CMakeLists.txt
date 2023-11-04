@@ -12,8 +12,10 @@ include_directories(${GTEST_INCLUDE_DIRS})
 add_executable(run_tests 
     test_array2D.cpp
     test_field_variable.cpp
+    test_staggered_grid.cpp
     ../src/storage/array2D.cpp
     ../src/storage/field_variable.cpp
+    ../src/discretization/staggered_grid.cpp
 )
 target_link_libraries(run_tests gtest gtest_main)
 

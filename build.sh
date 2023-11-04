@@ -1,4 +1,5 @@
 # This is for lazy people -> just type `./build.sh` in the terminal
+rm -rf build
 mkdir -p build
 cd build
 cmake ..
