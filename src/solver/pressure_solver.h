@@ -13,7 +13,9 @@
 class PressureSolver 
 {
     public:
-        PressureSolver(std::shared_ptr<Discretization> discretization, double epsilon, int maximumNumberOfIterations);
+        PressureSolver(std::shared_ptr<Discretization> discretization, 
+                       double epsilon, 
+                       int maximumNumberOfIterations);
 
         /**
          * @brief solve the Poisson problem for the pressure
