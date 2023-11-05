@@ -4,7 +4,12 @@
 #
 # You may need to allow execution
 #    `chmod +x build.sh`
-rm -rf build
+# rm -rf build
+if ["$1" == "clean"]; then
+    rm -rf build
+    rm -rf resources
+fi
+
 mkdir -p build
 cd build
 cmake ..
