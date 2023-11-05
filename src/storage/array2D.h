@@ -17,6 +17,8 @@ class Array2D
         double &operator()(int i, int j);
         //! getter
         double operator()(int i, int j) const;
+        //! getter which allows non-integer indices
+        double operator()(double i, double j) const;
         //! size getter
         std::array<int,2> size() const;
     

@@ -11,6 +11,8 @@ double CentralDifferences::computeDu2Dx(int i, int j) const
     double u_iminus_j = 0.5 * (u(i, j) + u(i - 1, j));
     double u_iplus_j = 0.5 * (u(i + 1, j) + u(i, j));
     return (u_iplus_j * u_iplus_j - u_iminus_j * u_iminus_j) / dx();
+    // Shorter Version:
+    // return (u(i+0.5,j)*u(i+0.5,j) - u(i-0.5,j)*u(i-0.5,j)) / dx();
 }
 
 

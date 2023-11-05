@@ -21,7 +21,6 @@ src/numsim ../settings.txt
 
 # for writing documentation
 cd ..
-rm -rf resources
 mkdir resources
 cd resources
 doxygen ../Doxyfile
