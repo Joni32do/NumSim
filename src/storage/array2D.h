@@ -13,15 +13,19 @@ class Array2D
 {
     public:
         Array2D(std::array<int, 2> size);
-        //! setter
+
+        //! set value
         double &operator()(int i, int j);
-        //! getter
+        
+        //! get value
         double operator()(int i, int j) const;
-        //! getter which allows non-integer indices
-        double operator()(double i, double j) const;
-        //! size getter
+
+        //! get size
         std::array<int,2> size() const;
-    
+        
+        //! get half-step values (intp.)
+        double operator()(double i, double j) const;
+
     protected:
         const std::array<int,2> size_;    //< width, height of the domain
         std::vector<double> data_;  //< storage array values, in row-major order
