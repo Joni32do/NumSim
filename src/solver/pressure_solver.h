@@ -28,7 +28,6 @@ class PressureSolver
          * @brief Set the Boundary Values
          * 
          * Account for homogenous Neuman BC
-         * 
          * Has to be called every iteration 
          */
         void setBoundaryValues();
