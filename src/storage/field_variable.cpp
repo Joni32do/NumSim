@@ -42,6 +42,19 @@ double FieldVariable::interpolateAt(double x, double y) const{
     }
 }
 
+
+double FieldVariable::findAbsMax() const{
+    double max = 0;
+    for (int i = 0; i < size_[0]; i++){
+        for (int j = 0; j < size_[1]; j++){
+            if (std::abs((*this)(i,j)) > max){
+                max = std::abs((*this)(i,j));
+            }
+        }
+    }
+    return max;
+}
+
    
 
     

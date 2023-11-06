@@ -31,14 +31,6 @@ void Computation::initialize(int argc, char *argv[]){
 }
 
 
-void Computation::computeTimeStepWidth():
-{
-
-    // settings_.tau
-    // settings_.maximumDt
-}
-
-
 void Computation::applyBoundaryValues()
 {
         
@@ -79,3 +71,31 @@ void Computation::applyBoundaryValues()
     }
 
 }
+
+
+
+void Computation::computeTimeStepWidth()
+{
+    double Re = settings_.re;
+    double tau = settings_.tau;
+    double max_dt = settings_.maximumDt;
+
+    // Calculate the maximal absolute value of u
+    double max_u = discretization_->u().findAbsMax();
+    double max_v = discretization_->v().findAbsMax();
+    
+    // Absoluter quatsch
+    dt_ = 1 / Re;
+}
+
+
+void Computation::computePreliminaryVelocities()
+{
+    // Set the bondary values for F and G
+
+
+
+
+    
+
+
