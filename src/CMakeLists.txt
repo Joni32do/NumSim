@@ -8,9 +8,24 @@ project(numsim)
 # Also specify the source files.
 add_executable(${PROJECT_NAME}
    main.cpp
-   output_writer/write_paraview_output.cpp
+   output_writer/output_writer.cpp
+   output_writer/output_writer_paraview.cpp
+   output_writer/output_writer_text.cpp
+
+   discretization/discretization.cpp
+   discretization/donor_cell.cpp
+   discretization/central_differences.cpp
+   discretization/staggered_grid.cpp
+
    settings_parser/settings.cpp
+
    storage/array2D.cpp
+   storage/field_variable.cpp
+
+   solver/pressure_solver.cpp
+
+   computation.cpp
+   
 )
 
 # Add the project directory to include directories,

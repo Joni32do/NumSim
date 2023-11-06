@@ -20,11 +20,12 @@ src/numsim ../settings.txt
 # paraview out/output_*
 
 # for writing documentation
-cd ..
-mkdir resources
-cd resources
-doxygen ../Doxyfile
-cd ..
+
+# cd ..
+# mkdir resources
+# cd resources
+# doxygen ../Doxyfile
+# cd ..
 
 # run tests
 build/tests/run_tests
