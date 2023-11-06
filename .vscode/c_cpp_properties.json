@@ -3,7 +3,9 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/src/storage",
+                "/usr/local/include/vtk-9.3"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
