@@ -59,8 +59,23 @@ void PressureSolver::setBoundaryValues(){
         discretization_->v(i_end, j) = - discretization_->v(i_end - 1, j);
     }
 
-    // TODO: BV for p
+    // BV for p
+    
+    // According to lecture 3.2.3 $F_{0,j} = u_{0,j}$ results in Homogenous Neumann BC
+    i_beg = discretization_->pIBegin();
+    i_end = discretization_->pIEnd();
+    j_beg = discretization_->pJBegin();
+    j_end = discretization_->pJEnd();
 
+    for(int i = i_beg; i < i_end; i++){
+        discretization_->p(i, j_beg) = discretization_->p(i, j_beg + 1);
+        discretization_->p(i, j_end) = discretization_->p(i, j_end - 1);
+    }
+
+    for(int j = j_beg; j < j_end; j++){
+        discretization_->p(i_beg, j) = discretization_->p(i_beg + 1, j);
+        discretization_->p(i_end, j) = discretization_->p(i_end - 1, j);
+    }
 
 
 }
