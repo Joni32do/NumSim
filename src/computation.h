@@ -1,7 +1,13 @@
 #pragma once
 
 #include "discretization/discretization.h"
+#include "discretization/donor_cell.h"
+#include "discretization/central_differences.h"
+
 #include "solver/pressure_solver.h"
+#include "solver/sor.h"
+#include "solver/gauss_seidel.h"
+
 #include "output_writer/output_writer_paraview.h"
 #include "output_writer/output_writer_text.h"
 #include "settings_parser/settings.h"

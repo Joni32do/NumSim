@@ -8,28 +8,42 @@
  */
 void Computation::initialize(int argc, char *argv[]){
 
-  std::string filename = argv[1];
-
-
-  // load settings from file
-  settings_.loadFromFile(filename);
-
-  // TODO: Logger with settings
-
-  //   settings.printSettings();
-
-  std::array<double, 2> meshWidth_ = {settings_.physicalSize[0] / settings_.nCells[0],
-                                      settings_.physicalSize[1] / settings_.nCells[1]};
+    std::string filename = argv[1];
   
-  discretization_ = std::make_shared<Discretization>(settings_.nCells, meshWidth_);
-  pressureSolver_ = std::make_unique<PressureSolver>(discretization_,
-                                                     settings_.epsilon,
-                                                     settings_.maximumNumberOfIterations);
-  outputWriterParaview_ = std::make_unique<OutputWriterParaview>(discretization_);
-  outputWriterText_ = std::make_unique<OutputWriterText>(discretization_);
   
-  // TODO:
-  dt_ = 0.1;
+    // load settings from file
+    settings_.loadFromFile(filename);
+  
+    // TODO: Logger with settings
+  
+    //   settings.printSettings();
+  
+    std::array<double, 2> meshWidth_ = {settings_.physicalSize[0] / settings_.nCells[0],
+                                        settings_.physicalSize[1] / settings_.nCells[1]};
+    
+    if (settings_.useDonorCell){
+        discretization_ = std::make_shared<DonorCell>(settings_.nCells, meshWidth_, settings_.alpha);
+    } else {
+        discretization_ = std::make_shared<CentralDifferences>(settings_.nCells, meshWidth_);
+    }
+    
+  
+    if (settings_.pressureSolver == "SOR"){
+      pressureSolver_ = std::make_unique<SOR>(discretization_,
+                                              settings_.epsilon,
+                                              settings_.maximumNumberOfIterations,
+                                              settings_.omega);
+    } else  {
+      pressureSolver_ = std::make_unique<GaussSeidel>(discretization_,
+                                                      settings_.epsilon,
+                                                      settings_.maximumNumberOfIterations);
+    }
+
+
+    outputWriterParaview_ = std::make_unique<OutputWriterParaview>(discretization_);
+    outputWriterText_ = std::make_unique<OutputWriterText>(discretization_);
+    
+    computeTimeStepWidth();
 }
 
 void Computation::runSimulation(){
@@ -94,7 +108,7 @@ void Computation::applyBoundaryValues()
 
 void Computation::computeTimeStepWidth()
 {
-    // Diffusion operator
+    // Diffusion operator (always > 0)
     double dx2 = discretization_->dx() * discretization_->dx();
     double dy2 = discretization_->dy() * discretization_->dy();
     double diff = settings_.re/2 * (dx2*dx2)/(dx2+dy2);
@@ -105,12 +119,12 @@ void Computation::computeTimeStepWidth()
     // convection operator restriction v
     double max_v = discretization_->dy() / discretization_->v().findAbsMax();
 
-    
+    // TODO:
     // dt_ = std::min(diff, max_u, max_v, max_dt)
 
     double min_uv = std::min(max_u, max_v);
     double min = std::min(min_uv, diff);
-    double min_dt = std::min(min, settings_.maximumDt)
+    double min_dt = std::min(min, settings_.maximumDt);
 
     dt_ = settings_.tau * min_dt;
 }
@@ -198,8 +212,8 @@ void Computation::computeRightHandSide(){
     // Interior
     for(int i = i_beg + 1; i <= i_end - 1; i++){
         for(int j = j_beg + 1 ; j <= j_end - 1; j++){
-            double dF = 1/discretization_-> dx() * (discretization_->f(i, j) - discretization_->f(i-1, j));
-            double dG = 1/discretization_-> dy() * (discretization_->g(i, j) - discretization_->g(i, j-1));
+            double dF = 1/discretization_->dx() * (discretization_->f(i, j) - discretization_->f(i-1, j));
+            double dG = 1/discretization_->dy() * (discretization_->g(i, j) - discretization_->g(i, j-1));
             discretization_->rhs(i, j) = 1/dt_ * (dF + dG);
         }
     }
