@@ -45,7 +45,7 @@ void Computation::runSimulation(){
         currentTime += dt_;
         outputWriterParaview_->writeFile(currentTime);
         outputWriterText_->writeFile(currentTime);
-    } while (currentTime < settings_.endTime)
+    } while (currentTime < settings_.endTime);
 }
 
 
@@ -94,16 +94,25 @@ void Computation::applyBoundaryValues()
 
 void Computation::computeTimeStepWidth()
 {
-    double Re = settings_.re;
-    double tau = settings_.tau;
-    double max_dt = settings_.maximumDt;
+    // Diffusion operator
+    double dx2 = discretization_->dx() * discretization_->dx();
+    double dy2 = discretization_->dy() * discretization_->dy();
+    double diff = settings_.re/2 * (dx2*dx2)/(dx2+dy2);
 
-    // Calculate the maximal absolute value of u
-    double max_u = discretization_->u().findAbsMax();
-    double max_v = discretization_->v().findAbsMax();
+    // convection operator restriction u 
+    double max_u = discretization_->dx() / discretization_->u().findAbsMax();
     
-    // Absoluter quatsch
-    dt_ = 1 / Re;
+    // convection operator restriction v
+    double max_v = discretization_->dy() / discretization_->v().findAbsMax();
+
+    
+    // dt_ = std::min(diff, max_u, max_v, max_dt)
+
+    double min_uv = std::min(max_u, max_v);
+    double min = std::min(min_uv, diff);
+    double min_dt = std::min(min, settings_.maximumDt)
+
+    dt_ = settings_.tau * min_dt;
 }
 
 

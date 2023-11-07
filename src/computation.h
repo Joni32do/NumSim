@@ -1,10 +1,12 @@
 #pragma once
 
-#include <discretization/discretization.h>
-#include <solver/pressure_solver.h>
-#include <output_writer/output_writer_paraview.h>
-#include <output_writer/output_writer_text.h>
-#include <settings_parser/settings.h>
+#include "discretization/discretization.h"
+#include "solver/pressure_solver.h"
+#include "output_writer/output_writer_paraview.h"
+#include "output_writer/output_writer_text.h"
+#include "settings_parser/settings.h"
+
+#include <cmath>
 
 class Computation{
     public:
