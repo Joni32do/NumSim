@@ -32,6 +32,22 @@ void Computation::initialize(int argc, char *argv[]){
   dt_ = 0.1;
 }
 
+void Computation::runSimulation(){
+    double currentTime = 0.;
+    do{
+        computeTimeStepWidth();
+        applyBoundaryValues();
+        computePreliminaryVelocities();
+        computeRightHandSide();
+        computePressure();
+        computeVelocities();
+
+        currentTime += dt_;
+        outputWriterParaview_->writeFile(currentTime);
+        outputWriterText_->writeFile(currentTime);
+    } while (currentTime < settings_.endTime)
+}
+
 
 void Computation::applyBoundaryValues()
 {
@@ -178,12 +194,16 @@ void Computation::computeRightHandSide(){
             discretization_->rhs(i, j) = 1/dt_ * (dF + dG);
         }
     }
+}
 
-
-
+void Computation::computePressure(){
+    pressureSolver_->setBoundaryValues();
+    pressureSolver_->solve();
 }
 
 
-    
+void Computation::computeVelocities(){
+
+}
 
 
