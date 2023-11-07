@@ -2,6 +2,10 @@
 
 #include "pressure_solver.h";
 
+/**
+ * @brief Successive over-relaxation solver
+ * 
+ */
 class SOR : public PressureSolver {
 
 public:
