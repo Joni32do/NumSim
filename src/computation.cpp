@@ -197,7 +197,6 @@ void Computation::computeRightHandSide(){
 }
 
 void Computation::computePressure(){
-    pressureSolver_->setBoundaryValues();
     pressureSolver_->solve();
 }
 
