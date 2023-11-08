@@ -1,6 +1,8 @@
 #include "array2D.h"
 #include "field_variable.h"
 
+#include <iostream>
+
 
 FieldVariable::FieldVariable(std::array<int,2> size,
                     std::array<double,2> origin,
@@ -24,16 +26,21 @@ double FieldVariable::interpolateAt(double x, double y) const{
     int i = (int) i_float;
     int j = (int) j_float;
 
-    // case 1: x and y are on a node
+    double i_weight = i_float - i;
+    double j_weight = j_float - j;
 
-    if (i_float == double(i) && j_float == double(j)){
+    if (i_weight == 0.0 && j_weight == 0.0){
+        // case 1: node value
         return (*this)(i, j);
+    } else if (i_weight == 0.0 && j_weight != 0.0){
+        // case 2: linear interpolation between y-values
+        return (1-j_weight)*(*this)(i,j) + j_weight*(*this)(i,j+1);
+    } else if (i_weight != 0.0 && j_weight == 0.0){
+        // case 3: linear interpolation between x-values
+        return (1-i_weight)*(*this)(i,j) + i_weight*(*this)(i+1,j);
     } else {
-        // case 2: bilinear interpolation between four nodes
-        double i_weight = i_float - i;
-        double j_weight = j_float - j;
-        
-        // value lower left node
+        // case 4: bilinear interpolation between four nodes
+
         double down_left = (1-i_weight)*(*this)(i,j);
         double down_right = (i_weight)*(*this)(i+1,j);
         double up_left = (1-i_weight)*(*this)(i,j+1);

@@ -57,12 +57,11 @@ void Computation::runSimulation(){
         computeRightHandSide();
         computePressure();
         computeVelocities();
-
         currentTime += dt_;
         outputWriterParaview_->writeFile(currentTime);
-        std::cout << "Sie" << std::endl;
-        outputWriterText_->writeFile(currentTime);
-        std::cout << "Ficker" << std::endl;
+        // outputWriterText_->writeFile(currentTime);
+        std::cout << currentTime << std::endl;
+
     } while (currentTime < settings_.endTime);
 }
 
