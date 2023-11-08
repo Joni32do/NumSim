@@ -1,5 +1,7 @@
 #include "computation.h"
 
+#include <iostream>
+
 /**
  * @brief 
  * 
@@ -16,7 +18,7 @@ void Computation::initialize(int argc, char *argv[]){
   
     // TODO: Logger with settings
   
-    //   settings.printSettings();
+    settings_.printSettings();
   
     std::array<double, 2> meshWidth_ = {settings_.physicalSize[0] / settings_.nCells[0],
                                         settings_.physicalSize[1] / settings_.nCells[1]};
@@ -58,7 +60,9 @@ void Computation::runSimulation(){
 
         currentTime += dt_;
         outputWriterParaview_->writeFile(currentTime);
+        std::cout << "Sie" << std::endl;
         outputWriterText_->writeFile(currentTime);
+        std::cout << "Ficker" << std::endl;
     } while (currentTime < settings_.endTime);
 }
 
@@ -211,8 +215,8 @@ void Computation::computeRightHandSide(){
     // Interior
     for(int i = rhs_i_beg; i <= rhs_i_end; i++){
         for(int j = rhs_j_beg; j <= rhs_j_end; j++){
-            double dF = 1/discretization_->dx() * (discretization_->f(i, j) - discretization_->f(i-1, j));
-            double dG = 1/discretization_->dy() * (discretization_->g(i, j) - discretization_->g(i, j-1));
+            double dF = 1/discretization_->dx() * (discretization_->f(i+1, j) - discretization_->f(i, j));
+            double dG = 1/discretization_->dy() * (discretization_->g(i, j+1) - discretization_->g(i, j));
             discretization_->rhs(i, j) = 1/dt_ * (dF + dG);
         }
     }

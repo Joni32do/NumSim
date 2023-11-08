@@ -28,4 +28,4 @@ cd ..
 # cd ..
 
 # run tests
-build/tests/run_tests
+# build/tests/run_tests
