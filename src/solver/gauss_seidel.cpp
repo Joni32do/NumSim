@@ -34,6 +34,7 @@ void GaussSeidel::solve(){
                 double p_y = 1/dy2 * (discretization_->p(i, j + 1) + discretization_->p(i, j - 1)); 
                 double p_new = p_old + (d_fac * (p_x + p_y - discretization_->rhs(i, j)));
                 discretization_->p(i,j) = p_new;
+                // TODO: Residual calculation with $1/N |r|^2 < e^2$ mit $r = rhs - M@p$ 
                 res += std::abs(p_new - p_old);
             }
         }

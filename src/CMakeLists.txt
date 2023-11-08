@@ -23,6 +23,8 @@ add_executable(${PROJECT_NAME}
    storage/field_variable.cpp
 
    solver/pressure_solver.cpp
+   solver/gauss_seidel.cpp
+   solver/sor.cpp
 
    computation.cpp
    

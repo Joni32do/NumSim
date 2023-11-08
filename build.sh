@@ -4,7 +4,6 @@
 #
 # You may need to allow execution
 #    `chmod +x build.sh`
-rm -rf build
 if ["$1" == "clean"]; then
     rm -rf build
     rm -rf resources
@@ -15,6 +14,7 @@ cd build
 cmake ..
 make
 src/numsim ../settings.txt
+cd ..
 
 # directly open output in paraview
 # paraview out/output_*
