@@ -59,7 +59,7 @@ void Computation::runSimulation(){
         computeVelocities();
         currentTime += dt_;
         outputWriterParaview_->writeFile(currentTime);
-        // outputWriterText_->writeFile(currentTime);
+        outputWriterText_->writeFile(currentTime);
         std::cout << currentTime << std::endl;
 
     } while (currentTime < settings_.endTime);
