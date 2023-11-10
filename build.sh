@@ -13,7 +13,7 @@ mkdir -p build
 cd build
 cmake ..
 make
-src/numsim ../settings.txt
+src/numsim ../input/settings.txt
 cd ..
 
 # directly open output in paraview

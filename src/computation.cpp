@@ -86,6 +86,8 @@ void Computation::applyBoundaryValues()
     for(int i = i_beg + 1; i <= i_end - 1; i++){
         discretization_->u(i, j_beg) = 2 * settings_.dirichletBcBottom[0] - discretization_->u(i, j_beg + 1);
         discretization_->u(i, j_end) = 2 * settings_.dirichletBcTop[0] - discretization_->u(i, j_end - 1);
+        // TODO: remove prints
+        std::cout << "u(" << i << ", " << j_end << "): " << discretization_->u(i, j_end) << std::endl;
     }
 
     // BV for v
@@ -151,6 +153,8 @@ void Computation::computePreliminaryVelocities()
     for(int i = 1; i <= f_i_end - 1; i++){
         discretization_->f(i, 0) = discretization_->u(i, 0);
         discretization_->f(i, f_j_end) = discretization_->u(i, f_j_end);
+        // TODO: Remove prints
+        std::cout << "f(" << i << ", " << f_j_end << "): " << discretization_->f(i, f_j_end) << std::endl;
     }
 
 

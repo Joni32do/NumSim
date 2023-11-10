@@ -1,5 +1,6 @@
 #include "gauss_seidel.h"
 
+#include <iostream>
 
 GaussSeidel::GaussSeidel(const std::shared_ptr<Discretization>& data, 
                          double epsilon, 
@@ -35,12 +36,23 @@ void GaussSeidel::solve(){
                 double p_new = p_old + (d_fac * (p_x + p_y - discretization_->rhs(i, j)));
                 discretization_->p(i,j) = p_new;
                 // TODO: Residual calculation with $1/N |r|^2 < e^2$ mit $r = rhs - M@p$ 
-                res += std::abs(p_new - p_old);
+                res += (p_new - p_old)*(p_new - p_old);
+                // TODO: remove prints
+                if (i == 1 && j == 1){
+                    std::cout << "p_x: " << p_old << std::endl;
+                    std::cout << "p_y: " << p_y << std::endl;
+                    std::cout << "rhs: " << discretization_->rhs(i, j) << std::endl;
+                    std::cout << "p_new: " << p_new << std::endl;
+                }
+                
             }
         }
         // Relative residual to discretization size ("integral")
         res /= (i_end - i_beg - 1) * (j_end - j_beg - 1);
         n++;
+        // TODO: remove prints
+        // std::cout << "Iteration: " << n << std::endl;
+        // std::cout << "Normed Residual: " << res << std::endl;
     }
 
 
