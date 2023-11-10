@@ -12,11 +12,11 @@ GaussSeidel::GaussSeidel(const std::shared_ptr<Discretization>& data,
 
 void GaussSeidel::solve(){
     setBoundaryValues();
-
-    int i_beg = discretization_->pIBegin();
-    int i_end = discretization_->pIEnd();
-    int j_beg = discretization_->pJBegin();
-    int j_end = discretization_->pJEnd();
+    // TODO: double check the indicies
+    int rhs_i_beg = discretization_->pIBegin() + 1;
+    int rhs_i_end = discretization_->pIEnd() - 2;
+    int rhs_j_beg = discretization_->pJBegin() + 1;
+    int rhs_j_end = discretization_->pJEnd() - 2;
     
     int n = 0;
     double res = epsilon_ + 1;
@@ -25,35 +25,39 @@ void GaussSeidel::solve(){
     double dy2 = discretization_->dy() * discretization_->dy();
     double d_fac = (dx2 * dy2)/(2 *(dx2 + dy2));
 
-    // Can be implemented in a different manner to SOR but anyways
-    while (n < maximumNumberOfIterations_ && res > epsilon_) {
+    // Is cpp so low level that loops are faster then any other matrix operation?
+    do {
         res = 0;
-        for (int i = i_beg + 1; i < i_end - 1; i++) {
-            for (int j = j_beg + 1; j < j_end - 1; j++) {
+        for (int i = rhs_i_beg; i <= rhs_i_end; i++) {
+            for (int j = rhs_j_beg; j <= rhs_j_end; j++) {
                 double p_old = discretization_->p(i, j);
                 double p_x = 1/dx2 * (discretization_->p(i + 1, j) + discretization_->p(i - 1, j));
                 double p_y = 1/dy2 * (discretization_->p(i, j + 1) + discretization_->p(i, j - 1)); 
-                double p_new = p_old + (d_fac * (p_x + p_y - discretization_->rhs(i, j)));
+
+                // Main SOR step
+                double p_new = d_fac * (p_x + p_y - discretization_->rhs(i, j));
+
                 discretization_->p(i,j) = p_new;
-                // TODO: Residual calculation with $1/N |r|^2 < e^2$ mit $r = rhs - M@p$ 
-                res += (p_new - p_old)*(p_new - p_old);
-                // TODO: remove prints
-                if (i == 1 && j == 1){
-                    std::cout << "p_x: " << p_old << std::endl;
-                    std::cout << "p_y: " << p_y << std::endl;
-                    std::cout << "rhs: " << discretization_->rhs(i, j) << std::endl;
-                    std::cout << "p_new: " << p_new << std::endl;
-                }
-                
             }
-        }
-        // Relative residual to discretization size ("integral")
-        res /= (i_end - i_beg - 1) * (j_end - j_beg - 1);
+        } 
+        setBoundaryValues();
+        // Compute the residual with new values
+        // 
+        // Has to be done outside of the loop - therefore is NOT the same
+        // as in loop above
+        for (int i = rhs_i_beg; i <= rhs_i_end; i++) {
+            for (int j = rhs_j_beg; j <= rhs_j_end; j++) {
+                double p_old = discretization_->p(i, j);
+                double p_x = 1/dx2 * (discretization_->p(i + 1, j) + discretization_->p(i - 1, j));
+                double p_y = 1/dy2 * (discretization_->p(i, j + 1) + discretization_->p(i, j - 1)); 
+                double res_temp = d_fac * (p_x + p_y - discretization_->rhs(i, j));
+                res += res_temp * res_temp;
+            }
+        } 
+        int n_rhs = (rhs_i_end - rhs_i_beg + 1) * (rhs_j_end - rhs_j_beg + 1);
+        res = std::sqrt(1/n_rhs * res);
+        std::cout << "res: " << res << std::endl;
         n++;
-        // TODO: remove prints
-        // std::cout << "Iteration: " << n << std::endl;
-        // std::cout << "Normed Residual: " << res << std::endl;
-    }
-
-
+    } while (n < maximumNumberOfIterations_ && res > epsilon_);
 }
+

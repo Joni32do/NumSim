@@ -4,10 +4,8 @@
 #
 # You may need to allow execution
 #    `chmod +x build.sh`
-if ["$1" == "clean"]; then
-    rm -rf build
-    rm -rf resources
-fi
+
+# rm -rf build
 
 mkdir -p build
 cd build
@@ -17,6 +15,7 @@ src/numsim ../input/settings.txt
 cd ..
 
 # directly open output in paraview
+
 # paraview out/output_*
 
 # for writing documentation

@@ -19,5 +19,4 @@ public:
 
 private:
     double omega_;
-
 };
