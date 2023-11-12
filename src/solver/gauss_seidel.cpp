@@ -29,7 +29,6 @@ void GaussSeidel::solve(){
 
     // Is cpp so low level that loops are faster then any other matrix operation?
     do {
-        res = 0;
         for (int i = rhs_i_beg; i <= rhs_i_end; i++) {
             for (int j = rhs_j_beg; j <= rhs_j_end; j++) {
                 double p_old = discretization_->p(i, j);
@@ -44,23 +43,15 @@ void GaussSeidel::solve(){
         } 
         setBoundaryValues();
         // Compute the residual with new values
-        // 
-        // Has to be done outside of the loop - therefore is NOT the same
-        // as in loop above
-        for (int i = rhs_i_beg; i <= rhs_i_end; i++) {
-            for (int j = rhs_j_beg; j <= rhs_j_end; j++) {
-                double p_old = discretization_->p(i, j);
-                double p_x = 1/dx2 * (discretization_->p(i + 1, j) + discretization_->p(i - 1, j));
-                double p_y = 1/dy2 * (discretization_->p(i, j + 1) + discretization_->p(i, j - 1)); 
-                double res_temp = d_fac * (p_x + p_y - discretization_->rhs(i-1, j-1));
-                res += res_temp * res_temp;
-            }
-        } 
-        res = std::sqrt(1/n_rhs * res);
+        res = calculateResiduum();
 
         // TODO: remove print
         // std::cout << "res: " << res << std::endl;
         n++;
-    } while (n < maximumNumberOfIterations_); //&& res > epsilon_
+    } while (n < maximumNumberOfIterations_ && res > epsilon_);
+
+    #ifndef NDEBUG
+        std::cout << "[Solver] Number of iterations: " << n << ", final residuum: " << res << std::endl;
+    #endif
 }
 

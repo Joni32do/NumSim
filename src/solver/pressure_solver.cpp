@@ -1,5 +1,6 @@
 #include "pressure_solver.h"
 #include <math.h>
+#include <iostream>
 
 PressureSolver::PressureSolver(std::shared_ptr<Discretization> discretization,
                                double epsilon, 
@@ -64,8 +65,8 @@ double PressureSolver::calculateResiduum(){
 
     int N {(j_end - j_beg) * (i_end - i_beg)}; // number of points in p grid
 
-    for (int i = i_beg; i <= i_end; i++){
-        for (int j = j_beg; j <= j_end; j++){
+    for (int i = i_beg+1; i < i_end-1; i++){
+        for (int j = j_beg+1; j < j_end-1; j++){
             pxx = (p(i-1,j) - 2*p(i,j) + p(i+1, j)) / dx2;
             pyy = (p(i,j-1) - 2*p(i,j) + p(i, j+1)) / dy2;
             res_current_point = pxx + pyy - rhs(i,j);
