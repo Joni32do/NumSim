@@ -225,16 +225,6 @@ void Computation::computeRightHandSide(){
             double dF = (1/discretization_->dx()) * (discretization_->f(i+1, j+1) - discretization_->f(i, j+1));
             double dG = (1/discretization_->dy()) * (discretization_->g(i+1, j+1) - discretization_->g(i+1, j));
             discretization_->rhs(i, j) = 1/dt_ * (dF + dG);
-            if (i == 0 && j == 19){
-                std::cout << "--------------------------------------------------" << std::endl;
-                std::cout << "dF(" << i << ", " << j << "): " << dF << std::endl;
-                std::cout << "dG(" << i << ", " << j << "): " << dG << std::endl;
-                std::cout << "rhs(" << i << ", " << j << "): " << discretization_->rhs(i, j) << std::endl;
-            }
-            // std::cout << "i: " << i << ", j: " << j << std::endl;
-            // std::cout << "dF(" << i << ", " << j << "): " << discretization_->f(i+1, j) - discretization_->f(i, j) << std::endl;
-            // std::cout << "dG(" << i << ", " << j << "): " << discretization_->g(i, j+1) - discretization_->g(i, j) << std::endl;
-            // std::cout << "rhs(" << i << ", " << j << "): " << discretization_->rhs(i, j) << std::endl;
         }
     }
 }
