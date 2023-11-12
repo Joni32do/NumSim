@@ -19,6 +19,7 @@ public:
     const FieldVariable & u() const;
     const FieldVariable & v() const;
     const FieldVariable & p() const;
+    const FieldVariable & rhs() const;
 
     // TODO: Confusing that we dont need this for f, g, rhs
     

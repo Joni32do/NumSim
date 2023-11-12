@@ -86,8 +86,6 @@ void Computation::applyBoundaryValues()
     for(int i = i_beg + 1; i <= i_end - 1; i++){
         discretization_->u(i, j_beg) = 2 * settings_.dirichletBcBottom[0] - discretization_->u(i, j_beg + 1);
         discretization_->u(i, j_end) = 2 * settings_.dirichletBcTop[0] - discretization_->u(i, j_end - 1);
-        // TODO: remove prints
-        std::cout << "u(" << i << ", " << j_end << "): " << discretization_->u(i, j_end) << std::endl;
     }
 
     // BV for v
@@ -169,12 +167,6 @@ void Computation::computePreliminaryVelocities()
             double convection = - discretization_->computeDu2Dx(i, j) 
                                 - discretization_->computeDuvDy(i, j);
             discretization_->f(i, j) = discretization_->u(i, j) + dt_ * (diffusion + convection + settings_.g[0]);
-            // TODO: remove prints
-            std::cout << "u(" << i << ", " << j << ") = " << discretization_->u(i, j) << std::endl;
-            // std::cout << "diffusion: " << diffusion << std::endl;
-            // std::cout << "convection: " << convection << std::endl;
-            // std::cout << "update" << dt_ * (diffusion + convection + settings_.g[0] ) << std::endl;
-            // std::cout << "f(" << i << ", " << j << ") = " << discretization_->f(i, j) << std::endl;
         }
     }
 
@@ -215,25 +207,34 @@ void Computation::computePreliminaryVelocities()
                                         + dt_ * (diffusion + convection + settings_.g[1]);
         }
     }
-    //TODO: remove prints
-    std::cout<< "f(10, 20): " << discretization_->f(10, 20) << std::endl;
 }
 
 
 void Computation::computeRightHandSide(){
 
-    int rhs_i_beg = 0;
-    int rhs_i_end = discretization_->pIEnd() - 2;
-    int rhs_j_beg = 0;
-    int rhs_j_end = discretization_->pJEnd() - 2;
+    int i_beg = 0;
+    int i_end = discretization_->pIEnd() - 2;
+    int j_beg = 0;
+    int j_end = discretization_->pJEnd() - 2;
     // Ich glaube hier sind die Indizii falsch
 
     // Interior
-    for(int i = rhs_i_beg; i <= rhs_i_end; i++){
-        for(int j = rhs_j_beg; j <= rhs_j_end; j++){
-            double dF = 1/discretization_->dx() * (discretization_->f(i+1, j) - discretization_->f(i, j));
-            double dG = 1/discretization_->dy() * (discretization_->g(i, j+1) - discretization_->g(i, j));
+    for(int i = i_beg; i <= i_end; i++){
+        for(int j = j_beg; j <= j_end; j++){
+            // TODO: remove prints
+            double dF = (1/discretization_->dx()) * (discretization_->f(i+1, j+1) - discretization_->f(i, j+1));
+            double dG = (1/discretization_->dy()) * (discretization_->g(i+1, j+1) - discretization_->g(i+1, j));
             discretization_->rhs(i, j) = 1/dt_ * (dF + dG);
+            if (i == 0 && j == 19){
+                std::cout << "--------------------------------------------------" << std::endl;
+                std::cout << "dF(" << i << ", " << j << "): " << dF << std::endl;
+                std::cout << "dG(" << i << ", " << j << "): " << dG << std::endl;
+                std::cout << "rhs(" << i << ", " << j << "): " << discretization_->rhs(i, j) << std::endl;
+            }
+            // std::cout << "i: " << i << ", j: " << j << std::endl;
+            // std::cout << "dF(" << i << ", " << j << "): " << discretization_->f(i+1, j) - discretization_->f(i, j) << std::endl;
+            // std::cout << "dG(" << i << ", " << j << "): " << discretization_->g(i, j+1) - discretization_->g(i, j) << std::endl;
+            // std::cout << "rhs(" << i << ", " << j << "): " << discretization_->rhs(i, j) << std::endl;
         }
     }
 }
@@ -255,7 +256,7 @@ void Computation::computeVelocities(){
         for (int j = discretization_->vJBegin(); j <= discretization_->vJEnd(); j++){
             discretization_->v(i, j) = discretization_->g(i, j) - dt_  * discretization_->computeDpDy(i, j);
         }
-    }
+    }  
 }
 
 
