@@ -6,8 +6,8 @@ StaggeredGrid::StaggeredGrid(std::array<int, 2> nCells, std::array<double, 2> me
             u_({nCells[0]+1, nCells[1]+2}, {0., -0.5*meshWidth[1]},                 meshWidth),
             v_({nCells[0]+2, nCells[1]+1}, {-0.5*meshWidth[0], 0.},                 meshWidth),
             p_({nCells[0]+2, nCells[1]+2}, {-0.5*meshWidth[0], -0.5*meshWidth[1]},  meshWidth),
-            f_({nCells[0]+2, nCells[1]+1},   {meshWidth[0], 0.5*meshWidth[1]},        meshWidth),
-            g_({nCells[0]+1, nCells[1]+2},   {0.5*meshWidth[0], meshWidth[1]},        meshWidth),
+            f_({nCells[0]+1, nCells[1]},   {meshWidth[0], 0.5*meshWidth[1]},        meshWidth),
+            g_({nCells[0], nCells[1]+1},   {0.5*meshWidth[0], meshWidth[1]},        meshWidth),
             rhs_({nCells[0], nCells[1]},   {0.5*meshWidth[0], 0.5*meshWidth[1]},    meshWidth)
 {
 // Delete when you feel ready

@@ -86,6 +86,8 @@ void Computation::applyBoundaryValues()
     for(int i = i_beg + 1; i <= i_end - 1; i++){
         discretization_->u(i, j_beg) = 2 * settings_.dirichletBcBottom[0] - discretization_->u(i, j_beg + 1);
         discretization_->u(i, j_end) = 2 * settings_.dirichletBcTop[0] - discretization_->u(i, j_end - 1);
+        // TODO: remove prints
+        std::cout << "u(" << i << ", " << j_end << "): " << discretization_->u(i, j_end) << std::endl;
     }
 
     // BV for v
@@ -122,7 +124,14 @@ void Computation::computeTimeStepWidth()
     // convection operator restriction v
     double max_v = discretization_->dy() / discretization_->v().findAbsMax();
 
-    dt_ = settings_.tau * std::min({diff, max_u, max_v, settings_.maximumDt});
+    // TODO:
+    // dt_ = std::min(diff, max_u, max_v, max_dt)
+
+    double min_uv = std::min(max_u, max_v);
+    double min = std::min(min_uv, diff);
+    double min_dt = std::min(min, settings_.maximumDt);
+
+    dt_ = settings_.tau * min_dt;
 }
 
 
@@ -130,33 +139,35 @@ void Computation::computePreliminaryVelocities()
 {
     // Compute F
     int f_i_end = discretization_->uIEnd();
-    int f_j_end = discretization_->uJEnd() - 1;
+    int f_j_end = discretization_->uJEnd() - 2;
 
     // TODO: Warning: This must be changed if uIBegin redefined
 
     // Vertical
     for(int j = 0; j <= f_j_end; j++){
-        discretization_->f(0, j) = discretization_->u(0, j+1);
-        discretization_->f(f_i_end, j) = discretization_->u(f_i_end, j+1);
+        discretization_->f(0, j) = discretization_->u(0, j);
+        discretization_->f(f_i_end, j) = discretization_->u(f_i_end, j);
     }
 
     // Horizontal
     for(int i = 1; i <= f_i_end - 1; i++){
-        discretization_->f(i, 0) = discretization_->u(i, 1);
-        discretization_->f(i, f_j_end) = discretization_->u(i, f_j_end+1);
+        discretization_->f(i, 0) = discretization_->u(i, 0);
+        discretization_->f(i, f_j_end) = discretization_->u(i, f_j_end);
+        // TODO: Remove prints
+        std::cout << "f(" << i << ", " << f_j_end << "): " << discretization_->f(i, f_j_end) << std::endl;
     }
 
 
-    // Interior
+    // CInterior
     for(int i = 1; i <= f_i_end - 1; i++){
         for(int j = 1; j <= f_j_end - 1; j++){
 
             double diffusion = 1/settings_.re * (discretization_->computeD2uDx2(i, j) 
                                                + discretization_->computeD2uDy2(i, j));
-            double convection = - discretization_->computeDu2Dx(i, j) 
+            double convection = - discretization_->computeDu2Dx(i,j) 
                                 - discretization_->computeDuvDy(i, j);
 
-            discretization_->f(i, j) = discretization_->u(i, j+1) 
+            discretization_->f(i, j) = discretization_->u(i, j) 
                                         + dt_ * (diffusion + convection + settings_.g[0]);
         }
     }
@@ -164,7 +175,7 @@ void Computation::computePreliminaryVelocities()
     // Compute G
 
     int g_i_beg = 0;
-    int g_i_end = discretization_->vIEnd() - 1;
+    int g_i_end = discretization_->vIEnd() - 2;
     int g_j_beg = 0;
     int g_j_end = discretization_->vJEnd();
 
