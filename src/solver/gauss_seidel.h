@@ -12,7 +12,8 @@ public:
 
     GaussSeidel(const std::shared_ptr<Discretization>& data, 
                         double epsilon, 
-                        int maximumNumberOfIterations);
+                        int maximumNumberOfIterations,
+                        std::array<double,2> meshWidth);
 
     void solve() override;
 };

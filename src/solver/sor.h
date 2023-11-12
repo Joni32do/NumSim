@@ -13,7 +13,8 @@ public:
     SOR(const std::shared_ptr<Discretization>& data, 
                         double epsilon, 
                         int maximumNumberOfIterations, 
-                        double omega);
+                        double omega,
+                        std::array<double, 2> meshWidth);
 
     void solve() override;
 

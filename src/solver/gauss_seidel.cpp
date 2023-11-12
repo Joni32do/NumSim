@@ -4,8 +4,9 @@
 
 GaussSeidel::GaussSeidel(const std::shared_ptr<Discretization>& data, 
                          double epsilon, 
-                         int maximumNumberOfIterations):
-            PressureSolver(data, epsilon, maximumNumberOfIterations)
+                         int maximumNumberOfIterations,
+                         std::array<double,2> meshWidth):
+            PressureSolver(data, epsilon, maximumNumberOfIterations, meshWidth)
 {
 }
 

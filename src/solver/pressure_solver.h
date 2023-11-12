@@ -1,5 +1,5 @@
 #pragma once
-
+#include "../storage/field_variable.h"
 #include "../discretization/discretization.h"
 #include <memory>
 
@@ -15,13 +15,18 @@ class PressureSolver
     public:
         PressureSolver(std::shared_ptr<Discretization> discretization, 
                        double epsilon, 
-                       int maximumNumberOfIterations);
+                       int maximumNumberOfIterations,
+                       std::array<double,2> meshWidth);
 
         /**
          * @brief solve the Poisson problem for the pressure
          * 
          */
         virtual void solve() = 0;
+
+        const FieldVariable &p; // readable reference to p fieldvariable
+        double dx2, dy2; // squared mesh widths
+        const FieldVariable &rhs; // readable reference to rhs fieldvariable
 
     protected:
         /**
@@ -31,6 +36,15 @@ class PressureSolver
          * Has to be called every iteration 
          */
         void setBoundaryValues();
+
+        // calculate residuum of current time step
+        double calculateResiduum();
+
+        // boundaries for p
+        int i_beg; // begin of loop for p in x direction
+        int i_end; // end   of loop for p in x direction
+        int j_beg; // begin of loop for p in y direction
+        int j_end; // end   of loop for p in y direction
 
         //! object holding the needed field variables for rhs and p
         std::shared_ptr<Discretization> discretization_;
