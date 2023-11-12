@@ -137,11 +137,15 @@ void Computation::computeTimeStepWidth()
 
 void Computation::computePreliminaryVelocities()
 {
+    // ****************************************
     // Compute F
-    int f_i_end = discretization_->uIEnd();
-    int f_j_end = discretization_->uJEnd() - 2;
+    // ****************************************
 
-    // TODO: Warning: This must be changed if uIBegin redefined
+    int f_i_end = discretization_->uIEnd();
+    int f_j_end = discretization_->uJEnd();
+
+
+    // Boundary of F
 
     // Vertical
     for(int j = 0; j <= f_j_end; j++){
@@ -149,12 +153,10 @@ void Computation::computePreliminaryVelocities()
         discretization_->f(f_i_end, j) = discretization_->u(f_i_end, j);
     }
 
-    // Horizontal
+    // Horizontal (without corners)
     for(int i = 1; i <= f_i_end - 1; i++){
         discretization_->f(i, 0) = discretization_->u(i, 0);
         discretization_->f(i, f_j_end) = discretization_->u(i, f_j_end);
-        // TODO: Remove prints
-        std::cout << "f(" << i << ", " << f_j_end << "): " << discretization_->f(i, f_j_end) << std::endl;
     }
 
 
@@ -164,20 +166,28 @@ void Computation::computePreliminaryVelocities()
 
             double diffusion = 1/settings_.re * (discretization_->computeD2uDx2(i, j) 
                                                + discretization_->computeD2uDy2(i, j));
-            double convection = - discretization_->computeDu2Dx(i,j) 
+            double convection = - discretization_->computeDu2Dx(i, j) 
                                 - discretization_->computeDuvDy(i, j);
-
-            discretization_->f(i, j) = discretization_->u(i, j) 
-                                        + dt_ * (diffusion + convection + settings_.g[0]);
+            discretization_->f(i, j) = discretization_->u(i, j) + dt_ * (diffusion + convection + settings_.g[0]);
+            // TODO: remove prints
+            std::cout << "u(" << i << ", " << j << ") = " << discretization_->u(i, j) << std::endl;
+            // std::cout << "diffusion: " << diffusion << std::endl;
+            // std::cout << "convection: " << convection << std::endl;
+            // std::cout << "update" << dt_ * (diffusion + convection + settings_.g[0] ) << std::endl;
+            // std::cout << "f(" << i << ", " << j << ") = " << discretization_->f(i, j) << std::endl;
         }
     }
 
+    // ****************************************
     // Compute G
+    // ****************************************
 
     int g_i_beg = 0;
-    int g_i_end = discretization_->vIEnd() - 2;
+    int g_i_end = discretization_->vIEnd();
     int g_j_beg = 0;
     int g_j_end = discretization_->vJEnd();
+
+    // Boundary of G
 
     // Vertical
     for(int j = g_j_beg; j <= g_j_end; j++){
@@ -185,7 +195,7 @@ void Computation::computePreliminaryVelocities()
         discretization_->g(g_i_end, j) = discretization_->v(g_i_end, j);
     }
 
-    // Horizontal
+    // Horizontal (without corners)
     for(int i = g_i_beg + 1; i <= g_i_end - 1; i++){
         discretization_->g(i, g_j_beg) = discretization_->v(i, g_j_beg);
         discretization_->g(i, g_j_end) = discretization_->v(i, g_j_end);
@@ -201,10 +211,12 @@ void Computation::computePreliminaryVelocities()
             double convection = - discretization_->computeDv2Dy(i,j) 
                                 - discretization_->computeDuvDx(i, j);
                                 
-            discretization_->f(i, j) = discretization_->v(i, j) 
+            discretization_->g(i, j) = discretization_->v(i, j) 
                                         + dt_ * (diffusion + convection + settings_.g[1]);
         }
     }
+    //TODO: remove prints
+    std::cout<< "f(10, 20): " << discretization_->f(10, 20) << std::endl;
 }
 
 
@@ -214,6 +226,7 @@ void Computation::computeRightHandSide(){
     int rhs_i_end = discretization_->pIEnd() - 2;
     int rhs_j_beg = 0;
     int rhs_j_end = discretization_->pJEnd() - 2;
+    // Ich glaube hier sind die Indizii falsch
 
     // Interior
     for(int i = rhs_i_beg; i <= rhs_i_end; i++){
