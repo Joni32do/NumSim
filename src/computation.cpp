@@ -61,8 +61,8 @@ void Computation::runSimulation(){
         computeVelocities();
         currentTime += dt_;
         outputWriterParaview_->writeFile(currentTime);
-        outputWriterText_->writeFile(currentTime);
-        outputWriterText_->writePressureFile();
+        // outputWriterText_->writeFile(currentTime);
+        // outputWriterText_->writePressureFile();
         std::cout << currentTime << std::endl;
 
     } while (currentTime < settings_.endTime);
@@ -219,12 +219,10 @@ void Computation::computeRightHandSide(){
     int i_end = discretization_->pIEnd() - 2;
     int j_beg = 0;
     int j_end = discretization_->pJEnd() - 2;
-    // Ich glaube hier sind die Indizii falsch
 
     // Interior
     for(int i = i_beg; i <= i_end; i++){
         for(int j = j_beg; j <= j_end; j++){
-            // TODO: remove prints
             double dF = (1/discretization_->dx()) * (discretization_->f(i+1, j+1) - discretization_->f(i, j+1));
             double dG = (1/discretization_->dy()) * (discretization_->g(i+1, j+1) - discretization_->g(i+1, j));
             discretization_->rhs(i, j) = 1/dt_ * (dF + dG);

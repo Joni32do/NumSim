@@ -26,7 +26,6 @@ void SOR::solve(){
     double dy2 = discretization_->dy() * discretization_->dy();
     double d_fac = (dx2 * dy2)/(2 *(dx2 + dy2));
 
-    // Is cpp so low level that loops are faster then any other matrix operation?
 
     #ifndef NDEBUG
         std::cout << "before SOR loop" << std::endl;
@@ -39,14 +38,15 @@ void SOR::solve(){
                 double p_y = 1/dy2 * (discretization_->p(i, j + 1) + discretization_->p(i, j - 1)); 
 
                 // Main SOR step
-                double p_new = (1 - omega_) * p_old + omega_ * (d_fac * (p_x + p_y - discretization_->rhs(i, j)));
+                double p_new = (1 - omega_) * p_old + omega_ * (d_fac * (p_x + p_y - discretization_->rhs(i-1, j-1)));
 
                 discretization_->p(i,j) = p_new;
             }
         } 
-        #ifndef NDEBUG
-            std::cout << "after SOR loop" << std::endl;
-        #endif
+        // TODO: remove print
+        // #ifndef NDEBUG
+        //     std::cout << "after SOR loop" << std::endl;
+        // #endif
         setBoundaryValues();
         // Compute the residual with new values
         res = calculateResiduum();

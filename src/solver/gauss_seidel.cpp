@@ -27,7 +27,6 @@ void GaussSeidel::solve(){
     double d_fac = (dx2 * dy2)/(2 *(dx2 + dy2));
     int n_rhs = (rhs_i_end - rhs_i_beg + 1) * (rhs_j_end - rhs_j_beg + 1);
 
-    // Is cpp so low level that loops are faster then any other matrix operation?
     do {
         for (int i = rhs_i_beg; i <= rhs_i_end; i++) {
             for (int j = rhs_j_beg; j <= rhs_j_end; j++) {
@@ -35,7 +34,6 @@ void GaussSeidel::solve(){
                 double p_x = 1/dx2 * (discretization_->p(i + 1, j) + discretization_->p(i - 1, j));
                 double p_y = 1/dy2 * (discretization_->p(i, j + 1) + discretization_->p(i, j - 1)); 
 
-                // Main SOR step
                 double p_new = d_fac * (p_x + p_y - discretization_->rhs(i-1, j-1));
 
                 discretization_->p(i,j) = p_new;
