@@ -15,8 +15,7 @@ class PressureSolver
     public:
         PressureSolver(std::shared_ptr<Discretization> discretization, 
                        double epsilon, 
-                       int maximumNumberOfIterations,
-                       std::array<double,2> meshWidth);
+                       int maximumNumberOfIterations);
 
         /**
          * @brief solve the Poisson problem for the pressure
@@ -24,9 +23,7 @@ class PressureSolver
          */
         virtual void solve() = 0;
 
-        const FieldVariable &p; // readable reference to p fieldvariable
         double dx2, dy2; // squared mesh widths
-        const FieldVariable &rhs; // readable reference to rhs fieldvariable
 
     protected:
         /**

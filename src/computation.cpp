@@ -31,13 +31,11 @@ void Computation::initialize(int argc, char *argv[]){
       pressureSolver_ = std::make_unique<SOR>(discretization_,
                                               settings_.epsilon,
                                               settings_.maximumNumberOfIterations,
-                                              settings_.omega,
-                                              meshWidth_);
+                                              settings_.omega);
     } else  {
       pressureSolver_ = std::make_unique<GaussSeidel>(discretization_,
                                                       settings_.epsilon,
-                                                      settings_.maximumNumberOfIterations,
-                                                      meshWidth_);
+                                                      settings_.maximumNumberOfIterations);
     }
 
 

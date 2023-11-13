@@ -4,51 +4,39 @@
 
 PressureSolver::PressureSolver(std::shared_ptr<Discretization> discretization,
                                double epsilon, 
-                               int maximumNumberOfIterations,
-                               std::array<double,2> meshWidth):
+                               int maximumNumberOfIterations):
             discretization_(discretization),
             epsilon_(epsilon),
-            maximumNumberOfIterations_(maximumNumberOfIterations),
-            p(discretization->p()),
-            rhs(discretization->rhs())
+            maximumNumberOfIterations_(maximumNumberOfIterations)
 {
     assert(epsilon > 0);
     assert(maximumNumberOfIterations > 0);
 
     // loop boundaries
-    i_beg = discretization_->pIBegin();
-    i_end = discretization_->pIEnd();
-    j_beg = discretization_->pJBegin();
-    j_end = discretization_->pJEnd();
+    i_beg = discretization_->rhsIBegin();
+    i_end = discretization_->rhsIEnd();
+    j_beg = discretization_->rhsJBegin();
+    j_end = discretization_->rhsJEnd();
 
     // squared mesh widths
-    dx2 = pow(meshWidth[0], 2);
-    dy2 = pow(meshWidth[1], 2);
+    dx2 = pow(discretization_->dx(), 2);
+    dy2 = pow(discretization_->dy(), 2);
 }
 
 
 void PressureSolver::setBoundaryValues(){
 
-    // BV for p
-    
-    // According to lecture 3.2.3 $F_{0,j} = u_{0,j}$ results in Homogenous Neumann BC
-    // int i_beg = discretization_->pIBegin();
-    // int i_end = discretization_->pIEnd();
-    // int j_beg = discretization_->pJBegin();
-    // int j_end = discretization_->pJEnd();
-
-    // Vertical
-    for(int j = j_beg; j <= j_end; j++){
-        discretization_->p(i_beg, j) = discretization_->p(i_beg + 1, j);
-        discretization_->p(i_end, j) = discretization_->p(i_end - 1, j);
+    // Vertical (without conrners)
+    for(int j = j_beg; j < j_end; j++){
+        discretization_->p(discretization_->pIBegin(), j) = discretization_->p(i_beg, j);
+        discretization_->p(discretization_->pIEnd(), j) = discretization_->p(i_end, j);
     }
 
     // Horizontal (without conrners)
-    for(int i = i_beg + 1; i <= i_end - 1; i++){
-        discretization_->p(i, j_beg) = discretization_->p(i, j_beg + 1);
-        discretization_->p(i, j_end) = discretization_->p(i, j_end - 1);
+    for(int i = i_beg; i < i_end; i++){
+        discretization_->p(i, discretization_->pJBegin()) = discretization_->p(i, j_beg);
+        discretization_->p(i, discretization_->pJEnd()) = discretization_->p(i, j_end);
     }
-
 
 }
 
@@ -58,18 +46,13 @@ double PressureSolver::calculateResiduum(){
     double res_current_point {0}; // residuum in a single point, to be added to sum of squares
     double sum_of_squares {0}; // to be applied in square root to yield internal product
 
-    // int i_beg = discretization_->pIBegin();
-    // int i_end = discretization_->pIEnd();
-    // int j_beg = discretization_->pJBegin();
-    // int j_end = discretization_->pJEnd();
-
     int N {(j_end - j_beg) * (i_end - i_beg)}; // number of points in p grid
 
-    for (int i = i_beg+1; i < i_end-1; i++){
-        for (int j = j_beg+1; j < j_end-1; j++){
-            pxx = (p(i-1,j) - 2*p(i,j) + p(i+1, j)) / dx2;
-            pyy = (p(i,j-1) - 2*p(i,j) + p(i, j+1)) / dy2;
-            res_current_point = pxx + pyy - rhs(i,j);
+    for (int i = i_beg; i < i_end; i++){
+        for (int j = j_beg; j < j_end; j++){
+            pxx = (discretization_->p(i-1, j) - 2*discretization_->p(i, j) + discretization_->p(i+1, j)) / dx2;
+            pyy = (discretization_->p(i, j-1) - 2*discretization_->p(i, j) + discretization_->p(i, j+1)) / dy2;
+            res_current_point = pxx + pyy - discretization_->rhs(i, j);
             sum_of_squares += pow(res_current_point, 2);
         }
     }
