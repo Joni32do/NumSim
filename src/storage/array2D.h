@@ -22,9 +22,6 @@ class Array2D
 
         //! get size
         std::array<int,2> size() const;
-        
-        //! get half-step values (intp.)
-        double operator()(double i, double j) const;
 
     protected:
         const std::array<int,2> size_;    //< width, height of the domain

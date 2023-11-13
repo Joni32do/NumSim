@@ -1,6 +1,7 @@
 #pragma once
 
 #include "pressure_solver.h"
+#include <iostream>
 
 /**
  * @brief Standard Gauss-Seidel solver

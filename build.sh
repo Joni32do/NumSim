@@ -1,22 +1,26 @@
-# This is for lazy people -> just type 
-#   `./build.sh` 
-# in the terminal
-#
-# You may need to allow execution
+#!/bin/bash
+# Execute with `./build.sh` in the terminal, with
+# an optional input parameter "release" for no debug info
+# You may need to allow execution with
 #    `chmod +x build.sh`
-if ["$1" == "clean"]; then
-    rm -rf build
-    rm -rf resources
-fi
+
+rm -rf build
 
 mkdir -p build
 cd build
-cmake ..
-make
-src/numsim ../settings.txt
+
+if [[ "${1,,}" == "release" ]]; then
+	cmake -DCMAKE_BUILD_TYPE=Release ..
+else
+	cmake -DCMAKE_BUILD_TYPE=Debug ..
+fi
+
+make install -j4
+./numsim ../input/settings_debug.txt
 cd ..
 
 # directly open output in paraview
+
 # paraview out/output_*
 
 # for writing documentation

@@ -1,5 +1,5 @@
 #pragma once
-
+#include "../storage/field_variable.h"
 #include "../discretization/discretization.h"
 #include <memory>
 
@@ -23,6 +23,8 @@ class PressureSolver
          */
         virtual void solve() = 0;
 
+        double dx2, dy2; // squared mesh widths
+
     protected:
         /**
          * @brief Set the Boundary Values
@@ -31,6 +33,15 @@ class PressureSolver
          * Has to be called every iteration 
          */
         void setBoundaryValues();
+
+        // calculate residuum of current time step
+        double calculateResiduum();
+
+        // boundaries for rhs
+        int i_beg; // begin of loop for rhs in x direction
+        int i_end; // end   of loop for rhs in x direction
+        int j_beg; // begin of loop for rhs in y direction
+        int j_end; // end   of loop for rhs in y direction
 
         //! object holding the needed field variables for rhs and p
         std::shared_ptr<Discretization> discretization_;
