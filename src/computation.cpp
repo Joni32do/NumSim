@@ -131,29 +131,23 @@ void Computation::computePreliminaryVelocities()
     // ****************************************
     // Compute F
     // ****************************************
-
-    int f_i_end = discretization_->uIEnd();
-    int f_j_end = discretization_->uJEnd();
+    int f_i_beg = discretization_->fIBegin();
+    int f_i_end = discretization_->fIEnd();
+    int f_j_beg = discretization_->fJBegin();
+    int f_j_end = discretization_->fJEnd();
 
 
     // Boundary of F
 
     // Vertical
-    for(int j = 0; j <= f_j_end; j++){
-        discretization_->f(0, j) = discretization_->u(0, j);
+    for(int j = f_j_beg; j < f_j_end; j++){
+        discretization_->f(f_i_beg, j) = discretization_->u(f_i_beg, j);
         discretization_->f(f_i_end, j) = discretization_->u(f_i_end, j);
     }
 
-    // Horizontal (without corners)
-    for(int i = 1; i <= f_i_end - 1; i++){
-        discretization_->f(i, 0) = discretization_->u(i, 0);
-        discretization_->f(i, f_j_end) = discretization_->u(i, f_j_end);
-    }
-
-
-    // CInterior
-    for(int i = 1; i <= f_i_end - 1; i++){
-        for(int j = 1; j <= f_j_end - 1; j++){
+     // Interior
+    for(int i = f_i_beg + 1; i < f_i_end - 1; i++){
+        for(int j = f_j_beg; j < f_j_end; j++){
 
             double diffusion = 1/settings_.re * (discretization_->computeD2uDx2(i, j) 
                                                + discretization_->computeD2uDy2(i, j));
@@ -167,29 +161,23 @@ void Computation::computePreliminaryVelocities()
     // Compute G
     // ****************************************
 
-    int g_i_beg = 0;
-    int g_i_end = discretization_->vIEnd();
-    int g_j_beg = 0;
-    int g_j_end = discretization_->vJEnd();
+    int g_i_beg = discretization_->gIBegin();
+    int g_i_end = discretization_->gIEnd();
+    int g_j_beg = discretization_->gJBegin();
+    int g_j_end = discretization_->gJEnd();
 
     // Boundary of G
 
-    // Vertical
-    for(int j = g_j_beg; j <= g_j_end; j++){
-        discretization_->g(g_i_beg, j) = discretization_->v(g_i_beg, j);
-        discretization_->g(g_i_end, j) = discretization_->v(g_i_end, j);
-    }
 
-    // Horizontal (without corners)
-    for(int i = g_i_beg + 1; i <= g_i_end - 1; i++){
+    // Horizontal
+    for(int i = g_i_beg; i < g_i_end; i++){
         discretization_->g(i, g_j_beg) = discretization_->v(i, g_j_beg);
         discretization_->g(i, g_j_end) = discretization_->v(i, g_j_end);
     }
 
-
     // Interior
-    for(int i = g_i_beg + 1; i <= g_i_end - 1; i++){
-        for(int j = g_j_beg + 1 ; j <= g_j_end - 1; j++){
+    for(int i = g_i_beg; i < g_i_end; i++){
+        for(int j = g_j_beg + 1 ; j < g_j_end - 1; j++){
 
             double diffusion = 1/settings_.re * (discretization_->computeD2vDx2(i, j) 
                                                + discretization_->computeD2vDy2(i, j));
@@ -205,16 +193,16 @@ void Computation::computePreliminaryVelocities()
 
 void Computation::computeRightHandSide(){
 
-    int i_beg = 0;
-    int i_end = discretization_->pIEnd() - 2;
-    int j_beg = 0;
-    int j_end = discretization_->pJEnd() - 2;
+    int i_beg = discretization_->rhsIBegin();
+    int i_end = discretization_->rhsIEnd();
+    int j_beg = discretization_->rhsJBegin();
+    int j_end = discretization_->rhsJEnd();
 
     // Interior
-    for(int i = i_beg; i <= i_end; i++){
-        for(int j = j_beg; j <= j_end; j++){
-            double dF = (1/discretization_->dx()) * (discretization_->f(i+1, j+1) - discretization_->f(i, j+1));
-            double dG = (1/discretization_->dy()) * (discretization_->g(i+1, j+1) - discretization_->g(i+1, j));
+    for(int i = i_beg; i < i_end; i++){
+        for(int j = j_beg; j < j_end; j++){
+            double dF = (1/discretization_->dx()) * (discretization_->f(i, j) - discretization_->f(i-1, j));
+            double dG = (1/discretization_->dy()) * (discretization_->g(i, j) - discretization_->g(i, j-1));
             discretization_->rhs(i, j) = 1/dt_ * (dF + dG);
         }
     }
@@ -227,8 +215,8 @@ void Computation::computePressure(){
 
 void Computation::computeVelocities(){
         
-    for (int i = discretization_->uIBegin(); i <= discretization_->uIEnd(); i++){
-        for (int j = discretization_->uJBegin(); j <= discretization_->uJEnd(); j++){
+    for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++){
+        for (int j = discretization_->uJBegin(); j < discretization_->uJEnd(); j++){
             discretization_->u(i, j) = discretization_->f(i, j) - dt_  * discretization_->computeDpDx(i, j);
         }
     }
@@ -239,5 +227,4 @@ void Computation::computeVelocities(){
         }
     }  
 }
-
 
