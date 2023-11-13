@@ -29,18 +29,17 @@ double FieldVariable::interpolateAt(double x, double y) const{
     double i_weight = i_float - i;
     double j_weight = j_float - j;
 
+    // case 1: node value
     if (i_weight == 0.0 && j_weight == 0.0){
-        // case 1: node value
         return (*this)(i, j);
+    // case 2: linear interpolation between y-values
     } else if (i_weight == 0.0 && j_weight != 0.0){
-        // case 2: linear interpolation between y-values
         return (1-j_weight)*(*this)(i,j) + j_weight*(*this)(i,j+1);
+    // case 3: linear interpolation between x-values
     } else if (i_weight != 0.0 && j_weight == 0.0){
-        // case 3: linear interpolation between x-values
         return (1-i_weight)*(*this)(i,j) + i_weight*(*this)(i+1,j);
+    // case 4: bilinear interpolation between four nodes
     } else {
-        // case 4: bilinear interpolation between four nodes
-
         double down_left = (1-i_weight)*(*this)(i,j);
         double down_right = (i_weight)*(*this)(i+1,j);
         double up_left = (1-i_weight)*(*this)(i,j+1);
