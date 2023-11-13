@@ -15,8 +15,8 @@ else
 	cmake -DCMAKE_BUILD_TYPE=Debug ..
 fi
 
-make install
-./numsim ../input/settings.txt
+make install -j4
+./numsim ../input/settings_debug.txt
 cd ..
 
 # directly open output in paraview

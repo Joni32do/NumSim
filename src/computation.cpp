@@ -56,8 +56,8 @@ void Computation::runSimulation(){
         computeVelocities();
         currentTime += dt_;
         outputWriterParaview_->writeFile(currentTime);
-        // outputWriterText_->writeFile(currentTime);
-        // outputWriterText_->writePressureFile();
+        outputWriterText_->writeFile(currentTime);
+        outputWriterText_->writePressureFile();
         std::cout << currentTime << std::endl;
 
     } while (currentTime < settings_.endTime);
@@ -78,12 +78,12 @@ void Computation::applyBoundaryValues()
     // Vertical
     for(int j = j_beg; j < j_end; j++){
         discretization_->u(i_beg, j) = settings_.dirichletBcLeft[0];
-        discretization_->u(i_end, j) = settings_.dirichletBcRight[0];
+        discretization_->u(i_end - 1, j) = settings_.dirichletBcRight[0];
     }
     // Horizontal (leave out corners)
     for(int i = i_beg + 1; i < i_end - 1; i++){
         discretization_->u(i, j_beg) = 2 * settings_.dirichletBcBottom[0] - discretization_->u(i, j_beg + 1);
-        discretization_->u(i, j_end) = 2 * settings_.dirichletBcTop[0] - discretization_->u(i, j_end - 1);
+        discretization_->u(i, j_end - 1) = 2 * settings_.dirichletBcTop[0] - discretization_->u(i, j_end - 2);
     }
 
     // BV for v
@@ -95,12 +95,12 @@ void Computation::applyBoundaryValues()
     // Vertical
     for(int j = j_beg; j < j_end; j++){
         discretization_->v(i_beg, j) = 2 * settings_.dirichletBcLeft[1] - discretization_->v(i_beg + 1, j);
-        discretization_->v(i_end, j) = 2 * settings_.dirichletBcRight[1] - discretization_->v(i_end - 1, j);
+        discretization_->v(i_end - 1, j) = 2 * settings_.dirichletBcRight[1] - discretization_->v(i_end - 1, j);
     }
     // Horizontal (leave out corners)
     for(int i = i_beg + 1; i < i_end - 1; i++){
         discretization_->v(i, j_beg) = settings_.dirichletBcBottom[1] ;
-        discretization_->v(i, j_end) = settings_.dirichletBcTop[1] ;
+        discretization_->v(i, j_end - 1) = settings_.dirichletBcTop[1] ;
     }
 
 }
@@ -140,7 +140,7 @@ void Computation::computePreliminaryVelocities()
     // Vertical
     for(int j = f_j_beg; j < f_j_end; j++){
         discretization_->f(f_i_beg, j) = discretization_->u(f_i_beg, j);
-        discretization_->f(f_i_end, j) = discretization_->u(f_i_end, j);
+        discretization_->f(f_i_end - 1, j) = discretization_->u(f_i_end - 1, j);
     }
 
      // Interior
@@ -170,7 +170,7 @@ void Computation::computePreliminaryVelocities()
     // Horizontal
     for(int i = g_i_beg; i < g_i_end; i++){
         discretization_->g(i, g_j_beg) = discretization_->v(i, g_j_beg);
-        discretization_->g(i, g_j_end) = discretization_->v(i, g_j_end);
+        discretization_->g(i, g_j_end - 1) = discretization_->v(i, g_j_end - 1);
     }
 
     // Interior
@@ -219,8 +219,8 @@ void Computation::computeVelocities(){
         }
     }
 
-    for (int i = discretization_->vIBegin(); i <= discretization_->vIEnd(); i++){
-        for (int j = discretization_->vJBegin(); j <= discretization_->vJEnd(); j++){
+    for (int i = discretization_->vIBegin(); i < discretization_->vIEnd(); i++){
+        for (int j = discretization_->vJBegin(); j < discretization_->vJEnd(); j++){
             discretization_->v(i, j) = discretization_->g(i, j) - dt_  * discretization_->computeDpDy(i, j);
         }
     }  

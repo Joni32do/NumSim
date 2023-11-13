@@ -28,14 +28,14 @@ void PressureSolver::setBoundaryValues(){
 
     // Vertical (without conrners)
     for(int j = j_beg; j < j_end; j++){
-        discretization_->p(discretization_->pIBegin(), j) = discretization_->p(i_beg, j);
-        discretization_->p(discretization_->pIEnd(), j) = discretization_->p(i_end, j);
+        discretization_->p(i_beg - 1, j) = discretization_->p(i_beg, j);
+        discretization_->p(i_end, j) = discretization_->p(i_end - 1, j);
     }
 
     // Horizontal (without conrners)
     for(int i = i_beg; i < i_end; i++){
-        discretization_->p(i, discretization_->pJBegin()) = discretization_->p(i, j_beg);
-        discretization_->p(i, discretization_->pJEnd()) = discretization_->p(i, j_end);
+        discretization_->p(i, j_beg - 1) = discretization_->p(i, j_beg);
+        discretization_->p(i, j_end) = discretization_->p(i, j_end - 1);
     }
 
 }

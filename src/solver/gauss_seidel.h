@@ -1,6 +1,7 @@
 #pragma once
 
 #include "pressure_solver.h"
+#include <iostream>
 
 /**
  * @brief Standard Gauss-Seidel solver
@@ -12,8 +13,7 @@ public:
 
     GaussSeidel(const std::shared_ptr<Discretization>& data, 
                         double epsilon, 
-                        int maximumNumberOfIterations,
-                        std::array<double,2> meshWidth);
+                        int maximumNumberOfIterations);
 
     void solve() override;
 };
