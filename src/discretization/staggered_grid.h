@@ -75,6 +75,39 @@ public:
     //! one after last valid index for p in y direction
     int pJEnd() const;
 
+    // -- f --
+    //! first valid index for f in x direction
+    int fIBegin() const;
+    //! one after last valid index for f in x direction
+    int fIEnd() const;
+
+    //! first valid index for f in y direction
+    int fJBegin() const;
+    //! one after last valid index for f in y direction
+    int fJEnd() const;
+
+    // -- g --
+    //! first valid index for g in x direction
+    int gIBegin() const;
+    //! one after last valid index for g in x direction
+    int gIEnd() const;
+
+    //! first valid index for g in y direction
+    int gJBegin() const;
+    //! one after last valid index for g in y direction
+    int gJEnd() const;
+
+    // -- rhs --
+    //! first valid index for rhs in x direction
+    int rhsIBegin() const;
+    //! one after last valid index for rhs in x direction
+    int rhsIEnd() const;
+
+    //! first valid index for rhs in y direction
+    int rhsJBegin() const;
+    //! one after last valid index for rhs in y direction
+    int rhsJEnd() const;
+
 protected:
     const std::array<int, 2> nCells_;
     const std::array<double, 2> meshWidth_;
