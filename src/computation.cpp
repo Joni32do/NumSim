@@ -15,9 +15,6 @@ void Computation::initialize(int argc, char *argv[]){
   
     // load settings from file
     settings_.loadFromFile(filename);
-  
-    // TODO: Logger with settings
-  
     settings_.printSettings();
   
     std::array<double, 2> meshWidth_ = {settings_.physicalSize[0] / settings_.nCells[0],
@@ -81,12 +78,12 @@ void Computation::applyBoundaryValues()
     int j_end = discretization_->uJEnd();
 
     // Vertical
-    for(int j = j_beg; j <= j_end; j++){
+    for(int j = j_beg; j < j_end; j++){
         discretization_->u(i_beg, j) = settings_.dirichletBcLeft[0];
         discretization_->u(i_end, j) = settings_.dirichletBcRight[0];
     }
-    // Horizontal
-    for(int i = i_beg + 1; i <= i_end - 1; i++){
+    // Horizontal (leave out corners)
+    for(int i = i_beg + 1; i < i_end - 1; i++){
         discretization_->u(i, j_beg) = 2 * settings_.dirichletBcBottom[0] - discretization_->u(i, j_beg + 1);
         discretization_->u(i, j_end) = 2 * settings_.dirichletBcTop[0] - discretization_->u(i, j_end - 1);
     }
@@ -98,12 +95,12 @@ void Computation::applyBoundaryValues()
     j_end = discretization_->vJEnd();
 
     // Vertical
-    for(int j = j_beg; j <= j_end; j++){
+    for(int j = j_beg; j < j_end; j++){
         discretization_->v(i_beg, j) = 2 * settings_.dirichletBcLeft[1] - discretization_->v(i_beg + 1, j);
         discretization_->v(i_end, j) = 2 * settings_.dirichletBcRight[1] - discretization_->v(i_end - 1, j);
     }
-    // Horizontal
-    for(int i = i_beg + 1; i <= i_end - 1; i++){
+    // Horizontal (leave out corners)
+    for(int i = i_beg + 1; i < i_end - 1; i++){
         discretization_->v(i, j_beg) = settings_.dirichletBcBottom[1] ;
         discretization_->v(i, j_end) = settings_.dirichletBcTop[1] ;
     }
@@ -125,14 +122,7 @@ void Computation::computeTimeStepWidth()
     // convection operator restriction v
     double max_v = discretization_->dy() / discretization_->v().findAbsMax();
 
-    // TODO:
-    // dt_ = std::min(diff, max_u, max_v, max_dt)
-
-    double min_uv = std::min(max_u, max_v);
-    double min = std::min(min_uv, diff);
-    double min_dt = std::min(min, settings_.maximumDt);
-
-    dt_ = settings_.tau * min_dt;
+    dt_ = settings_.tau * std::min({diff, max_u, max_v, settings_.maximumDt});
 }
 
 
