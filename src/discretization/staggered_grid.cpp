@@ -1,4 +1,5 @@
 #include "staggered_grid.h"
+#include <iostream>
 
 StaggeredGrid::StaggeredGrid(std::array<int, 2> nCells, std::array<double, 2> meshWidth):
             nCells_(nCells), 
@@ -10,6 +11,37 @@ StaggeredGrid::StaggeredGrid(std::array<int, 2> nCells, std::array<double, 2> me
             g_({nCells[0]+2, nCells[1]+1}, {-0.5*meshWidth[0], 0},                   meshWidth),
             rhs_({nCells[0], nCells[1]},   { 0.5*meshWidth[0], 0.5*meshWidth[1]},    meshWidth)
 {
+    // debug indices
+    #ifndef NDEBUG
+        std::cout << std::endl << ">>>>> Debug Field Variable Boundaries >>>>>" << std::endl << std::endl;
+
+        // nCells (given in settings file)
+        std::cout << "User input for number of cells:" << std::endl;
+        std::cout << "\tnCellsX = " << nCells_[0] << std::endl;
+        std::cout << "\tnCellsY = " << nCells_[1] << std::endl;
+        std::cout << std::endl;
+
+
+        // limits for u
+        std::cout << "Indices for u:" << std::endl;
+        std::cout << "\tuIBegin = " << uIBegin() << ", uIEnd = " << uIEnd() << std::endl;
+        std::cout << "\tuJBegin = " << uJBegin() << ", uJEnd = " << uJEnd() << std::endl;
+        std::cout << std::endl;
+
+        // limits for v
+        std::cout << "Indices for v:" << std::endl;
+        std::cout << "\tvIBegin = " << vIBegin() << ", vIEnd = " << vIEnd() << std::endl;
+        std::cout << "\tvJBegin = " << vJBegin() << ", vJEnd = " << vJEnd() << std::endl;
+        std::cout << std::endl;
+
+        // limits for p
+        std::cout << "Indices for p:" << std::endl;
+        std::cout << "\tpIBegin = " << pIBegin() << ", pIEnd = " << pIEnd() << std::endl;
+        std::cout << "\tpJBegin = " << pJBegin() << ", pJEnd = " << pJEnd() << std::endl;
+        std::cout << std::endl;
+
+        std::cout << "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" << std::endl << std::endl;
+    #endif
 }
 
 const std::array<double, 2> StaggeredGrid::meshWidth() const
