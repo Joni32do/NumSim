@@ -54,6 +54,7 @@ void Computation::runSimulation(){
         computePressure();
         computeVelocities();
         currentTime += dt_;
+        applyBoundaryValues();
         outputWriterParaview_->writeFile(currentTime);
         outputWriterText_->writeFile(currentTime);
         outputWriterText_->writePressureFile();
@@ -94,7 +95,7 @@ void Computation::applyBoundaryValues()
     // Vertical
     for(int j = j_beg; j < j_end; j++){
         discretization_->v(i_beg, j) = 2 * settings_.dirichletBcLeft[1] - discretization_->v(i_beg + 1, j);
-        discretization_->v(i_end - 1, j) = 2 * settings_.dirichletBcRight[1] - discretization_->v(i_end - 1, j);
+        discretization_->v(i_end - 1, j) = 2 * settings_.dirichletBcRight[1] - discretization_->v(i_end - 2, j);
     }
     // Horizontal (leave out corners)
     for(int i = i_beg + 1; i < i_end - 1; i++){
