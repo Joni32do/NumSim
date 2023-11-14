@@ -13,16 +13,17 @@ double DonorCell::computeDuvDx(int i, int j) const
     double left;
     double right;
 
-    if (u_iminus1_jplus > 0){
-        left = u_iminus1_jplus * v(i - 1, j);
-    } else {
-        left = u_iminus1_jplus * v(i, j);
-    }
 
     if(u_i_jplus > 0){
-        right = u_i_jplus * v(i, j);
+        left = u_i_jplus * v(i, j);
     } else {
-        right = u_i_jplus * v(i + 1, j);
+        left = u_i_jplus * v(i + 1, j);
+    }
+
+    if (u_iminus1_jplus > 0){
+        right = u_iminus1_jplus * v(i - 1, j);
+    } else {
+        right = u_iminus1_jplus * v(i, j);
     }
 
     // donor cell discretization
