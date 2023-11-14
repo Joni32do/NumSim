@@ -47,7 +47,7 @@ double PressureSolver::calculateResiduum(){
     double res_current_point {0}; // residuum in a single point, to be added to sum of squares
     double sum_of_squares {0}; // to be applied in square root to yield internal product
 
-    int N {(j_end - j_beg) * (i_end - i_beg)}; // number of points in p grid
+    int N = (j_end - j_beg) * (i_end - i_beg); // number of points in rhs grid
 
     for (int i = i_beg; i < i_end; i++){
         for (int j = j_beg; j < j_end; j++){

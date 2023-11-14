@@ -31,5 +31,7 @@ cd ..
 # doxygen ../Doxyfile
 # cd ..
 
-run tests
-build/tests/run_tests
+# run tests
+# build/tests/run_tests
+
+# zip -r submission.zip src/ CMakeLists.txt

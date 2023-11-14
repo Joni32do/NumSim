@@ -2,6 +2,7 @@
 
 #include <array>
 #include <vector>
+#include <cmath>
 #include "discretization.h"
 
 class DonorCell : public Discretization
