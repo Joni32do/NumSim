@@ -16,7 +16,7 @@ else
 fi
 
 make install -j4
-./numsim ../input/settings_debug.txt
+./numsim ../input/settings.txt
 cd ..
 
 # directly open output in paraview

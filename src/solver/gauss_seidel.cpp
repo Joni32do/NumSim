@@ -12,7 +12,6 @@ GaussSeidel::GaussSeidel(const std::shared_ptr<Discretization>& data,
 void GaussSeidel::solve(){
     setBoundaryValues();
 
-    
     int n = 0;
     double res = epsilon_ + 1;
 
@@ -30,9 +29,6 @@ void GaussSeidel::solve(){
         setBoundaryValues();
         // Compute the residual with new values
         res = calculateResiduum();
-
-        // TODO: remove print
-        // std::cout << "res: " << res << std::endl;
         n++;
     } while (n < maximumNumberOfIterations_ && res > epsilon_);
 

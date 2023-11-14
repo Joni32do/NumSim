@@ -213,14 +213,14 @@ void Computation::computePressure(){
 
 void Computation::computeVelocities(){
         
-    for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++){
-        for (int j = discretization_->uJBegin(); j < discretization_->uJEnd(); j++){
+    for (int i = discretization_->uIBegin() + 1; i < discretization_->uIEnd() - 1; i++){
+        for (int j = discretization_->uJBegin() + 1; j < discretization_->uJEnd() - 1; j++){
             discretization_->u(i, j) = discretization_->f(i, j) - dt_  * discretization_->computeDpDx(i, j);
         }
     }
 
-    for (int i = discretization_->vIBegin(); i < discretization_->vIEnd(); i++){
-        for (int j = discretization_->vJBegin(); j < discretization_->vJEnd(); j++){
+    for (int i = discretization_->vIBegin() + 1; i < discretization_->vIEnd() - 1; i++){
+        for (int j = discretization_->vJBegin() + 1; j < discretization_->vJEnd() - 1; j++){
             discretization_->v(i, j) = discretization_->g(i, j) - dt_  * discretization_->computeDpDy(i, j);
         }
     }  
