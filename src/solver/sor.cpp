@@ -23,7 +23,8 @@ void SOR::solve(){
                 p_x = 1/dx2 * (discretization_->p(i + 1, j) + discretization_->p(i - 1, j));
                 p_y = 1/dy2 * (discretization_->p(i, j + 1) + discretization_->p(i, j - 1)); 
 
-                discretization_->p(i,j) = (1 - omega_) * discretization_->p(i,j) + omega_ * (d_fac * (p_x + p_y - discretization_->rhs(i, j)));
+                discretization_->p(i,j) = (1 - omega_) * discretization_->p(i,j) 
+                                        + omega_ * (d_fac * (p_x + p_y - discretization_->rhs(i, j)));
             }
         } 
         setBoundaryValues();

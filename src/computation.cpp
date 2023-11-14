@@ -200,7 +200,7 @@ void Computation::computeRightHandSide(){
         for(int j = j_beg; j < j_end; j++){
             double dF = (1/discretization_->dx()) * (discretization_->f(i, j) - discretization_->f(i-1, j));
             double dG = (1/discretization_->dy()) * (discretization_->g(i, j) - discretization_->g(i, j-1));
-            discretization_->rhs(i, j) = 1/dt_ * (dF + dG);
+            discretization_->rhs(i, j) = (1/dt_) * (dF + dG);
         }
     }
 }

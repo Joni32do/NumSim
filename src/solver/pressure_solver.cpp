@@ -33,7 +33,7 @@ void PressureSolver::setBoundaryValues(){
     }
 
     // Vertical (without corners)
-    for(int j = j_beg - 1; j < j_end + 1; j++){
+    for(int j = j_beg; j < j_end; j++){
         discretization_->p(i_beg - 1, j) = discretization_->p(i_beg, j);
         discretization_->p(i_end, j) = discretization_->p(i_end - 1, j);
     }
