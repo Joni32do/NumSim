@@ -1,6 +1,5 @@
 #include "computation.h"
 
-#include <iostream>
 
 /**
  * @brief 

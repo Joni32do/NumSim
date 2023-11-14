@@ -13,6 +13,8 @@
 #include "settings_parser/settings.h"
 
 #include <cmath>
+#include <algorithm>
+#include <iostream>
 
 class Computation{
     public:
