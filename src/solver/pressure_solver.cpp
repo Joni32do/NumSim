@@ -43,11 +43,15 @@ void PressureSolver::setBoundaryValues(){
 
 
 double PressureSolver::calculateResiduum(){
-    double pxx, pyy {0}; // 2nd derivative of p in x, y
-    double res_current_point {0}; // residuum in a single point, to be added to sum of squares
-    double sum_of_squares {0}; // to be applied in square root to yield internal product
+    // 2nd derivative of p in x, y
+    double pxx, pyy {0}; 
+    // residuum in a single point, to be added to sum of squares
+    double res_current_point {0}; 
+    // to be applied in square root to yield internal product
+    double sum_of_squares {0}; 
 
-    int N = (j_end - j_beg) * (i_end - i_beg); // number of points in rhs grid
+    // number of points in rhs grid
+    int N = (j_end - j_beg) * (i_end - i_beg); 
 
     for (int i = i_beg; i < i_end; i++){
         for (int j = j_beg; j < j_end; j++){

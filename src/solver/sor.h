@@ -24,7 +24,7 @@ public:
                         double omega);
 
     /**
-     * @brief starts solver. 
+     * @brief override function that starts solver. 
      * 
     */ 
     void solve() override;
