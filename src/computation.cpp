@@ -113,12 +113,6 @@ void Computation::applyBoundaryValues()
 }
 
 
-/**
- * @brief Computes the time step width according to the CFL condition
- * 
- * 
- * 
- */
 void Computation::computeTimeStepWidth(double currentTime)
 {
     // Diffusion operator (always > 0)
