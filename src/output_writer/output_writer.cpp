@@ -1,7 +1,5 @@
 #include "output_writer.h"
 
-#include <iostream>
-
 OutputWriter::OutputWriter(std::shared_ptr<Discretization> discretization)
  : discretization_(discretization), fileNo_(0)
 {

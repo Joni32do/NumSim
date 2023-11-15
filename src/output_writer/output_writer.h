@@ -3,21 +3,33 @@
 #include "../discretization/discretization.h"
 
 #include <memory>
+#include <iostream>
 
-/** Inteface class for writing simulation data output.
- */
+/**
+ * @class OutputWriter
+ * @brief Inteface class for writing simulation data output.
+*/
 class OutputWriter
 {
 public:
-  //! constructor
-  //! @param discretization shared pointer to the discretization object that will contain all the data to be written to the file
+  /**
+   * @brief Constructor. 
+   * 
+   * @param discretization discretization object containing data to be written to file
+  */ 
   OutputWriter(std::shared_ptr<Discretization> discretization);
 
-  //! write current velocities to file, filename is output_<count>.vti
+  /**
+   * @brief Write current velocities to file. 
+   * 
+   * Filename is output_<fileNo_>.vti
+   * 
+   * @param currentTime current time of simulation
+  */ 
   virtual void writeFile(double currentTime) = 0;
 
 protected:
 
-  std::shared_ptr<Discretization> discretization_;  //< a shared pointer to the discretization which contains all data that will be written to the file
-  int fileNo_;   //< a counter that increments for every file, this number is part of the file name of output files
+  std::shared_ptr<Discretization> discretization_;  //!< shared pointer, discretization object containing data to be written to file
+  int fileNo_;   //!< a counter that increments for every file written to disk
 };
