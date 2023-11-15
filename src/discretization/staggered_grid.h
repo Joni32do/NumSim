@@ -1,5 +1,6 @@
 #include <array>
 #include <vector>
+#include <iostream>
 #include "../storage/field_variable.h"
 
 /**

@@ -1,12 +1,7 @@
 #include "computation.h"
 
 
-/**
- * @brief initialize the simulation with the settings from the file
- * 
- * @param argc 
- * @param argv first is filename
- */
+
 void Computation::initialize(int argc, char *argv[]){
 
     std::string filename = argv[1];
@@ -44,10 +39,7 @@ void Computation::initialize(int argc, char *argv[]){
     outputWriterText_ = std::make_unique<OutputWriterText>(discretization_);
 }
 
-/**
- * @brief runs the simulation till the end time
- * 
- */
+
 void Computation::runSimulation(){
     double currentTime = 0.;
     do{

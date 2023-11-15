@@ -1,5 +1,5 @@
 #include "staggered_grid.h"
-#include <iostream>
+
 
 StaggeredGrid::StaggeredGrid(std::array<int, 2> nCells, std::array<double, 2> meshWidth):
             nCells_(nCells), 

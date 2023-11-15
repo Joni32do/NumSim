@@ -4,8 +4,12 @@
 
 #include <vtkSmartPointer.h>
 #include <vtkXMLImageDataWriter.h>
+#include <vtkImageData.h>
+#include <vtkDoubleArray.h>
+#include <vtkPointData.h>
 
 #include <memory>
+#include <iostream>
 
 /**
  * @class OutputWriterParaview

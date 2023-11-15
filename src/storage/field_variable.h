@@ -3,6 +3,7 @@
 #include <array>
 #include <vector>
 #include <cmath>
+#include <iostream>
 #include "array2D.h"
 
 /**

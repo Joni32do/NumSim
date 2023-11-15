@@ -1,7 +1,6 @@
 #include "array2D.h"
 #include "field_variable.h"
 
-#include <iostream>
 
 
 FieldVariable::FieldVariable(std::array<int,2> size,
