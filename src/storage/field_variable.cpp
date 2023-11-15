@@ -13,9 +13,7 @@ FieldVariable::FieldVariable(std::array<int,2> size,
 {
 }
 
-/*! 
- * Interpolate by using bilinear interpolation 
-*/
+
 double FieldVariable::interpolateAt(double x, double y) const{
     // reshape x and y to local coordinates
     double x_0 = x - origin_[0];
@@ -51,9 +49,7 @@ double FieldVariable::interpolateAt(double x, double y) const{
     }
 }
 
-/*! 
- * Finds maximum by iterating through all values in FielVariable 
-*/
+
 double FieldVariable::findAbsMax() const{
     double max = 0;
     for (int i = 0; i < size_[0]; i++){

@@ -27,6 +27,8 @@ class FieldVariable: public Array2D
         
         /**
          * @brief Interpolates value of field variable in domain using x and y coordinates
+         * 
+         * Interpolates by using bilinear interpolation. 
          *  
          * @param x x postion of point to interpolate
          * @param y y postion of point to interpolate
@@ -35,7 +37,8 @@ class FieldVariable: public Array2D
 
         /**
          * @brief Find point in Array2D of Fieldvariable with maximum value
-         *  
+         * 
+         * Finds maximum by iterating through all values in FielVariable 
         */ 
         double findAbsMax() const;
     
