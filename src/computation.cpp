@@ -54,11 +54,12 @@ void Computation::runSimulation(){
         computePressure();
         computeVelocities();
         currentTime += dt_;
-        applyBoundaryValues();
         outputWriterParaview_->writeFile(currentTime);
         outputWriterText_->writeFile(currentTime);
         outputWriterText_->writePressureFile();
+        #ifndef NDEBUG
         std::cout << currentTime << std::endl;
+        #endif
 
     } while (currentTime < settings_.endTime);
 }
