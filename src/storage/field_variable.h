@@ -17,7 +17,7 @@ class FieldVariable: public Array2D
 {
     public:
         /**
-         * @brief Constructor (x,y). 
+         * @brief Constructor. 
          * 
          * @param size number of cells in x and y direction 
          * @param origin orgin of Fieldvariable relative to domain origin
