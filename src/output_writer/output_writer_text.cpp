@@ -1,9 +1,5 @@
 #include "output_writer/output_writer_text.h"
 
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <iomanip>
 
 void OutputWriterText::writeFile(double currentTime)
 {
@@ -29,8 +25,9 @@ void OutputWriterText::writeFile(double currentTime)
   // write mesh width
   file << "nCells: " << discretization_->nCells()[0] << "x" << discretization_->nCells()[1] 
     << ", dx: " << discretization_->dx() << ", dy: " << discretization_->dy() << std::endl << std::endl;
-
-  const int fieldWidth = 9;   // number of characters to use for a single value
+  
+  // number of characters to use for a single value
+  const int fieldWidth = 9;   
 
   // write u
   // ---------
@@ -193,8 +190,9 @@ void OutputWriterText::writePressureFile()
   // write mesh width
   file << "nCells: " << discretization_->nCells()[0] << "x" << discretization_->nCells()[1] 
     << ", dx: " << discretization_->dx() << ", dy: " << discretization_->dy() << std::endl << std::endl;
-
-  const int fieldWidth = 9;   // number of characters to use for a single value
+  
+  // number of characters to use for a single value
+  const int fieldWidth = 9;   
 
   // write p
   // ---------

@@ -37,7 +37,8 @@ void OutputWriterParaview::writeFile(double currentTime)
 
   // set number of points in each dimension, 1 cell in z direction
   std::array<int,2> nCells = discretization_->nCells();
-  dataSet->SetDimensions(nCells[0]+1, nCells[1]+1, 1);  // we want to have points at each corner of each cell
+  // we want to have points at each corner of each cell
+  dataSet->SetDimensions(nCells[0]+1, nCells[1]+1, 1);  
   
   // add pressure field variable
   // ---------------------------
@@ -54,7 +55,8 @@ void OutputWriterParaview::writeFile(double currentTime)
   // loop over the nodes of the mesh and assign the interpolated p values in the vtk data structure
   // we only consider the cells that are the actual computational domain, not the helper values in the "halo"
 
-  int index = 0;   // index for the vtk data structure, will be incremented in the inner loop
+  // index for the vtk data structure, will be incremented in the inner loop
+  int index = 0;   
   for (int j = 0; j < nCells[1]+1; j++)
   {
     for (int i = 0; i < nCells[0]+1; i++, index++)
@@ -85,7 +87,8 @@ void OutputWriterParaview::writeFile(double currentTime)
   arrayVelocity->SetName("velocity");
 
   // loop over the mesh where p is defined and assign the values in the vtk data structure
-  index = 0;   // index for the vtk data structure
+  // index for the vtk data structure
+  index = 0;   
   for (int j = 0; j < nCells[1]+1; j++)
   {
     const double y = j*dy;
@@ -122,7 +125,8 @@ void OutputWriterParaview::writeFile(double currentTime)
   vtkWriter_->SetInputData(dataSet);
   
   //vtkWriter_->SetDataModeToAscii();     // comment this in to get ascii text files: those can be checked in an editor
-  vtkWriter_->SetDataModeToBinary();      // set file mode to binary files: smaller file sizes
+  // set file mode to binary files: smaller file sizes
+  vtkWriter_->SetDataModeToBinary();      
 
   // finally write out the data
   vtkWriter_->Write();
