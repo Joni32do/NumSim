@@ -1,10 +1,8 @@
 #include "central_differences.h"
 
-CentralDifferences::CentralDifferences(std::array<int, 2> nCells, std::array<double, 2> meshWidth):
-            Discretization(nCells, meshWidth)
+CentralDifferences::CentralDifferences(std::array<int, 2> nCells, std::array<double, 2> meshWidth) : Discretization(nCells, meshWidth)
 {
 }
-
 
 double CentralDifferences::computeDu2Dx(int i, int j) const
 {
@@ -15,14 +13,12 @@ double CentralDifferences::computeDu2Dx(int i, int j) const
     // return (u(i+0.5,j)*u(i+0.5,j) - u(i-0.5,j)*u(i-0.5,j)) / dx();
 }
 
-
 double CentralDifferences::computeDv2Dy(int i, int j) const
 {
     double v_i_jminus = 0.5 * (v(i, j) + v(i, j - 1));
     double v_i_jplus = 0.5 * (v(i, j + 1) + v(i, j));
     return (v_i_jplus * v_i_jplus - v_i_jminus * v_i_jminus) / dy();
 }
-
 
 double CentralDifferences::computeDuvDx(int i, int j) const
 {
@@ -35,7 +31,6 @@ double CentralDifferences::computeDuvDx(int i, int j) const
     return (u_i_jplus * v_iplus_j - u_iminus1_jplus * v_iminus_j) / dx();
 }
 
-
 double CentralDifferences::computeDuvDy(int i, int j) const
 {
     double v_iplus_j = 0.5 * (v(i + 1, j) + v(i, j));
@@ -44,4 +39,3 @@ double CentralDifferences::computeDuvDy(int i, int j) const
     double u_i_jminus = 0.5 * (u(i, j) + u(i, j - 1));
     return (v_iplus_j * u_i_jplus - v_iplus_jminus1 * u_i_jminus) / dy();
 }
-

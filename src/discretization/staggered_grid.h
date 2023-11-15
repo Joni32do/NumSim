@@ -5,41 +5,40 @@
 
 /**
  * TODO: Write Doxygen Documentation
-*/
+ */
 class StaggeredGrid
 {
 public:
     StaggeredGrid(std::array<int, 2> nCells, std::array<double, 2> meshWidth);
-    
-    //! get the mesh width, i.e. the length of a single cell in x and y direction 
+
+    //! get the mesh width, i.e. the length of a single cell in x and y direction
     const std::array<double, 2> meshWidth() const;
     //! get number of cells in each coordinate direction
     const std::array<int, 2> nCells() const;
 
     // get the field variables
-    const FieldVariable & u() const;
-    const FieldVariable & v() const;
-    const FieldVariable & p() const;
-    const FieldVariable & rhs() const;
+    const FieldVariable &u() const;
+    const FieldVariable &v() const;
+    const FieldVariable &p() const;
+    const FieldVariable &rhs() const;
 
     // TODO: Confusing that we dont need this for f, g, rhs
-    
+
     double u(int i, int j) const;
-    double & u(int i, int j);
+    double &u(int i, int j);
 
     double v(int i, int j) const;
-    double & v(int i, int j);
+    double &v(int i, int j);
 
     double p(int i, int j) const;
-    double & p(int i, int j);
+    double &p(int i, int j);
 
-    double & f(int i, int j);
-    double & g(int i, int j);
-    double & rhs(int i, int j);
+    double &f(int i, int j);
+    double &g(int i, int j);
+    double &rhs(int i, int j);
 
     double dx() const;
     double dy() const;
-
 
     // get index
 
@@ -70,7 +69,7 @@ public:
     int pIBegin() const;
     //! one after last valid index for p in x direction
     int pIEnd() const;
-    
+
     //! first valid index for p in y direction
     int pJBegin() const;
     //! one after last valid index for p in y direction
