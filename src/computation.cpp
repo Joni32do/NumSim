@@ -139,10 +139,18 @@ void Computation::computePreliminaryVelocities()
     // Boundary of F
 
     // Vertical
-    for(int j = f_j_beg; j < f_j_end; j++){
+    for(int j = f_j_beg-1; j < f_j_end+1; j++){
         discretization_->f(f_i_beg, j) = discretization_->u(f_i_beg, j);
         discretization_->f(f_i_end - 1, j) = discretization_->u(f_i_end - 1, j);
     }
+
+    // Horizontal
+    for(int i = f_i_beg; i < f_i_end+1; i++){
+        discretization_->f(i, f_j_beg-1) = discretization_->u(i, f_j_beg-1);
+        //std::cout << discretization_->u(i, f_j_beg) << std::endl;
+        discretization_->f(i, f_j_end) = discretization_->u(i, f_j_end);
+    }
+
 
      // Interior
     for(int i = f_i_beg + 1; i < f_i_end - 1; i++){
@@ -169,9 +177,15 @@ void Computation::computePreliminaryVelocities()
 
 
     // Horizontal
-    for(int i = g_i_beg; i < g_i_end; i++){
+    for(int i = g_i_beg-1; i < g_i_end+1; i++){
         discretization_->g(i, g_j_beg) = discretization_->v(i, g_j_beg);
         discretization_->g(i, g_j_end - 1) = discretization_->v(i, g_j_end - 1);
+    }
+
+    // Vertical 
+    for(int j = g_j_beg; j < g_j_end+1; j++){
+        discretization_->g(g_i_beg-1, j) = discretization_->v(g_i_beg-1, j);
+        discretization_->g(g_i_end, j) = discretization_->v(g_i_end,j);
     }
 
     // Interior
