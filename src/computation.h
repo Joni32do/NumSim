@@ -33,7 +33,7 @@ class Computation{
          * CFL condition
          * 
          */
-        void computeTimeStepWidth();
+        void computeTimeStepWidth(double currentTime);
 
 
         /**

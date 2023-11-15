@@ -16,7 +16,13 @@ else
 fi
 
 make install -j4
-./numsim ../input/settings_v3.txt
+# ./numsim ../input/settings_v3.txt
+./numsim ../input/different_resolutions/settings_01.txt
+./numsim ../input/different_resolutions/settings_02.txt
+./numsim ../input/different_resolutions/settings_03.txt
+./numsim ../input/different_resolutions/settings_04.txt
+./numsim ../input/different_resolutions/settings_05.txt
+./numsim ../input/different_resolutions/settings_06.txt
 cd ..
 
 # directly open output in paraview

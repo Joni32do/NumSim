@@ -2,7 +2,7 @@
 
 
 /**
- * @brief 
+ * @brief initialize the simulation with the settings from the file
  * 
  * @param argc 
  * @param argv first is filename
@@ -14,8 +14,10 @@ void Computation::initialize(int argc, char *argv[]){
   
     // load settings from file
     settings_.loadFromFile(filename);
+    #ifndef NDEBUG
     settings_.printSettings();
-  
+    #endif
+
     std::array<double, 2> meshWidth_ = {settings_.physicalSize[0] / settings_.nCells[0],
                                         settings_.physicalSize[1] / settings_.nCells[1]};
     
@@ -40,21 +42,25 @@ void Computation::initialize(int argc, char *argv[]){
 
     outputWriterParaview_ = std::make_unique<OutputWriterParaview>(discretization_);
     outputWriterText_ = std::make_unique<OutputWriterText>(discretization_);
-    
-    computeTimeStepWidth();
 }
 
+/**
+ * @brief runs the simulation till the end time
+ * 
+ */
 void Computation::runSimulation(){
     double currentTime = 0.;
     do{
         applyBoundaryValues();
-        computeTimeStepWidth();
+        computeTimeStepWidth(currentTime);
         computePreliminaryVelocities();
         computeRightHandSide();
         computePressure();
         computeVelocities();
+
         currentTime += dt_;
         outputWriterParaview_->writeFile(currentTime);
+
         #ifndef NDEBUG
         outputWriterText_->writeFile(currentTime);
         outputWriterText_->writePressureFile();
@@ -107,8 +113,13 @@ void Computation::applyBoundaryValues()
 }
 
 
-
-void Computation::computeTimeStepWidth()
+/**
+ * @brief Computes the time step width according to the CFL condition
+ * 
+ * 
+ * 
+ */
+void Computation::computeTimeStepWidth(double currentTime)
 {
     // Diffusion operator (always > 0)
     double dx2 = discretization_->dx() * discretization_->dx();
@@ -122,6 +133,10 @@ void Computation::computeTimeStepWidth()
     double max_v = discretization_->dy() / discretization_->v().findAbsMax();
 
     dt_ = settings_.tau * std::min({diff, max_u, max_v, settings_.maximumDt});
+
+    if (currentTime + dt_ > settings_.endTime){
+            dt_ = settings_.endTime - currentTime;
+    }
 }
 
 
