@@ -1,6 +1,3 @@
-#include <fstream> // for file operations
-#include <iostream> // for cout
-#include <functional> // for hash
 #include "settings.h"
 
 void Settings::loadFromFile(std::string filename){
@@ -55,7 +52,8 @@ Settings::LineContent Settings::readSingleLine(std::string line){
     Settings::LineContent lineContent;
     lineContent.isContent = false;
 
-    int idx_first_non_white = line.find_first_not_of(" \t"); // find first character that is not a whitespace
+    // find first character that is not a whitespace
+    int idx_first_non_white = line.find_first_not_of(" \t"); 
     int idx_equalSign = line.find_first_of("=");
 
     // Checks if line contains content
@@ -65,7 +63,8 @@ Settings::LineContent Settings::readSingleLine(std::string line){
         return lineContent;
 
     // if line only contains whitespace, skip line
-    if(idx_first_non_white == std::string::npos) // line only contains whitespace
+    // line only contains whitespace
+    if(idx_first_non_white == std::string::npos) 
         return lineContent;
 
     // if line does not contain a '=' sign, skip line
@@ -79,11 +78,11 @@ Settings::LineContent Settings::readSingleLine(std::string line){
 
 
 
-    //! 2nd argument of substr is the number of characters in new str
+    // 2nd argument of substr is the number of characters in new str
     line.erase(0, idx_first_non_white);
     lineContent.parameterName = line.substr(0, line.find_first_of(" =\t"));
 
-    //! 2nd argument of erase is the number of characters to erase
+    // 2nd argument of erase is the number of characters to erase
     line.erase(0, line.find_first_of("=") + 1);
 
     // remove whitespace at beginning of value
