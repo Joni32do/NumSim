@@ -55,9 +55,9 @@ void Computation::runSimulation(){
         computeVelocities();
         currentTime += dt_;
         outputWriterParaview_->writeFile(currentTime);
+        #ifndef NDEBUG
         outputWriterText_->writeFile(currentTime);
         outputWriterText_->writePressureFile();
-        #ifndef NDEBUG
         std::cout << currentTime << std::endl;
         #endif
 
