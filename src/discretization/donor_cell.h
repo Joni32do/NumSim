@@ -7,21 +7,21 @@
 
 /**
  * @class DonorCell
- * @brief Discretizes the problem using the donor cell scheme  
- * 
+ * @brief Discretizes the problem using the donor cell scheme
+ *
  * Implements the first derivatives of u^2, v^2 and u*v according
  * to the donor cell scheme
-*/
+ */
 class DonorCell : public Discretization
 {
 public:
     /**
      * @brief Constructor
-     * 
+     *
      * @param nCells array containing number of cells in x and y directions
      * @param meshWidth array containing the length of a single cell in x and y directions
      * @param alpha weight factor between central differences and donor cell schemes
-    */ 
+     */
     DonorCell(std::array<int, 2> nCells, std::array<double, 2> meshWidth, double alpha);
 
     /**

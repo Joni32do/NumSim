@@ -6,20 +6,20 @@
 
 /**
  * @class CentralDifferences
- * @brief Discretizes the problem using the central differences scheme  
- * 
+ * @brief Discretizes the problem using the central differences scheme
+ *
  * Implements the first derivatives of u^2, v^2 and u*v according
  * to the central differences scheme
-*/
+ */
 class CentralDifferences : public Discretization
 {
 public:
     /**
      * @brief Constructor
-     * 
+     *
      * @param nCells array containing number of cells in x and y directions
      * @param meshWidth array containing the length of a single cell in x and y directions
-    */ 
+     */
     CentralDifferences(std::array<int, 2> nCells, std::array<double, 2> meshWidth);
 
     /**
