@@ -4,29 +4,47 @@
 #include <array>
 #include <cassert>
 
-
-/** This class represents a 2D array of double values.
- *  Internally they are stored consecutively in memory.
- *  The entries can be accessed by two indices i,j.
+/**
+ * @class Array2D
+ * @brief This class represents a 2D array of double values.
+ *
+ * Internally they are stored consecutively in memory.
+ * The entries can be accessed by two indices i,j.
  */
 class Array2D
 {
-    public:
-        Array2D(std::array<int, 2> size);
+public:
+    /**
+     * @brief constructor.
+     *
+     * @param size size of array in x and y direction
+     */
+    Array2D(std::array<int, 2> size);
 
-        //! set value
-        double &operator()(int i, int j);
-        
-        //! get value
-        double operator()(int i, int j) const;
+    /**
+     * @brief set array value.
+     *        Overloads the () operator
+     *
+     * @param i index in x direction
+     * @param j index in y direction
+     */
+    double &operator()(int i, int j);
 
-        //! get size
-        std::array<int,2> size() const;
-        
-        //! get half-step values (intp.)
-        double operator()(double i, double j) const;
+    /**
+     * @brief get array value.
+     *        Overloads the () operator
+     *
+     * @param i index in x direction
+     * @param j index in y direction
+     */
+    double operator()(int i, int j) const;
 
-    protected:
-        const std::array<int,2> size_;    //< width, height of the domain
-        std::vector<double> data_;  //< storage array values, in row-major order
+    /**
+     * @brief get size of array in x and y direction
+     */
+    std::array<int, 2> size() const;
+
+protected:
+    const std::array<int, 2> size_; //!< size of array in x and y direction
+    std::vector<double> data_;      //!< storage array values, in row-major order
 };

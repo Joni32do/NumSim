@@ -40,3 +40,5 @@ build/
 # Resources
 resources/
 
+sol/
+.vscode/

@@ -17,12 +17,12 @@ TEST(StaggeredGrid, ExampleReadTheDocsGrid){
     EXPECT_EQ(grids.v().interpolateAt(0.0, 0.0), 0.5);
     EXPECT_EQ(grids.p().interpolateAt(0.0, 0.0), 1.0);
 
-    EXPECT_EQ(grids.uIEnd(), 4);
-    EXPECT_EQ(grids.uJEnd(), 4);
-    EXPECT_EQ(grids.vIEnd(), 5);
-    EXPECT_EQ(grids.vJEnd(), 3);
-    EXPECT_EQ(grids.pIEnd(), 5);
-    EXPECT_EQ(grids.pJEnd(), 4);
+    EXPECT_EQ(grids.uIEnd(), 5);
+    EXPECT_EQ(grids.uJEnd(), 5);
+    EXPECT_EQ(grids.vIEnd(), 6);
+    EXPECT_EQ(grids.vJEnd(), 4);
+    EXPECT_EQ(grids.pIEnd(), 6);
+    EXPECT_EQ(grids.pJEnd(), 5);
 };
 
 TEST(StaggeredGrid, MinimalGrid){

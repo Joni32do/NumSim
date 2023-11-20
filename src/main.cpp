@@ -1,48 +1,29 @@
-#include "output_writer/write_paraview_output.h"
-#include "settings_parser/settings.h"
-#include "storage/array2D.h"
-#include <iostream>
-#include <cstdlib>
-#include <memory>
-#include <vector>
-
+#include "computation.h"
+#include <chrono>
 
 int main(int argc, char *argv[])
 {
-  #ifndef NDEBUG
-      // only run this code in debug target
-      std::cout << "lots of inefficient but informative output . . ." << std::endl;
-  #endif
 
   // if the number of given command line arguments is
   // only 1 (= the program name), print out usage information and exit
-  if (argc == 1){
-      std::cout << "usage: " << argv[0] << " <filename>" << std::endl;
-      return EXIT_FAILURE;
+  if (argc == 1)
+  {
+    std::cout << "usage: " << argv[0] << " <filename>" << std::endl;
+    return EXIT_FAILURE;
   }
 
-  
-  // read in the first argument
-  std::string filename = argv[1];
+  Computation computation;
 
-  // print message
-  std::cout << "Filename: \"" << filename << "\"" << std::endl;
+  auto start = std::chrono::system_clock::now();
 
-  // create Settings object
-  std::shared_ptr<Settings> settings = std::make_shared<Settings>();
+  computation.initialize(argc, argv);
+  computation.runSimulation();
 
-  // load settings from file
-  settings->loadFromFile(filename);
-
-  // display all settings on console
-  settings->printSettings();
-
-  // write 5 output files
-  // for (int i = 0; i < 5; i++)
-  // {
-  //  writeParaviewOutput(i);
-  // }
-
+#ifndef NDEBUG
+  auto end = std::chrono::system_clock::now() - start;
+  auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end).count();
+  std::cout << "Simulation finished in " << duration << "ms" << std::endl;
+#endif
 
   return EXIT_SUCCESS;
 }
