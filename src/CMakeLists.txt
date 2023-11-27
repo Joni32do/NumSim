@@ -26,7 +26,10 @@ add_executable(${PROJECT_NAME}
    solver/gauss_seidel.cpp
    solver/sor.cpp
 
-   computation.cpp
+   computation/computation.cpp
+   computation/computation_parallel.cpp
+
+   parallel/partitioning.cpp
    
 )
 
