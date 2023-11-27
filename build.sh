@@ -2,7 +2,14 @@
 # Execute with `./build.sh` in the terminal, with
 # an optional input parameter "release" for no debug info
 # You may need to allow execution with
-#    `chmod +x build.sh`
+#    `chmod +x build.sh`##
+
+module use /usr/local.nfs/sgs/modulefiles
+module load gcc/10.2
+module load openmpi/3.1.6-gcc-10.2
+module load vtk/9.0.1
+module load cmake/3.18.2
+
 
 rm -rf build
 
@@ -16,37 +23,7 @@ else
 fi
 
 make install -j4
-# ./numsim ../input/settings_v3.txt
 
-# run different resolution
-# ./numsim ../input/different_resolutions/settings_01.txt
-# ./numsim ../input/different_resolutions/settings_02.txt
-# ./numsim ../input/different_resolutions/settings_03.txt
-# ./numsim ../input/different_resolutions/settings_04.txt
-# ./numsim ../input/different_resolutions/settings_05.txt
-# ./numsim ../input/different_resolutions/settings_06.txt
+srun -n 16 ./numsim 
 
-# run different viscosity
-# ./numsim ../input/different_re/100.txt
-# ./numsim ../input/different_re/500.txt
-# ./numsim ../input/different_re/2000.txt
-# ./numsim ../input/different_re/10000.txt
-
-cd ..
-
-# directly open output in paraview
-
-# paraview out/output_*
-
-# for writing documentation
-
-# cd ..
-# mkdir documentation
-# cd documentation
-# doxygen ../Doxyfile
-# cd ..
-
-# run tests
-# build/tests/run_tests
-
-zip -r submission.zip src/ CMakeLists.txt
+#zip -r submission.zip src/ CMakeLists.txt

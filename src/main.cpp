@@ -1,29 +1,30 @@
-#include "computation.h"
-#include <chrono>
+#include <mpi.h>
+#include <stdio.h>
+#include <iostream>
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char** argv) {
+    // Initialize the MPI environment
+    MPI_Init(NULL, NULL);
 
-  // if the number of given command line arguments is
-  // only 1 (= the program name), print out usage information and exit
-  if (argc == 1)
-  {
-    std::cout << "usage: " << argv[0] << " <filename>" << std::endl;
-    return EXIT_FAILURE;
-  }
+    // Get the number of processes
+    int world_size;
+    MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
-  Computation computation;
+    // Get the rank of the process
+    int world_rank;
+    MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
 
-  auto start = std::chrono::system_clock::now();
+    // Get the name of the processor
+    char processor_name[MPI_MAX_PROCESSOR_NAME];
 
-  computation.initialize(argc, argv);
-  computation.runSimulation();
+    int name_len;
+    MPI_Get_processor_name(processor_name, &name_len);
 
-#ifndef NDEBUG
-  auto end = std::chrono::system_clock::now() - start;
-  auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end).count();
-  std::cout << "Simulation finished in " << duration << "ms" << std::endl;
-#endif
+    // Print off a hello world message
+    printf("Hello world from processor %s, rank %d out of %d processors\n",
+           processor_name, world_rank, world_size);
 
-  return EXIT_SUCCESS;
+    // Finalize the MPI environment.
+    MPI_Finalize();
+      std::cout << "hello" << std::endl;
 }
