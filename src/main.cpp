@@ -12,14 +12,12 @@ int main(int argc, char** argv) {
 
   MPI_Init(NULL, NULL);
 
-
-
-
   std::array<int,2> nCellsGlobal = {10, 10};
   Partitioning p = Partitioning(nCellsGlobal);
   
   MPI_Finalize();
 }
+
 
 
 
