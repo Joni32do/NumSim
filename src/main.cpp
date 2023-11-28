@@ -14,12 +14,10 @@ int main(int argc, char** argv) {
 
   MPI_Init(NULL, NULL);
 
-  Communicator c = Communicator();
+  std::shared_ptr<Communicator> communicator = std::make_shared<Communicator>();
+  std::array<int,2> nCellsGlobal = {10, 10};
+  Partitioning p = Partitioning(nCellsGlobal, communicator);
 
-
-
-  // std::array<int,2> nCellsGlobal = {10, 10};
-  // Partitioning p = Partitioning(nCellsGlobal);
   
   MPI_Finalize();
 }
