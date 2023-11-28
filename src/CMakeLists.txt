@@ -30,6 +30,7 @@ add_executable(${PROJECT_NAME}
    computation/computation_parallel.cpp
 
    parallel/partitioning.cpp
+   parallel/communicator.cpp
    
 )
 

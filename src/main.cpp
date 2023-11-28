@@ -6,14 +6,20 @@
 
 
 #include "parallel/partitioning.h"
+#include "parallel/communicator.h"
 #include "computation/computation.h"
+
 
 int main(int argc, char** argv) {
 
   MPI_Init(NULL, NULL);
 
-  std::array<int,2> nCellsGlobal = {10, 10};
-  Partitioning p = Partitioning(nCellsGlobal);
+  Communicator c = Communicator();
+
+
+
+  // std::array<int,2> nCellsGlobal = {10, 10};
+  // Partitioning p = Partitioning(nCellsGlobal);
   
   MPI_Finalize();
 }
@@ -55,6 +61,7 @@ int main(int argc, char** argv) {
     printf("Process %d received token %d from process %d\n", world_rank, token,
            world_size - 1);
   }
+
 
 
 */

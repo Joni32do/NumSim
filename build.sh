@@ -10,10 +10,13 @@ module load openmpi/3.1.6-gcc-10.2
 module load vtk/9.0.1
 module load cmake/3.18.2
 
+# enable custom build openmpi 3.1 that works with slurm
+export CPATH=/scratch-nfs/maierbn/openmpi/install-3.1/include
+export PATH=/scratch-nfs/maierbn/openmpi/install-3.1/bin:$PATH
+
 
 rm -rf build
-
-mkdir -p build
+mkdir build
 cd build
 
 if [[ "${1,,}" == "release" ]]; then
@@ -24,6 +27,6 @@ fi
 
 make install -j4
 
-srun -n 4 ./numsim 
+srun -n 2 ./numsim 
 
 #zip -r submission.zip src/ CMakeLists.txt
