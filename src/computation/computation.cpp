@@ -44,26 +44,26 @@ void Computation::initialize(int argc, char *argv[])
 void Computation::runSimulation()
 {
     std::cout << "Test" << std::endl;
-//     double currentTime = 0.;
-//     do
-//     {
-//         applyBoundaryValues();
-//         computeTimeStepWidth(currentTime);
-//         computePreliminaryVelocities();
-//         computeRightHandSide();
-//         computePressure();
-//         computeVelocities();
+    double currentTime = 0.;
+    do
+    {
+        applyBoundaryValues();
+        computeTimeStepWidth(currentTime);
+        computePreliminaryVelocities();
+        computeRightHandSide();
+        computePressure();
+        computeVelocities();
 
-//         currentTime += dt_;
-//         outputWriterParaview_->writeFile(currentTime);
+        currentTime += dt_;
+        outputWriterParaview_->writeFile(currentTime);
 
-// #ifndef NDEBUG
-//         outputWriterText_->writeFile(currentTime);
-//         outputWriterText_->writePressureFile();
-//         std::cout << currentTime << std::endl;
-// #endif
+#ifndef NDEBUG
+        outputWriterText_->writeFile(currentTime);
+        outputWriterText_->writePressureFile();
+        std::cout << currentTime << std::endl;
+#endif
 
-//     } while (currentTime < settings_.endTime);
+    } while (currentTime < settings_.endTime);
 }
 
 void Computation::applyBoundaryValues()
@@ -125,10 +125,6 @@ void Computation::computeTimeStepWidth(double currentTime)
 
     dt_ = settings_.tau * std::min({diff, max_u, max_v, settings_.maximumDt});
 
-    if (currentTime + dt_ > settings_.endTime)
-    {
-        dt_ = settings_.endTime - currentTime;
-    }
 }
 
 void Computation::computePreliminaryVelocities()

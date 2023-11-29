@@ -39,7 +39,7 @@ public:
      */
     void runSimulation();
 
-private:
+protected:
     /**
      * @brief Compute the time step width dt from maximum velocities
      *

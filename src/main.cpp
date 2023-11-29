@@ -7,17 +7,16 @@
 
 #include "parallel/partitioning.h"
 #include "parallel/communicator.h"
-#include "computation/computation.h"
+#include "computation/computation_parallel.h"
 
 
 int main(int argc, char** argv) {
 
   MPI_Init(NULL, NULL);
 
-  std::shared_ptr<Communicator> communicator = std::make_shared<Communicator>();
-  std::array<int,2> nCellsGlobal = {17, 17};
-  Partitioning p = Partitioning(nCellsGlobal, communicator);
-
+  ComputationParallel computation;
+  computation.initializeParallel(argc, argv);
+  computation.runSimulationParallel();
   
   MPI_Finalize();
 }
