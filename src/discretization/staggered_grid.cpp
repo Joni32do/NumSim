@@ -1,13 +1,15 @@
 #include "staggered_grid.h"
 
+// TODO: think about setting e.g. p to ncells+2 is both directions since we never access the last elements if
+// we set p to ncells+3
 StaggeredGrid::StaggeredGrid(std::array<int, 2> nCells, std::array<double, 2> meshWidth) : nCells_(nCells),
                                                                                            meshWidth_(meshWidth),
-                                                                                           u_({nCells[0] + 2, nCells[1] + 2}, {0., -0.5 * meshWidth[1]}, meshWidth),
-                                                                                           v_({nCells[0] + 2, nCells[1] + 2}, {-0.5 * meshWidth[0], 0.}, meshWidth),
-                                                                                           p_({nCells[0] + 2, nCells[1] + 2}, {-0.5 * meshWidth[0], -0.5 * meshWidth[1]}, meshWidth),
-                                                                                           f_({nCells[0] + 2, nCells[1] + 2}, {0., -0.5 * meshWidth[1]}, meshWidth),
-                                                                                           g_({nCells[0] + 2, nCells[1] + 2}, {-0.5 * meshWidth[0], 0}, meshWidth),
-                                                                                           rhs_({nCells[0] + 2, nCells[1] + 2}, {-0.5 * meshWidth[0], -0.5 * meshWidth[1]}, meshWidth)
+                                                                                           u_({nCells[0] + 3, nCells[1] + 3}, {-meshWidth[0], -0.5 * meshWidth[1]}, meshWidth),
+                                                                                           v_({nCells[0] + 3, nCells[1] + 3}, {-0.5 * meshWidth[0], -meshWidth[1]}, meshWidth),
+                                                                                           p_({nCells[0] + 3, nCells[1] + 3}, {-0.5 * meshWidth[0], -0.5 * meshWidth[1]}, meshWidth),
+                                                                                           f_({nCells[0] + 3, nCells[1] + 3}, {-meshWidth[0], -0.5 * meshWidth[1]}, meshWidth),
+                                                                                           g_({nCells[0] + 3, nCells[1] + 3}, {-0.5 * meshWidth[0], -meshWidth[1]}, meshWidth),
+                                                                                           rhs_({nCells[0] + 3, nCells[1] + 3}, {-0.5 * meshWidth[0], -0.5 * meshWidth[1]}, meshWidth)
 {
 }
 
@@ -103,7 +105,7 @@ int StaggeredGrid::uIBegin() const
 
 int StaggeredGrid::uIEnd() const
 {
-    return nCells_[0] + 1;
+    return nCells_[0] + 3;
 }
 
 int StaggeredGrid::uJBegin() const
@@ -118,12 +120,12 @@ int StaggeredGrid::uJEnd() const
 
 int StaggeredGrid::fIBegin() const
 {
-    return 0;
+    return 1;
 }
 
 int StaggeredGrid::fIEnd() const
 {
-    return nCells_[0] + 1;
+    return nCells_[0] + 2;
 }
 
 int StaggeredGrid::fJBegin() const
@@ -153,7 +155,7 @@ int StaggeredGrid::vJBegin() const
 
 int StaggeredGrid::vJEnd() const
 {
-    return nCells_[1] + 1;
+    return nCells_[1] + 3;
 }
 
 int StaggeredGrid::gIBegin() const
@@ -168,12 +170,12 @@ int StaggeredGrid::gIEnd() const
 
 int StaggeredGrid::gJBegin() const
 {
-    return 0;
+    return 1;
 }
 
 int StaggeredGrid::gJEnd() const
 {
-    return nCells_[1] + 1;
+    return nCells_[1] + 2;
 }
 
 int StaggeredGrid::pIBegin() const
