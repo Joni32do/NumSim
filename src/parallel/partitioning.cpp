@@ -10,7 +10,8 @@ Partitioning::Partitioning(std::array<int,2> nCellsGlobal,
     nProcesses_ = findOptimumProcessAlignment();
     ownProcess_ = {ownRankNo_%nProcesses_[0], ownRankNo_/nProcesses_[0]};
     nCellsLocal_ = calculateNCellsLocal();
-    printDebugInformation();
+    std::cout << ownRankNo_ << ' ' << nProcesses_[0] << ' ' << nProcesses_[1] << ' ' << nCellsLocal_[0] << ' ' << nCellsLocal_[1] << ' ' << std::endl; 
+    // printDebugInformation();
 }
 
 
@@ -114,7 +115,6 @@ std::array<int,2> Partitioning::findOptimumProcessAlignment(){
             }
         }
     }
-    
     return {p_xMin, p_yMin};
 }
 
@@ -123,7 +123,7 @@ std::array<int,2> Partitioning::findOptimumProcessAlignment(){
 std::array<int,2> Partitioning::calculateNCellsLocal(){
     // TODO: more advanced implementation
     std::array<int,2> nCellsLocal;
-    std::array<int,2> remainderLocalCells_;
+    
 
     for (int i = 0; i < 2; i++){
         // std::cout << "fsdProcess: x:" << ownProcess_[0] << " von " << nProcesses_[0]
@@ -141,10 +141,9 @@ std::array<int,2> Partitioning::calculateNCellsLocal(){
 
 
 void Partitioning::printDebugInformation(){
-    std::cout << "Print Debug Info" << std::endl;
-    std::cout << "Rank: " << ownRankNo_ << " von " << nRanks_ << std::endl;
-    std::cout << "n_cells_x: " << nCellsGlobal_[0] << ", n_cells_y: " << nCellsGlobal_[1] << std::endl;
-    std::cout << "Processes x -direction: " << nProcesses_[0] << ", Processes y -direction: " << nProcesses_[1] << std::endl;
-    std::cout << "Cells Local: x:" << nCellsLocal_[0] << " y:" << nCellsGlobal_[1] << std::endl;
-    std::cout << "\n\n";
+    std::cout << "Print Debug Info" << std::endl
+    << "Rank: " << ownRankNo_ << " von " << nRanks_ << std::endl
+    << "n_cells_x: " << nCellsGlobal_[0] << ", n_cells_y: " << nCellsGlobal_[1] << std::endl
+    << "Processes x-direction: " << nProcesses_[0] << ", Processes y-direction: " << nProcesses_[1] << std::endl
+    << "Cells Local: x:" << nCellsLocal_[0] << " y:" << nCellsLocal_[1] << std::endl;
 }

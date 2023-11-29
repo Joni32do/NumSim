@@ -27,6 +27,6 @@ fi
 
 make install -j4
 
-srun -n 20 ./numsim 
+srun -n 10 ./numsim 
 
 #zip -r submission.zip src/ CMakeLists.txt

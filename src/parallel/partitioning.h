@@ -75,6 +75,8 @@ public:
     std::array<int,2> ownProcess_;
     std::array<int,2> nProcesses_;
 
+    std::array<int,2> remainderLocalCells_;
+
 
     const int ownRankNo_;
     const int nRanks_;

@@ -14,6 +14,7 @@ class Communicator{
 
         int ownRankNo();
         int nRanks();
+        // double getGlobalMin();
 
 
     private:
