@@ -7,9 +7,6 @@ Communicator::Communicator(){
     MPI_Comm_rank(MPI_COMM_WORLD, &ownRankNo_);
     MPI_Comm_size(MPI_COMM_WORLD, &nRanks_);
 
-
-
-
 }
 
 

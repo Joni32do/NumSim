@@ -62,18 +62,18 @@ public:
   std::array<int,2> nodeOffset() const;
 
   private:
-    std::array<int,2> calculateNCellsLocal(std::array<int,2> nCellsGlobal);
-    
-    std::array<int,2> findOptimumProcessAlignment(std::array<int,2> nCellsGlobal);
+    std::array<int,2> findOptimumProcessAlignment();
+    std::array<int,2> calculateNCellsLocal();
 
 
     std::shared_ptr<Communicator> communicator_;
 
     const std::array<int,2> nCellsGlobal_;
-    const std::array<int,2> nCellsLocal_;
 
-    const std::array<int,2> ownProcess_;
-    const std::array<int,2> nProcesses_;
+    std::array<int,2> nCellsLocal_;
+
+    std::array<int,2> ownProcess_;
+    std::array<int,2> nProcesses_;
 
 
     const int ownRankNo_;
@@ -81,7 +81,7 @@ public:
 
 
 
-    std::array<int,2> remainderLocalCells_;
+    // std::array<int,2> remainderLocalCells_;
 
     void printDebugInformation();
 };

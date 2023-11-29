@@ -19,7 +19,7 @@ class Communicator{
     private:
         int ownRankNo_;
         int nRanks_;
-        std::array<int,2> nProcesses_;
+        //std::array<int,2> nProcesses_;
 
 };
 
