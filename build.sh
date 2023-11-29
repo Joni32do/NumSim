@@ -15,6 +15,8 @@ export CPATH=/scratch-nfs/maierbn/openmpi/install-3.1/include
 export PATH=/scratch-nfs/maierbn/openmpi/install-3.1/bin:$PATH
 
 
+rm -rf src/debugging/debug_out
+mkdir src/debugging/debug_out
 rm -rf build
 mkdir build
 cd build
@@ -27,6 +29,6 @@ fi
 
 make install -j4
 
-srun -n 2 ./numsim ../input/settings.txt
+srun -n 20 ./numsim ../input/settings.txt
 
 #zip -r submission.zip src/ CMakeLists.txt

@@ -9,9 +9,8 @@ Partitioning::Partitioning(std::array<int,2> nCellsGlobal,
 {
     nProcesses_ = findOptimumProcessAlignment();
     ownProcess_ = {ownRankNo_%nProcesses_[0], ownRankNo_/nProcesses_[0]};
-    nCellsLocal_ = calculateNCellsLocal();
-    std::cout << ownRankNo_ << ' ' << nProcesses_[0] << ' ' << nProcesses_[1] << ' ' << nCellsLocal_[0] << ' ' << nCellsLocal_[1] << ' ' << std::endl; 
-    // printDebugInformation();
+    nCellsLocal_ = calculateNCellsLocal(); 
+    printDebugInformation();
 }
 
 
@@ -87,8 +86,37 @@ int Partitioning::bottomNeighbourRankNo() const{
 }
 
 std::array<int,2> Partitioning::nodeOffset() const{
-    //TODO:
-    return {nCellsGlobal_[0] - nCellsLocal_[0], nCellsGlobal_[1] - nCellsLocal_[1]};
+    int x_modulo = remainderLocalCells_[0];
+    int y_modulo = remainderLocalCells_[1];
+
+    int x_offset = 0;
+    int y_offset = 0; 
+
+    int standart_n_cells_x = nCellsGlobal_[0]/nProcesses_[0];
+    int standart_n_cells_y = nCellsGlobal_[1]/nProcesses_[1];
+
+
+    for(int i =0; i< ownProcess_[0]; i++){
+        if(x_modulo == 0){
+            x_offset += standart_n_cells_x;
+        }
+        else{
+            x_offset += standart_n_cells_x+1;
+            x_modulo -= 1;
+        }
+    }
+    
+    for(int j =0; j< ownProcess_[1]; j++){
+        if(y_modulo == 0){
+            y_offset += standart_n_cells_y;
+        }
+        else{
+            y_offset += standart_n_cells_y+1;
+            y_modulo -= 1;
+        }
+    }
+
+    return {x_offset, y_offset};
 }
 
 
@@ -141,9 +169,20 @@ std::array<int,2> Partitioning::calculateNCellsLocal(){
 
 
 void Partitioning::printDebugInformation(){
-    std::cout << "Print Debug Info" << std::endl
-    << "Rank: " << ownRankNo_ << " von " << nRanks_ << std::endl
-    << "n_cells_x: " << nCellsGlobal_[0] << ", n_cells_y: " << nCellsGlobal_[1] << std::endl
-    << "Processes x-direction: " << nProcesses_[0] << ", Processes y-direction: " << nProcesses_[1] << std::endl
-    << "Cells Local: x:" << nCellsLocal_[0] << " y:" << nCellsLocal_[1] << std::endl;
+    std::array<int,2> node_offset_ = nodeOffset();
+
+    Printer printer_(ownRankNo_);
+    std::string out_string_1 = "Rank: " + std::to_string(ownRankNo_ ) + " von " + std::to_string(nRanks_);
+    std::string out_string_2 = "Nodes offset x: " + std::to_string(node_offset_[0]) + " " +"Nodes offset y: " + std::to_string(node_offset_[1]);
+    printer_.add_new_parameter_to_print(out_string_1);
+    printer_.add_new_parameter_to_print(out_string_2);
+
+    printer_.save_values_to_file();
+    
+    //std::cout << "Print Debug Info" << std::endl
+    //std::cout << "Rank: " << ownRankNo_ << " von " << nRanks_ << std::endl
+    //<< "n_cells_x: " << nCellsGlobal_[0] << ", n_cells_y: " << nCellsGlobal_[1] << std::endl
+    //<< "Processes x-direction: " << nProcesses_[0] << ", Processes y-direction: " << nProcesses_[1] << std::endl
+   // << "Cells Local: x:" << nCellsLocal_[0] << " y:" << nCellsLocal_[1] << std::endl
+    //<< "node_offset x " << node_offset_[0] << " node_offset y " << node_offset_[1] << "\n";
 }

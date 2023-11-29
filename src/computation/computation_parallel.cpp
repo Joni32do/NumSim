@@ -19,11 +19,11 @@ void ComputationParallel::initializeParallel(int argc, char *argv[]){
 
     if (settings_.useDonorCell)
     {
-        discretization_ = std::make_shared<DonorCell>(settings_.nCells, meshWidth_, settings_.alpha);
+        discretization_ = std::make_shared<DonorCell>(partitioning_->nCellsLocal(), meshWidth_, settings_.alpha);
     }
     else
     {
-        discretization_ = std::make_shared<CentralDifferences>(settings_.nCells, meshWidth_);
+        discretization_ = std::make_shared<CentralDifferences>(partitioning_->nCellsLocal(), meshWidth_);
     }
 
     if (settings_.pressureSolver == "SOR")
@@ -49,7 +49,7 @@ void ComputationParallel::initializeParallel(int argc, char *argv[]){
 void ComputationParallel::runSimulationParallel(){
     double currentTime = 0;
     computeTimeStepWidthParallel(currentTime);
-    std::cout << "Time Step" << dt_ << std::endl;
+    //std::cout << "Time Step" << dt_ << std::endl;
     }
 
 void ComputationParallel::computeTimeStepWidthParallel(double currentTime){

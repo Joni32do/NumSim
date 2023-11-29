@@ -31,6 +31,8 @@ add_executable(${PROJECT_NAME}
 
    parallel/partitioning.cpp
    parallel/communicator.cpp
+
+   debugging/debug_printer.cpp
    
 )
 

@@ -6,6 +6,7 @@
 #include <cassert>
 
 #include "communicator.h"
+#include "../debugging/debug_printer.h"
 
 class Partitioning
 {
