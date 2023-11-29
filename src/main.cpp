@@ -15,7 +15,7 @@ int main(int argc, char** argv) {
   MPI_Init(NULL, NULL);
 
   std::shared_ptr<Communicator> communicator = std::make_shared<Communicator>();
-  std::array<int,2> nCellsGlobal = {10, 10};
+  std::array<int,2> nCellsGlobal = {17, 17};
   Partitioning p = Partitioning(nCellsGlobal, communicator);
 
   

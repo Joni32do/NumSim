@@ -1,6 +1,9 @@
 #pragma once
 
+#include <memory>
+
 #include "computation.h"
+#include "../parallel/communicator.h"
 
 class ComputationParallel: Computation{
 
@@ -9,8 +12,7 @@ class ComputationParallel: Computation{
 
 
     private:
-        int i_rank;
-        int n_rank;
+        std::shared_ptr<Communicator> communicator;
 
 
 };

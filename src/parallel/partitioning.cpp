@@ -2,16 +2,15 @@
 
 Partitioning::Partitioning(std::array<int,2> nCellsGlobal,
                            std::shared_ptr<Communicator> communicator):
-            nProcesses_(findOptimumProcessAlignment(nCellsGlobal)),
-            nCellsGlobal_(nCellsGlobal),
-            nCellsLocal_(calculateNCellsLocal(nCellsGlobal)),
+            communicator_(communicator),
             ownRankNo_(communicator->ownRankNo()),
             nRanks_(communicator->nRanks()),
-            communicator_(communicator)
+            nProcesses_(findOptimumProcessAlignment(nCellsGlobal)),
+            nCellsGlobal_(nCellsGlobal),
+            ownProcess_({ownRankNo_%nProcesses_[0], ownRankNo_/nProcesses_[0]}),
+            nCellsLocal_(calculateNCellsLocal(nCellsGlobal))
 {
-    std::cout << ownRankNo_ << std::endl;
-    std::cout << nRanks_ << std::endl;
-    std::cout << nProcesses_[0] << " and yProcesses " << nProcesses_[1] << std::endl;
+    printDebugInformation();
 }
 
 
@@ -87,13 +86,14 @@ int Partitioning::bottomNeighbourRankNo() const{
 }
 
 std::array<int,2> Partitioning::nodeOffset() const{
+    //TODO:
     return {nCellsGlobal_[0] - nCellsLocal_[0], nCellsGlobal_[1] - nCellsLocal_[1]};
 }
 
 
 
 std::array<int,2> Partitioning::findOptimumProcessAlignment(std::array<int,2> nCellsGlobal){
-    int costMinimal = 99999;
+    int costMinimal = 9999999;
     int cost = 0;
     int p_xMin = 0;
     int p_yMin = 0;
@@ -121,6 +121,27 @@ std::array<int,2> Partitioning::findOptimumProcessAlignment(std::array<int,2> nC
 
 std::array<int,2> Partitioning::calculateNCellsLocal(std::array<int,2> nCellsGlobal){
     // TODO: more advanced implementation
-    return {nCellsGlobal[0]/nProcesses_[0], nCellsGlobal[1]/nProcesses_[1]};
+    std::array<int,2> nCellsLocal;
+
+    for (int i = 0; i < 2; i++){
+        std::cout << "fsdProcess: x:" << ownProcess_[0] << " von " << nProcesses_[0]
+              << " y: " << ownProcess_[1] << " von " << nProcesses_[1] << std::endl;
+        remainderLocalCells_[i] = nCellsGlobal[i]%nProcesses_[i];
+        std::cout << "Write" << i << " c " << remainderLocalCells_[i] << std::endl;
+        if (ownProcess_[i] < remainderLocalCells_[i]){
+            nCellsLocal[i] = nCellsGlobal[i]/nProcesses_[i] + 1;
+        } else {
+            nCellsLocal[i] = nCellsGlobal[i]/nProcesses_[i];
+        }
+    }
+    return nCellsLocal;
 }
 
+
+void Partitioning::printDebugInformation(){
+    std::cout << "Rank: " << ownRankNo_ << " von " << nRanks_ << std::endl;
+    std::cout << "Process: x:" << ownProcess_[0] << " von " << nProcesses_[0]
+              << " y: " << ownProcess_[1] << " von " << nProcesses_[1] << std::endl;
+    std::cout << "Cells Local: x:" << nCellsLocal_[0] << " y:" << nCellsGlobal_[1] << std::endl;
+    std::cout << std::endl;
+}

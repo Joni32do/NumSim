@@ -1,6 +1,5 @@
 #pragma once
 
-#include <mpi.h> 
 #include <array>
 #include <iostream>
 #include <memory>
@@ -73,12 +72,17 @@ public:
     const std::array<int,2> nCellsGlobal_;
     const std::array<int,2> nCellsLocal_;
 
+    const std::array<int,2> ownProcess_;
+    const std::array<int,2> nProcesses_;
+
+
     const int ownRankNo_;
     const int nRanks_;
 
 
-    const std::array<int,2> nProcesses_;
-    std::array<int,2> ownProcess_;
 
+    std::array<int,2> remainderLocalCells_;
+
+    void printDebugInformation();
 };
 
