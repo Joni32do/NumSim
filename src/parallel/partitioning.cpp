@@ -9,8 +9,11 @@ Partitioning::Partitioning(std::array<int,2> nCellsGlobal,
 {
     nProcesses_ = findOptimumProcessAlignment();
     ownProcess_ = {ownRankNo_%nProcesses_[0], ownRankNo_/nProcesses_[0]};
-    nCellsLocal_ = calculateNCellsLocal(); 
+    nCellsLocal_ = calculateNCellsLocal();
+    
+#ifndef NDEBUG
     printDebugInformation();
+#endif
 }
 
 
@@ -92,31 +95,36 @@ std::array<int,2> Partitioning::nodeOffset() const{
     int x_offset = 0;
     int y_offset = 0; 
 
-    int standart_n_cells_x = nCellsGlobal_[0]/nProcesses_[0];
-    int standart_n_cells_y = nCellsGlobal_[1]/nProcesses_[1];
+    int standard_n_cells_x = nCellsGlobal_[0]/nProcesses_[0];
+    int standard_n_cells_y = nCellsGlobal_[1]/nProcesses_[1];
 
 
     for(int i =0; i< ownProcess_[0]; i++){
         if(x_modulo == 0){
-            x_offset += standart_n_cells_x;
+            x_offset += standard_n_cells_x;
         }
         else{
-            x_offset += standart_n_cells_x+1;
+            x_offset += standard_n_cells_x+1;
             x_modulo -= 1;
         }
     }
     
     for(int j =0; j< ownProcess_[1]; j++){
         if(y_modulo == 0){
-            y_offset += standart_n_cells_y;
+            y_offset += standard_n_cells_y;
         }
         else{
-            y_offset += standart_n_cells_y+1;
+            y_offset += standard_n_cells_y+1;
             y_modulo -= 1;
         }
     }
 
     return {x_offset, y_offset};
+}
+
+// TODO: remove only for debug
+std::array<int,2> Partitioning::nProcesses(){
+    return nProcesses_;
 }
 
 

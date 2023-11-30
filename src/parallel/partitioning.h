@@ -62,6 +62,8 @@ public:
   //! used in OutputWriterParaviewParallel
   std::array<int,2> nodeOffset() const;
 
+  std::array<int,2> nProcesses();
+
   private:
     std::array<int,2> findOptimumProcessAlignment();
     std::array<int,2> calculateNCellsLocal();

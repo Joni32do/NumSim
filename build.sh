@@ -17,8 +17,9 @@ export PATH=/scratch-nfs/maierbn/openmpi/install-3.1/bin:$PATH
 
 rm -rf src/debugging/debug_out
 mkdir src/debugging/debug_out
+
 rm -rf build
-mkdir build
+mkdir -p build
 cd build
 
 if [[ "${1,,}" == "release" ]]; then
@@ -29,6 +30,6 @@ fi
 
 make install -j4
 
-srun -n 20 ./numsim ../input/settings.txt
+srun -n 4 ./numsim ../input/settings_debug.txt
 
 #zip -r submission.zip src/ CMakeLists.txt

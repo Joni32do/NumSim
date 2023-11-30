@@ -107,6 +107,15 @@ public:
     int uIEnd() const;
 
     /**
+     * @brief index of the left ghost layer
+    */
+   int uLeftGhost() const;
+    /**
+     * @brief one after last index of the right ghost layer
+    */
+    int uRightGhost() const;
+
+    /**
      * @brief  first valid index for u in y direction
      */
     int uJBegin() const;
@@ -129,9 +138,18 @@ public:
      */
     int vJBegin() const;
     /**
-     * @brief  one after last valid index for v in y direction
+     * @brief one after last valid index for v in y direction
      */
     int vJEnd() const;
+    
+    /**
+     * @brief index of the lower ghost layer
+    */
+   int vBottomGhost() const;
+    /**
+     * @brief one after the index of the upper ghost layer
+    */
+   int vTopGhost() const;
 
     /**
      * @brief  first valid index for p in x direction

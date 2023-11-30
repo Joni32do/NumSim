@@ -4,8 +4,10 @@
 #include <cmath>
 
 #include "computation.h"
-#include "../parallel/communicator.h"
-#include "../parallel/partitioning.h"
+#include "parallel/communicator.h"
+#include "parallel/partitioning.h"
+
+#include "debugging/debug_printer.h"
 
 class ComputationParallel: Computation{
 
@@ -13,11 +15,13 @@ class ComputationParallel: Computation{
         void initializeParallel(int argc, char *argv[]);
         void runSimulationParallel();
 
+        void applyBoundaryValuesParallel();
         void computeTimeStepWidthParallel(double currentTime);
 
 
     private:
         std::shared_ptr<Communicator> communicator_;
         std::shared_ptr<Partitioning> partitioning_;
+        // std::unique_ptr<OutputWriterParaviewParallel> outputWriterParaviewParallel_;
 
 };

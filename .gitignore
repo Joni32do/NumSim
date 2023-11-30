@@ -42,3 +42,6 @@ resources/
 
 sol/
 .vscode/
+
+# out files
+.out

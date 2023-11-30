@@ -100,10 +100,20 @@ double StaggeredGrid::dy() const
 
 int StaggeredGrid::uIBegin() const
 {
-    return 0;
+    return 1;
 }
 
 int StaggeredGrid::uIEnd() const
+{
+    return nCells_[0] + 2;
+}
+
+int StaggeredGrid::uLeftGhost() const
+{
+    return 0;
+}
+
+int StaggeredGrid::uRightGhost() const
 {
     return nCells_[0] + 3;
 }
@@ -150,10 +160,20 @@ int StaggeredGrid::vIEnd() const
 
 int StaggeredGrid::vJBegin() const
 {
-    return 0;
+    return 1;
 }
 
 int StaggeredGrid::vJEnd() const
+{
+    return nCells_[1] + 2;
+}
+
+int StaggeredGrid::vBottomGhost() const
+{
+    return 0;
+}
+
+int StaggeredGrid::vTopGhost() const
 {
     return nCells_[1] + 3;
 }
