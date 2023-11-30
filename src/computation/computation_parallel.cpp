@@ -49,26 +49,53 @@ void ComputationParallel::runSimulationParallel(){
         applyBoundaryValuesParallel();
         //computeTimeStepWidthParallel(currentTime);
         // currentTime += dt_;
-        currentTime += 5;
+        currentTime += 10;
 
 
 
         // DEBUGGING 
+
         std::string str = "Rank: " + std::to_string(communicator_->ownRankNo()) 
-                        + " PartX" + std::to_string(partitioning_->nProcesses()[0]) 
-                        + " PartY" + std::to_string(partitioning_->nProcesses()[1])
-                        + " Zeit " + std::to_string(currentTime) 
-                        + " dt"    + std::to_string(dt_);
+                                     + " PartX" + std::to_string(partitioning_->nProcesses()[0]) 
+                                     + " PartY" + std::to_string(partitioning_->nProcesses()[1])
+                                     + " Zeit " + std::to_string(currentTime) 
+                                     + " dt"    + std::to_string(dt_);
         printer_.add_new_parameter_to_print(str);
 
-        std::string lineOfArray2D = "Array " + std::to_string(discretization_->v(0, 1))
-                                     + " | " + std::to_string(discretization_->v(1, 1))
-                                     + " | " + std::to_string(discretization_->v(2, 1))
-                                     + " | " + std::to_string(discretization_->v(3, 1))
-                                     + " | " + std::to_string(discretization_->v(4, 1))
-                                     + " | " + std::to_string(discretization_->v(5, 1));
+        std::string uLineOfArray2D = "Arr u "+ std::to_string(discretization_->u(0, 0))
+                                     + " | " + std::to_string(discretization_->u(1, 0))
+                                     + " | " + std::to_string(discretization_->u(2, 0))
+                                     + " | " + std::to_string(discretization_->u(3, 0))
+                                     + " | " + std::to_string(discretization_->u(4, 0))
+                                     + " | " + std::to_string(discretization_->u(5, 0));
+        printer_.add_new_parameter_to_print(uLineOfArray2D);
 
-        printer_.add_new_parameter_to_print(lineOfArray2D);
+        std::string vLineOfArray2D = "Arr v "+ std::to_string(discretization_->v(0, 1))
+                                      + " | " + std::to_string(discretization_->v(1, 1))
+                                      + " | " + std::to_string(discretization_->v(2, 1))
+                                      + " | " + std::to_string(discretization_->v(3, 1))
+                                      + " | " + std::to_string(discretization_->v(4, 1))
+                                      + " | " + std::to_string(discretization_->v(5, 1));
+        printer_.add_new_parameter_to_print(vLineOfArray2D);
+
+        int u_last = discretization_->uJEnd()-1;
+        std::string uLineOfArray2DTop = "Arr u "+ std::to_string(discretization_->u(0, u_last))
+                                        + " | " + std::to_string(discretization_->u(1, u_last))
+                                        + " | " + std::to_string(discretization_->u(2, u_last))
+                                        + " | " + std::to_string(discretization_->u(3, u_last))
+                                        + " | " + std::to_string(discretization_->u(4, u_last))
+                                        + " | " + std::to_string(discretization_->u(5, u_last));
+        printer_.add_new_parameter_to_print(uLineOfArray2DTop);
+        int v_last = discretization_->vJEnd()-1;
+        std::string vLineOfArray2DTop = "Arr v "+ std::to_string(discretization_->v(0, v_last))
+                                        + " | " + std::to_string(discretization_->v(1, v_last))
+                                        + " | " + std::to_string(discretization_->v(2, v_last))
+                                        + " | " + std::to_string(discretization_->v(3, v_last))
+                                        + " | " + std::to_string(discretization_->v(4, v_last))
+                                        + " | " + std::to_string(discretization_->v(5, v_last));
+        printer_.add_new_parameter_to_print(vLineOfArray2DTop);
+
+
         // DEBUGGING END
 
 
@@ -120,11 +147,6 @@ void ComputationParallel::applyBoundaryValuesParallel(){
             discretization_->v(i, discretization_->vJBegin()) = 
                                     settings_.dirichletBcBottom[1];
         }
-        // f
-        for (int i = discretization_->fIBegin(); i < discretization_->fIEnd(); i++){
-            discretization_->f(i, discretization_->fJBegin()) =
-                                    discretization_->u(i, discretization_->fJBegin());
-        }
         // g
         for (int i = discretization_->gIBegin(); i < discretization_->gIEnd(); i++){
             discretization_->g(i, discretization_->gJBegin()) =
@@ -145,11 +167,6 @@ void ComputationParallel::applyBoundaryValuesParallel(){
         for (int i = discretization_->vIBegin(); i < discretization_->vIEnd(); i++){
             discretization_->v(i, discretization_->vJEnd() - 1) = 
                                     settings_.dirichletBcTop[1];
-        }
-        // f
-        for (int i = discretization_->fIBegin(); i < discretization_->fIEnd(); i++){
-            discretization_->f(i, discretization_->fJEnd() - 1) =
-                                    discretization_->u(i, discretization_->fJEnd() - 1);
         }
         // g
         for (int i = discretization_->gIBegin(); i < discretization_->gIEnd(); i++){
@@ -177,11 +194,6 @@ void ComputationParallel::applyBoundaryValuesParallel(){
             discretization_->f(discretization_->fIBegin(), j) =
                                     discretization_->u(discretization_->fIBegin(), j);
         }
-        // g TODO: Check if this or the interior -> I think we can assign it, but its never used
-        for (int j = discretization_->gJBegin(); j < discretization_->gJEnd(); j++){
-            discretization_->g(discretization_->gIBegin(), j) =
-                                    discretization_->v(discretization_->gIBegin(), j);
-        }
    }
 
    
@@ -203,12 +215,6 @@ void ComputationParallel::applyBoundaryValuesParallel(){
             discretization_->f(discretization_->fIEnd() - 1, j) =
                                     discretization_->u(discretization_->fIEnd() - 1, j);
         }
-        // g TODO: Check if this or the interior -> I think we can assign it, but its never used
-        for (int j = discretization_->gJBegin(); j < discretization_->gJEnd(); j++){
-            discretization_->g(discretization_->gIEnd() - 1, j) =
-                                    discretization_->v(discretization_->gIEnd() - 1, j);
-        }
-
    }
    
 }
