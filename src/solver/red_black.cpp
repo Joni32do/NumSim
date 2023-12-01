@@ -44,6 +44,30 @@ void RedBlack::solve()
 }
 
 
-// void RedBlack::setBoundaryValues(){
+void RedBlack::setBoundaryValues(){
+    if(partitioning_->ownPartitionContainsBottomBoundary()){
+        for(int i = discretization_->pIBegin(); i < discretization_->pIEnd(); i++){
+            discretization_->p(i,discretization_->pJBegin()) = -discretization_->p(i,discretization_->pJBegin()+1);
+        }
+    }
 
-// }
+    if(partitioning_->ownPartitionContainsTopBoundary()){
+        for(int i = discretization_->pIBegin(); i < discretization_->pIEnd(); i++){
+            discretization_->p(i,discretization_->pJEnd()-1) = -discretization_->p(i,discretization_->pJEnd()-2);
+        }
+    }
+
+    if(partitioning_->ownPartitionContainsLeftBoundary()){
+        for(int j = discretization_->pJBegin(); j<discretization_->pJEnd(); j++){
+            discretization_->p(discretization_->pIBegin(), j) = -discretization_->p(discretization_->pIBegin()+1, j);
+        }
+    }
+
+    if(partitioning_->ownPartitionContainsRightBoundary()){
+        for(int j = discretization_->pJBegin(); j<discretization_->pJEnd(); j++){
+            discretization_->p(discretization_->pIEnd()-1, j) = -discretization_->p(discretization_->pIBegin()-2, j);
+        }
+    }
+
+
+}

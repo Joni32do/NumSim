@@ -10,6 +10,8 @@ Partitioning::Partitioning(std::array<int,2> nCellsGlobal,
     nProcesses_ = findOptimumProcessAlignment();
     ownProcess_ = {ownRankNo_%nProcesses_[0], ownRankNo_/nProcesses_[0]};
     nCellsLocal_ = calculateNCellsLocal();
+    calcNodeOffset();
+    calclowerLeftIsRed();
     
 #ifndef NDEBUG
     printDebugInformation();
@@ -88,7 +90,7 @@ int Partitioning::bottomNeighbourRankNo() const{
     return ownRankNo_ - nProcesses_[0];
 }
 
-std::array<int,2> Partitioning::nodeOffset() const{
+void Partitioning::calcNodeOffset(){
     int x_modulo = remainderLocalCells_[0];
     int y_modulo = remainderLocalCells_[1];
 
@@ -119,12 +121,32 @@ std::array<int,2> Partitioning::nodeOffset() const{
         }
     }
 
-    return {x_offset, y_offset};
+    nodeOffset_ = {x_offset, y_offset};
+}
+
+std::array<int,2> Partitioning::nodeOffset() const{
+    
+
+    return nodeOffset_;
 }
 
 // TODO: remove only for debug
 std::array<int,2> Partitioning::nProcesses(){
     return nProcesses_;
+}
+
+void Partitioning::calclowerLeftIsRed(){
+    
+    
+    
+    
+    
+    
+    lowerLeftIsRed_ = true;
+}
+
+bool Partitioning::lowerLeftIsRed(){
+    return lowerLeftIsRed_;
 }
 
 

@@ -32,7 +32,7 @@ public:
      */
     void solve() override;
 
-    // void setBoundaryValues();
+    void setBoundaryValues();
 
 private:
     std::shared_ptr<Communicator> communicator_;

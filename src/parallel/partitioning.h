@@ -57,14 +57,18 @@ public:
   //! get the rank no of the bottom neighbouring rank
   int bottomNeighbourRankNo() const;
 
+
   //! get the offset values for counting local nodes in x and y direction. 
   //! (i_local,j_local) + nodeOffset = (i_global,j_global)
   //! used in OutputWriterParaviewParallel
   std::array<int,2> nodeOffset() const;
+  bool lowerLeftIsRed();
 
   std::array<int,2> nProcesses();
 
   private:
+    void calcNodeOffset();
+    void calclowerLeftIsRed();
     std::array<int,2> findOptimumProcessAlignment();
     std::array<int,2> calculateNCellsLocal();
 
@@ -84,6 +88,8 @@ public:
     const int ownRankNo_;
     const int nRanks_;
 
+    bool lowerLeftIsRed_;
+    std::array<int,2> nodeOffset_;
 
 
     // std::array<int,2> remainderLocalCells_;
