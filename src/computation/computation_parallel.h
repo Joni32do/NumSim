@@ -19,7 +19,7 @@ class ComputationParallel: Computation{
         void applyBoundaryValuesParallel();
         void computeTimeStepWidthParallel(double currentTime);
         void computePreliminaryVelocitiesParallel();
-
+        void computeRightHandSideParallel();
 
     private:
         std::shared_ptr<Communicator> communicator_;

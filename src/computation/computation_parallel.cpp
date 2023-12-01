@@ -47,12 +47,13 @@ void ComputationParallel::runSimulationParallel(){
     OutputWriterTextParallel out = OutputWriterTextParallel(discretization_, *partitioning_); 
     do
     {   
+        computeTimeStepWidthParallel(currentTime);
         applyBoundaryValuesParallel();
-        computePreliminaryVelocities();
-        //computeTimeStepWidthParallel(currentTime);
-        // currentTime += dt_;
-        currentTime += 5;
+        computePreliminaryVelocitiesParallel();
+        computeRightHandSideParallel();
+        currentTime += dt_;
         out.writeFile(currentTime);
+        currentTime += 2;
 
 
 
@@ -249,7 +250,7 @@ void ComputationParallel::computePreliminaryVelocitiesParallel(){
     }
 
     // Interior of F
-    for (int i = f_i_beg + 1; i < f_i_end - 1; i++)
+    for (int i = f_i_beg; i < f_i_end; i++)
     {
         for (int j = f_j_beg; j < f_j_end; j++)
         {
@@ -260,17 +261,35 @@ void ComputationParallel::computePreliminaryVelocitiesParallel(){
         }
     }
 
-   // Interior of G
+    // Interior of G
     for (int i = g_i_beg; i < g_i_end; i++)
     {
-        for (int j = g_j_beg + 1; j < g_j_end - 1; j++)
+        for (int j = g_j_beg; j < g_j_end; j++)
         {
             double diffusion = 1 / settings_.re * (discretization_->computeD2vDx2(i, j) + discretization_->computeD2vDy2(i, j));
             double convection = -discretization_->computeDv2Dy(i, j) - discretization_->computeDuvDx(i, j);
 
             discretization_->g(i, j) = discretization_->v(i, j) + dt_ * (diffusion + convection + settings_.g[1]);
         }
+    }  
+}
+
+void ComputeRightHandSideParallel(){
+
+    int i_beg = discretization_->rhsIBegin();
+    int i_end = discretization_->rhsIEnd();
+    int j_beg = discretization_->rhsJBegin();
+    int j_end = discretization_->rhsJEnd();
+
+    // Interior
+    for (int i = i_beg; i < i_end; i++)
+    {
+        for (int j = j_beg; j < j_end; j++)
+        {
+            double dF = (1 / discretization_->dx()) * (discretization_->f(i, j) - discretization_->f(i - 1, j));
+            double dG = (1 / discretization_->dy()) * (discretization_->g(i, j) - discretization_->g(i, j - 1));
+            discretization_->rhs(i, j) = (1 / dt_) * (dF + dG);
+        }
     }
 
-   
 }
