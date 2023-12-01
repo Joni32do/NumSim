@@ -11,7 +11,7 @@ Partitioning::Partitioning(std::array<int,2> nCellsGlobal,
     ownProcess_ = {ownRankNo_%nProcesses_[0], ownRankNo_/nProcesses_[0]};
     nCellsLocal_ = calculateNCellsLocal();
     calcNodeOffset();
-    calclowerLeftIsRed();
+    calcLowerLeftIsRed();
     
 #ifndef NDEBUG
     printDebugInformation();
@@ -135,14 +135,8 @@ std::array<int,2> Partitioning::nProcesses(){
     return nProcesses_;
 }
 
-void Partitioning::calclowerLeftIsRed(){
-    
-    
-    
-    
-    
-    
-    lowerLeftIsRed_ = true;
+void Partitioning::calcLowerLeftIsRed(){
+    lowerLeftIsRed_ = (nodeOffset_[0] + nodeOffset_[1])%2 == 0;
 }
 
 bool Partitioning::lowerLeftIsRed(){

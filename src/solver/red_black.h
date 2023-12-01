@@ -34,6 +34,8 @@ public:
 
     void setBoundaryValues();
 
+    void exchangeGhost();
+
 private:
     std::shared_ptr<Communicator> communicator_;
     std::shared_ptr<Partitioning> partitioning_;

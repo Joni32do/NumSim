@@ -68,7 +68,7 @@ public:
 
   private:
     void calcNodeOffset();
-    void calclowerLeftIsRed();
+    void calcLowerLeftIsRed();
     std::array<int,2> findOptimumProcessAlignment();
     std::array<int,2> calculateNCellsLocal();
 
