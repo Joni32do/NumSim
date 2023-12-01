@@ -25,12 +25,15 @@ double Communicator::getGlobalMin(double local_value){
 }
 
 
-std::vector<double> Communicator::receiveFrom(int rank, std::shared_ptr<Partitioning> partitioning){
-    // MPI_Recv()
-
+std::vector<double> Communicator::receiveFrom(int rank, int message_size, int tag=0){
+    std::vector<double> received_data;
+    MPI_Recv(&received_data, message_size, MPI_DOUBLE, rank, tag, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    return received_data;
 }
 
-void Communicator::sendTo(int rank, std::shared_ptr<Partitioning> partitioning);
+void Communicator::sendTo(int rank, std::vector<double> buffer, int tag=0){
+    MPI_Send(buffer.data(), buffer.size(), MPI_DOUBLE, rank, tag, MPI_COMM_WORLD);
+}
 
 
 

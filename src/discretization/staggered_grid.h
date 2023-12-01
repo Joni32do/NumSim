@@ -222,6 +222,7 @@ public:
      * @brief  one after last valid index for rhs in y direction
      */
     int rhsJEnd() const;
+    
 
 protected:
     const std::array<int, 2> nCells_;       //!< array containing number of cells in x and y directions

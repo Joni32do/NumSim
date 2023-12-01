@@ -6,7 +6,7 @@
 #include <array>
 #include <vector>
 #include <iostream>
-#include "partitioning.h"
+//#include "partitioning.h"
 
 
 class Communicator{
@@ -19,8 +19,8 @@ class Communicator{
         double getGlobalMin(double local_value);
 
 
-        void sendTo(int rank, std::vector<double> buffer);
-        std::vector<double> receiveFrom(int rank);
+        void sendTo(int rank, std::vector<double> buffer, int tag);
+        std::vector<double> receiveFrom(int rank, int message_size, int tag);
 
 
     private:

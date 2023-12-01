@@ -239,23 +239,3 @@ int StaggeredGrid::rhsJEnd() const
 }
 
 
-std::vector<double> StaggeredGrid::getRow(int i, int start, int end){
-  std::vector<double> slice(end-start);
-  int idx = 0;
-  for (int j = start; j < end; j++){
-    slice[idx] = (*this)(i, j);
-    idx++;
-  }
-  return slice;
-}
-
-
-std::vector<double> StaggeredGrid::getColumn(int j, int start, int end){
-  std::vector<double> slice(end-start);
-  int idx = 0;
-  for (int i = start; j < end; j++){
-    slice[idx] = (*this)(i, j);
-    idx++;
-  }
-  return slice;
-}
