@@ -25,6 +25,14 @@ double Communicator::getGlobalMin(double local_value){
 }
 
 
+std::vector<double> Communicator::receiveFrom(int rank, std::shared_ptr<Partitioning> partitioning){
+    // MPI_Recv()
+
+}
+
+void Communicator::sendTo(int rank, std::shared_ptr<Partitioning> partitioning);
+
+
 
 
 

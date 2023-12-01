@@ -4,7 +4,9 @@
 
 #include <memory>
 #include <array>
+#include <vector>
 #include <iostream>
+#include "partitioning.h"
 
 
 class Communicator{
@@ -15,6 +17,10 @@ class Communicator{
         int ownRankNo();
         int nRanks();
         double getGlobalMin(double local_value);
+
+
+        void sendTo(int rank, std::vector<double> buffer);
+        std::vector<double> receiveFrom(int rank);
 
 
     private:

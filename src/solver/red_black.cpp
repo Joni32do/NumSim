@@ -92,5 +92,29 @@ void RedBlack::setBoundaryValues(){
 }
 
 void RedBlack::exchangeGhost(){
+    if (!partitioning_->ownPartitionContainsBottomBoundary()){
+        std::vector<double> buffer = discretization_->p().getRow(j_beg, i_beg, i_end);
+        std::vector<double> buffer_receive;
+
+        communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer);
+        buffer_receive = communicator_->receiveFrom(partitioning_->bottomNeighbourRankNo());
+
+        for (int i = i_beg; i < i_end; i++){
+            discretization_->p(i, j_beg-1) = buffer_receive[i - i_beg];
+        }
+
+    }
+
+    if (!partitioning_->ownPartitionContainsTopBoundary()){
+        std::vector<double> buffer = discretization_->p().getRow(j_end, i_beg, i_end);
+        std::vector<double> buffer_receive;
+
+        buffer_receive = communicator_->receiveFrom(partitioning_->bottomNeighbourRankNo());
+        communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer);
+
+        for (int i = i_beg; i < i_end; i++){
+            discretization_->p(i, j_end) = buffer_receive[i - i_beg];
+        }
+    }
 
 }

@@ -44,6 +44,10 @@ public:
      */
     std::array<int, 2> size() const;
 
+    std::vector<double> getRow(int i, int start, int end); 
+
+    std::vector<double> getColumn(int j, int start, int end);
+
 protected:
     const std::array<int, 2> size_; //!< size of array in x and y direction
     std::vector<double> data_;      //!< storage array values, in row-major order

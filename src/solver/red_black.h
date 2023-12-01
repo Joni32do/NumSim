@@ -4,6 +4,8 @@
 #include "../parallel/communicator.h"
 #include "../parallel/partitioning.h"
 
+#include <vector>
+
 /**
  * @class RedBlack
  *
