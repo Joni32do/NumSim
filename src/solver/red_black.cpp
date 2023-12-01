@@ -42,3 +42,8 @@ void RedBlack::solve()
     std::cout << "[Solver] Number of iterations: " << n << ", final residuum: " << res << std::endl;
 #endif
 }
+
+
+// void RedBlack::setBoundaryValues(){
+
+// }

@@ -1,8 +1,8 @@
 #pragma once
 
 #include "pressure_solver.h"
-#include "../parallel/communicator.cpp"
-#include "../parallel/partitioning.cpp"
+#include "../parallel/communicator.h"
+#include "../parallel/partitioning.h"
 
 /**
  * @class RedBlack
@@ -32,7 +32,7 @@ public:
      */
     void solve() override;
 
-    void setBoundaryValues();
+    // void setBoundaryValues();
 
 private:
     std::shared_ptr<Communicator> communicator_;
