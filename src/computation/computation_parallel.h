@@ -8,6 +8,7 @@
 #include "parallel/partitioning.h"
 
 #include "debugging/debug_printer.h"
+#include "output_writer/output_writer_text_parallel.h"
 
 class ComputationParallel: Computation{
 
@@ -17,6 +18,7 @@ class ComputationParallel: Computation{
 
         void applyBoundaryValuesParallel();
         void computeTimeStepWidthParallel(double currentTime);
+        void computePreliminaryVelocitiesParallel();
 
 
     private:
