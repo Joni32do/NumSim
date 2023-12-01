@@ -52,6 +52,7 @@ void ComputationParallel::runSimulationParallel(){
         //computeTimeStepWidthParallel(currentTime);
         // currentTime += dt_;
         currentTime += 5;
+        out.writeFile(currentTime);
 
 
 
