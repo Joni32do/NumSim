@@ -26,6 +26,7 @@ add_executable(${PROJECT_NAME}
    solver/pressure_solver.cpp
    solver/gauss_seidel.cpp
    solver/sor.cpp
+   solver/red_black.cpp
 
    computation/computation.cpp
    computation/computation_parallel.cpp

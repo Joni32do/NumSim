@@ -3,12 +3,13 @@
 #include <memory>
 #include <cmath>
 
-#include "computation.h"
+#include "computation/computation.h"
 #include "parallel/communicator.h"
 #include "parallel/partitioning.h"
 
 #include "debugging/debug_printer.h"
 #include "output_writer/output_writer_text_parallel.h"
+#include "solver/red_black.h"
 
 class ComputationParallel: Computation{
 

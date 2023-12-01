@@ -27,8 +27,11 @@ void ComputationParallel::initializeParallel(int argc, char *argv[]){
     }
 
     if (settings_.pressureSolver == "RedBlack"){
-        // TODO:
-        // pressureSolver_ = 
+        pressureSolver_ = std::make_unique<RedBlack>(discretization_,
+                                                     settings_.epsilon, 
+                                                     settings_.maximumNumberOfIterations,
+                                                     communicator_,
+                                                     partitioning_);
     }
 
 
@@ -58,52 +61,12 @@ void ComputationParallel::runSimulationParallel(){
 
 
         // DEBUGGING 
-
-
         std::string str = "Rank: " + std::to_string(communicator_->ownRankNo()) 
                                      + " PartX" + std::to_string(partitioning_->nProcesses()[0]) 
                                      + " PartY" + std::to_string(partitioning_->nProcesses()[1])
                                      + " Zeit " + std::to_string(currentTime) 
                                      + " dt"    + std::to_string(dt_);
         printer_.add_new_parameter_to_print(str);
-
-        std::string uLineOfArray2D = "Arr u "+ std::to_string(discretization_->u(0, 0))
-                                     + " | " + std::to_string(discretization_->u(1, 0))
-                                     + " | " + std::to_string(discretization_->u(2, 0))
-                                     + " | " + std::to_string(discretization_->u(3, 0))
-                                     + " | " + std::to_string(discretization_->u(4, 0))
-                                     + " | " + std::to_string(discretization_->u(5, 0));
-        printer_.add_new_parameter_to_print(uLineOfArray2D);
-
-        std::string vLineOfArray2D = "Arr v "+ std::to_string(discretization_->v(0, 1))
-                                      + " | " + std::to_string(discretization_->v(1, 1))
-                                      + " | " + std::to_string(discretization_->v(2, 1))
-                                      + " | " + std::to_string(discretization_->v(3, 1))
-                                      + " | " + std::to_string(discretization_->v(4, 1))
-                                      + " | " + std::to_string(discretization_->v(5, 1));
-        printer_.add_new_parameter_to_print(vLineOfArray2D);
-
-        int u_last = discretization_->uJEnd()-1;
-        std::string uLineOfArray2DTop = "Arr u "+ std::to_string(discretization_->u(0, u_last))
-                                        + " | " + std::to_string(discretization_->u(1, u_last))
-                                        + " | " + std::to_string(discretization_->u(2, u_last))
-                                        + " | " + std::to_string(discretization_->u(3, u_last))
-                                        + " | " + std::to_string(discretization_->u(4, u_last))
-                                        + " | " + std::to_string(discretization_->u(5, u_last));
-        printer_.add_new_parameter_to_print(uLineOfArray2DTop);
-        int v_last = discretization_->vJEnd()-1;
-        std::string vLineOfArray2DTop = "Arr v "+ std::to_string(discretization_->v(0, v_last))
-                                        + " | " + std::to_string(discretization_->v(1, v_last))
-                                        + " | " + std::to_string(discretization_->v(2, v_last))
-                                        + " | " + std::to_string(discretization_->v(3, v_last))
-                                        + " | " + std::to_string(discretization_->v(4, v_last))
-                                        + " | " + std::to_string(discretization_->v(5, v_last));
-        printer_.add_new_parameter_to_print(vLineOfArray2DTop);
-
-
-        // DEBUGGING END
-
-
 
         // outputWriterParaviewParallel_->writeFile(currentTime);
 
@@ -274,7 +237,7 @@ void ComputationParallel::computePreliminaryVelocitiesParallel(){
     }  
 }
 
-void ComputeRightHandSideParallel(){
+void ComputationParallel::computeRightHandSideParallel(){
 
     int i_beg = discretization_->rhsIBegin();
     int i_end = discretization_->rhsIEnd();
