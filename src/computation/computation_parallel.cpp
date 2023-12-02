@@ -302,8 +302,7 @@ void ComputationParallel::computeVelocitiesParallel(){
 void ComputationParallel::exchangeVelocities(){
     // TODO: Optimierung Setzt Ecken mit (man kann eigentlich noch v_i + 1 und v_end - 1 machen)
     // TODO: Nutze nur einen Buffer weil gleiche Größe
-
-    if (partitioning_->ownPartitionContainsBottomBoundary()){
+    if (!partitioning_->ownPartitionContainsBottomBoundary()){
         // u
         std::vector<double> buffer_u = discretization_->u().getRow(discretization_->uJBegin() + 1,
                                                         discretization_->uIBegin(),
@@ -330,6 +329,37 @@ void ComputationParallel::exchangeVelocities(){
 
         for (int i = discretization_->vIBegin(); i < discretization_->vIEnd(); i++){
             discretization_->v(i, discretization_->vBottomGhost()) = buffer_receive_v[i - discretization_->vIBegin()];
+        }
+
+    }   
+
+        if (!partitioning_->ownPartitionContainsTopBoundary()){
+        // u
+        std::vector<double> buffer_u = discretization_->u().getRow(discretization_->uJEnd() - 2,
+                                                        discretization_->uIBegin(),
+                                                        discretization_->uIEnd());
+        int buffer_u_size = discretization_->uIEnd() - discretization_->uIBegin();
+
+        std::vector<double> buffer_receive_u = communicator_->receiveFrom(
+                                partitioning_->topNeighbourRankNo(), buffer_u_size);
+        communicator_->sendTo(partitioning_->topNeighbourRankNo(), buffer_u);
+
+        for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++){
+            discretization_->u(i, discretization_->uJEnd()-1) = buffer_receive_u[i - discretization_->uIBegin()];
+        }
+
+        // v
+        std::vector<double> buffer_v = discretization_->v().getRow(discretization_->vJEnd() - 2,
+                                                        discretization_->vIBegin(),
+                                                        discretization_->vIEnd());
+        int buffer_v_size = discretization_->vIEnd() - discretization_->vIBegin();
+
+        std::vector<double> buffer_receive_v = communicator_->receiveFrom(
+                                partitioning_->topNeighbourRankNo(), buffer_v_size);
+        communicator_->sendTo(partitioning_->topNeighbourRankNo(), buffer_v);
+
+        for (int i = discretization_->vIBegin(); i < discretization_->vIEnd(); i++){
+            discretization_->v(i, discretization_->vTopGhost()) = buffer_receive_v[i - discretization_->vIBegin()];
         }
 
     }   

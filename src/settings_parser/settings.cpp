@@ -153,7 +153,7 @@ void Settings::setParameter(std::string parameterName, std::string value)
     // Solver parameters
     else if (parameterName == "pressureSolver")
     {
-        if (value == "SOR" || value == "GaussSeidel" || value == "CG")
+        if (value == "SOR" || value == "GaussSeidel" || value == "CG" || value == "RedBlack")
             Settings::pressureSolver = value;
         else
             throw std::invalid_argument("Supported values for pressureSolver are SOR, CG and GaussSeidel.");
