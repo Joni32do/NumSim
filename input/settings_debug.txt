@@ -10,14 +10,14 @@ gX = 0.0              # external forces, set to (gX,gY) = (0,-9.81) to account f
 gY = 0.0
 
 # Dirichlet boundary conditions
-dirichletBottomX = 1
-dirichletBottomY = 2
-dirichletTopX    = 3
-dirichletTopY    = 4
-dirichletLeftX   = 5
-dirichletLeftY   = 6
-dirichletRightX  = 7
-dirichletRightY  = 8
+dirichletBottomX = 0
+dirichletBottomY = 0
+dirichletTopX    = 1
+dirichletTopY    = 0
+dirichletLeftX   = 0
+dirichletLeftY   = 0
+dirichletRightX  = 0
+dirichletRightY  = 0
 
 # Discretization parameters
 nCellsX = 20          # number of cells in x and y direction

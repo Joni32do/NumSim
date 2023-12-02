@@ -41,8 +41,8 @@ double Communicator::getGlobalSum(double local_value){
 
 
 std::vector<double> Communicator::receiveFrom(int rank, int message_size, int tag){
-    std::vector<double> received_data;
-    MPI_Recv(&received_data, message_size, MPI_DOUBLE, rank, tag, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    std::vector<double> received_data(message_size);
+    MPI_Recv(received_data.data(), message_size, MPI_DOUBLE, rank, tag, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
     return received_data;
 }
 

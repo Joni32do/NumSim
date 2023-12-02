@@ -6,9 +6,9 @@ void ComputationParallel::initializeParallel(int argc, char *argv[]){
 
     // load settings from file
     settings_.loadFromFile(filename);
-#ifndef NDEBUG
-    settings_.printSettings();
-#endif
+// #ifndef NDEBUG
+//     settings_.printSettings();
+// #endif
 
     communicator_ = std::make_shared<Communicator>();
     partitioning_ = std::make_shared<Partitioning>(settings_.nCells,
@@ -50,27 +50,31 @@ void ComputationParallel::runSimulationParallel(){
     OutputWriterTextParallel out = OutputWriterTextParallel(discretization_, *partitioning_); 
     do
     {   
-        computeTimeStepWidthParallel(currentTime);
         applyBoundaryValuesParallel();
+        computeTimeStepWidthParallel(currentTime);
         computePreliminaryVelocitiesParallel();
         computeRightHandSideParallel();
         pressureSolver_->solve();
-        computeVelocitiesParallel();
+        // computeVelocitiesParallel();
+        // exchangeVelocities();
 
         
-        currentTime += dt_;
+        currentTime += 1.1;
         out.writeFile(currentTime);
-        currentTime += 2;
+
+        #ifndef NDEBUG
+        std::cout << "Time: " << currentTime << " and dt " << dt_ << std::endl;
+        #endif
 
 
 
         // DEBUGGING 
-        std::string str = "Rank: " + std::to_string(communicator_->ownRankNo()) 
-                                     + " PartX" + std::to_string(partitioning_->nProcesses()[0]) 
-                                     + " PartY" + std::to_string(partitioning_->nProcesses()[1])
-                                     + " Zeit " + std::to_string(currentTime) 
-                                     + " dt"    + std::to_string(dt_);
-        printer_.add_new_parameter_to_print(str);
+        // std::string str = "Rank: " + std::to_string(communicator_->ownRankNo()) 
+        //                              + " PartX" + std::to_string(partitioning_->nProcesses()[0]) 
+        //                              + " PartY" + std::to_string(partitioning_->nProcesses()[1])
+        //                              + " Zeit " + std::to_string(currentTime) 
+        //                              + " dt"    + std::to_string(dt_);
+        // printer_.add_new_parameter_to_print(str);
 
         // outputWriterParaviewParallel_->writeFile(currentTime);
 
@@ -104,11 +108,13 @@ void ComputationParallel::computeTimeStepWidthParallel(double currentTime){
     double global_max_v = communicator_->getGlobalMax(discretization_->v().findAbsMax());
     double max_v_dt = discretization_->dy() / global_max_v;
 
+
     dt_ = settings_.tau * std::min({diff, max_u_dt, max_v_dt, settings_.maximumDt});
 
 
     // Print every whole second
-    double nextWholeSecond = std::ceil(currentTime);
+    double nextWholeSecond = std::floor(currentTime) + 1;
+
     if (currentTime + dt_ > nextWholeSecond)
     {
         dt_ = nextWholeSecond - currentTime;
@@ -266,8 +272,11 @@ void ComputationParallel::computeRightHandSideParallel(){
     {
         for (int j = j_beg; j < j_end; j++)
         {
-            double dF = (1 / discretization_->dx()) * (discretization_->f(i, j) - discretization_->f(i - 1, j));
-            double dG = (1 / discretization_->dy()) * (discretization_->g(i, j) - discretization_->g(i, j - 1));
+            // TODO: make the used knowledge of the staggered grid explicit, we go from rhs -> to f and g idx which are different
+            // double dF = (1 / discretization_->dx()) * (discretization_->f(i, j) - discretization_->f(i - 1, j));
+            // double dG = (1 / discretization_->dy()) * (discretization_->g(i, j) - discretization_->g(i, j - 1));
+            double dF = (1 / discretization_->dx()) * (discretization_->f(i + 1, j) - discretization_->f(i, j));
+            double dG = (1 / discretization_->dy()) * (discretization_->g(i, j + 1) - discretization_->g(i, j));
             discretization_->rhs(i, j) = (1 / dt_) * (dF + dG);
         }
     }
