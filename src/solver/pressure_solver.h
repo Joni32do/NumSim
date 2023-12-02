@@ -48,9 +48,9 @@ protected:
     double calculateResiduum();
 
     int i_beg; //!< begin of loop for rhs in x direction
-    int i_end; //!< end   of loop for rhs in x direction
+    int i_end; //!< end   of loop for rhs in x direction exclusive
     int j_beg; //!< begin of loop for rhs in y direction
-    int j_end; //!< end   of loop for rhs in y direction
+    int j_end; //!< end   of loop for rhs in y direction exclusive
 
     std::shared_ptr<Discretization> discretization_; //!< object holding the needed field variables for rhs and p
 

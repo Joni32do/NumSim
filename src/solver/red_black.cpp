@@ -95,9 +95,10 @@ void RedBlack::exchangeGhost(){
     if (!partitioning_->ownPartitionContainsBottomBoundary()){
         std::vector<double> buffer = discretization_->p().getRow(j_beg, i_beg, i_end);
         std::vector<double> buffer_receive;
+        int buffer_size = i_end - i_beg;
 
-        //communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer);
-        //buffer_receive = communicator_->receiveFrom(partitioning_->bottomNeighbourRankNo());
+        buffer_receive = communicator_->receiveFrom(partitioning_->bottomNeighbourRankNo(), buffer_size);
+        communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer);
 
         for (int i = i_beg; i < i_end; i++){
             discretization_->p(i, j_beg-1) = buffer_receive[i - i_beg];
@@ -106,14 +107,41 @@ void RedBlack::exchangeGhost(){
     }
 
     if (!partitioning_->ownPartitionContainsTopBoundary()){
-        std::vector<double> buffer = discretization_->p().getRow(j_end, i_beg, i_end);
+        std::vector<double> buffer = discretization_->p().getRow(j_end - 1, i_beg, i_end);
         std::vector<double> buffer_receive;
+        int buffer_size = i_end - i_beg;
 
-        //buffer_receive = communicator_->receiveFrom(partitioning_->bottomNeighbourRankNo());
-        //communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer);
+        communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer);
+        buffer_receive = communicator_->receiveFrom(partitioning_->bottomNeighbourRankNo(), buffer_size);
 
         for (int i = i_beg; i < i_end; i++){
             discretization_->p(i, j_end) = buffer_receive[i - i_beg];
+        }
+    }
+
+    if (!partitioning_->ownPartitionContainsLeftBoundary()){
+        std::vector<double> buffer = discretization_->p().getColumn(i_beg, j_beg, j_end);
+        std::vector<double> buffer_receive;
+        int buffer_size = j_end - j_beg;
+
+        buffer_receive = communicator_->receiveFrom(partitioning_->bottomNeighbourRankNo(), buffer_size);
+        communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer);
+
+        for (int j = j_beg; i < j_end; j++){
+            discretization_->p(i_beg - 1, j) = buffer_receive[j - j_beg];
+        }
+    }
+
+        if (!partitioning_->ownPartitionContainsRightBoundary()){
+        std::vector<double> buffer = discretization_->p().getColumn(i_end - 1, j_beg, j_end);
+        std::vector<double> buffer_receive;
+        int buffer_size = j_end - j_beg;
+
+        communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer);
+        buffer_receive = communicator_->receiveFrom(partitioning_->bottomNeighbourRankNo(), buffer_size);
+
+        for (int j = j_beg; j < j_end; j++){
+            discretization_->p(i_end, j) = buffer_receive[j - j_beg];
         }
     }
 
