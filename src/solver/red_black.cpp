@@ -46,7 +46,7 @@ void RedBlack::solve()
                 }
             }
 
-            void exchangePValues();
+            exchangeGhost();
         }
         setBoundaryValues();
         // Compute the residual with new values
@@ -92,6 +92,7 @@ void RedBlack::setBoundaryValues(){
 }
 
 void RedBlack::exchangeGhost(){
+    // TODO: Optimierung -> sende je nach Schritt nur die Hälfte der Daten
     if (!partitioning_->ownPartitionContainsBottomBoundary()){
         std::vector<double> buffer = discretization_->p().getRow(j_beg, i_beg, i_end);
         std::vector<double> buffer_receive;
@@ -127,7 +128,7 @@ void RedBlack::exchangeGhost(){
         buffer_receive = communicator_->receiveFrom(partitioning_->bottomNeighbourRankNo(), buffer_size);
         communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer);
 
-        for (int j = j_beg; i < j_end; j++){
+        for (int j = j_beg; j < j_end; j++){
             discretization_->p(i_beg - 1, j) = buffer_receive[j - j_beg];
         }
     }

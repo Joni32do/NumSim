@@ -19,8 +19,8 @@ class Communicator{
         double getGlobalMin(double local_value);
 
 
-        void sendTo(int rank, std::vector<double> buffer, int tag);
-        std::vector<double> receiveFrom(int rank, int message_size, int tag);
+        void sendTo(int rank, std::vector<double> buffer, int tag=0);
+        std::vector<double> receiveFrom(int rank, int message_size, int tag=0);
 
 
     private:
