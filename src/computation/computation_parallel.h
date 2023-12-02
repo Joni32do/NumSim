@@ -22,6 +22,7 @@ class ComputationParallel: Computation{
         void computePreliminaryVelocitiesParallel();
         void computeRightHandSideParallel();
         void computeVelocitiesParallel();
+        void exchangeVelocities();
 
     private:
         std::shared_ptr<Communicator> communicator_;

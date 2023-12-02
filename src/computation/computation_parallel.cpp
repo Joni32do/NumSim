@@ -277,6 +277,9 @@ void ComputationParallel::computeRightHandSideParallel(){
 
 void ComputationParallel::computeVelocitiesParallel(){
 
+    // TODO: Doppelrechnung - setzen Rand falsch, um dann BV zu setzen
+    // wenn Rand dann doch eher uIBegin()
+
     // Copy from serial
     for (int i = discretization_->uLeftGhost() + 1; i < discretization_->uRightGhost() - 1; i++)
     {
@@ -294,10 +297,13 @@ void ComputationParallel::computeVelocitiesParallel(){
         }
     }
 
+}
 
+void ComputationParallel::exchangeVelocities(){
+    // TODO: Optimierung Setzt Ecken mit (man kann eigentlich noch v_i + 1 und v_end - 1 machen)
+    // TODO: Nutze nur einen Buffer weil gleiche Größe
 
     if (partitioning_->ownPartitionContainsBottomBoundary()){
-        // TODO: Optimierung Setzt Ecken mit (man kann eigentlich noch v_i + 1 und v_end - 1 machen)
         // u
         std::vector<double> buffer_u = discretization_->u().getRow(discretization_->uJBegin() + 1,
                                                         discretization_->uIBegin(),
@@ -305,31 +311,29 @@ void ComputationParallel::computeVelocitiesParallel(){
         int buffer_u_size = discretization_->uIEnd() - discretization_->uIBegin();
 
         std::vector<double> buffer_receive_u = communicator_->receiveFrom(
-                    partitioning_->bottomNeighbourRankNo(), buffer_u_size);
+                                partitioning_->bottomNeighbourRankNo(), buffer_u_size);
         communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer_u);
 
         for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++){
-            discretization_->u(i, discretization_->uJBegin()) = buffer_receive[i - discretization_->uIBegin()];
+            discretization_->u(i, discretization_->uJBegin()) = buffer_receive_u[i - discretization_->uIBegin()];
         }
 
         // v
-        std::vector<double> buffer_u = discretization_->v().getRow(discretization_->vJBegin() + 1,
+        std::vector<double> buffer_v = discretization_->v().getRow(discretization_->vJBegin() + 1,
                                                         discretization_->vIBegin(),
                                                         discretization_->vIEnd());
         int buffer_v_size = discretization_->vIEnd() - discretization_->vIBegin();
 
         std::vector<double> buffer_receive_v = communicator_->receiveFrom(
-                    partitioning_->bottomNeighbourRankNo(), buffer_v_size);
+                                partitioning_->bottomNeighbourRankNo(), buffer_v_size);
         communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer_v);
 
         for (int i = discretization_->vIBegin(); i < discretization_->vIEnd(); i++){
-            discretization_->v(i, discretization_->vBottomGhost()) = buffer_receive[i - discretization_->vIBegin()];
+            discretization_->v(i, discretization_->vBottomGhost()) = buffer_receive_v[i - discretization_->vIBegin()];
         }
 
     }   
 
     
-
-
 
 }
