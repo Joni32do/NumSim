@@ -26,10 +26,10 @@ double Discretization::computeD2vDy2(int i, int j) const
 
 double Discretization::computeDpDx(int i, int j) const
 {
-    return (p(i + 1, j) - p(i, j)) / dx();
+    return (p(i, j) - p(i-1, j)) / dx();
 }
 
 double Discretization::computeDpDy(int i, int j) const
 {
-    return (p(i, j + 1) - p(i, j)) / dy();
+    return (p(i, j) - p(i, j-1)) / dy();
 }
