@@ -62,6 +62,8 @@ void RedBlack::solve()
 
 
 void RedBlack::setBoundaryValues(){
+
+
     if(partitioning_->ownPartitionContainsBottomBoundary()){
         for(int i = discretization_->pIBegin(); i < discretization_->pIEnd(); i++){
             discretization_->p(i,discretization_->pJBegin()) = -discretization_->p(i,discretization_->pJBegin()+1);
@@ -82,10 +84,9 @@ void RedBlack::setBoundaryValues(){
 
     if(partitioning_->ownPartitionContainsRightBoundary()){
         for(int j = discretization_->pJBegin(); j<discretization_->pJEnd(); j++){
-            discretization_->p(discretization_->pIEnd()-1, j) = -discretization_->p(discretization_->pIBegin()-2, j);
+            discretization_->p(discretization_->pIEnd()-1, j) = -discretization_->p(discretization_->pIEnd()-2, j);
         }
     }
-
 
 }
 

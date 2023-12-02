@@ -55,12 +55,12 @@ void ComputationParallel::runSimulationParallel(){
         computePreliminaryVelocitiesParallel();
         computeRightHandSideParallel();
         pressureSolver_->solve();
-        //computeVelocitiesParallel();
-        // exchangeVelocities();
+        computeVelocitiesParallel();
+        exchangeVelocities();
 
         
-        currentTime += 1.1;
         out.writeFile(currentTime);
+        currentTime += dt_;
 
         #ifndef NDEBUG
         std::cout << "Time: " << currentTime << " and dt " << dt_ << std::endl;
