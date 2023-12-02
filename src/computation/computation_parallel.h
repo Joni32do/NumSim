@@ -21,6 +21,7 @@ class ComputationParallel: Computation{
         void computeTimeStepWidthParallel(double currentTime);
         void computePreliminaryVelocitiesParallel();
         void computeRightHandSideParallel();
+        void computeVelocitiesParallel();
 
     private:
         std::shared_ptr<Communicator> communicator_;

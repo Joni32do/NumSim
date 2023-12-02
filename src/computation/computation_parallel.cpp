@@ -54,6 +54,9 @@ void ComputationParallel::runSimulationParallel(){
         applyBoundaryValuesParallel();
         computePreliminaryVelocitiesParallel();
         computeRightHandSideParallel();
+        pressureSolver_->solve();
+        computeVelocitiesParallel();
+
         
         currentTime += dt_;
         out.writeFile(currentTime);
@@ -88,8 +91,21 @@ void ComputationParallel::runSimulationParallel(){
 
 
 void ComputationParallel::computeTimeStepWidthParallel(double currentTime){
-    computeTimeStepWidth(currentTime);
-    dt_ = communicator_->getGlobalMin(dt_);
+        // Diffusion operator (always > 0)
+    double dx2 = discretization_->dx() * discretization_->dx();
+    double dy2 = discretization_->dy() * discretization_->dy();
+    double diff = settings_.re / 2 * (dx2 * dy2) / (dx2 + dy2);
+
+    // convection operator restriction u
+    double global_max_u = communicator_->getGlobalMax(discretization_->u().findAbsMax());
+    double max_u_dt = discretization_->dx() / global_max_u;
+
+    // convection operator restriction v
+    double global_max_v = communicator_->getGlobalMax(discretization_->v().findAbsMax());
+    double max_v_dt = discretization_->dy() / global_max_v;
+
+    dt_ = settings_.tau * std::min({diff, max_u_dt, max_v_dt, settings_.maximumDt});
+
 
     // Print every whole second
     double nextWholeSecond = std::ceil(currentTime);
@@ -257,3 +273,42 @@ void ComputationParallel::computeRightHandSideParallel(){
     }
 
 }
+
+
+// void ComputationParallel::computeVelocitiesParallel(){
+
+//     if (partitioning_->ownPartitionContainsBottomBoundary()){
+
+//         std::vector<double> buffer_u = discretization_->u().getRow(discretization_->uJBegin(),
+//                                                         discretization_->uIBegin(),
+//                                                         discretization_->uIEnd());
+//         int buffer_u_size = discretization_->uIEnd() - discretization_->uIBegin();
+
+//         std::vector<double> buffer_receive_u = communicator_->receiveFrom();
+
+
+
+//         buffer_receive = communicator_->receiveFrom(partitioning_->bottomNeighbourRankNo(), buffer_size);
+//         communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer);
+
+//         for (int i = i_beg; i < i_end; i++){
+//             discretization_->p(i, j_beg-1) = buffer_receive[i - i_beg];
+//         }
+//     }
+
+//     for (int i = discretization_->uIBegin() + 1; i < discretization_->uIEnd() - 1; i++)
+//     {
+//         for (int j = discretization_->uJBegin() + 1; j < discretization_->uJEnd() - 1; j++)
+//         {
+//             discretization_->u(i, j) = discretization_->f(i, j) - dt_ * discretization_->computeDpDx(i, j);
+//         }
+//     }
+
+//     for (int i = discretization_->vIBegin() + 1; i < discretization_->vIEnd() - 1; i++)
+//     {
+//         for (int j = discretization_->vJBegin() + 1; j < discretization_->vJEnd() - 1; j++)
+//         {
+//             discretization_->v(i, j) = discretization_->g(i, j) - dt_ * discretization_->computeDpDy(i, j);
+//         }
+//     }
+// }

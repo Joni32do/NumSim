@@ -17,6 +17,7 @@ class Communicator{
         int ownRankNo();
         int nRanks();
         double getGlobalMin(double local_value);
+        double getGlobalMax(double local_value);
         double getGlobalSum(double local_value);
 
         void sendTo(int rank, std::vector<double> buffer, int tag=0);

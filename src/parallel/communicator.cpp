@@ -26,6 +26,13 @@ double Communicator::getGlobalMin(double local_value){
 }
 
 
+double Communicator::getGlobalMax(double local_value){
+    double global_max;
+    MPI_Allreduce(&local_value, &global_max, 1,  MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
+    return global_max;
+}
+
+
 double Communicator::getGlobalSum(double local_value){
     double global_sum;
     MPI_Allreduce(&local_value, &global_sum, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
