@@ -125,6 +125,11 @@ void Computation::computeTimeStepWidth(double currentTime)
 
     dt_ = settings_.tau * std::min({diff, max_u, max_v, settings_.maximumDt});
 
+
+    if (currentTime + dt_ > settings_.endTime){
+        dt_ = settings_.endTime - currentTime;
+    }
+
 }
 
 void Computation::computePreliminaryVelocities()
