@@ -54,6 +54,7 @@ void ComputationParallel::runSimulationParallel(){
         applyBoundaryValuesParallel();
         computePreliminaryVelocitiesParallel();
         computeRightHandSideParallel();
+        
         currentTime += dt_;
         out.writeFile(currentTime);
         currentTime += 2;

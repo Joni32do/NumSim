@@ -19,10 +19,11 @@ void RedBlack::solve()
 
     int n = 0;
     int currentModulo;
-    double res = epsilon_ + 1;
-
     double d_fac = (dx2 * dy2) / (2 * (dx2 + dy2));
-    do
+
+    double res = sqrt(communicator_->getGlobalSum(calculateResiduum()));
+
+    while (n < maximumNumberOfIterations_ && res > epsilon_)
     {
         for (int redBlack=0; redBlack < 2; redBlack++){
             if (partitioning_->lowerLeftIsRed()){
@@ -31,7 +32,7 @@ void RedBlack::solve()
                 currentModulo = (redBlack+1)%2;
             }
 
-            
+            // TODO: Opti (kann man N^2/2 Schleifendurchläufe sparen?)
             for (int i = i_beg; i < i_end; i++)
             {
                 for (int j = j_beg; j < j_end; j++)
@@ -50,12 +51,9 @@ void RedBlack::solve()
         }
         setBoundaryValues();
         // Compute the residual with new values
-        res = calculateResiduum();
+        res = sqrt(communicator_->getGlobalSum(calculateResiduum()));
         n++;
-
-
-        
-    } while (n < maximumNumberOfIterations_ && res > epsilon_);
+    }
 
 #ifndef NDEBUG
     std::cout << "[Solver] Number of iterations: " << n << ", final residuum: " << res << std::endl;

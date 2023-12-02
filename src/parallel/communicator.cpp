@@ -18,10 +18,18 @@ int Communicator::nRanks(){
     return nRanks_;
 }
 
+
 double Communicator::getGlobalMin(double local_value){
-    double global_value;
-    MPI_Allreduce(&local_value, &global_value, 1,  MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD);
-    return global_value;
+    double global_min;
+    MPI_Allreduce(&local_value, &global_min, 1,  MPI_DOUBLE, MPI_MIN, MPI_COMM_WORLD);
+    return global_min;
+}
+
+
+double Communicator::getGlobalSum(double local_value){
+    double global_sum;
+    MPI_Allreduce(&local_value, &global_sum, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
+    return global_sum;
 }
 
 
@@ -31,10 +39,10 @@ std::vector<double> Communicator::receiveFrom(int rank, int message_size, int ta
     return received_data;
 }
 
+
 void Communicator::sendTo(int rank, std::vector<double> buffer, int tag){
     MPI_Send(buffer.data(), buffer.size(), MPI_DOUBLE, rank, tag, MPI_COMM_WORLD);
 }
-
 
 
 
