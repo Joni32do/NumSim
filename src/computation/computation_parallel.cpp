@@ -55,7 +55,7 @@ void ComputationParallel::runSimulationParallel(){
         computePreliminaryVelocitiesParallel();
         computeRightHandSideParallel();
         pressureSolver_->solve();
-        // computeVelocitiesParallel();
+        //computeVelocitiesParallel();
         // exchangeVelocities();
 
         

@@ -110,8 +110,8 @@ void RedBlack::exchangeGhost(){
         std::vector<double> buffer_receive;
         int buffer_size = i_end - i_beg;
 
-        communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer);
-        buffer_receive = communicator_->receiveFrom(partitioning_->bottomNeighbourRankNo(), buffer_size);
+        communicator_->sendTo(partitioning_->topNeighbourRankNo(), buffer);
+        buffer_receive = communicator_->receiveFrom(partitioning_->topNeighbourRankNo(), buffer_size);
 
         for (int i = i_beg; i < i_end; i++){
             discretization_->p(i, j_end) = buffer_receive[i - i_beg];
@@ -123,8 +123,8 @@ void RedBlack::exchangeGhost(){
         std::vector<double> buffer_receive;
         int buffer_size = j_end - j_beg;
 
-        buffer_receive = communicator_->receiveFrom(partitioning_->bottomNeighbourRankNo(), buffer_size);
-        communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer);
+        buffer_receive = communicator_->receiveFrom(partitioning_->leftNeighbourRankNo(), buffer_size);
+        communicator_->sendTo(partitioning_->leftNeighbourRankNo(), buffer);
 
         for (int j = j_beg; j < j_end; j++){
             discretization_->p(i_beg - 1, j) = buffer_receive[j - j_beg];
@@ -136,8 +136,8 @@ void RedBlack::exchangeGhost(){
         std::vector<double> buffer_receive;
         int buffer_size = j_end - j_beg;
 
-        communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer);
-        buffer_receive = communicator_->receiveFrom(partitioning_->bottomNeighbourRankNo(), buffer_size);
+        communicator_->sendTo(partitioning_->rightNeighbourRankNo(), buffer);
+        buffer_receive = communicator_->receiveFrom(partitioning_->rightNeighbourRankNo(), buffer_size);
 
         for (int j = j_beg; j < j_end; j++){
             discretization_->p(i_end, j) = buffer_receive[j - j_beg];
