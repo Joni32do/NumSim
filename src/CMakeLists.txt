@@ -12,6 +12,7 @@ add_executable(${PROJECT_NAME}
    output_writer/output_writer_paraview.cpp
    output_writer/output_writer_text.cpp
    output_writer/output_writer_text_parallel.cpp
+   output_writer/output_writer_paraview_parallel.cpp
 
    discretization/discretization.cpp
    discretization/donor_cell.cpp

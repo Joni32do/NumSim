@@ -9,6 +9,7 @@
 
 #include "debugging/debug_printer.h"
 #include "output_writer/output_writer_text_parallel.h"
+#include "output_writer/output_writer_paraview_parallel.h"
 #include "solver/red_black.h"
 
 class ComputationParallel: Computation{
@@ -27,6 +28,6 @@ class ComputationParallel: Computation{
     private:
         std::shared_ptr<Communicator> communicator_;
         std::shared_ptr<Partitioning> partitioning_;
-        // std::unique_ptr<OutputWriterParaviewParallel> outputWriterParaviewParallel_;
+        std::unique_ptr<OutputWriterParaviewParallel> outputWriterParaviewParallel_;
 
 };

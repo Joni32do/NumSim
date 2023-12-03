@@ -3,6 +3,7 @@
 #include <vector>
 #include <array>
 #include <cassert>
+#include <iostream>
 
 /**
  * @class Array2D
@@ -47,6 +48,8 @@ public:
     std::vector<double> getRow(int i, int start, int end) const; 
 
     std::vector<double> getColumn(int j, int start, int end) const;
+
+    void* data();
 
 protected:
     const std::array<int, 2> size_; //!< size of array in x and y direction

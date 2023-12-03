@@ -55,3 +55,7 @@ std::vector<double> Array2D::getColumn(int j, int start, int end) const{
   }
   return slice;
 }
+
+void* Array2D::data(){
+  return data_.data();
+}

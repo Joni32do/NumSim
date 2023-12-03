@@ -36,8 +36,8 @@ void ComputationParallel::initializeParallel(int argc, char *argv[]){
 
 
 
-    // outputWriterParaviewParallel_ = std::make_unique<OutputWriterParaviewParallel>(
-    //                                             discretization_, partitioning_);
+    outputWriterParaviewParallel_ = std::make_unique<OutputWriterParaviewParallel>(
+                                                 discretization_, *partitioning_);
 
 
 }

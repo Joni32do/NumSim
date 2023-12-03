@@ -53,9 +53,9 @@ void OutputWriterParaviewParallel::gatherData()
 
   std::array<int,2> nodeOffset = partitioning_.nodeOffset();
 
-  u_.setToZero();
-  v_.setToZero();
-  p_.setToZero();
+  // u_.setToZero();
+  // v_.setToZero();
+  // p_.setToZero();
 
   for (int j = 0; j < jEnd; j++)
   {
