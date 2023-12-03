@@ -40,7 +40,6 @@ build/
 # Resources
 resources/
 
-sol/
 .vscode/
 
 # out files
