@@ -60,6 +60,7 @@ void ComputationParallel::runSimulationParallel(){
 
         
         out.writeFile(currentTime);
+        outputWriterParaviewParallel_->writeFile(currentTime);
         currentTime += dt_;
 
         #ifndef NDEBUG
@@ -76,7 +77,7 @@ void ComputationParallel::runSimulationParallel(){
         //                              + " dt"    + std::to_string(dt_);
         // printer_.add_new_parameter_to_print(str);
 
-        // outputWriterParaviewParallel_->writeFile(currentTime);
+        
 
 
     } while (currentTime < settings_.endTime);

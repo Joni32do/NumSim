@@ -35,3 +35,4 @@ srun -n 4 ./numsim ../input/settings_debug.txt
 
 
 #zip -r submission.zip src/ CMakeLists.txt
+zip -r output.zip out/
