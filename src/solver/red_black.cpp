@@ -42,6 +42,7 @@ void RedBlack::solve()
                 for (int j = j_beg; j < j_end; j++)
                 {
                     if ((i + j)%2 == currentModulo){
+                        //std::cout << "i, j: " << i << j << std::endl;
                         double p_x = 1 / dx2 * (discretization_->p(i + 1, j) + discretization_->p(i - 1, j));
                         double p_y = 1 / dy2 * (discretization_->p(i, j + 1) + discretization_->p(i, j - 1));
 
@@ -50,7 +51,6 @@ void RedBlack::solve()
                     
                 }
             }
-
             exchangeGhost();
         }
         setBoundaryValues();

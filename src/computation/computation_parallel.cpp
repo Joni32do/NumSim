@@ -54,7 +54,9 @@ void ComputationParallel::runSimulationParallel(){
         computeTimeStepWidthParallel(currentTime);
         computePreliminaryVelocitiesParallel();
         computeRightHandSideParallel();
+        // std::cout << "yes 2" << std::endl;
         pressureSolver_->solve();
+        // std::cout << "yes 3" << std::endl;
         computeVelocitiesParallel();
         exchangeVelocities();
         out.writePressureFile();
