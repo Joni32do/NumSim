@@ -57,11 +57,12 @@ void ComputationParallel::runSimulationParallel(){
         pressureSolver_->solve();
         computeVelocitiesParallel();
         exchangeVelocities();
+        out.writePressureFile();
 
         
         out.writeFile(currentTime);
-        outputWriterParaviewParallel_->writeFile(currentTime);
-        currentTime += dt_;
+        // currentTime += dt_;
+        currentTime += 10;
 
         #ifndef NDEBUG
         std::cout << "Time: " << currentTime << " and dt " << dt_ << std::endl;
@@ -77,7 +78,7 @@ void ComputationParallel::runSimulationParallel(){
         //                              + " dt"    + std::to_string(dt_);
         // printer_.add_new_parameter_to_print(str);
 
-        
+        outputWriterParaviewParallel_->writeFile(currentTime);
 
 
     } while (currentTime < settings_.endTime);

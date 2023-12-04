@@ -21,6 +21,8 @@ add_executable(run_tests
     ../src/discretization/discretization.cpp
     ../src/discretization/donor_cell.cpp
     ../src/discretization/central_differences.cpp
+    ../src/parallel/communicator.cpp
+    test_communicator.cpp
 )
 target_link_libraries(run_tests gtest gtest_main)
 

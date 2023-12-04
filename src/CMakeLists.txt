@@ -36,6 +36,7 @@ add_executable(${PROJECT_NAME}
    parallel/communicator.cpp
 
    debugging/debug_printer.cpp
+   test/test_parallel.cpp
    
 )
 

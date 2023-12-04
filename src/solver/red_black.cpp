@@ -1,4 +1,5 @@
 #include "red_black.h"
+#include "output_writer/output_writer_text_parallel.h"
 
 RedBlack::RedBlack(const std::shared_ptr<Discretization> &data,
                          double epsilon,
@@ -13,6 +14,7 @@ RedBlack::RedBlack(const std::shared_ptr<Discretization> &data,
 
 void RedBlack::solve()
 {
+    OutputWriterTextParallel out = OutputWriterTextParallel(discretization_, *partitioning_);
     setBoundaryValues();
     
     
@@ -31,6 +33,8 @@ void RedBlack::solve()
             } else {
                 currentModulo = (redBlack+1)%2;
             }
+
+            out.writePressureFile();
 
             // TODO: Opti (kann man N^2/2 Schleifendurchläufe sparen?)
             for (int i = i_beg; i < i_end; i++)
@@ -66,25 +70,25 @@ void RedBlack::setBoundaryValues(){
 
     if(partitioning_->ownPartitionContainsBottomBoundary()){
         for(int i = discretization_->pIBegin(); i < discretization_->pIEnd(); i++){
-            discretization_->p(i,discretization_->pJBegin()) = -discretization_->p(i,discretization_->pJBegin()+1);
+            discretization_->p(i,discretization_->pJBegin()) = discretization_->p(i,discretization_->pJBegin()+1);
         }
     }
 
     if(partitioning_->ownPartitionContainsTopBoundary()){
         for(int i = discretization_->pIBegin(); i < discretization_->pIEnd(); i++){
-            discretization_->p(i,discretization_->pJEnd()-1) = -discretization_->p(i,discretization_->pJEnd()-2);
+            discretization_->p(i,discretization_->pJEnd()-1) = discretization_->p(i,discretization_->pJEnd()-2);
         }
     }
 
     if(partitioning_->ownPartitionContainsLeftBoundary()){
         for(int j = discretization_->pJBegin(); j<discretization_->pJEnd(); j++){
-            discretization_->p(discretization_->pIBegin(), j) = -discretization_->p(discretization_->pIBegin()+1, j);
+            discretization_->p(discretization_->pIBegin(), j) = discretization_->p(discretization_->pIBegin()+1, j);
         }
     }
 
     if(partitioning_->ownPartitionContainsRightBoundary()){
         for(int j = discretization_->pJBegin(); j<discretization_->pJEnd(); j++){
-            discretization_->p(discretization_->pIEnd()-1, j) = -discretization_->p(discretization_->pIEnd()-2, j);
+            discretization_->p(discretization_->pIEnd()-1, j) = discretization_->p(discretization_->pIEnd()-2, j);
         }
     }
 
