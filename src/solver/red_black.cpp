@@ -34,7 +34,7 @@ void RedBlack::solve()
                 currentModulo = (redBlack+1)%2;
             }
 
-            out.writePressureFile();
+            // out.writePressureFile();
 
             // TODO: Opti (kann man N^2/2 Schleifendurchläufe sparen?)
             for (int i = i_beg; i < i_end; i++)

@@ -63,8 +63,8 @@ void ComputationParallel::runSimulationParallel(){
 
         
         out.writeFile(currentTime);
-        // currentTime += dt_;
-        currentTime += 10;
+        currentTime += dt_;
+        //currentTime += 10;
 
         #ifndef NDEBUG
         std::cout << "Time: " << currentTime << " and dt " << dt_ << std::endl;
@@ -389,7 +389,7 @@ void ComputationParallel::exchangeVelocities(){
         communicator_->sendTo(partitioning_->leftNeighbourRankNo(), buffer_u);
 
         for (int j = discretization_->uJBegin(); j < discretization_->uJEnd(); j++){
-            discretization_->u(discretization_->uLeftGhost(), j) = buffer_receive_u[j - discretization_->uIBegin()];
+            discretization_->u(discretization_->uLeftGhost(), j) = buffer_receive_u[j - discretization_->uJBegin()];
 
         }
         // v
@@ -403,7 +403,7 @@ void ComputationParallel::exchangeVelocities(){
         communicator_->sendTo(partitioning_->leftNeighbourRankNo(), buffer_v);
 
         for (int j = discretization_->vJBegin(); j < discretization_->vJEnd(); j++){
-            discretization_->v(discretization_->vIBegin(), j) = buffer_receive_v[j - discretization_->vIBegin()];
+            discretization_->v(discretization_->vIBegin(), j) = buffer_receive_v[j - discretization_->vJBegin()];
 
         }
 
@@ -421,7 +421,7 @@ void ComputationParallel::exchangeVelocities(){
                                 partitioning_->rightNeighbourRankNo(), buffer_u_size);
 
         for (int j = discretization_->uJBegin(); j < discretization_->uJEnd(); j++){
-            discretization_->u(discretization_->uRightGhost() - 1, j) = buffer_receive_u[j - discretization_->uIBegin()];
+            discretization_->u(discretization_->uRightGhost() - 1, j) = buffer_receive_u[j - discretization_->uJBegin()];
 
         }
         // v
@@ -435,7 +435,7 @@ void ComputationParallel::exchangeVelocities(){
                                 partitioning_->rightNeighbourRankNo(), buffer_v_size);
 
         for (int j = discretization_->vJBegin(); j < discretization_->vJEnd(); j++){
-            discretization_->v(discretization_->vIEnd() - 1, j) = buffer_receive_v[j - discretization_->vIBegin()];
+            discretization_->v(discretization_->vIEnd() - 1, j) = buffer_receive_v[j - discretization_->vJBegin()];
 
         }
 
