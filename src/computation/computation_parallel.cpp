@@ -61,7 +61,9 @@ void ComputationParallel::runSimulationParallel(){
         // currentTime += 10;
 
         #ifndef NDEBUG
-        std::cout << "Time: " << currentTime << " and dt " << dt_ << std::endl;
+        if (communicator_->ownRankNo() == 0){
+            std::cout << "Time: " << currentTime << " and dt " << dt_ << std::endl;
+        }
         #endif
 
 
@@ -79,7 +81,7 @@ void ComputationParallel::runSimulationParallel(){
     } while (currentTime < settings_.endTime);
     
     // TODO: remove prints
-    printer_.save_values_to_file();
+    // printer_.save_values_to_file();
 }
 
 
@@ -144,10 +146,6 @@ void ComputationParallel::applyBoundaryValuesParallel(){
             discretization_->u(i, discretization_->uJEnd() - 1) = 
                                     2 * settings_.dirichletBcTop[0] 
                                     - discretization_->u(i, discretization_->uJEnd() - 2);
-            // TODO: remove
-            // std::cout << "This is lower" << discretization_->u(i, discretization_->uJEnd() - 2) << std::endl;
-            // std::cout << "This is upper" << discretization_->u(i, discretization_->uJEnd() - 1) << std::endl;
-            // std::cout << "This is upper" << discretization_->u(i, discretization_->uJEnd()) << std::endl;
         }
         // v
         for (int i = discretization_->vIBegin(); i < discretization_->vIEnd(); i++){
@@ -202,7 +200,6 @@ void ComputationParallel::computePreliminaryVelocitiesParallel(){
 
     if (partitioning_->ownPartitionContainsLeftBoundary()){
         f_i_beg += 1;
-        std::cout << f_i_beg << " " << discretization_->fIBegin() << std::endl;
         // f
         for (int j = discretization_->fJBegin(); j < discretization_->fJEnd(); j++){
             discretization_->f(discretization_->fIBegin(), j) =
@@ -298,7 +295,6 @@ void ComputationParallel::computeVelocitiesParallel(){
                                             - dt_ * discretization_->computeDpDx(discretization_->uIBegin(), j);
         }
     }
-    // Probably not looked at for vti writer
     if (!partitioning_->ownPartitionContainsRightBoundary()){
         for (int j = discretization_->uJBegin() + 1; j < discretization_->uJEnd() - 1; j++){
             discretization_->u(discretization_->uIEnd() - 1, j) = discretization_->f(discretization_->uIEnd() - 1, j)
@@ -319,17 +315,11 @@ void ComputationParallel::computeVelocitiesParallel(){
                                             - dt_ * discretization_->computeDpDy(i, discretization_->vJEnd() - 1);
         }
     }
-
-    for (int i = discretization_->uIBegin() + 1; i < discretization_->uJEnd() - 1; i++)
+    // Main Loop
+    for (int i = discretization_->uIBegin() + 1; i < discretization_->uIEnd() - 1; i++)
     {
         for (int j = discretization_->uJBegin() + 1; j < discretization_->uJEnd() - 1; j++)
         {
-            if (i == 1 || i == 21){
-                // This should be set if is not boundary
-                std::cout << " f(" << i << ", " << j << ") " << discretization_->f(i, j) << std::endl;
-                std::cout << " b " << - dt_ * discretization_->computeDpDx(i, j) << std::endl;
-                std::cout << " c " << discretization_->u(i,j) << std::endl;
-            }
             discretization_->u(i, j) = discretization_->f(i, j) - dt_ * discretization_->computeDpDx(i, j);
         }
     }

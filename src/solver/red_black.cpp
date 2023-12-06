@@ -56,9 +56,6 @@ void RedBlack::solve()
             setBoundaryValues();
         }
 
-
-
-
         // Compute the residual with new values
         res = sqrt(communicator_->getGlobalSum(calculateResiduum()));
         n++;
@@ -73,7 +70,9 @@ void RedBlack::solve()
     // }
 
 #ifndef NDEBUG
-    std::cout << "[Solver] Number of iterations: " << n << ", final residuum: " << res << std::endl;
+    if (communicator_->ownRankNo() == 0){
+        std::cout << "[Solver] Number of iterations: " << n << ", final residuum: " << res << std::endl;
+    }
 #endif
 }
 
