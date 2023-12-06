@@ -293,7 +293,31 @@ void ComputationParallel::computeVelocitiesParallel(){
 
     // Copy from serial
     if (!partitioning_->ownPartitionContainsLeftBoundary()){
-        
+        for (int j = discretization_->uJBegin() + 1; j < discretization_->uJEnd() - 1; j++){
+            discretization_->u(discretization_->uIBegin(), j) = discretization_->f(discretization_->uIBegin(), j) 
+                                            - dt_ * discretization_->computeDpDx(discretization_->uIBegin(), j);
+        }
+    }
+    // Probably not looked at for vti writer
+    if (!partitioning_->ownPartitionContainsRightBoundary()){
+        for (int j = discretization_->uJBegin() + 1; j < discretization_->uJEnd() - 1; j++){
+            discretization_->u(discretization_->uIEnd() - 1, j) = discretization_->f(discretization_->uIEnd() - 1, j)
+                                            - dt_ * discretization_->computeDpDx(discretization_->uIEnd() - 1, j);
+        }
+    }
+
+    if (!partitioning_->ownPartitionContainsBottomBoundary()){
+        for (int i = discretization_->vIBegin() + 1; i < discretization_->vIEnd() - 1; i++){
+            discretization_->v(i, discretization_->vJBegin()) = discretization_->g(i, discretization_->vJBegin())
+                                            - dt_ * discretization_->computeDpDy(i, discretization_->vJBegin());
+        }
+    }
+
+    if (!partitioning_->ownPartitionContainsTopBoundary()){
+        for (int i = discretization_->vIBegin() + 1; i < discretization_->vIEnd() - 1; i++){
+            discretization_->v(i, discretization_->vJEnd() - 1) = discretization_->g(i, discretization_->vJEnd() - 1)
+                                            - dt_ * discretization_->computeDpDy(i, discretization_->vJEnd() - 1);
+        }
     }
 
     for (int i = discretization_->uIBegin() + 1; i < discretization_->uJEnd() - 1; i++)
