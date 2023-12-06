@@ -3,6 +3,11 @@
 #include "pressure_solver.h"
 #include "../parallel/communicator.h"
 #include "../parallel/partitioning.h"
+#include "../debugging/debug_printer.h"
+
+#include <iostream>
+#include <sstream>
+#include <iomanip>
 
 #include <vector>
 
@@ -26,7 +31,8 @@ public:
         double epsilon,
         int maximumNumberOfIterations,
         std::shared_ptr<Communicator> communicator,
-        std::shared_ptr<Partitioning> partitioning);
+        std::shared_ptr<Partitioning> partitioning,
+        std::shared_ptr<Printer>);
 
     /**
      * @brief override function that starts solver.
@@ -36,9 +42,10 @@ public:
 
     void setBoundaryValues();
 
-    void exchangeGhost();
+    void exchangeGhost(int current_it);
 
 private:
     std::shared_ptr<Communicator> communicator_;
     std::shared_ptr<Partitioning> partitioning_;
+    std::shared_ptr<Printer> printer_;
 };

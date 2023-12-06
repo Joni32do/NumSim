@@ -29,5 +29,6 @@ class ComputationParallel: Computation{
         std::shared_ptr<Communicator> communicator_;
         std::shared_ptr<Partitioning> partitioning_;
         std::unique_ptr<OutputWriterParaviewParallel> outputWriterParaviewParallel_;
+        std::shared_ptr<Printer> printer_;
 
 };

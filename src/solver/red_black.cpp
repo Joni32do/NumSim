@@ -7,10 +7,12 @@ RedBlack::RedBlack(const std::shared_ptr<Discretization> &data,
                          double epsilon,
                          int maximumNumberOfIterations,
                          std::shared_ptr<Communicator> communicator,
-                         std::shared_ptr<Partitioning> partitioning): 
+                         std::shared_ptr<Partitioning> partitioning,
+                         std::shared_ptr<Printer> printer): 
                 PressureSolver(data, epsilon, maximumNumberOfIterations),
                 communicator_(communicator),
-                partitioning_(partitioning)
+                partitioning_(partitioning),
+                printer_(printer)
 {
 }
 
@@ -53,7 +55,7 @@ void RedBlack::solve()
                     
                 }
             }
-            exchangeGhost();
+            exchangeGhost(n);
             setBoundaryValues();
         }
 
@@ -101,16 +103,13 @@ void RedBlack::setBoundaryValues(){
 
 }
 
-void RedBlack::exchangeGhost(){
+void RedBlack::exchangeGhost(int current_it){
     // TODO: Optimierung -> sende je nach Schritt nur die Hälfte der Daten
 
-    Printer printer_(communicator_->ownRankNo());
-
-
-    double starttime = MPI_Wtime();
-
+    int ref_iteration = 20;
     
-    double bottom_exchange = MPI_Wtime();
+    double starttime_bot = MPI_Wtime();
+    
     if (!partitioning_->ownPartitionContainsBottomBoundary()){
 
         std::vector<double> buffer = discretization_->p().getRow(j_beg, i_beg, i_end);
@@ -130,9 +129,17 @@ void RedBlack::exchangeGhost(){
             discretization_->p(i, j_beg-1) = buffer_receive[i - i_beg];
         }
 
+        if(current_it == ref_iteration){
+            double bottom_exchange = MPI_Wtime();
+            std::ostringstream bot_time;
+            bot_time << std::fixed << std::setprecision(10) << bottom_exchange-starttime_bot;
+            printer_->add_new_parameter_to_print("bot exchange: \t" + bot_time.str());
+        } 
     }
+    
+    double starttime_top = MPI_Wtime();
 
-    double top_exchange = MPI_Wtime();
+    
     if (!partitioning_->ownPartitionContainsTopBoundary()){
 
         std::vector<double> buffer = discretization_->p().getRow(j_end - 1, i_beg, i_end);
@@ -151,9 +158,18 @@ void RedBlack::exchangeGhost(){
         for (int i = i_beg; i < i_end; i++){
             discretization_->p(i, j_end) = buffer_receive[i - i_beg];
         }
-    }
 
-    double left_exchange = MPI_Wtime();
+        if(current_it == ref_iteration){
+            double top_exchange = MPI_Wtime();
+            std::ostringstream top_time;
+            top_time << std::fixed << std::setprecision(10) << top_exchange-starttime_top;
+            printer_->add_new_parameter_to_print("top exchange: \t" + top_time.str());
+        }
+    }
+    
+    double starttime_left = MPI_Wtime();
+
+    
     if (!partitioning_->ownPartitionContainsLeftBoundary()){
 
         std::vector<double> buffer = discretization_->p().getColumn(i_beg, j_beg, j_end);
@@ -172,9 +188,18 @@ void RedBlack::exchangeGhost(){
         for (int j = j_beg; j < j_end; j++){
             discretization_->p(i_beg - 1, j) = buffer_receive[j - j_beg];
         }
-    }
 
-    double right_exchange = MPI_Wtime();
+        if(current_it == ref_iteration){
+            double left_exchange = MPI_Wtime();
+            std::ostringstream left_time;
+            left_time << std::fixed << std::setprecision(10) << left_exchange-starttime_left;
+            printer_->add_new_parameter_to_print("lef exchange: \t" + left_time.str());
+        }
+    }
+    
+    
+    double starttime_right = MPI_Wtime();
+    
     if (!partitioning_->ownPartitionContainsRightBoundary()){
 
         std::vector<double> buffer = discretization_->p().getColumn(i_end - 1, j_beg, j_end);
@@ -193,15 +218,35 @@ void RedBlack::exchangeGhost(){
         for (int j = j_beg; j < j_end; j++){
             discretization_->p(i_end, j) = buffer_receive[j - j_beg];
         }
+
+        if(current_it == ref_iteration){
+            double right_exchange = MPI_Wtime();
+            std::ostringstream right_time;
+            right_time << std::fixed << std::setprecision(10) << right_exchange-starttime_right;
+            printer_->add_new_parameter_to_print("rig exchange: \t" + right_time.str());
+        }
     }
+    
+    
 
-    printer_.add_new_double_to_print(bottom_exchange-starttime);
-    printer_.add_new_double_to_print(top_exchange-bottom_exchange);
-    printer_.add_new_double_to_print(left_exchange-top_exchange);
-    printer_.add_new_double_to_print(right_exchange-left_exchange);
-    printer_.add_new_double_to_print(9.999999999999);
+    // if(current_it == 20){
+    //     std::ostringstream bot_time;
+    //     bot_time << std::fixed << std::setprecision(10) << bottom_exchange-starttime;
 
-    printer_.save_doubles_to_file();
+    //     std::ostringstream top_time;
+    //     top_time << std::fixed << std::setprecision(10) << top_exchange-bottom_exchange;
 
+    //     std::ostringstream left_time;
+    //     left_time << std::fixed << std::setprecision(10) << left_exchange-top_exchange;
+
+    //     std::ostringstream right_time;
+    //     right_time << std::fixed << std::setprecision(10) << right_exchange-left_exchange;
+
+
+    //     printer_->add_new_parameter_to_print("bot exchange: \t" + bot_time.str());
+    //     printer_->add_new_parameter_to_print("top exchange: \t" + top_time.str());
+    //     printer_->add_new_parameter_to_print("lef exchange: \t" + left_time.str());
+    //     printer_->add_new_parameter_to_print("rig exchange: \t" + right_time.str());
+    // }
     
 }

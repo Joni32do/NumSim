@@ -1,5 +1,3910 @@
-8.5216e-08
-0.000316275
-7.872e-06
-1.26916e-06
-10
+Current time: 0.000000
+bot exchange: 	0.0002119651
+top exchange: 	0.0000110629
+lef exchange: 	0.0000103679
+rig exchange: 	0.0000020799
+bot exchange: 	0.0000699479
+top exchange: 	0.0000089710
+lef exchange: 	0.0000202840
+rig exchange: 	0.0000045178
+ 
+Current time: 0.025000
+bot exchange: 	0.0000672780
+top exchange: 	0.0000096969
+lef exchange: 	0.0000058392
+rig exchange: 	0.0000021430
+bot exchange: 	0.0000518288
+top exchange: 	0.0000094380
+lef exchange: 	0.0000050899
+rig exchange: 	0.0000164041
+ 
+Current time: 0.050031
+bot exchange: 	0.0000714010
+top exchange: 	0.0000098320
+lef exchange: 	0.0000050371
+rig exchange: 	0.0000052159
+bot exchange: 	0.0000554039
+top exchange: 	0.0000093242
+lef exchange: 	0.0000049039
+rig exchange: 	0.0000099209
+ 
+Current time: 0.075093
+bot exchange: 	0.0000717528
+top exchange: 	0.0000114900
+lef exchange: 	0.0000065188
+rig exchange: 	0.0000025081
+bot exchange: 	0.0000736050
+top exchange: 	0.0000103740
+lef exchange: 	0.0000028580
+rig exchange: 	0.0000026689
+ 
+Current time: 0.100186
+bot exchange: 	0.0000673200
+top exchange: 	0.0000096809
+lef exchange: 	0.0000090599
+rig exchange: 	0.0000024082
+bot exchange: 	0.0000602319
+top exchange: 	0.0000085260
+lef exchange: 	0.0000049020
+rig exchange: 	0.0000069330
+ 
+Current time: 0.125309
+bot exchange: 	0.0000670550
+top exchange: 	0.0000086848
+lef exchange: 	0.0000059681
+rig exchange: 	0.0000030641
+bot exchange: 	0.0000489121
+top exchange: 	0.0000104180
+lef exchange: 	0.0000122159
+rig exchange: 	0.0000138180
+ 
+Current time: 0.150462
+bot exchange: 	0.0000690538
+top exchange: 	0.0000090150
+lef exchange: 	0.0000049172
+rig exchange: 	0.0000023351
+bot exchange: 	0.0000459100
+top exchange: 	0.0000139619
+lef exchange: 	0.0000047290
+rig exchange: 	0.0000131109
+ 
+Current time: 0.175646
+bot exchange: 	0.0000659120
+top exchange: 	0.0000117749
+lef exchange: 	0.0000078611
+rig exchange: 	0.0000021900
+bot exchange: 	0.0000500190
+top exchange: 	0.0000094059
+lef exchange: 	0.0000074490
+rig exchange: 	0.0000156278
+ 
+Current time: 0.200858
+bot exchange: 	0.0000728369
+top exchange: 	0.0000091388
+lef exchange: 	0.0000076641
+rig exchange: 	0.0000029448
+bot exchange: 	0.0000508148
+top exchange: 	0.0000106830
+lef exchange: 	0.0000048261
+rig exchange: 	0.0000202791
+ 
+Current time: 0.226100
+bot exchange: 	0.0000683239
+top exchange: 	0.0000093179
+lef exchange: 	0.0000061449
+rig exchange: 	0.0000042079
+bot exchange: 	0.0000485631
+top exchange: 	0.0000163752
+lef exchange: 	0.0000049071
+rig exchange: 	0.0000129831
+ 
+Current time: 0.251371
+bot exchange: 	0.0000690010
+top exchange: 	0.0000104939
+lef exchange: 	0.0000079349
+rig exchange: 	0.0000029448
+bot exchange: 	0.0000565180
+top exchange: 	0.0000073512
+lef exchange: 	0.0000061521
+rig exchange: 	0.0000169259
+ 
+Current time: 0.276671
+bot exchange: 	0.0000683852
+top exchange: 	0.0000092611
+lef exchange: 	0.0000081821
+rig exchange: 	0.0000021229
+bot exchange: 	0.0000480821
+top exchange: 	0.0000090280
+lef exchange: 	0.0000074431
+rig exchange: 	0.0000230551
+ 
+Current time: 0.301999
+bot exchange: 	0.0000700520
+top exchange: 	0.0000122779
+lef exchange: 	0.0000044762
+rig exchange: 	0.0000027982
+bot exchange: 	0.0000499280
+top exchange: 	0.0000100289
+lef exchange: 	0.0000097309
+rig exchange: 	0.0000169580
+ 
+Current time: 0.327354
+bot exchange: 	0.0000761051
+top exchange: 	0.0000100820
+lef exchange: 	0.0000052529
+rig exchange: 	0.0000025299
+bot exchange: 	0.0000577520
+top exchange: 	0.0000105910
+lef exchange: 	0.0000044180
+rig exchange: 	0.0000075111
+ 
+Current time: 0.352738
+bot exchange: 	0.0000705379
+top exchange: 	0.0000098860
+lef exchange: 	0.0000079279
+rig exchange: 	0.0000027481
+bot exchange: 	0.0000550721
+top exchange: 	0.0000086371
+lef exchange: 	0.0000106071
+rig exchange: 	0.0000055521
+ 
+Current time: 0.378148
+bot exchange: 	0.0000701628
+top exchange: 	0.0000119030
+lef exchange: 	0.0000068659
+rig exchange: 	0.0000023639
+bot exchange: 	0.0000567799
+top exchange: 	0.0000104790
+lef exchange: 	0.0000050850
+rig exchange: 	0.0000092408
+ 
+Current time: 0.403584
+bot exchange: 	0.0000701239
+top exchange: 	0.0000096259
+lef exchange: 	0.0000077682
+rig exchange: 	0.0000021330
+bot exchange: 	0.0000506460
+top exchange: 	0.0000141731
+lef exchange: 	0.0000058801
+rig exchange: 	0.0000127580
+ 
+Current time: 0.429047
+bot exchange: 	0.0000732040
+top exchange: 	0.0000121461
+lef exchange: 	0.0000077451
+rig exchange: 	0.0000028580
+bot exchange: 	0.0000610661
+top exchange: 	0.0000097160
+lef exchange: 	0.0000055640
+rig exchange: 	0.0000028161
+ 
+Current time: 0.454536
+bot exchange: 	0.0000690969
+top exchange: 	0.0000098101
+lef exchange: 	0.0000063761
+rig exchange: 	0.0000040941
+bot exchange: 	0.0000456199
+top exchange: 	0.0000080441
+lef exchange: 	0.0000142779
+rig exchange: 	0.0000237569
+ 
+Current time: 0.480050
+bot exchange: 	0.0000729968
+top exchange: 	0.0000094478
+lef exchange: 	0.0000057120
+rig exchange: 	0.0000029940
+bot exchange: 	0.0000592761
+top exchange: 	0.0000087428
+lef exchange: 	0.0000088459
+rig exchange: 	0.0000052729
+ 
+Current time: 0.505588
+bot exchange: 	0.0000691100
+top exchange: 	0.0000091328
+lef exchange: 	0.0000082620
+rig exchange: 	0.0000023129
+bot exchange: 	0.0000502591
+top exchange: 	0.0000102760
+lef exchange: 	0.0000056080
+rig exchange: 	0.0000042699
+ 
+Current time: 0.531151
+bot exchange: 	0.0000697898
+top exchange: 	0.0000079020
+lef exchange: 	0.0000045991
+rig exchange: 	0.0000059239
+bot exchange: 	0.0000471030
+top exchange: 	0.0000165862
+lef exchange: 	0.0000046550
+rig exchange: 	0.0000103251
+ 
+Current time: 0.556738
+bot exchange: 	0.0000697661
+top exchange: 	0.0000096010
+lef exchange: 	0.0000082131
+rig exchange: 	0.0000028650
+bot exchange: 	0.0000522390
+top exchange: 	0.0000103521
+lef exchange: 	0.0000129100
+rig exchange: 	0.0000052559
+ 
+Current time: 0.582348
+bot exchange: 	0.0000683600
+top exchange: 	0.0000094350
+lef exchange: 	0.0000090690
+rig exchange: 	0.0000024498
+bot exchange: 	0.0000526370
+top exchange: 	0.0000107831
+lef exchange: 	0.0000042911
+rig exchange: 	0.0000145298
+ 
+Current time: 0.607981
+bot exchange: 	0.0000722220
+top exchange: 	0.0000096641
+lef exchange: 	0.0000129919
+rig exchange: 	0.0000024759
+bot exchange: 	0.0000545001
+top exchange: 	0.0000094050
+lef exchange: 	0.0000054780
+rig exchange: 	0.0000104611
+ 
+Current time: 0.633636
+bot exchange: 	0.0000687968
+top exchange: 	0.0000111030
+lef exchange: 	0.0000043379
+rig exchange: 	0.0000023760
+bot exchange: 	0.0000527622
+top exchange: 	0.0000109759
+lef exchange: 	0.0000022920
+rig exchange: 	0.0000043090
+ 
+Current time: 0.659313
+bot exchange: 	0.0000679290
+top exchange: 	0.0000094611
+lef exchange: 	0.0000042291
+rig exchange: 	0.0000049390
+bot exchange: 	0.0000443340
+top exchange: 	0.0000180250
+lef exchange: 	0.0000068361
+rig exchange: 	0.0000048270
+ 
+Current time: 0.685012
+bot exchange: 	0.0000700750
+top exchange: 	0.0000111111
+lef exchange: 	0.0000054762
+rig exchange: 	0.0000022331
+bot exchange: 	0.0000532549
+top exchange: 	0.0000099938
+lef exchange: 	0.0000067928
+rig exchange: 	0.0000189471
+ 
+Current time: 0.710731
+bot exchange: 	0.0000678911
+top exchange: 	0.0000091610
+lef exchange: 	0.0000059928
+rig exchange: 	0.0000029262
+bot exchange: 	0.0000583301
+top exchange: 	0.0000102511
+lef exchange: 	0.0000042471
+rig exchange: 	0.0000048440
+ 
+Current time: 0.736470
+bot exchange: 	0.0000736651
+top exchange: 	0.0000100601
+lef exchange: 	0.0000053991
+rig exchange: 	0.0000023360
+bot exchange: 	0.0000540260
+top exchange: 	0.0000126860
+lef exchange: 	0.0000049041
+rig exchange: 	0.0000134839
+ 
+Current time: 0.762230
+bot exchange: 	0.0000683870
+top exchange: 	0.0000086541
+lef exchange: 	0.0000109829
+rig exchange: 	0.0000019830
+bot exchange: 	0.0000547031
+top exchange: 	0.0000088168
+lef exchange: 	0.0000093901
+rig exchange: 	0.0000110730
+ 
+Current time: 0.788008
+bot exchange: 	0.0000651679
+top exchange: 	0.0000111870
+lef exchange: 	0.0000073200
+rig exchange: 	0.0000021469
+bot exchange: 	0.0000505340
+top exchange: 	0.0000161061
+lef exchange: 	0.0000052361
+rig exchange: 	0.0000074301
+ 
+Current time: 0.813805
+bot exchange: 	0.0000713880
+top exchange: 	0.0000092350
+lef exchange: 	0.0000045430
+rig exchange: 	0.0000024401
+bot exchange: 	0.0000508619
+top exchange: 	0.0000091412
+lef exchange: 	0.0000238030
+rig exchange: 	0.0000063190
+ 
+Current time: 0.839621
+bot exchange: 	0.0000708620
+top exchange: 	0.0000100799
+lef exchange: 	0.0000077111
+rig exchange: 	0.0000030680
+bot exchange: 	0.0000607360
+top exchange: 	0.0000094690
+lef exchange: 	0.0000024762
+rig exchange: 	0.0000138581
+ 
+Current time: 0.865454
+bot exchange: 	0.0000668480
+top exchange: 	0.0000109191
+lef exchange: 	0.0000071800
+rig exchange: 	0.0000024450
+bot exchange: 	0.0000503131
+top exchange: 	0.0000090119
+lef exchange: 	0.0000242169
+rig exchange: 	0.0000042189
+ 
+Current time: 0.891304
+bot exchange: 	0.0000679870
+top exchange: 	0.0000088830
+lef exchange: 	0.0000066510
+rig exchange: 	0.0000025851
+bot exchange: 	0.0000500260
+top exchange: 	0.0000170320
+lef exchange: 	0.0000050450
+rig exchange: 	0.0000086450
+ 
+Current time: 0.917171
+bot exchange: 	0.0000663190
+top exchange: 	0.0000100629
+lef exchange: 	0.0000079358
+rig exchange: 	0.0000028440
+bot exchange: 	0.0000516451
+top exchange: 	0.0000088499
+lef exchange: 	0.0000092590
+rig exchange: 	0.0000057539
+ 
+Current time: 0.943054
+bot exchange: 	0.0000680792
+top exchange: 	0.0000107230
+lef exchange: 	0.0000094820
+rig exchange: 	0.0000023840
+bot exchange: 	0.0000533601
+top exchange: 	0.0000110450
+lef exchange: 	0.0000121109
+rig exchange: 	0.0000054969
+ 
+Current time: 0.968952
+bot exchange: 	0.0000716019
+top exchange: 	0.0000139361
+lef exchange: 	0.0000055099
+rig exchange: 	0.0000028359
+bot exchange: 	0.0000557990
+top exchange: 	0.0000104681
+lef exchange: 	0.0000043930
+rig exchange: 	0.0000143840
+ 
+Current time: 0.994866
+bot exchange: 	0.0000665120
+top exchange: 	0.0000116311
+lef exchange: 	0.0000058520
+rig exchange: 	0.0000028110
+bot exchange: 	0.0000561250
+top exchange: 	0.0000122939
+lef exchange: 	0.0000081190
+rig exchange: 	0.0000053819
+ 
+Current time: 1.000000
+bot exchange: 	0.0000674359
+top exchange: 	0.0000100431
+lef exchange: 	0.0000069339
+rig exchange: 	0.0000052131
+bot exchange: 	0.0000505021
+top exchange: 	0.0000099491
+lef exchange: 	0.0000052340
+rig exchange: 	0.0000216160
+ 
+Current time: 1.025931
+bot exchange: 	0.0000680049
+top exchange: 	0.0000098681
+lef exchange: 	0.0000066408
+rig exchange: 	0.0000021048
+bot exchange: 	0.0000483021
+top exchange: 	0.0000090301
+lef exchange: 	0.0000141060
+rig exchange: 	0.0000159771
+ 
+Current time: 1.051876
+bot exchange: 	0.0000671160
+top exchange: 	0.0000095619
+lef exchange: 	0.0000065560
+rig exchange: 	0.0000050000
+bot exchange: 	0.0000494660
+top exchange: 	0.0000098250
+lef exchange: 	0.0000159349
+rig exchange: 	0.0000070899
+ 
+Current time: 1.077835
+bot exchange: 	0.0000731810
+top exchange: 	0.0000133421
+lef exchange: 	0.0000065169
+rig exchange: 	0.0000024841
+bot exchange: 	0.0000646932
+top exchange: 	0.0000104681
+lef exchange: 	0.0000021229
+rig exchange: 	0.0000042589
+ 
+Current time: 1.103806
+bot exchange: 	0.0000712690
+top exchange: 	0.0000096641
+lef exchange: 	0.0000050999
+rig exchange: 	0.0000027278
+bot exchange: 	0.0000514050
+top exchange: 	0.0000155561
+lef exchange: 	0.0000052829
+rig exchange: 	0.0000098390
+ 
+Current time: 1.129790
+bot exchange: 	0.0000669779
+top exchange: 	0.0000095200
+lef exchange: 	0.0000077991
+rig exchange: 	0.0000025572
+bot exchange: 	0.0000488251
+top exchange: 	0.0000119898
+lef exchange: 	0.0000088040
+rig exchange: 	0.0000165831
+ 
+Current time: 1.155787
+bot exchange: 	0.0000707258
+top exchange: 	0.0000088590
+lef exchange: 	0.0000077479
+rig exchange: 	0.0000025900
+bot exchange: 	0.0000544409
+top exchange: 	0.0000142192
+lef exchange: 	0.0000023900
+rig exchange: 	0.0000123971
+ 
+Current time: 1.181794
+bot exchange: 	0.0000727940
+top exchange: 	0.0000127209
+lef exchange: 	0.0000066150
+rig exchange: 	0.0000019451
+bot exchange: 	0.0000536549
+top exchange: 	0.0000086401
+lef exchange: 	0.0000063130
+rig exchange: 	0.0000111901
+ 
+Current time: 1.207813
+bot exchange: 	0.0000718150
+top exchange: 	0.0000085311
+lef exchange: 	0.0000045199
+rig exchange: 	0.0000025581
+bot exchange: 	0.0000506460
+top exchange: 	0.0000103170
+lef exchange: 	0.0000099291
+rig exchange: 	0.0000104171
+ 
+Current time: 1.233843
+bot exchange: 	0.0000718799
+top exchange: 	0.0000089509
+lef exchange: 	0.0000043241
+rig exchange: 	0.0000031260
+bot exchange: 	0.0000522688
+top exchange: 	0.0000174618
+lef exchange: 	0.0000125670
+rig exchange: 	0.0000053409
+ 
+Current time: 1.259883
+bot exchange: 	0.0000728660
+top exchange: 	0.0000097919
+lef exchange: 	0.0000074231
+rig exchange: 	0.0000041709
+bot exchange: 	0.0000538931
+top exchange: 	0.0000082119
+lef exchange: 	0.0000122830
+rig exchange: 	0.0000041712
+ 
+Current time: 1.285933
+bot exchange: 	0.0000666301
+top exchange: 	0.0000091291
+lef exchange: 	0.0000062960
+rig exchange: 	0.0000053560
+bot exchange: 	0.0000497361
+top exchange: 	0.0000135170
+lef exchange: 	0.0000022240
+rig exchange: 	0.0000225101
+ 
+Current time: 1.311992
+bot exchange: 	0.0000679151
+top exchange: 	0.0000092250
+lef exchange: 	0.0000090171
+rig exchange: 	0.0000021711
+bot exchange: 	0.0000527091
+top exchange: 	0.0000151610
+lef exchange: 	0.0000044620
+rig exchange: 	0.0000086799
+ 
+Current time: 1.338061
+bot exchange: 	0.0000688550
+top exchange: 	0.0000102660
+lef exchange: 	0.0000060189
+rig exchange: 	0.0000055342
+bot exchange: 	0.0000509971
+top exchange: 	0.0000115889
+lef exchange: 	0.0000019730
+rig exchange: 	0.0000092690
+ 
+Current time: 1.364137
+bot exchange: 	0.0000673069
+top exchange: 	0.0000093242
+lef exchange: 	0.0000087901
+rig exchange: 	0.0000021700
+bot exchange: 	0.0000472730
+top exchange: 	0.0000093600
+lef exchange: 	0.0000074340
+rig exchange: 	0.0000201280
+ 
+Current time: 1.390223
+bot exchange: 	0.0000681621
+top exchange: 	0.0000145759
+lef exchange: 	0.0000044331
+rig exchange: 	0.0000020531
+bot exchange: 	0.0000528491
+top exchange: 	0.0000090390
+lef exchange: 	0.0000106320
+rig exchange: 	0.0000070259
+ 
+Current time: 1.416315
+bot exchange: 	0.0000695591
+top exchange: 	0.0000097181
+lef exchange: 	0.0000078762
+rig exchange: 	0.0000019809
+bot exchange: 	0.0000483550
+top exchange: 	0.0000083030
+lef exchange: 	0.0000068180
+rig exchange: 	0.0000140290
+ 
+Current time: 1.442416
+bot exchange: 	0.0000705859
+top exchange: 	0.0000090611
+lef exchange: 	0.0000059290
+rig exchange: 	0.0000044170
+bot exchange: 	0.0000476800
+top exchange: 	0.0000093821
+lef exchange: 	0.0000025260
+rig exchange: 	0.0000158581
+ 
+Current time: 1.468523
+bot exchange: 	0.0000672070
+top exchange: 	0.0000146281
+lef exchange: 	0.0000063230
+rig exchange: 	0.0000024938
+bot exchange: 	0.0000503839
+top exchange: 	0.0000104932
+lef exchange: 	0.0000093060
+rig exchange: 	0.0000091430
+ 
+Current time: 1.494637
+bot exchange: 	0.0000691661
+top exchange: 	0.0000098329
+lef exchange: 	0.0000123619
+rig exchange: 	0.0000028380
+bot exchange: 	0.0000482739
+top exchange: 	0.0000176949
+lef exchange: 	0.0000019909
+rig exchange: 	0.0000104599
+ 
+Current time: 1.520758
+bot exchange: 	0.0000709069
+top exchange: 	0.0000091891
+lef exchange: 	0.0000112150
+rig exchange: 	0.0000021609
+bot exchange: 	0.0000611190
+top exchange: 	0.0000110490
+lef exchange: 	0.0000028000
+rig exchange: 	0.0000040710
+ 
+Current time: 1.546885
+bot exchange: 	0.0000712711
+top exchange: 	0.0000095500
+lef exchange: 	0.0000056480
+rig exchange: 	0.0000024759
+bot exchange: 	0.0000522221
+top exchange: 	0.0000103340
+lef exchange: 	0.0000072699
+rig exchange: 	0.0000150860
+ 
+Current time: 1.573017
+bot exchange: 	0.0000636352
+top exchange: 	0.0000085281
+lef exchange: 	0.0000115482
+rig exchange: 	0.0000021660
+bot exchange: 	0.0000478982
+top exchange: 	0.0000083291
+lef exchange: 	0.0000134502
+rig exchange: 	0.0000091000
+ 
+Current time: 1.599155
+bot exchange: 	0.0000691600
+top exchange: 	0.0000095330
+lef exchange: 	0.0000051819
+rig exchange: 	0.0000056450
+bot exchange: 	0.0000507450
+top exchange: 	0.0000101500
+lef exchange: 	0.0000049681
+rig exchange: 	0.0000122329
+ 
+Current time: 1.625297
+bot exchange: 	0.0000646769
+top exchange: 	0.0000092089
+lef exchange: 	0.0000079148
+rig exchange: 	0.0000025411
+bot exchange: 	0.0000541941
+top exchange: 	0.0000103370
+lef exchange: 	0.0000041651
+rig exchange: 	0.0000120311
+ 
+Current time: 1.651445
+bot exchange: 	0.0000634720
+top exchange: 	0.0000089020
+lef exchange: 	0.0000075889
+rig exchange: 	0.0000025171
+bot exchange: 	0.0000581031
+top exchange: 	0.0000097319
+lef exchange: 	0.0000047202
+rig exchange: 	0.0000054261
+ 
+Current time: 1.677597
+bot exchange: 	0.0000708499
+top exchange: 	0.0000095589
+lef exchange: 	0.0000084641
+rig exchange: 	0.0000040901
+bot exchange: 	0.0000507701
+top exchange: 	0.0000105118
+lef exchange: 	0.0000026941
+rig exchange: 	0.0000157680
+ 
+Current time: 1.703753
+bot exchange: 	0.0000684541
+top exchange: 	0.0000132730
+lef exchange: 	0.0000056820
+rig exchange: 	0.0000042641
+bot exchange: 	0.0000568540
+top exchange: 	0.0000097211
+lef exchange: 	0.0000050869
+rig exchange: 	0.0000092890
+ 
+Current time: 1.729914
+bot exchange: 	0.0000742939
+top exchange: 	0.0000091440
+lef exchange: 	0.0000043800
+rig exchange: 	0.0000022769
+bot exchange: 	0.0000482090
+top exchange: 	0.0000160942
+lef exchange: 	0.0000046568
+rig exchange: 	0.0000199070
+ 
+Current time: 1.756078
+bot exchange: 	0.0000680559
+top exchange: 	0.0000104101
+lef exchange: 	0.0000095179
+rig exchange: 	0.0000025511
+bot exchange: 	0.0000511950
+top exchange: 	0.0000144499
+lef exchange: 	0.0000023751
+rig exchange: 	0.0000158011
+ 
+Current time: 1.782245
+bot exchange: 	0.0000679290
+top exchange: 	0.0000098320
+lef exchange: 	0.0000064140
+rig exchange: 	0.0000023050
+bot exchange: 	0.0000491161
+top exchange: 	0.0000144560
+lef exchange: 	0.0000164581
+rig exchange: 	0.0000020762
+ 
+Current time: 1.808416
+bot exchange: 	0.0000747819
+top exchange: 	0.0000079980
+lef exchange: 	0.0000057581
+rig exchange: 	0.0000028799
+bot exchange: 	0.0000521431
+top exchange: 	0.0000107239
+lef exchange: 	0.0000049151
+rig exchange: 	0.0000130802
+ 
+Current time: 1.834590
+bot exchange: 	0.0000711640
+top exchange: 	0.0000087300
+lef exchange: 	0.0000059721
+rig exchange: 	0.0000052871
+bot exchange: 	0.0000572961
+top exchange: 	0.0000100820
+lef exchange: 	0.0000054250
+rig exchange: 	0.0000080371
+ 
+Current time: 1.860766
+bot exchange: 	0.0000667050
+top exchange: 	0.0000138062
+lef exchange: 	0.0000064941
+rig exchange: 	0.0000019970
+bot exchange: 	0.0000491401
+top exchange: 	0.0000096180
+lef exchange: 	0.0000078331
+rig exchange: 	0.0000125859
+ 
+Current time: 1.886945
+bot exchange: 	0.0000717540
+top exchange: 	0.0000108271
+lef exchange: 	0.0000100199
+rig exchange: 	0.0000029542
+bot exchange: 	0.0000508011
+top exchange: 	0.0000105330
+lef exchange: 	0.0000041339
+rig exchange: 	0.0000123300
+ 
+Current time: 1.913126
+bot exchange: 	0.0000675740
+top exchange: 	0.0000094459
+lef exchange: 	0.0000056529
+rig exchange: 	0.0000053719
+bot exchange: 	0.0000589341
+top exchange: 	0.0000084492
+lef exchange: 	0.0000045609
+rig exchange: 	0.0000079719
+ 
+Current time: 1.939310
+bot exchange: 	0.0000627739
+top exchange: 	0.0000118189
+lef exchange: 	0.0000059779
+rig exchange: 	0.0000029791
+bot exchange: 	0.0000523080
+top exchange: 	0.0000100369
+lef exchange: 	0.0000109770
+rig exchange: 	0.0000052911
+ 
+Current time: 1.965495
+bot exchange: 	0.0000650580
+top exchange: 	0.0000096310
+lef exchange: 	0.0000086071
+rig exchange: 	0.0000027278
+bot exchange: 	0.0000485689
+top exchange: 	0.0000103789
+lef exchange: 	0.0000158160
+rig exchange: 	0.0000024291
+ 
+Current time: 1.991682
+bot exchange: 	0.0000675451
+top exchange: 	0.0000093700
+lef exchange: 	0.0000081940
+rig exchange: 	0.0000028769
+bot exchange: 	0.0000476199
+top exchange: 	0.0000106380
+lef exchange: 	0.0000142122
+rig exchange: 	0.0000076320
+ 
+Current time: 2.000000
+bot exchange: 	0.0000701412
+top exchange: 	0.0000101628
+lef exchange: 	0.0000095021
+rig exchange: 	0.0000025190
+bot exchange: 	0.0000562118
+top exchange: 	0.0000085498
+lef exchange: 	0.0000068781
+rig exchange: 	0.0000052669
+ 
+Current time: 2.026189
+bot exchange: 	0.0000747349
+top exchange: 	0.0000098569
+lef exchange: 	0.0000088590
+rig exchange: 	0.0000031400
+bot exchange: 	0.0000543350
+top exchange: 	0.0000100650
+lef exchange: 	0.0000088988
+rig exchange: 	0.0000070480
+ 
+Current time: 2.052380
+bot exchange: 	0.0000696250
+top exchange: 	0.0000120101
+lef exchange: 	0.0000058790
+rig exchange: 	0.0000029691
+bot exchange: 	0.0000477191
+top exchange: 	0.0000101500
+lef exchange: 	0.0000065241
+rig exchange: 	0.0000184248
+ 
+Current time: 2.078572
+bot exchange: 	0.0000691132
+top exchange: 	0.0000123840
+lef exchange: 	0.0000057891
+rig exchange: 	0.0000030329
+bot exchange: 	0.0000650571
+top exchange: 	0.0000102660
+lef exchange: 	0.0000020410
+rig exchange: 	0.0000060941
+ 
+Current time: 2.104765
+bot exchange: 	0.0000681211
+top exchange: 	0.0000119552
+lef exchange: 	0.0000044350
+rig exchange: 	0.0000029951
+bot exchange: 	0.0000521259
+top exchange: 	0.0000119449
+lef exchange: 	0.0000106269
+rig exchange: 	0.0000042501
+ 
+Current time: 2.130958
+bot exchange: 	0.0000721419
+top exchange: 	0.0000099149
+lef exchange: 	0.0000067449
+rig exchange: 	0.0000056110
+bot exchange: 	0.0000583350
+top exchange: 	0.0000086930
+lef exchange: 	0.0000057220
+rig exchange: 	0.0000053272
+ 
+Current time: 2.157153
+bot exchange: 	0.0000744939
+top exchange: 	0.0000080310
+lef exchange: 	0.0000095582
+rig exchange: 	0.0000026550
+bot exchange: 	0.0000590119
+top exchange: 	0.0000083530
+lef exchange: 	0.0000019909
+rig exchange: 	0.0000086790
+ 
+Current time: 2.183349
+bot exchange: 	0.0000690769
+top exchange: 	0.0000103530
+lef exchange: 	0.0000098362
+rig exchange: 	0.0000028491
+bot exchange: 	0.0000570551
+top exchange: 	0.0000079579
+lef exchange: 	0.0000041230
+rig exchange: 	0.0000056638
+ 
+Current time: 2.209544
+bot exchange: 	0.0000684329
+top exchange: 	0.0000096171
+lef exchange: 	0.0000098739
+rig exchange: 	0.0000026061
+bot exchange: 	0.0000549748
+top exchange: 	0.0000086029
+lef exchange: 	0.0000031050
+rig exchange: 	0.0000108641
+ 
+Current time: 2.235741
+bot exchange: 	0.0000666070
+top exchange: 	0.0000095279
+lef exchange: 	0.0000053998
+rig exchange: 	0.0000020491
+bot exchange: 	0.0000497929
+top exchange: 	0.0000099631
+lef exchange: 	0.0000123531
+rig exchange: 	0.0000110329
+ 
+Current time: 2.261938
+bot exchange: 	0.0000663691
+top exchange: 	0.0000084399
+lef exchange: 	0.0000063879
+rig exchange: 	0.0000024640
+bot exchange: 	0.0000527571
+top exchange: 	0.0000102669
+lef exchange: 	0.0000056701
+rig exchange: 	0.0000126560
+ 
+Current time: 2.288135
+bot exchange: 	0.0000677612
+top exchange: 	0.0000111018
+lef exchange: 	0.0000092611
+rig exchange: 	0.0000023949
+bot exchange: 	0.0000501359
+top exchange: 	0.0000094331
+lef exchange: 	0.0000054119
+rig exchange: 	0.0000179980
+ 
+Current time: 2.314332
+bot exchange: 	0.0000711088
+top exchange: 	0.0000103598
+lef exchange: 	0.0000091700
+rig exchange: 	0.0000029700
+bot exchange: 	0.0000515592
+top exchange: 	0.0000099400
+lef exchange: 	0.0000080881
+rig exchange: 	0.0000071048
+ 
+Current time: 2.340529
+bot exchange: 	0.0000694210
+top exchange: 	0.0000131510
+lef exchange: 	0.0000045400
+rig exchange: 	0.0000025891
+bot exchange: 	0.0000516050
+top exchange: 	0.0000101130
+lef exchange: 	0.0000095461
+rig exchange: 	0.0000043050
+ 
+Current time: 2.366726
+bot exchange: 	0.0000689358
+top exchange: 	0.0000099009
+lef exchange: 	0.0000055931
+rig exchange: 	0.0000030440
+bot exchange: 	0.0000610112
+top exchange: 	0.0000089100
+lef exchange: 	0.0000042161
+rig exchange: 	0.0000053830
+ 
+Current time: 2.392923
+bot exchange: 	0.0000666010
+top exchange: 	0.0000110951
+lef exchange: 	0.0000049670
+rig exchange: 	0.0000044981
+bot exchange: 	0.0000513361
+top exchange: 	0.0000090851
+lef exchange: 	0.0000063870
+rig exchange: 	0.0000090140
+ 
+Current time: 2.419120
+bot exchange: 	0.0000796390
+top exchange: 	0.0000116010
+lef exchange: 	0.0000065211
+rig exchange: 	0.0000024948
+bot exchange: 	0.0000673770
+top exchange: 	0.0000095658
+lef exchange: 	0.0000025609
+rig exchange: 	0.0000053369
+ 
+Current time: 2.445316
+bot exchange: 	0.0000703160
+top exchange: 	0.0000101731
+lef exchange: 	0.0000092150
+rig exchange: 	0.0000027181
+bot exchange: 	0.0000514030
+top exchange: 	0.0000106639
+lef exchange: 	0.0000050210
+rig exchange: 	0.0000089661
+ 
+Current time: 2.471512
+bot exchange: 	0.0000742211
+top exchange: 	0.0000111000
+lef exchange: 	0.0000042170
+rig exchange: 	0.0000056301
+bot exchange: 	0.0000577271
+top exchange: 	0.0000106620
+lef exchange: 	0.0000019730
+rig exchange: 	0.0000076320
+ 
+Current time: 2.497708
+bot exchange: 	0.0000672599
+top exchange: 	0.0000106040
+lef exchange: 	0.0000041430
+rig exchange: 	0.0000049649
+bot exchange: 	0.0000465510
+top exchange: 	0.0000096799
+lef exchange: 	0.0000209571
+rig exchange: 	0.0000044801
+ 
+Current time: 2.523904
+bot exchange: 	0.0000660080
+top exchange: 	0.0000092040
+lef exchange: 	0.0000111230
+rig exchange: 	0.0000020999
+bot exchange: 	0.0000504791
+top exchange: 	0.0000116930
+lef exchange: 	0.0000065959
+rig exchange: 	0.0000091111
+ 
+Current time: 2.550099
+bot exchange: 	0.0000680489
+top exchange: 	0.0000099861
+lef exchange: 	0.0000093940
+rig exchange: 	0.0000021190
+bot exchange: 	0.0000496758
+top exchange: 	0.0000094390
+lef exchange: 	0.0000074930
+rig exchange: 	0.0000041600
+ 
+Current time: 2.576293
+bot exchange: 	0.0000741591
+top exchange: 	0.0000113118
+lef exchange: 	0.0000077670
+rig exchange: 	0.0000028329
+bot exchange: 	0.0000524640
+top exchange: 	0.0000120560
+lef exchange: 	0.0000048550
+rig exchange: 	0.0000102799
+ 
+Current time: 2.602487
+bot exchange: 	0.0000683640
+top exchange: 	0.0000086841
+lef exchange: 	0.0000058571
+rig exchange: 	0.0000055041
+bot exchange: 	0.0000514220
+top exchange: 	0.0000128250
+lef exchange: 	0.0000024901
+rig exchange: 	0.0000140320
+ 
+Current time: 2.628680
+bot exchange: 	0.0000698110
+top exchange: 	0.0000119370
+lef exchange: 	0.0000079691
+rig exchange: 	0.0000021060
+bot exchange: 	0.0000532120
+top exchange: 	0.0000094490
+lef exchange: 	0.0000055940
+rig exchange: 	0.0000042450
+ 
+Current time: 2.654872
+bot exchange: 	0.0000723430
+top exchange: 	0.0000096350
+lef exchange: 	0.0000078420
+rig exchange: 	0.0000028382
+bot exchange: 	0.0000535611
+top exchange: 	0.0000100480
+lef exchange: 	0.0000049770
+rig exchange: 	0.0000123431
+ 
+Current time: 2.681064
+bot exchange: 	0.0000733980
+top exchange: 	0.0000095360
+lef exchange: 	0.0000073370
+rig exchange: 	0.0000041241
+bot exchange: 	0.0000464730
+top exchange: 	0.0000096168
+lef exchange: 	0.0000073591
+rig exchange: 	0.0000140429
+ 
+Current time: 2.707255
+bot exchange: 	0.0000707321
+top exchange: 	0.0000109111
+lef exchange: 	0.0000069111
+rig exchange: 	0.0000026471
+bot exchange: 	0.0000494320
+top exchange: 	0.0000181298
+lef exchange: 	0.0000059700
+rig exchange: 	0.0000053172
+ 
+Current time: 2.733445
+bot exchange: 	0.0000694289
+top exchange: 	0.0000092029
+lef exchange: 	0.0000078559
+rig exchange: 	0.0000020200
+bot exchange: 	0.0000519240
+top exchange: 	0.0000109030
+lef exchange: 	0.0000111822
+rig exchange: 	0.0000087430
+ 
+Current time: 2.759634
+bot exchange: 	0.0000704399
+top exchange: 	0.0000120199
+lef exchange: 	0.0000055840
+rig exchange: 	0.0000029551
+bot exchange: 	0.0000528730
+top exchange: 	0.0000106210
+lef exchange: 	0.0000103151
+rig exchange: 	0.0000087661
+ 
+Current time: 2.785823
+bot exchange: 	0.0000702620
+top exchange: 	0.0000097782
+lef exchange: 	0.0000078459
+rig exchange: 	0.0000025299
+bot exchange: 	0.0000557911
+top exchange: 	0.0000086620
+lef exchange: 	0.0000025779
+rig exchange: 	0.0000075961
+ 
+Current time: 2.812011
+bot exchange: 	0.0000707970
+top exchange: 	0.0000084371
+lef exchange: 	0.0000066860
+rig exchange: 	0.0000023290
+bot exchange: 	0.0000548810
+top exchange: 	0.0000090189
+lef exchange: 	0.0000051209
+rig exchange: 	0.0000187880
+ 
+Current time: 2.838198
+bot exchange: 	0.0000691339
+top exchange: 	0.0000091670
+lef exchange: 	0.0000069560
+rig exchange: 	0.0000042140
+bot exchange: 	0.0000481899
+top exchange: 	0.0000170760
+lef exchange: 	0.0000031102
+rig exchange: 	0.0000124271
+ 
+Current time: 2.864384
+bot exchange: 	0.0000675218
+top exchange: 	0.0000095251
+lef exchange: 	0.0000052899
+rig exchange: 	0.0000057572
+bot exchange: 	0.0000583250
+top exchange: 	0.0000095710
+lef exchange: 	0.0000030159
+rig exchange: 	0.0000043658
+ 
+Current time: 2.890569
+bot exchange: 	0.0000680862
+top exchange: 	0.0000112108
+lef exchange: 	0.0000066611
+rig exchange: 	0.0000021849
+bot exchange: 	0.0000557520
+top exchange: 	0.0000151759
+lef exchange: 	0.0000066110
+rig exchange: 	0.0000070469
+ 
+Current time: 2.916753
+bot exchange: 	0.0000763661
+top exchange: 	0.0000082201
+lef exchange: 	0.0000089610
+rig exchange: 	0.0000052899
+bot exchange: 	0.0000651402
+top exchange: 	0.0000103789
+lef exchange: 	0.0000026170
+rig exchange: 	0.0000055688
+ 
+Current time: 2.942936
+bot exchange: 	0.0000713831
+top exchange: 	0.0000080562
+lef exchange: 	0.0000087749
+rig exchange: 	0.0000019881
+bot exchange: 	0.0000599520
+top exchange: 	0.0000101891
+lef exchange: 	0.0000025141
+rig exchange: 	0.0000057991
+ 
+Current time: 2.969119
+bot exchange: 	0.0000674010
+top exchange: 	0.0000125580
+lef exchange: 	0.0000045882
+rig exchange: 	0.0000020000
+bot exchange: 	0.0000494090
+top exchange: 	0.0000089982
+lef exchange: 	0.0000100329
+rig exchange: 	0.0000194290
+ 
+Current time: 2.995300
+bot exchange: 	0.0000671500
+top exchange: 	0.0000084860
+lef exchange: 	0.0000060229
+rig exchange: 	0.0000046571
+bot exchange: 	0.0000490409
+top exchange: 	0.0000088669
+lef exchange: 	0.0000094981
+rig exchange: 	0.0000207410
+ 
+Current time: 3.000000
+bot exchange: 	0.0000699831
+top exchange: 	0.0000093069
+lef exchange: 	0.0000098210
+rig exchange: 	0.0000026950
+bot exchange: 	0.0000553220
+top exchange: 	0.0000097810
+lef exchange: 	0.0000021120
+rig exchange: 	0.0000053048
+ 
+Current time: 3.026180
+bot exchange: 	0.0000657761
+top exchange: 	0.0000090138
+lef exchange: 	0.0000060869
+rig exchange: 	0.0000058629
+bot exchange: 	0.0000497189
+top exchange: 	0.0000099922
+lef exchange: 	0.0000141941
+rig exchange: 	0.0000116420
+ 
+Current time: 3.052360
+bot exchange: 	0.0000719021
+top exchange: 	0.0000084462
+lef exchange: 	0.0000072180
+rig exchange: 	0.0000025360
+bot exchange: 	0.0000489959
+top exchange: 	0.0000102469
+lef exchange: 	0.0000096259
+rig exchange: 	0.0000135000
+ 
+Current time: 3.078538
+bot exchange: 	0.0000681391
+top exchange: 	0.0000083561
+lef exchange: 	0.0000095009
+rig exchange: 	0.0000029812
+bot exchange: 	0.0000508588
+top exchange: 	0.0000197871
+lef exchange: 	0.0000056950
+rig exchange: 	0.0000042862
+ 
+Current time: 3.104716
+bot exchange: 	0.0000666168
+top exchange: 	0.0000114271
+lef exchange: 	0.0000053660
+rig exchange: 	0.0000027209
+bot exchange: 	0.0000541362
+top exchange: 	0.0000104900
+lef exchange: 	0.0000046040
+rig exchange: 	0.0000160742
+ 
+Current time: 3.130892
+bot exchange: 	0.0000736532
+top exchange: 	0.0000079379
+lef exchange: 	0.0000079451
+rig exchange: 	0.0000024990
+bot exchange: 	0.0000524840
+top exchange: 	0.0000087160
+lef exchange: 	0.0000056939
+rig exchange: 	0.0000041758
+ 
+Current time: 3.157068
+bot exchange: 	0.0000670259
+top exchange: 	0.0000135410
+lef exchange: 	0.0000050419
+rig exchange: 	0.0000021099
+bot exchange: 	0.0000507019
+top exchange: 	0.0000082799
+lef exchange: 	0.0000144970
+rig exchange: 	0.0000048392
+ 
+Current time: 3.183243
+bot exchange: 	0.0000714131
+top exchange: 	0.0000121621
+lef exchange: 	0.0000050252
+rig exchange: 	0.0000025721
+bot exchange: 	0.0000516812
+top exchange: 	0.0000082690
+lef exchange: 	0.0000050480
+rig exchange: 	0.0000091430
+ 
+Current time: 3.209417
+bot exchange: 	0.0000713740
+top exchange: 	0.0000114299
+lef exchange: 	0.0000057521
+rig exchange: 	0.0000019369
+bot exchange: 	0.0000547292
+top exchange: 	0.0000102459
+lef exchange: 	0.0000056920
+rig exchange: 	0.0000092278
+ 
+Current time: 3.235590
+bot exchange: 	0.0000707339
+top exchange: 	0.0000125160
+lef exchange: 	0.0000042790
+rig exchange: 	0.0000055579
+bot exchange: 	0.0000504761
+top exchange: 	0.0000104201
+lef exchange: 	0.0000053120
+rig exchange: 	0.0000143109
+ 
+Current time: 3.261762
+bot exchange: 	0.0000722969
+top exchange: 	0.0000094690
+lef exchange: 	0.0000045691
+rig exchange: 	0.0000022992
+bot exchange: 	0.0000573799
+top exchange: 	0.0000089000
+lef exchange: 	0.0000019372
+rig exchange: 	0.0000242409
+ 
+Current time: 3.287933
+bot exchange: 	0.0000678771
+top exchange: 	0.0000136599
+lef exchange: 	0.0000062329
+rig exchange: 	0.0000020999
+bot exchange: 	0.0000491089
+top exchange: 	0.0000093849
+lef exchange: 	0.0000075120
+rig exchange: 	0.0000225198
+ 
+Current time: 3.314103
+bot exchange: 	0.0000695691
+top exchange: 	0.0000114541
+lef exchange: 	0.0000078320
+rig exchange: 	0.0000027891
+bot exchange: 	0.0000517119
+top exchange: 	0.0000095800
+lef exchange: 	0.0000052960
+rig exchange: 	0.0000101530
+ 
+Current time: 3.340272
+bot exchange: 	0.0000709211
+top exchange: 	0.0000140490
+lef exchange: 	0.0000059051
+rig exchange: 	0.0000019670
+bot exchange: 	0.0000477200
+top exchange: 	0.0000106951
+lef exchange: 	0.0000069290
+rig exchange: 	0.0000075900
+ 
+Current time: 3.366440
+bot exchange: 	0.0000729689
+top exchange: 	0.0000086210
+lef exchange: 	0.0000044890
+rig exchange: 	0.0000056189
+bot exchange: 	0.0000592410
+top exchange: 	0.0000106581
+lef exchange: 	0.0000023430
+rig exchange: 	0.0000075921
+ 
+Current time: 3.392608
+bot exchange: 	0.0000663640
+top exchange: 	0.0000122942
+lef exchange: 	0.0000044799
+rig exchange: 	0.0000024061
+bot exchange: 	0.0000497662
+top exchange: 	0.0000091691
+lef exchange: 	0.0000253571
+rig exchange: 	0.0000046382
+ 
+Current time: 3.418775
+bot exchange: 	0.0000698301
+top exchange: 	0.0000126320
+lef exchange: 	0.0000112010
+rig exchange: 	0.0000021060
+bot exchange: 	0.0000556549
+top exchange: 	0.0000086331
+lef exchange: 	0.0000064941
+rig exchange: 	0.0000042601
+ 
+Current time: 3.444940
+bot exchange: 	0.0000715489
+top exchange: 	0.0000113419
+lef exchange: 	0.0000055751
+rig exchange: 	0.0000024701
+bot exchange: 	0.0000534970
+top exchange: 	0.0000093982
+lef exchange: 	0.0000071400
+rig exchange: 	0.0000076951
+ 
+Current time: 3.471105
+bot exchange: 	0.0000702010
+top exchange: 	0.0000091889
+lef exchange: 	0.0000095200
+rig exchange: 	0.0000030368
+bot exchange: 	0.0000500320
+top exchange: 	0.0000098068
+lef exchange: 	0.0000124210
+rig exchange: 	0.0000100532
+ 
+Current time: 3.497270
+bot exchange: 	0.0000728508
+top exchange: 	0.0000100972
+lef exchange: 	0.0000045560
+rig exchange: 	0.0000026531
+bot exchange: 	0.0000582491
+top exchange: 	0.0000091181
+lef exchange: 	0.0000105612
+rig exchange: 	0.0000042431
+ 
+Current time: 3.523433
+bot exchange: 	0.0000702401
+top exchange: 	0.0000103351
+lef exchange: 	0.0000102720
+rig exchange: 	0.0000026061
+bot exchange: 	0.0000569969
+top exchange: 	0.0000105889
+lef exchange: 	0.0000044301
+rig exchange: 	0.0000051260
+ 
+Current time: 3.549595
+bot exchange: 	0.0000679600
+top exchange: 	0.0000091100
+lef exchange: 	0.0000050701
+rig exchange: 	0.0000055300
+bot exchange: 	0.0000520500
+top exchange: 	0.0000166739
+lef exchange: 	0.0000022701
+rig exchange: 	0.0000128108
+ 
+Current time: 3.575757
+bot exchange: 	0.0000702620
+top exchange: 	0.0000125610
+lef exchange: 	0.0000055439
+rig exchange: 	0.0000028680
+bot exchange: 	0.0000485519
+top exchange: 	0.0000164302
+lef exchange: 	0.0000064429
+rig exchange: 	0.0000096229
+ 
+Current time: 3.601918
+bot exchange: 	0.0000699970
+top exchange: 	0.0000117782
+lef exchange: 	0.0000051220
+rig exchange: 	0.0000054361
+bot exchange: 	0.0000514579
+top exchange: 	0.0000117370
+lef exchange: 	0.0000042189
+rig exchange: 	0.0000095388
+ 
+Current time: 3.628078
+bot exchange: 	0.0000738711
+top exchange: 	0.0000077470
+lef exchange: 	0.0000087970
+rig exchange: 	0.0000030049
+bot exchange: 	0.0000521981
+top exchange: 	0.0000093479
+lef exchange: 	0.0000180840
+rig exchange: 	0.0000055570
+ 
+Current time: 3.654238
+bot exchange: 	0.0000663169
+top exchange: 	0.0000080280
+lef exchange: 	0.0000046522
+rig exchange: 	0.0000028550
+bot exchange: 	0.0000517510
+top exchange: 	0.0000082520
+lef exchange: 	0.0000042799
+rig exchange: 	0.0000152679
+ 
+Current time: 3.680396
+bot exchange: 	0.0000629181
+top exchange: 	0.0000093090
+lef exchange: 	0.0000050089
+rig exchange: 	0.0000055640
+bot exchange: 	0.0000496958
+top exchange: 	0.0000108881
+lef exchange: 	0.0000023670
+rig exchange: 	0.0000183659
+ 
+Current time: 3.706554
+bot exchange: 	0.0000693018
+top exchange: 	0.0000074841
+lef exchange: 	0.0000087190
+rig exchange: 	0.0000052850
+bot exchange: 	0.0000528870
+top exchange: 	0.0000093358
+lef exchange: 	0.0000021590
+rig exchange: 	0.0000057060
+ 
+Current time: 3.732712
+bot exchange: 	0.0000752350
+top exchange: 	0.0000113230
+lef exchange: 	0.0000052168
+rig exchange: 	0.0000023441
+bot exchange: 	0.0000482409
+top exchange: 	0.0000083260
+lef exchange: 	0.0000049991
+rig exchange: 	0.0000201841
+ 
+Current time: 3.758868
+bot exchange: 	0.0000691770
+top exchange: 	0.0000098241
+lef exchange: 	0.0000098499
+rig exchange: 	0.0000027050
+bot exchange: 	0.0000510449
+top exchange: 	0.0000109789
+lef exchange: 	0.0000050270
+rig exchange: 	0.0000086569
+ 
+Current time: 3.785024
+bot exchange: 	0.0000688951
+top exchange: 	0.0000110150
+lef exchange: 	0.0000065179
+rig exchange: 	0.0000042790
+bot exchange: 	0.0000590631
+top exchange: 	0.0000108450
+lef exchange: 	0.0000046161
+rig exchange: 	0.0000068790
+ 
+Current time: 3.811179
+bot exchange: 	0.0000670468
+top exchange: 	0.0000111139
+lef exchange: 	0.0000078320
+rig exchange: 	0.0000029660
+bot exchange: 	0.0000471151
+top exchange: 	0.0000105719
+lef exchange: 	0.0000102080
+rig exchange: 	0.0000160290
+ 
+Current time: 3.837334
+bot exchange: 	0.0000710560
+top exchange: 	0.0000121819
+lef exchange: 	0.0000058459
+rig exchange: 	0.0000028720
+bot exchange: 	0.0000565040
+top exchange: 	0.0000103689
+lef exchange: 	0.0000049719
+rig exchange: 	0.0000122439
+ 
+Current time: 3.863488
+bot exchange: 	0.0000656229
+top exchange: 	0.0000119968
+lef exchange: 	0.0000076301
+rig exchange: 	0.0000027721
+bot exchange: 	0.0000498709
+top exchange: 	0.0000094119
+lef exchange: 	0.0000075069
+rig exchange: 	0.0000052990
+ 
+Current time: 3.889641
+bot exchange: 	0.0000665800
+top exchange: 	0.0000113791
+lef exchange: 	0.0000046289
+rig exchange: 	0.0000020692
+bot exchange: 	0.0000525571
+top exchange: 	0.0000101328
+lef exchange: 	0.0000041479
+rig exchange: 	0.0000098879
+ 
+Current time: 3.915794
+bot exchange: 	0.0000694911
+top exchange: 	0.0000121179
+lef exchange: 	0.0000079551
+rig exchange: 	0.0000055260
+bot exchange: 	0.0000596249
+top exchange: 	0.0000087840
+lef exchange: 	0.0000047281
+rig exchange: 	0.0000054901
+ 
+Current time: 3.941946
+bot exchange: 	0.0000678201
+top exchange: 	0.0000126129
+lef exchange: 	0.0000056559
+rig exchange: 	0.0000027469
+bot exchange: 	0.0000497119
+top exchange: 	0.0000182008
+lef exchange: 	0.0000021639
+rig exchange: 	0.0000083211
+ 
+Current time: 3.968097
+bot exchange: 	0.0000690729
+top exchange: 	0.0000115610
+lef exchange: 	0.0000052780
+rig exchange: 	0.0000019770
+bot exchange: 	0.0000461380
+top exchange: 	0.0000165259
+lef exchange: 	0.0000059749
+rig exchange: 	0.0000202130
+ 
+Current time: 3.994248
+bot exchange: 	0.0000728900
+top exchange: 	0.0000091272
+lef exchange: 	0.0000107749
+rig exchange: 	0.0000018792
+bot exchange: 	0.0000559080
+top exchange: 	0.0000086699
+lef exchange: 	0.0000045439
+rig exchange: 	0.0000088261
+ 
+Current time: 4.000000
+bot exchange: 	0.0000710459
+top exchange: 	0.0000094820
+lef exchange: 	0.0000063619
+rig exchange: 	0.0000026589
+bot exchange: 	0.0000521319
+top exchange: 	0.0000102520
+lef exchange: 	0.0000046890
+rig exchange: 	0.0000053819
+ 
+Current time: 4.026150
+bot exchange: 	0.0000676380
+top exchange: 	0.0000096359
+lef exchange: 	0.0000080492
+rig exchange: 	0.0000030301
+bot exchange: 	0.0000497981
+top exchange: 	0.0000166330
+lef exchange: 	0.0000087998
+rig exchange: 	0.0000094830
+ 
+Current time: 4.052300
+bot exchange: 	0.0000691270
+top exchange: 	0.0000113221
+lef exchange: 	0.0000080580
+rig exchange: 	0.0000025418
+bot exchange: 	0.0000578400
+top exchange: 	0.0000092709
+lef exchange: 	0.0000054429
+rig exchange: 	0.0000053430
+ 
+Current time: 4.078449
+bot exchange: 	0.0000650410
+top exchange: 	0.0000102702
+lef exchange: 	0.0000097631
+rig exchange: 	0.0000021278
+bot exchange: 	0.0000546700
+top exchange: 	0.0000083682
+lef exchange: 	0.0000045400
+rig exchange: 	0.0000127249
+ 
+Current time: 4.104598
+bot exchange: 	0.0000711002
+top exchange: 	0.0000101780
+lef exchange: 	0.0000043560
+rig exchange: 	0.0000026030
+bot exchange: 	0.0000475990
+top exchange: 	0.0000106059
+lef exchange: 	0.0000081582
+rig exchange: 	0.0000048829
+ 
+Current time: 4.130746
+bot exchange: 	0.0000675251
+top exchange: 	0.0000105118
+lef exchange: 	0.0000094941
+rig exchange: 	0.0000024501
+bot exchange: 	0.0000509319
+top exchange: 	0.0000103989
+lef exchange: 	0.0000051882
+rig exchange: 	0.0000120951
+ 
+Current time: 4.156893
+bot exchange: 	0.0000676960
+top exchange: 	0.0000096329
+lef exchange: 	0.0000057411
+rig exchange: 	0.0000040960
+bot exchange: 	0.0000457719
+top exchange: 	0.0000092911
+lef exchange: 	0.0000069940
+rig exchange: 	0.0000164390
+ 
+Current time: 4.183040
+bot exchange: 	0.0000655211
+top exchange: 	0.0000098199
+lef exchange: 	0.0000079048
+rig exchange: 	0.0000028519
+bot exchange: 	0.0000529590
+top exchange: 	0.0000103952
+lef exchange: 	0.0000075160
+rig exchange: 	0.0000141698
+ 
+Current time: 4.209187
+bot exchange: 	0.0000681549
+top exchange: 	0.0000112450
+lef exchange: 	0.0000044110
+rig exchange: 	0.0000043309
+bot exchange: 	0.0000479959
+top exchange: 	0.0000089551
+lef exchange: 	0.0000171219
+rig exchange: 	0.0000091288
+ 
+Current time: 4.235333
+bot exchange: 	0.0000659139
+top exchange: 	0.0000116799
+lef exchange: 	0.0000040929
+rig exchange: 	0.0000049169
+bot exchange: 	0.0000592850
+top exchange: 	0.0000101780
+lef exchange: 	0.0000025199
+rig exchange: 	0.0000057442
+ 
+Current time: 4.261479
+bot exchange: 	0.0000714720
+top exchange: 	0.0000116429
+lef exchange: 	0.0000045649
+rig exchange: 	0.0000020049
+bot exchange: 	0.0000494339
+top exchange: 	0.0000128299
+lef exchange: 	0.0000074441
+rig exchange: 	0.0000116380
+ 
+Current time: 4.287624
+bot exchange: 	0.0000697570
+top exchange: 	0.0000091281
+lef exchange: 	0.0000049579
+rig exchange: 	0.0000040520
+bot exchange: 	0.0000471130
+top exchange: 	0.0000114420
+lef exchange: 	0.0000139158
+rig exchange: 	0.0000183950
+ 
+Current time: 4.313769
+bot exchange: 	0.0000679211
+top exchange: 	0.0000090818
+lef exchange: 	0.0000077190
+rig exchange: 	0.0000019800
+bot exchange: 	0.0000512369
+top exchange: 	0.0000095549
+lef exchange: 	0.0000048291
+rig exchange: 	0.0000226400
+ 
+Current time: 4.339913
+bot exchange: 	0.0000670392
+top exchange: 	0.0000089230
+lef exchange: 	0.0000128120
+rig exchange: 	0.0000019760
+bot exchange: 	0.0000478779
+top exchange: 	0.0000082029
+lef exchange: 	0.0000214272
+rig exchange: 	0.0000108229
+ 
+Current time: 4.366057
+bot exchange: 	0.0000687949
+top exchange: 	0.0000092129
+lef exchange: 	0.0000061800
+rig exchange: 	0.0000023330
+bot exchange: 	0.0000563299
+top exchange: 	0.0000111770
+lef exchange: 	0.0000110860
+rig exchange: 	0.0000090299
+ 
+Current time: 4.392201
+bot exchange: 	0.0000721421
+top exchange: 	0.0000091230
+lef exchange: 	0.0000045469
+rig exchange: 	0.0000019169
+bot exchange: 	0.0000514120
+top exchange: 	0.0000112848
+lef exchange: 	0.0000025481
+rig exchange: 	0.0000153901
+ 
+Current time: 4.418344
+bot exchange: 	0.0000684350
+top exchange: 	0.0000106890
+lef exchange: 	0.0000154660
+rig exchange: 	0.0000025518
+bot exchange: 	0.0000622030
+top exchange: 	0.0000102441
+lef exchange: 	0.0000046522
+rig exchange: 	0.0000040149
+ 
+Current time: 4.444487
+bot exchange: 	0.0000675621
+top exchange: 	0.0000109849
+lef exchange: 	0.0000064420
+rig exchange: 	0.0000026198
+bot exchange: 	0.0000500341
+top exchange: 	0.0000171599
+lef exchange: 	0.0000066140
+rig exchange: 	0.0000025160
+ 
+Current time: 4.470629
+bot exchange: 	0.0000671069
+top exchange: 	0.0000117889
+lef exchange: 	0.0000068550
+rig exchange: 	0.0000024592
+bot exchange: 	0.0000500940
+top exchange: 	0.0000103321
+lef exchange: 	0.0000244281
+rig exchange: 	0.0000042929
+ 
+Current time: 4.496771
+bot exchange: 	0.0000685130
+top exchange: 	0.0000091880
+lef exchange: 	0.0000074140
+rig exchange: 	0.0000055782
+bot exchange: 	0.0000534281
+top exchange: 	0.0000149389
+lef exchange: 	0.0000027469
+rig exchange: 	0.0000125589
+ 
+Current time: 4.522913
+bot exchange: 	0.0000754860
+top exchange: 	0.0000086292
+lef exchange: 	0.0000043670
+rig exchange: 	0.0000056101
+bot exchange: 	0.0000569802
+top exchange: 	0.0000102541
+lef exchange: 	0.0000047919
+rig exchange: 	0.0000053439
+ 
+Current time: 4.549054
+bot exchange: 	0.0000681661
+top exchange: 	0.0000125461
+lef exchange: 	0.0000044471
+rig exchange: 	0.0000020049
+bot exchange: 	0.0000622000
+top exchange: 	0.0000091691
+lef exchange: 	0.0000047849
+rig exchange: 	0.0000046301
+ 
+Current time: 4.575195
+bot exchange: 	0.0000678259
+top exchange: 	0.0000131170
+lef exchange: 	0.0000045248
+rig exchange: 	0.0000029700
+bot exchange: 	0.0000527492
+top exchange: 	0.0000092820
+lef exchange: 	0.0000077891
+rig exchange: 	0.0000104508
+ 
+Current time: 4.601336
+bot exchange: 	0.0000727060
+top exchange: 	0.0000087619
+lef exchange: 	0.0000065109
+rig exchange: 	0.0000054070
+bot exchange: 	0.0000490949
+top exchange: 	0.0000105090
+lef exchange: 	0.0000069251
+rig exchange: 	0.0000097249
+ 
+Current time: 4.627477
+bot exchange: 	0.0000675221
+top exchange: 	0.0000090981
+lef exchange: 	0.0000062392
+rig exchange: 	0.0000020710
+bot exchange: 	0.0000463880
+top exchange: 	0.0000082459
+lef exchange: 	0.0000176949
+rig exchange: 	0.0000131100
+ 
+Current time: 4.653617
+bot exchange: 	0.0000687551
+top exchange: 	0.0000108599
+lef exchange: 	0.0000078438
+rig exchange: 	0.0000021639
+bot exchange: 	0.0000506032
+top exchange: 	0.0000104820
+lef exchange: 	0.0000057900
+rig exchange: 	0.0000127309
+ 
+Current time: 4.679756
+bot exchange: 	0.0000687561
+top exchange: 	0.0000120760
+lef exchange: 	0.0000078620
+rig exchange: 	0.0000029888
+bot exchange: 	0.0000534570
+top exchange: 	0.0000117070
+lef exchange: 	0.0000021039
+rig exchange: 	0.0000126930
+ 
+Current time: 4.705896
+bot exchange: 	0.0000708038
+top exchange: 	0.0000127179
+lef exchange: 	0.0000513380
+rig exchange: 	0.0000021199
+bot exchange: 	0.0000468520
+top exchange: 	0.0000089421
+lef exchange: 	0.0000127188
+rig exchange: 	0.0000113461
+ 
+Current time: 4.732035
+bot exchange: 	0.0000712972
+top exchange: 	0.0000101801
+lef exchange: 	0.0000073670
+rig exchange: 	0.0000027691
+bot exchange: 	0.0000544691
+top exchange: 	0.0000100161
+lef exchange: 	0.0000079852
+rig exchange: 	0.0000051348
+ 
+Current time: 4.758174
+bot exchange: 	0.0000678601
+top exchange: 	0.0000097931
+lef exchange: 	0.0000078280
+rig exchange: 	0.0000020629
+bot exchange: 	0.0000526439
+top exchange: 	0.0000082899
+lef exchange: 	0.0000140648
+rig exchange: 	0.0000091931
+ 
+Current time: 4.784313
+bot exchange: 	0.0000694122
+top exchange: 	0.0000112930
+lef exchange: 	0.0000043758
+rig exchange: 	0.0000048401
+bot exchange: 	0.0000474888
+top exchange: 	0.0000099170
+lef exchange: 	0.0000054450
+rig exchange: 	0.0000136890
+ 
+Current time: 4.810451
+bot exchange: 	0.0000716310
+top exchange: 	0.0000088422
+lef exchange: 	0.0000040780
+rig exchange: 	0.0000046070
+bot exchange: 	0.0000523929
+top exchange: 	0.0000111139
+lef exchange: 	0.0000062969
+rig exchange: 	0.0000088960
+ 
+Current time: 4.836589
+bot exchange: 	0.0000669621
+top exchange: 	0.0000106241
+lef exchange: 	0.0000044610
+rig exchange: 	0.0000019500
+bot exchange: 	0.0000579089
+top exchange: 	0.0000092769
+lef exchange: 	0.0000081279
+rig exchange: 	0.0000043139
+ 
+Current time: 4.862727
+bot exchange: 	0.0000667251
+top exchange: 	0.0000108609
+lef exchange: 	0.0000052180
+rig exchange: 	0.0000058759
+bot exchange: 	0.0000590140
+top exchange: 	0.0000087740
+lef exchange: 	0.0000023439
+rig exchange: 	0.0000120169
+ 
+Current time: 4.888865
+bot exchange: 	0.0000684739
+top exchange: 	0.0000122581
+lef exchange: 	0.0000062189
+rig exchange: 	0.0000024950
+bot exchange: 	0.0000499310
+top exchange: 	0.0000101090
+lef exchange: 	0.0000110460
+rig exchange: 	0.0000133300
+ 
+Current time: 4.915002
+bot exchange: 	0.0000711221
+top exchange: 	0.0000102690
+lef exchange: 	0.0000043151
+rig exchange: 	0.0000051449
+bot exchange: 	0.0000674650
+top exchange: 	0.0000096790
+lef exchange: 	0.0000030240
+rig exchange: 	0.0000053581
+ 
+Current time: 4.941140
+bot exchange: 	0.0000714401
+top exchange: 	0.0000131228
+lef exchange: 	0.0000061051
+rig exchange: 	0.0000027390
+bot exchange: 	0.0000592710
+top exchange: 	0.0000108581
+lef exchange: 	0.0000055919
+rig exchange: 	0.0000030128
+ 
+Current time: 4.967277
+bot exchange: 	0.0000702832
+top exchange: 	0.0000129249
+lef exchange: 	0.0000046252
+rig exchange: 	0.0000024871
+bot exchange: 	0.0000470162
+top exchange: 	0.0000190299
+lef exchange: 	0.0000044191
+rig exchange: 	0.0000076359
+ 
+Current time: 4.993413
+bot exchange: 	0.0000775750
+top exchange: 	0.0000116350
+lef exchange: 	0.0000055169
+rig exchange: 	0.0000027989
+bot exchange: 	0.0000491280
+top exchange: 	0.0000108581
+lef exchange: 	0.0000093849
+rig exchange: 	0.0000053470
+ 
+Current time: 5.000000
+bot exchange: 	0.0000675900
+top exchange: 	0.0000086150
+lef exchange: 	0.0000062319
+rig exchange: 	0.0000054021
+bot exchange: 	0.0000482399
+top exchange: 	0.0000167459
+lef exchange: 	0.0000113659
+rig exchange: 	0.0000052182
+ 
+Current time: 5.026136
+bot exchange: 	0.0000704438
+top exchange: 	0.0000097561
+lef exchange: 	0.0000080541
+rig exchange: 	0.0000020799
+bot exchange: 	0.0000474092
+top exchange: 	0.0000160339
+lef exchange: 	0.0000055078
+rig exchange: 	0.0000125659
+ 
+Current time: 5.052273
+bot exchange: 	0.0000696240
+top exchange: 	0.0000097649
+lef exchange: 	0.0000077230
+rig exchange: 	0.0000019651
+bot exchange: 	0.0000484809
+top exchange: 	0.0000160909
+lef exchange: 	0.0000056769
+rig exchange: 	0.0000161219
+ 
+Current time: 5.078409
+bot exchange: 	0.0000742730
+top exchange: 	0.0000119410
+lef exchange: 	0.0000057898
+rig exchange: 	0.0000023742
+bot exchange: 	0.0000483799
+top exchange: 	0.0000190190
+lef exchange: 	0.0000051430
+rig exchange: 	0.0000121898
+ 
+Current time: 5.104545
+bot exchange: 	0.0000716820
+top exchange: 	0.0000113610
+lef exchange: 	0.0000150371
+rig exchange: 	0.0000025621
+bot exchange: 	0.0000598070
+top exchange: 	0.0000098939
+lef exchange: 	0.0000025940
+rig exchange: 	0.0000081020
+ 
+Current time: 5.130680
+bot exchange: 	0.0000683521
+top exchange: 	0.0000092890
+lef exchange: 	0.0000062259
+rig exchange: 	0.0000046808
+bot exchange: 	0.0000490821
+top exchange: 	0.0000098539
+lef exchange: 	0.0000046981
+rig exchange: 	0.0000200639
+ 
+Current time: 5.156816
+bot exchange: 	0.0000717940
+top exchange: 	0.0000099048
+lef exchange: 	0.0000078189
+rig exchange: 	0.0000041712
+bot exchange: 	0.0000641781
+top exchange: 	0.0000098590
+lef exchange: 	0.0000025281
+rig exchange: 	0.0000041050
+ 
+Current time: 5.182951
+bot exchange: 	0.0000730848
+top exchange: 	0.0000099489
+lef exchange: 	0.0000063931
+rig exchange: 	0.0000019940
+bot exchange: 	0.0000517471
+top exchange: 	0.0000082029
+lef exchange: 	0.0000104539
+rig exchange: 	0.0000109312
+ 
+Current time: 5.209086
+bot exchange: 	0.0000725421
+top exchange: 	0.0000129379
+lef exchange: 	0.0000044750
+rig exchange: 	0.0000020021
+bot exchange: 	0.0000640880
+top exchange: 	0.0000093679
+lef exchange: 	0.0000045830
+rig exchange: 	0.0000041649
+ 
+Current time: 5.235221
+bot exchange: 	0.0000701270
+top exchange: 	0.0000080150
+lef exchange: 	0.0000044808
+rig exchange: 	0.0000027400
+bot exchange: 	0.0000508758
+top exchange: 	0.0000111701
+lef exchange: 	0.0000091770
+rig exchange: 	0.0000058780
+ 
+Current time: 5.261356
+bot exchange: 	0.0000706061
+top exchange: 	0.0000093749
+lef exchange: 	0.0000050401
+rig exchange: 	0.0000024610
+bot exchange: 	0.0000590170
+top exchange: 	0.0000101142
+lef exchange: 	0.0000131570
+rig exchange: 	0.0000019909
+ 
+Current time: 5.287491
+bot exchange: 	0.0000673980
+top exchange: 	0.0000138530
+lef exchange: 	0.0000055411
+rig exchange: 	0.0000026920
+bot exchange: 	0.0000514751
+top exchange: 	0.0000098839
+lef exchange: 	0.0000051390
+rig exchange: 	0.0000087980
+ 
+Current time: 5.313625
+bot exchange: 	0.0000712930
+top exchange: 	0.0000116560
+lef exchange: 	0.0000082569
+rig exchange: 	0.0000025451
+bot exchange: 	0.0000575632
+top exchange: 	0.0000106001
+lef exchange: 	0.0000057539
+rig exchange: 	0.0000052620
+ 
+Current time: 5.339759
+bot exchange: 	0.0000714362
+top exchange: 	0.0000108271
+lef exchange: 	0.0000043020
+rig exchange: 	0.0000055470
+bot exchange: 	0.0000476299
+top exchange: 	0.0000185829
+lef exchange: 	0.0000020450
+rig exchange: 	0.0000071861
+ 
+Current time: 5.365893
+bot exchange: 	0.0000706681
+top exchange: 	0.0000097619
+lef exchange: 	0.0000121410
+rig exchange: 	0.0000024650
+bot exchange: 	0.0000649500
+top exchange: 	0.0000098010
+lef exchange: 	0.0000056371
+rig exchange: 	0.0000027730
+ 
+Current time: 5.392027
+bot exchange: 	0.0000684632
+top exchange: 	0.0000119859
+lef exchange: 	0.0000081509
+rig exchange: 	0.0000027411
+bot exchange: 	0.0000527271
+top exchange: 	0.0000100001
+lef exchange: 	0.0000188821
+rig exchange: 	0.0000056569
+ 
+Current time: 5.418161
+bot exchange: 	0.0000739549
+top exchange: 	0.0000117370
+lef exchange: 	0.0000053451
+rig exchange: 	0.0000029909
+bot exchange: 	0.0000661120
+top exchange: 	0.0000100120
+lef exchange: 	0.0000020571
+rig exchange: 	0.0000050620
+ 
+Current time: 5.444295
+bot exchange: 	0.0000710860
+top exchange: 	0.0000112411
+lef exchange: 	0.0000054820
+rig exchange: 	0.0000056610
+bot exchange: 	0.0000529259
+top exchange: 	0.0000109731
+lef exchange: 	0.0000022221
+rig exchange: 	0.0000193238
+ 
+Current time: 5.470428
+bot exchange: 	0.0000698210
+top exchange: 	0.0000110040
+lef exchange: 	0.0000070650
+rig exchange: 	0.0000029439
+bot exchange: 	0.0000597399
+top exchange: 	0.0000088110
+lef exchange: 	0.0000022950
+rig exchange: 	0.0000182039
+ 
+Current time: 5.496562
+bot exchange: 	0.0000690480
+top exchange: 	0.0000094802
+lef exchange: 	0.0000057269
+rig exchange: 	0.0000025139
+bot exchange: 	0.0000515438
+top exchange: 	0.0000080862
+lef exchange: 	0.0000041241
+rig exchange: 	0.0000232970
+ 
+Current time: 5.522695
+bot exchange: 	0.0000667020
+top exchange: 	0.0000102560
+lef exchange: 	0.0000050671
+rig exchange: 	0.0000029162
+bot exchange: 	0.0000601269
+top exchange: 	0.0000099791
+lef exchange: 	0.0000040359
+rig exchange: 	0.0000078951
+ 
+Current time: 5.548828
+bot exchange: 	0.0000678101
+top exchange: 	0.0000088890
+lef exchange: 	0.0000057539
+rig exchange: 	0.0000050659
+bot exchange: 	0.0000468281
+top exchange: 	0.0000110101
+lef exchange: 	0.0000109370
+rig exchange: 	0.0000163589
+ 
+Current time: 5.574961
+bot exchange: 	0.0000680299
+top exchange: 	0.0000099731
+lef exchange: 	0.0000060298
+rig exchange: 	0.0000027921
+bot exchange: 	0.0000475480
+top exchange: 	0.0000096990
+lef exchange: 	0.0000067248
+rig exchange: 	0.0000124760
+ 
+Current time: 5.601094
+bot exchange: 	0.0000720890
+top exchange: 	0.0000106501
+lef exchange: 	0.0000086750
+rig exchange: 	0.0000026070
+bot exchange: 	0.0000490590
+top exchange: 	0.0000103682
+lef exchange: 	0.0000069691
+rig exchange: 	0.0000052250
+ 
+Current time: 5.627227
+bot exchange: 	0.0000758530
+top exchange: 	0.0000091409
+lef exchange: 	0.0000044929
+rig exchange: 	0.0000020261
+bot exchange: 	0.0000552509
+top exchange: 	0.0000089230
+lef exchange: 	0.0000020519
+rig exchange: 	0.0000159540
+ 
+Current time: 5.653359
+bot exchange: 	0.0000733831
+top exchange: 	0.0000132411
+lef exchange: 	0.0000041621
+rig exchange: 	0.0000020198
+bot exchange: 	0.0000528821
+top exchange: 	0.0000113670
+lef exchange: 	0.0000022929
+rig exchange: 	0.0000048778
+ 
+Current time: 5.679492
+bot exchange: 	0.0000722161
+top exchange: 	0.0000113829
+lef exchange: 	0.0000041630
+rig exchange: 	0.0000050890
+bot exchange: 	0.0000607090
+top exchange: 	0.0000103309
+lef exchange: 	0.0000020701
+rig exchange: 	0.0000056268
+ 
+Current time: 5.705624
+bot exchange: 	0.0000691141
+top exchange: 	0.0000114278
+lef exchange: 	0.0000044601
+rig exchange: 	0.0000063109
+bot exchange: 	0.0000566810
+top exchange: 	0.0000103731
+lef exchange: 	0.0000019940
+rig exchange: 	0.0000104450
+ 
+Current time: 5.731757
+bot exchange: 	0.0000680911
+top exchange: 	0.0000119552
+lef exchange: 	0.0000065390
+rig exchange: 	0.0000029090
+bot exchange: 	0.0000577769
+top exchange: 	0.0000103570
+lef exchange: 	0.0000043719
+rig exchange: 	0.0000051861
+ 
+Current time: 5.757889
+bot exchange: 	0.0000659500
+top exchange: 	0.0000096869
+lef exchange: 	0.0000063160
+rig exchange: 	0.0000020771
+bot exchange: 	0.0000473771
+top exchange: 	0.0000097360
+lef exchange: 	0.0000196472
+rig exchange: 	0.0000041090
+ 
+Current time: 5.784021
+bot exchange: 	0.0000671658
+top exchange: 	0.0000096480
+lef exchange: 	0.0000077770
+rig exchange: 	0.0000021849
+bot exchange: 	0.0000471929
+top exchange: 	0.0000110690
+lef exchange: 	0.0000073409
+rig exchange: 	0.0000266659
+ 
+Current time: 5.810153
+bot exchange: 	0.0000697079
+top exchange: 	0.0000124581
+lef exchange: 	0.0000055160
+rig exchange: 	0.0000055761
+bot exchange: 	0.0000516579
+top exchange: 	0.0000099461
+lef exchange: 	0.0000079470
+rig exchange: 	0.0000077952
+ 
+Current time: 5.836284
+bot exchange: 	0.0000656110
+top exchange: 	0.0000097109
+lef exchange: 	0.0000076690
+rig exchange: 	0.0000020850
+bot exchange: 	0.0000487152
+top exchange: 	0.0000095689
+lef exchange: 	0.0000074259
+rig exchange: 	0.0000246640
+ 
+Current time: 5.862416
+bot exchange: 	0.0000675900
+top exchange: 	0.0000099509
+lef exchange: 	0.0000078820
+rig exchange: 	0.0000020431
+bot exchange: 	0.0000482311
+top exchange: 	0.0000156651
+lef exchange: 	0.0000079430
+rig exchange: 	0.0000110180
+ 
+Current time: 5.888548
+bot exchange: 	0.0000706860
+top exchange: 	0.0000111600
+lef exchange: 	0.0000043761
+rig exchange: 	0.0000021430
+bot exchange: 	0.0000524020
+top exchange: 	0.0000143861
+lef exchange: 	0.0000049630
+rig exchange: 	0.0000128939
+ 
+Current time: 5.914679
+bot exchange: 	0.0000771841
+top exchange: 	0.0000080841
+lef exchange: 	0.0000052289
+rig exchange: 	0.0000026959
+bot exchange: 	0.0000509580
+top exchange: 	0.0000102210
+lef exchange: 	0.0000053900
+rig exchange: 	0.0000073840
+ 
+Current time: 5.940811
+bot exchange: 	0.0000684459
+top exchange: 	0.0000124818
+lef exchange: 	0.0000059679
+rig exchange: 	0.0000024419
+bot exchange: 	0.0000610589
+top exchange: 	0.0000083980
+lef exchange: 	0.0000044608
+rig exchange: 	0.0000057090
+ 
+Current time: 5.966942
+bot exchange: 	0.0000688210
+top exchange: 	0.0000137489
+lef exchange: 	0.0000055579
+rig exchange: 	0.0000023260
+bot exchange: 	0.0000476050
+top exchange: 	0.0000102350
+lef exchange: 	0.0000147009
+rig exchange: 	0.0000124280
+ 
+Current time: 5.993073
+bot exchange: 	0.0000706939
+top exchange: 	0.0000085721
+lef exchange: 	0.0000043770
+rig exchange: 	0.0000054950
+bot exchange: 	0.0000482379
+top exchange: 	0.0000080320
+lef exchange: 	0.0000128460
+rig exchange: 	0.0000220858
+ 
+Current time: 6.000000
+bot exchange: 	0.0000677118
+top exchange: 	0.0000097500
+lef exchange: 	0.0000077528
+rig exchange: 	0.0000029590
+bot exchange: 	0.0000535951
+top exchange: 	0.0000098238
+lef exchange: 	0.0000021020
+rig exchange: 	0.0000215331
+ 
+Current time: 6.026131
+bot exchange: 	0.0000690110
+top exchange: 	0.0000090860
+lef exchange: 	0.0000057670
+rig exchange: 	0.0000046049
+bot exchange: 	0.0000568670
+top exchange: 	0.0000103631
+lef exchange: 	0.0000111051
+rig exchange: 	0.0000043511
+ 
+Current time: 6.052262
+bot exchange: 	0.0000680098
+top exchange: 	0.0000124369
+lef exchange: 	0.0000060960
+rig exchange: 	0.0000019399
+bot exchange: 	0.0000539611
+top exchange: 	0.0000129519
+lef exchange: 	0.0000056659
+rig exchange: 	0.0000059241
+ 
+Current time: 6.078393
+bot exchange: 	0.0000720501
+top exchange: 	0.0000089030
+lef exchange: 	0.0000066201
+rig exchange: 	0.0000027840
+bot exchange: 	0.0000514281
+top exchange: 	0.0000143109
+lef exchange: 	0.0000073321
+rig exchange: 	0.0000088110
+ 
+Current time: 6.104524
+bot exchange: 	0.0000741170
+top exchange: 	0.0000085891
+lef exchange: 	0.0000051700
+rig exchange: 	0.0000029549
+bot exchange: 	0.0000520488
+top exchange: 	0.0000188260
+lef exchange: 	0.0000021330
+rig exchange: 	0.0000131920
+ 
+Current time: 6.130654
+bot exchange: 	0.0000703491
+top exchange: 	0.0000096650
+lef exchange: 	0.0000057048
+rig exchange: 	0.0000024540
+bot exchange: 	0.0000468250
+top exchange: 	0.0000093279
+lef exchange: 	0.0000064170
+rig exchange: 	0.0000207759
+ 
+Current time: 6.156785
+bot exchange: 	0.0000679439
+top exchange: 	0.0000127500
+lef exchange: 	0.0000050371
+rig exchange: 	0.0000054210
+bot exchange: 	0.0000494050
+top exchange: 	0.0000107011
+lef exchange: 	0.0000050541
+rig exchange: 	0.0000192651
+ 
+Current time: 6.182915
+bot exchange: 	0.0000679488
+top exchange: 	0.0000097109
+lef exchange: 	0.0000111770
+rig exchange: 	0.0000025730
+bot exchange: 	0.0000496190
+top exchange: 	0.0000086129
+lef exchange: 	0.0000056340
+rig exchange: 	0.0000086480
+ 
+Current time: 6.209046
+bot exchange: 	0.0000738110
+top exchange: 	0.0000107170
+lef exchange: 	0.0000020121
+rig exchange: 	0.0000057949
+bot exchange: 	0.0000595578
+top exchange: 	0.0000102292
+lef exchange: 	0.0000019032
+rig exchange: 	0.0000069011
+ 
+Current time: 6.235176
+bot exchange: 	0.0000689500
+top exchange: 	0.0000097421
+lef exchange: 	0.0000087440
+rig exchange: 	0.0000020601
+bot exchange: 	0.0000500858
+top exchange: 	0.0000106469
+lef exchange: 	0.0000053640
+rig exchange: 	0.0000041479
+ 
+Current time: 6.261306
+bot exchange: 	0.0000694680
+top exchange: 	0.0000103661
+lef exchange: 	0.0000060799
+rig exchange: 	0.0000056650
+bot exchange: 	0.0000487659
+top exchange: 	0.0000102259
+lef exchange: 	0.0000090681
+rig exchange: 	0.0000091961
+ 
+Current time: 6.287437
+bot exchange: 	0.0000694040
+top exchange: 	0.0000137431
+lef exchange: 	0.0000059060
+rig exchange: 	0.0000054801
+bot exchange: 	0.0000476029
+top exchange: 	0.0000101409
+lef exchange: 	0.0000121570
+rig exchange: 	0.0000057050
+ 
+Current time: 6.313567
+bot exchange: 	0.0000718890
+top exchange: 	0.0000073898
+lef exchange: 	0.0000069630
+rig exchange: 	0.0000042110
+bot exchange: 	0.0000466309
+top exchange: 	0.0000111039
+lef exchange: 	0.0000075330
+rig exchange: 	0.0000092152
+ 
+Current time: 6.339697
+bot exchange: 	0.0000681940
+top exchange: 	0.0000108371
+lef exchange: 	0.0000053418
+rig exchange: 	0.0000021511
+bot exchange: 	0.0000495911
+top exchange: 	0.0000084322
+lef exchange: 	0.0000216160
+rig exchange: 	0.0000066559
+ 
+Current time: 6.365826
+bot exchange: 	0.0000695849
+top exchange: 	0.0000113801
+lef exchange: 	0.0000047239
+rig exchange: 	0.0000025039
+bot exchange: 	0.0000489610
+top exchange: 	0.0000101200
+lef exchange: 	0.0000146281
+rig exchange: 	0.0000092729
+ 
+Current time: 6.391956
+bot exchange: 	0.0000675970
+top exchange: 	0.0000100730
+lef exchange: 	0.0000054031
+rig exchange: 	0.0000028240
+bot exchange: 	0.0000478311
+top exchange: 	0.0000090911
+lef exchange: 	0.0000137659
+rig exchange: 	0.0000092071
+ 
+Current time: 6.418086
+bot exchange: 	0.0000703100
+top exchange: 	0.0000131668
+lef exchange: 	0.0000042440
+rig exchange: 	0.0000020319
+bot exchange: 	0.0000505229
+top exchange: 	0.0000087991
+lef exchange: 	0.0000025521
+rig exchange: 	0.0000108499
+ 
+Current time: 6.444216
+bot exchange: 	0.0000689849
+top exchange: 	0.0000086220
+lef exchange: 	0.0000055050
+rig exchange: 	0.0000054659
+bot exchange: 	0.0000485189
+top exchange: 	0.0000101761
+lef exchange: 	0.0000055102
+rig exchange: 	0.0000103451
+ 
+Current time: 6.470345
+bot exchange: 	0.0000724611
+top exchange: 	0.0000120820
+lef exchange: 	0.0000080909
+rig exchange: 	0.0000029460
+bot exchange: 	0.0000589290
+top exchange: 	0.0000089929
+lef exchange: 	0.0000030941
+rig exchange: 	0.0000069160
+ 
+Current time: 6.496475
+bot exchange: 	0.0000677500
+top exchange: 	0.0000113961
+lef exchange: 	0.0000046440
+rig exchange: 	0.0000030000
+bot exchange: 	0.0000519359
+top exchange: 	0.0000102241
+lef exchange: 	0.0000097121
+rig exchange: 	0.0000052250
+ 
+Current time: 6.522604
+bot exchange: 	0.0000695139
+top exchange: 	0.0000110590
+lef exchange: 	0.0000049709
+rig exchange: 	0.0000024280
+bot exchange: 	0.0000522709
+top exchange: 	0.0000102289
+lef exchange: 	0.0000108660
+rig exchange: 	0.0000101570
+ 
+Current time: 6.548734
+bot exchange: 	0.0000651821
+top exchange: 	0.0000099610
+lef exchange: 	0.0000100660
+rig exchange: 	0.0000020901
+bot exchange: 	0.0000465410
+top exchange: 	0.0000090469
+lef exchange: 	0.0000106681
+rig exchange: 	0.0000169470
+ 
+Current time: 6.574863
+bot exchange: 	0.0000684301
+top exchange: 	0.0000131698
+lef exchange: 	0.0000045171
+rig exchange: 	0.0000019360
+bot exchange: 	0.0000509250
+top exchange: 	0.0000187641
+lef exchange: 	0.0000020121
+rig exchange: 	0.0000156472
+ 
+Current time: 6.600992
+bot exchange: 	0.0000676450
+top exchange: 	0.0000134220
+lef exchange: 	0.0000044061
+rig exchange: 	0.0000021020
+bot exchange: 	0.0000502260
+top exchange: 	0.0000090841
+lef exchange: 	0.0000201110
+rig exchange: 	0.0000043530
+ 
+Current time: 6.627121
+bot exchange: 	0.0000698140
+top exchange: 	0.0000133759
+lef exchange: 	0.0000056052
+rig exchange: 	0.0000030228
+bot exchange: 	0.0000561511
+top exchange: 	0.0000107321
+lef exchange: 	0.0000106420
+rig exchange: 	0.0000055281
+ 
+Current time: 6.653250
+bot exchange: 	0.0000637281
+top exchange: 	0.0000101589
+lef exchange: 	0.0000045609
+rig exchange: 	0.0000056780
+bot exchange: 	0.0000505981
+top exchange: 	0.0000174418
+lef exchange: 	0.0000020121
+rig exchange: 	0.0000091679
+ 
+Current time: 6.679379
+bot exchange: 	0.0000686140
+top exchange: 	0.0000118229
+lef exchange: 	0.0000044750
+rig exchange: 	0.0000044159
+bot exchange: 	0.0000479210
+top exchange: 	0.0000107021
+lef exchange: 	0.0000098769
+rig exchange: 	0.0000108329
+ 
+Current time: 6.705508
+bot exchange: 	0.0000690729
+top exchange: 	0.0000095831
+lef exchange: 	0.0000089279
+rig exchange: 	0.0000020401
+bot exchange: 	0.0000496281
+top exchange: 	0.0000097640
+lef exchange: 	0.0000075870
+rig exchange: 	0.0000160260
+ 
+Current time: 6.731637
+bot exchange: 	0.0000683910
+top exchange: 	0.0000091679
+lef exchange: 	0.0000043209
+rig exchange: 	0.0000056170
+bot exchange: 	0.0000575799
+top exchange: 	0.0000112259
+lef exchange: 	0.0000021271
+rig exchange: 	0.0000055130
+ 
+Current time: 6.757766
+bot exchange: 	0.0000707619
+top exchange: 	0.0000090171
+lef exchange: 	0.0000044839
+rig exchange: 	0.0000043400
+bot exchange: 	0.0000506490
+top exchange: 	0.0000087041
+lef exchange: 	0.0000063502
+rig exchange: 	0.0000064909
+ 
+Current time: 6.783894
+bot exchange: 	0.0000661500
+top exchange: 	0.0000134851
+lef exchange: 	0.0000043511
+rig exchange: 	0.0000024030
+bot exchange: 	0.0000490041
+top exchange: 	0.0000087009
+lef exchange: 	0.0000147419
+rig exchange: 	0.0000133940
+ 
+Current time: 6.810023
+bot exchange: 	0.0000699451
+top exchange: 	0.0000115160
+lef exchange: 	0.0000047828
+rig exchange: 	0.0000053411
+bot exchange: 	0.0000497929
+top exchange: 	0.0000167300
+lef exchange: 	0.0000073900
+rig exchange: 	0.0000075530
+ 
+Current time: 6.836151
+bot exchange: 	0.0000689500
+top exchange: 	0.0000097388
+lef exchange: 	0.0000046222
+rig exchange: 	0.0000025791
+bot exchange: 	0.0000578191
+top exchange: 	0.0000094560
+lef exchange: 	0.0000052389
+rig exchange: 	0.0000096350
+ 
+Current time: 6.862280
+bot exchange: 	0.0000654149
+top exchange: 	0.0000128590
+lef exchange: 	0.0000048671
+rig exchange: 	0.0000044398
+bot exchange: 	0.0000520020
+top exchange: 	0.0000093239
+lef exchange: 	0.0000095391
+rig exchange: 	0.0000044501
+ 
+Current time: 6.888408
+bot exchange: 	0.0000696129
+top exchange: 	0.0000095728
+lef exchange: 	0.0000062890
+rig exchange: 	0.0000027369
+bot exchange: 	0.0000475131
+top exchange: 	0.0000103719
+lef exchange: 	0.0000071230
+rig exchange: 	0.0000098590
+ 
+Current time: 6.914537
+bot exchange: 	0.0000688990
+top exchange: 	0.0000098951
+lef exchange: 	0.0000091929
+rig exchange: 	0.0000021351
+bot exchange: 	0.0000479571
+top exchange: 	0.0000109822
+lef exchange: 	0.0000145540
+rig exchange: 	0.0000074310
+ 
+Current time: 6.940665
+bot exchange: 	0.0000708010
+top exchange: 	0.0000078729
+lef exchange: 	0.0000052070
+rig exchange: 	0.0000046780
+bot exchange: 	0.0000538239
+top exchange: 	0.0000097400
+lef exchange: 	0.0000092729
+rig exchange: 	0.0000076939
+ 
+Current time: 6.966793
+bot exchange: 	0.0000675069
+top exchange: 	0.0000129091
+lef exchange: 	0.0000052410
+rig exchange: 	0.0000049290
+bot exchange: 	0.0000588379
+top exchange: 	0.0000093391
+lef exchange: 	0.0000087980
+rig exchange: 	0.0000042368
+ 
+Current time: 6.992921
+bot exchange: 	0.0000667758
+top exchange: 	0.0000126341
+lef exchange: 	0.0000056319
+rig exchange: 	0.0000026030
+bot exchange: 	0.0000537750
+top exchange: 	0.0000143980
+lef exchange: 	0.0000052671
+rig exchange: 	0.0000132539
+ 
+Current time: 7.000000
+bot exchange: 	0.0000682592
+top exchange: 	0.0000114490
+lef exchange: 	0.0000054720
+rig exchange: 	0.0000027411
+bot exchange: 	0.0000528251
+top exchange: 	0.0000099428
+lef exchange: 	0.0000107980
+rig exchange: 	0.0000054250
+ 
+Current time: 7.026128
+bot exchange: 	0.0000712438
+top exchange: 	0.0000096292
+lef exchange: 	0.0000056371
+rig exchange: 	0.0000027041
+bot exchange: 	0.0000539310
+top exchange: 	0.0000106811
+lef exchange: 	0.0000103312
+rig exchange: 	0.0000053050
+ 
+Current time: 7.052256
+bot exchange: 	0.0000675479
+top exchange: 	0.0000106520
+lef exchange: 	0.0000076641
+rig exchange: 	0.0000019800
+bot exchange: 	0.0000453899
+top exchange: 	0.0000177999
+lef exchange: 	0.0000055381
+rig exchange: 	0.0000107461
+ 
+Current time: 7.078384
+bot exchange: 	0.0000675409
+top exchange: 	0.0000118550
+lef exchange: 	0.0000079521
+rig exchange: 	0.0000020610
+bot exchange: 	0.0000545969
+top exchange: 	0.0000090941
+lef exchange: 	0.0000057588
+rig exchange: 	0.0000040450
+ 
+Current time: 7.104512
+bot exchange: 	0.0000658070
+top exchange: 	0.0000098110
+lef exchange: 	0.0000086410
+rig exchange: 	0.0000029670
+bot exchange: 	0.0000488660
+top exchange: 	0.0000104348
+lef exchange: 	0.0000099652
+rig exchange: 	0.0000106848
+ 
+Current time: 7.130640
+bot exchange: 	0.0000696771
+top exchange: 	0.0000098229
+lef exchange: 	0.0000103798
+rig exchange: 	0.0000054960
+bot exchange: 	0.0000497240
+top exchange: 	0.0000130562
+lef exchange: 	0.0000115971
+rig exchange: 	0.0000057521
+ 
+Current time: 7.156767
+bot exchange: 	0.0000688180
+top exchange: 	0.0000096411
+lef exchange: 	0.0000079500
+rig exchange: 	0.0000042631
+bot exchange: 	0.0000500260
+top exchange: 	0.0000111400
+lef exchange: 	0.0000027090
+rig exchange: 	0.0000091279
+ 
+Current time: 7.182895
+bot exchange: 	0.0000726290
+top exchange: 	0.0000101381
+lef exchange: 	0.0000070999
+rig exchange: 	0.0000027260
+bot exchange: 	0.0000510621
+top exchange: 	0.0000089761
+lef exchange: 	0.0000027681
+rig exchange: 	0.0000137580
+ 
+Current time: 7.209023
+bot exchange: 	0.0000658380
+top exchange: 	0.0000110921
+lef exchange: 	0.0000077090
+rig exchange: 	0.0000029369
+bot exchange: 	0.0000468579
+top exchange: 	0.0000101000
+lef exchange: 	0.0000041921
+rig exchange: 	0.0000086389
+ 
+Current time: 7.235150
+bot exchange: 	0.0000699831
+top exchange: 	0.0000098429
+lef exchange: 	0.0000071209
+rig exchange: 	0.0000029919
+bot exchange: 	0.0000494500
+top exchange: 	0.0000180521
+lef exchange: 	0.0000021609
+rig exchange: 	0.0000144660
+ 
+Current time: 7.261278
+bot exchange: 	0.0000695141
+top exchange: 	0.0000094720
+lef exchange: 	0.0000104760
+rig exchange: 	0.0000021060
+bot exchange: 	0.0000519271
+top exchange: 	0.0000128220
+lef exchange: 	0.0000093000
+rig exchange: 	0.0000068410
+ 
+Current time: 7.287405
+bot exchange: 	0.0000784139
+top exchange: 	0.0000089379
+lef exchange: 	0.0000068478
+rig exchange: 	0.0000028650
+bot exchange: 	0.0000525950
+top exchange: 	0.0000103500
+lef exchange: 	0.0000020091
+rig exchange: 	0.0000060650
+ 
+Current time: 7.313532
+bot exchange: 	0.0000684250
+top exchange: 	0.0000093381
+lef exchange: 	0.0000089998
+rig exchange: 	0.0000027411
+bot exchange: 	0.0000573429
+top exchange: 	0.0000095251
+lef exchange: 	0.0000025441
+rig exchange: 	0.0000102411
+ 
+Current time: 7.339660
+bot exchange: 	0.0000711640
+top exchange: 	0.0000099950
+lef exchange: 	0.0000056932
+rig exchange: 	0.0000024480
+bot exchange: 	0.0000542041
+top exchange: 	0.0000123151
+lef exchange: 	0.0000057272
+rig exchange: 	0.0000095752
+ 
+Current time: 7.365787
+bot exchange: 	0.0000651898
+top exchange: 	0.0000092851
+lef exchange: 	0.0000059442
+rig exchange: 	0.0000049840
+bot exchange: 	0.0000502551
+top exchange: 	0.0000113989
+lef exchange: 	0.0000031141
+rig exchange: 	0.0000059400
+ 
+Current time: 7.391914
+bot exchange: 	0.0000704259
+top exchange: 	0.0000120930
+lef exchange: 	0.0000061921
+rig exchange: 	0.0000028231
+bot exchange: 	0.0000504109
+top exchange: 	0.0000115619
+lef exchange: 	0.0000165058
+rig exchange: 	0.0000053570
+ 
+Current time: 7.418041
+bot exchange: 	0.0000655910
+top exchange: 	0.0000098280
+lef exchange: 	0.0000102778
+rig exchange: 	0.0000030419
+bot exchange: 	0.0000646419
+top exchange: 	0.0000096059
+lef exchange: 	0.0000054990
+rig exchange: 	0.0000024319
+ 
+Current time: 7.444168
+bot exchange: 	0.0000707419
+top exchange: 	0.0000121989
+lef exchange: 	0.0000051230
+rig exchange: 	0.0000025460
+bot exchange: 	0.0000494930
+top exchange: 	0.0000102590
+lef exchange: 	0.0000185759
+rig exchange: 	0.0000046380
+ 
+Current time: 7.470295
+bot exchange: 	0.0000646519
+top exchange: 	0.0000125498
+lef exchange: 	0.0000065721
+rig exchange: 	0.0000024352
+bot exchange: 	0.0000510528
+top exchange: 	0.0000099789
+lef exchange: 	0.0000086839
+rig exchange: 	0.0000106611
+ 
+Current time: 7.496422
+bot exchange: 	0.0000706271
+top exchange: 	0.0000097139
+lef exchange: 	0.0000082359
+rig exchange: 	0.0000023940
+bot exchange: 	0.0000679530
+top exchange: 	0.0000093752
+lef exchange: 	0.0000025460
+rig exchange: 	0.0000057190
+ 
+Current time: 7.522549
+bot exchange: 	0.0000745659
+top exchange: 	0.0000128611
+lef exchange: 	0.0000644128
+rig exchange: 	0.0000021830
+bot exchange: 	0.0000512451
+top exchange: 	0.0000148420
+lef exchange: 	0.0000073281
+rig exchange: 	0.0000090089
+ 
+Current time: 7.548676
+bot exchange: 	0.0000707840
+top exchange: 	0.0000100760
+lef exchange: 	0.0000042620
+rig exchange: 	0.0000056569
+bot exchange: 	0.0000529508
+top exchange: 	0.0000107449
+lef exchange: 	0.0000108331
+rig exchange: 	0.0000094881
+ 
+Current time: 7.574803
+bot exchange: 	0.0000743740
+top exchange: 	0.0000112820
+lef exchange: 	0.0000057509
+rig exchange: 	0.0000059812
+bot exchange: 	0.0000478879
+top exchange: 	0.0000105528
+lef exchange: 	0.0000042510
+rig exchange: 	0.0000054131
+ 
+Current time: 7.600929
+bot exchange: 	0.0000652538
+top exchange: 	0.0000117940
+lef exchange: 	0.0000053600
+rig exchange: 	0.0000020221
+bot exchange: 	0.0000538710
+top exchange: 	0.0000178490
+lef exchange: 	0.0000022009
+rig exchange: 	0.0000109789
+ 
+Current time: 7.627056
+bot exchange: 	0.0000688690
+top exchange: 	0.0000080231
+lef exchange: 	0.0000091642
+rig exchange: 	0.0000021229
+bot exchange: 	0.0000461810
+top exchange: 	0.0000093251
+lef exchange: 	0.0000076152
+rig exchange: 	0.0000267008
+ 
+Current time: 7.653183
+bot exchange: 	0.0000650070
+top exchange: 	0.0000120020
+lef exchange: 	0.0000081079
+rig exchange: 	0.0000020671
+bot exchange: 	0.0000485689
+top exchange: 	0.0000096299
+lef exchange: 	0.0000071400
+rig exchange: 	0.0000248379
+ 
+Current time: 7.679309
+bot exchange: 	0.0000672459
+top exchange: 	0.0000112802
+lef exchange: 	0.0000052860
+rig exchange: 	0.0000020121
+bot exchange: 	0.0000508018
+top exchange: 	0.0000108911
+lef exchange: 	0.0000092431
+rig exchange: 	0.0000089889
+ 
+Current time: 7.705436
+bot exchange: 	0.0000747649
+top exchange: 	0.0000110760
+lef exchange: 	0.0000063840
+rig exchange: 	0.0000029311
+bot exchange: 	0.0000670122
+top exchange: 	0.0000108150
+lef exchange: 	0.0000029411
+rig exchange: 	0.0000053251
+ 
+Current time: 7.731562
+bot exchange: 	0.0000699111
+top exchange: 	0.0000119859
+lef exchange: 	0.0000057649
+rig exchange: 	0.0000024061
+bot exchange: 	0.0000481149
+top exchange: 	0.0000098899
+lef exchange: 	0.0000142930
+rig exchange: 	0.0000052950
+ 
+Current time: 7.757688
+bot exchange: 	0.0000660990
+top exchange: 	0.0000123861
+lef exchange: 	0.0000079002
+rig exchange: 	0.0000022321
+bot exchange: 	0.0000490581
+top exchange: 	0.0000095060
+lef exchange: 	0.0000073800
+rig exchange: 	0.0000205981
+ 
+Current time: 7.783815
+bot exchange: 	0.0000703009
+top exchange: 	0.0000083840
+lef exchange: 	0.0000068150
+rig exchange: 	0.0000052550
+bot exchange: 	0.0000488202
+top exchange: 	0.0000215708
+lef exchange: 	0.0000019961
+rig exchange: 	0.0000076680
+ 
+Current time: 7.809941
+bot exchange: 	0.0000651001
+top exchange: 	0.0000090760
+lef exchange: 	0.0000125570
+rig exchange: 	0.0000024689
+bot exchange: 	0.0000556901
+top exchange: 	0.0000106739
+lef exchange: 	0.0000071379
+rig exchange: 	0.0000053491
+ 
+Current time: 7.836067
+bot exchange: 	0.0000700131
+top exchange: 	0.0000115801
+lef exchange: 	0.0000064808
+rig exchange: 	0.0000020768
+bot exchange: 	0.0000538880
+top exchange: 	0.0000115840
+lef exchange: 	0.0000162951
+rig exchange: 	0.0000020601
+ 
+Current time: 7.862193
+bot exchange: 	0.0000738909
+top exchange: 	0.0000093661
+lef exchange: 	0.0000019451
+rig exchange: 	0.0000045800
+bot exchange: 	0.0000499580
+top exchange: 	0.0000082131
+lef exchange: 	0.0000172181
+rig exchange: 	0.0000041530
+ 
+Current time: 7.888319
+bot exchange: 	0.0000684829
+top exchange: 	0.0000101810
+lef exchange: 	0.0000078161
+rig exchange: 	0.0000029081
+bot exchange: 	0.0000553380
+top exchange: 	0.0000102199
+lef exchange: 	0.0000075179
+rig exchange: 	0.0000054101
+ 
+Current time: 7.914445
+bot exchange: 	0.0000676981
+top exchange: 	0.0000103901
+lef exchange: 	0.0000074671
+rig exchange: 	0.0000041781
+bot exchange: 	0.0000463210
+top exchange: 	0.0000094401
+lef exchange: 	0.0000075900
+rig exchange: 	0.0000155359
+ 
+Current time: 7.940571
+bot exchange: 	0.0000678098
+top exchange: 	0.0000106930
+lef exchange: 	0.0000046659
+rig exchange: 	0.0000027849
+bot exchange: 	0.0000570992
+top exchange: 	0.0000081311
+lef exchange: 	0.0000058771
+rig exchange: 	0.0000143391
+ 
+Current time: 7.966697
+bot exchange: 	0.0000706841
+top exchange: 	0.0000114150
+lef exchange: 	0.0000071968
+rig exchange: 	0.0000019921
+bot exchange: 	0.0000481152
+top exchange: 	0.0000115370
+lef exchange: 	0.0000198181
+rig exchange: 	0.0000052399
+ 
+Current time: 7.992823
+bot exchange: 	0.0000672981
+top exchange: 	0.0000097749
+lef exchange: 	0.0000062331
+rig exchange: 	0.0000029919
+bot exchange: 	0.0000497650
+top exchange: 	0.0000103561
+lef exchange: 	0.0000123510
+rig exchange: 	0.0000121149
+ 
+Current time: 8.000000
+bot exchange: 	0.0000662659
+top exchange: 	0.0000115321
+lef exchange: 	0.0000061691
+rig exchange: 	0.0000025800
+bot exchange: 	0.0000501832
+top exchange: 	0.0000153810
+lef exchange: 	0.0000051220
+rig exchange: 	0.0000147552
+ 
+Current time: 8.026126
+bot exchange: 	0.0000666732
+top exchange: 	0.0000113782
+lef exchange: 	0.0000042599
+rig exchange: 	0.0000044662
+bot exchange: 	0.0000478602
+top exchange: 	0.0000079160
+lef exchange: 	0.0000169610
+rig exchange: 	0.0000147840
+ 
+Current time: 8.052252
+bot exchange: 	0.0000669239
+top exchange: 	0.0000142229
+lef exchange: 	0.0000043681
+rig exchange: 	0.0000023700
+bot exchange: 	0.0000514451
+top exchange: 	0.0000090729
+lef exchange: 	0.0000218991
+rig exchange: 	0.0000019469
+ 
+Current time: 8.078377
+bot exchange: 	0.0000692711
+top exchange: 	0.0000129361
+lef exchange: 	0.0000042201
+rig exchange: 	0.0000041630
+bot exchange: 	0.0000497650
+top exchange: 	0.0000165792
+lef exchange: 	0.0000023909
+rig exchange: 	0.0000171822
+ 
+Current time: 8.104503
+bot exchange: 	0.0000660790
+top exchange: 	0.0000128599
+lef exchange: 	0.0000055321
+rig exchange: 	0.0000021451
+bot exchange: 	0.0000476490
+top exchange: 	0.0000088229
+lef exchange: 	0.0000217711
+rig exchange: 	0.0000048620
+ 
+Current time: 8.130628
+bot exchange: 	0.0000693901
+top exchange: 	0.0000124651
+lef exchange: 	0.0000042601
+rig exchange: 	0.0000028661
+bot exchange: 	0.0000492409
+top exchange: 	0.0000087901
+lef exchange: 	0.0000022571
+rig exchange: 	0.0000118250
+ 
+Current time: 8.156754
+bot exchange: 	0.0000665239
+top exchange: 	0.0000109780
+lef exchange: 	0.0000044000
+rig exchange: 	0.0000024971
+bot exchange: 	0.0000566130
+top exchange: 	0.0000088399
+lef exchange: 	0.0000102220
+rig exchange: 	0.0000120611
+ 
+Current time: 8.182880
+bot exchange: 	0.0000675740
+top exchange: 	0.0000088790
+lef exchange: 	0.0000061241
+rig exchange: 	0.0000028980
+bot exchange: 	0.0000509741
+top exchange: 	0.0000121400
+lef exchange: 	0.0000053300
+rig exchange: 	0.0000124180
+ 
+Current time: 8.209005
+bot exchange: 	0.0000676329
+top exchange: 	0.0000095118
+lef exchange: 	0.0000057460
+rig exchange: 	0.0000028701
+bot exchange: 	0.0000508900
+top exchange: 	0.0000102702
+lef exchange: 	0.0000043639
+rig exchange: 	0.0000122790
+ 
+Current time: 8.235130
+bot exchange: 	0.0000638939
+top exchange: 	0.0000103770
+lef exchange: 	0.0000072829
+rig exchange: 	0.0000025160
+bot exchange: 	0.0000531001
+top exchange: 	0.0000098650
+lef exchange: 	0.0000052610
+rig exchange: 	0.0000129479
+ 
+Current time: 8.261256
+bot exchange: 	0.0000711251
+top exchange: 	0.0000099349
+lef exchange: 	0.0000057651
+rig exchange: 	0.0000028401
+bot exchange: 	0.0000536791
+top exchange: 	0.0000125440
+lef exchange: 	0.0000041211
+rig exchange: 	0.0000141470
+ 
+Current time: 8.287381
+bot exchange: 	0.0000667381
+top exchange: 	0.0000099139
+lef exchange: 	0.0000064811
+rig exchange: 	0.0000029590
+bot exchange: 	0.0000503839
+top exchange: 	0.0000102601
+lef exchange: 	0.0000140709
+rig exchange: 	0.0000149629
+ 
+Current time: 8.313506
+bot exchange: 	0.0000668061
+top exchange: 	0.0000086960
+lef exchange: 	0.0000092750
+rig exchange: 	0.0000022969
+bot exchange: 	0.0000543338
+top exchange: 	0.0000096401
+lef exchange: 	0.0000091882
+rig exchange: 	0.0000107400
+ 
+Current time: 8.339631
+bot exchange: 	0.0000655919
+top exchange: 	0.0000111640
+lef exchange: 	0.0000048829
+rig exchange: 	0.0000023250
+bot exchange: 	0.0000497629
+top exchange: 	0.0000167880
+lef exchange: 	0.0000094050
+rig exchange: 	0.0000126641
+ 
+Current time: 8.365757
+bot exchange: 	0.0000675388
+top exchange: 	0.0000113340
+lef exchange: 	0.0000041230
+rig exchange: 	0.0000046159
+bot exchange: 	0.0000587751
+top exchange: 	0.0000105768
+lef exchange: 	0.0000143901
+rig exchange: 	0.0000020380
+ 
+Current time: 8.391882
+bot exchange: 	0.0000657120
+top exchange: 	0.0000111451
+lef exchange: 	0.0000066098
+rig exchange: 	0.0000021171
+bot exchange: 	0.0000534730
+top exchange: 	0.0000089989
+lef exchange: 	0.0000073710
+rig exchange: 	0.0000134811
+ 
+Current time: 8.418007
+bot exchange: 	0.0000691591
+top exchange: 	0.0000102301
+lef exchange: 	0.0000098741
+rig exchange: 	0.0000024810
+bot exchange: 	0.0000514521
+top exchange: 	0.0000089831
+lef exchange: 	0.0000042028
+rig exchange: 	0.0000071579
+ 
+Current time: 8.444132
+bot exchange: 	0.0000647560
+top exchange: 	0.0000119258
+lef exchange: 	0.0000061581
+rig exchange: 	0.0000018461
+bot exchange: 	0.0000493019
+top exchange: 	0.0000093360
+lef exchange: 	0.0000076699
+rig exchange: 	0.0000313711
+ 
+Current time: 8.470257
+bot exchange: 	0.0000706741
+top exchange: 	0.0000119039
+lef exchange: 	0.0000109409
+rig exchange: 	0.0000030790
+bot exchange: 	0.0000504211
+top exchange: 	0.0000091142
+lef exchange: 	0.0000072659
+rig exchange: 	0.0000077309
+ 
+Current time: 8.496382
+bot exchange: 	0.0000737300
+top exchange: 	0.0000122199
+lef exchange: 	0.0000058990
+rig exchange: 	0.0000028340
+bot exchange: 	0.0000569751
+top exchange: 	0.0000086620
+lef exchange: 	0.0000047160
+rig exchange: 	0.0000061288
+ 
+Current time: 8.522506
+bot exchange: 	0.0000678450
+top exchange: 	0.0000105230
+lef exchange: 	0.0000080692
+rig exchange: 	0.0000028058
+bot exchange: 	0.0000499240
+top exchange: 	0.0000098110
+lef exchange: 	0.0000095442
+rig exchange: 	0.0003588349
+ 
+Current time: 8.548631
+bot exchange: 	0.0000674231
+top exchange: 	0.0000097980
+lef exchange: 	0.0000077400
+rig exchange: 	0.0000020969
+bot exchange: 	0.0000482220
+top exchange: 	0.0000195729
+lef exchange: 	0.0000030370
+rig exchange: 	0.0000093181
+ 
+Current time: 8.574756
+bot exchange: 	0.0000690890
+top exchange: 	0.0000097789
+lef exchange: 	0.0000110001
+rig exchange: 	0.0000019949
+bot exchange: 	0.0000498479
+top exchange: 	0.0000095118
+lef exchange: 	0.0000078520
+rig exchange: 	0.0000223941
+ 
+Current time: 8.600881
+bot exchange: 	0.0000695339
+top exchange: 	0.0000108369
+lef exchange: 	0.0000044110
+rig exchange: 	0.0000029600
+bot exchange: 	0.0000509960
+top exchange: 	0.0000099631
+lef exchange: 	0.0000129691
+rig exchange: 	0.0000117370
+ 
+Current time: 8.627005
+bot exchange: 	0.0000726329
+top exchange: 	0.0000126071
+lef exchange: 	0.0000059740
+rig exchange: 	0.0000028301
+bot exchange: 	0.0000494439
+top exchange: 	0.0000083791
+lef exchange: 	0.0000075200
+rig exchange: 	0.0000125819
+ 
+Current time: 8.653130
+bot exchange: 	0.0000640780
+top exchange: 	0.0000100469
+lef exchange: 	0.0000098909
+rig exchange: 	0.0000025600
+bot exchange: 	0.0000503440
+top exchange: 	0.0000106841
+lef exchange: 	0.0000040960
+rig exchange: 	0.0000126020
+ 
+Current time: 8.679254
+bot exchange: 	0.0000702341
+top exchange: 	0.0000094490
+lef exchange: 	0.0000095700
+rig exchange: 	0.0000024009
+bot exchange: 	0.0000550160
+top exchange: 	0.0000104380
+lef exchange: 	0.0000074981
+rig exchange: 	0.0000058061
+ 
+Current time: 8.705379
+bot exchange: 	0.0000659749
+top exchange: 	0.0000087321
+lef exchange: 	0.0000045530
+rig exchange: 	0.0000029819
+bot exchange: 	0.0000498819
+top exchange: 	0.0000100890
+lef exchange: 	0.0000075470
+rig exchange: 	0.0000180509
+ 
+Current time: 8.731503
+bot exchange: 	0.0000674059
+top exchange: 	0.0000088960
+lef exchange: 	0.0000078999
+rig exchange: 	0.0000020040
+bot exchange: 	0.0000541680
+top exchange: 	0.0000091160
+lef exchange: 	0.0001366930
+rig exchange: 	0.0000022121
+ 
+Current time: 8.757628
+bot exchange: 	0.0000706681
+top exchange: 	0.0000099910
+lef exchange: 	0.0000083321
+rig exchange: 	0.0000024529
+bot exchange: 	0.0000471491
+top exchange: 	0.0000139200
+lef exchange: 	0.0000058969
+rig exchange: 	0.0000140800
+ 
+Current time: 8.783752
+bot exchange: 	0.0000707710
+top exchange: 	0.0000091868
+lef exchange: 	0.0000064808
+rig exchange: 	0.0000055090
+bot exchange: 	0.0000527799
+top exchange: 	0.0000106571
+lef exchange: 	0.0000044222
+rig exchange: 	0.0000088601
+ 
+Current time: 8.809877
+bot exchange: 	0.0000667670
+top exchange: 	0.0000093211
+lef exchange: 	0.0000044170
+rig exchange: 	0.0000044859
+bot exchange: 	0.0000486341
+top exchange: 	0.0000134239
+lef exchange: 	0.0000046429
+rig exchange: 	0.0000146308
+ 
+Current time: 8.836001
+bot exchange: 	0.0000674310
+top exchange: 	0.0000130970
+lef exchange: 	0.0000054671
+rig exchange: 	0.0000024859
+bot exchange: 	0.0000599970
+top exchange: 	0.0000099018
+lef exchange: 	0.0000026608
+rig exchange: 	0.0000121880
+ 
+Current time: 8.862125
+bot exchange: 	0.0000632489
+top exchange: 	0.0000090040
+lef exchange: 	0.0000114241
+rig exchange: 	0.0000021160
+bot exchange: 	0.0000532470
+top exchange: 	0.0000084909
+lef exchange: 	0.0000124979
+rig exchange: 	0.0000042878
+ 
+Current time: 8.888249
+bot exchange: 	0.0000670599
+top exchange: 	0.0000118311
+lef exchange: 	0.0000044182
+rig exchange: 	0.0000019730
+bot exchange: 	0.0000482530
+top exchange: 	0.0000083221
+lef exchange: 	0.0000142942
+rig exchange: 	0.0000215210
+ 
+Current time: 8.914373
+bot exchange: 	0.0000666711
+top exchange: 	0.0000080662
+lef exchange: 	0.0000109600
+rig exchange: 	0.0000029402
+bot exchange: 	0.0000516889
+top exchange: 	0.0000101191
+lef exchange: 	0.0000111589
+rig exchange: 	0.0000097761
+ 
+Current time: 8.940498
+bot exchange: 	0.0000686189
+top exchange: 	0.0000118411
+lef exchange: 	0.0000098110
+rig exchange: 	0.0000028638
+bot exchange: 	0.0000516020
+top exchange: 	0.0000098979
+lef exchange: 	0.0000103430
+rig exchange: 	0.0000050250
+ 
+Current time: 8.966622
+bot exchange: 	0.0000656440
+top exchange: 	0.0000123091
+lef exchange: 	0.0000054380
+rig exchange: 	0.0000028550
+bot exchange: 	0.0000462320
+top exchange: 	0.0000103621
+lef exchange: 	0.0000140129
+rig exchange: 	0.0000104220
+ 
+Current time: 8.992746
+bot exchange: 	0.0000729002
+top exchange: 	0.0000100641
+lef exchange: 	0.0000068902
+rig exchange: 	0.0000054329
+bot exchange: 	0.0000622161
+top exchange: 	0.0000100811
+lef exchange: 	0.0000020252
+rig exchange: 	0.0000055470
+ 
+Current time: 9.000000
+bot exchange: 	0.0000693980
+top exchange: 	0.0000113309
+lef exchange: 	0.0000074469
+rig exchange: 	0.0000030310
+bot exchange: 	0.0000671670
+top exchange: 	0.0000091479
+lef exchange: 	0.0000020301
+rig exchange: 	0.0000056932
+ 
+Current time: 9.026124
+bot exchange: 	0.0000687190
+top exchange: 	0.0000089109
+lef exchange: 	0.0000088920
+rig exchange: 	0.0000025490
+bot exchange: 	0.0000523520
+top exchange: 	0.0000107829
+lef exchange: 	0.0000018300
+rig exchange: 	0.0000106080
+ 
+Current time: 9.052248
+bot exchange: 	0.0000653542
+top exchange: 	0.0000096408
+lef exchange: 	0.0000087810
+rig exchange: 	0.0000025970
+bot exchange: 	0.0000569029
+top exchange: 	0.0000102129
+lef exchange: 	0.0000021160
+rig exchange: 	0.0000046962
+ 
+Current time: 9.078372
+bot exchange: 	0.0000669870
+top exchange: 	0.0000101328
+lef exchange: 	0.0000110511
+rig exchange: 	0.0000020780
+bot exchange: 	0.0000508330
+top exchange: 	0.0000088308
+lef exchange: 	0.0000095870
+rig exchange: 	0.0000109999
+ 
+Current time: 9.104496
+bot exchange: 	0.0000689889
+top exchange: 	0.0000091901
+lef exchange: 	0.0000080760
+rig exchange: 	0.0000021290
+bot exchange: 	0.0000505890
+top exchange: 	0.0000130001
+lef exchange: 	0.0000082650
+rig exchange: 	0.0000115971
+ 
+Current time: 9.130619
+bot exchange: 	0.0000657290
+top exchange: 	0.0000148299
+lef exchange: 	0.0000046121
+rig exchange: 	0.0000021639
+bot exchange: 	0.0000545748
+top exchange: 	0.0000089400
+lef exchange: 	0.0000147810
+rig exchange: 	0.0000064501
+ 
+Current time: 9.156743
+bot exchange: 	0.0000646280
+top exchange: 	0.0000107391
+lef exchange: 	0.0000041660
+rig exchange: 	0.0000048110
+bot exchange: 	0.0000509180
+top exchange: 	0.0000086690
+lef exchange: 	0.0000132362
+rig exchange: 	0.0000132381
+ 
+Current time: 9.182867
+bot exchange: 	0.0000703211
+top exchange: 	0.0000094310
+lef exchange: 	0.0000085540
+rig exchange: 	0.0000030051
+bot exchange: 	0.0000522321
+top exchange: 	0.0000100429
+lef exchange: 	0.0000062832
+rig exchange: 	0.0000184230
+ 
+Current time: 9.208990
+bot exchange: 	0.0000670792
+top exchange: 	0.0000094580
+lef exchange: 	0.0000042780
+rig exchange: 	0.0000053691
+bot exchange: 	0.0000499049
+top exchange: 	0.0000173550
+lef exchange: 	0.0000041111
+rig exchange: 	0.0000050340
+ 
+Current time: 9.235114
+bot exchange: 	0.0000703640
+top exchange: 	0.0000114490
+lef exchange: 	0.0000052410
+rig exchange: 	0.0000042480
+bot exchange: 	0.0000497210
+top exchange: 	0.0000097400
+lef exchange: 	0.0000077079
+rig exchange: 	0.0000141959
+ 
+Current time: 9.261238
+bot exchange: 	0.0000676229
+top exchange: 	0.0000144339
+lef exchange: 	0.0000057060
+rig exchange: 	0.0000029050
+bot exchange: 	0.0000487750
+top exchange: 	0.0000100841
+lef exchange: 	0.0000089949
+rig exchange: 	0.0000088071
+ 
+Current time: 9.287361
+bot exchange: 	0.0000705800
+top exchange: 	0.0000091242
+lef exchange: 	0.0000046878
+rig exchange: 	0.0000028871
+bot exchange: 	0.0000487051
+top exchange: 	0.0000184961
+lef exchange: 	0.0000052119
+rig exchange: 	0.0000120769
+ 
+Current time: 9.313485
+bot exchange: 	0.0000678501
+top exchange: 	0.0000091640
+lef exchange: 	0.0000081460
+rig exchange: 	0.0000045439
+bot exchange: 	0.0000528640
+top exchange: 	0.0000100681
+lef exchange: 	0.0000051111
+rig exchange: 	0.0000076210
+ 
+Current time: 9.339608
+bot exchange: 	0.0000663451
+top exchange: 	0.0000121461
+lef exchange: 	0.0000062580
+rig exchange: 	0.0000029670
+bot exchange: 	0.0000523219
+top exchange: 	0.0000094280
+lef exchange: 	0.0000089181
+rig exchange: 	0.0000104150
+ 
+Current time: 9.365731
+bot exchange: 	0.0000676571
+top exchange: 	0.0000120290
+lef exchange: 	0.0000044040
+rig exchange: 	0.0000025760
+bot exchange: 	0.0000469680
+top exchange: 	0.0000093200
+lef exchange: 	0.0000135100
+rig exchange: 	0.0000056990
+ 
+Current time: 9.391855
+bot exchange: 	0.0000698131
+top exchange: 	0.0000077111
+lef exchange: 	0.0000058340
+rig exchange: 	0.0000055290
+bot exchange: 	0.0000598291
+top exchange: 	0.0000097621
+lef exchange: 	0.0000050580
+rig exchange: 	0.0000054350
+ 
+Current time: 9.417978
+bot exchange: 	0.0000702362
+top exchange: 	0.0000138150
+lef exchange: 	0.0000054680
+rig exchange: 	0.0000026301
+bot exchange: 	0.0000615341
+top exchange: 	0.0000084662
+lef exchange: 	0.0000020140
+rig exchange: 	0.0000057281
+ 
+Current time: 9.444101
+bot exchange: 	0.0000680268
+top exchange: 	0.0000115200
+lef exchange: 	0.0000048170
+rig exchange: 	0.0000047870
+bot exchange: 	0.0000508630
+top exchange: 	0.0000100809
+lef exchange: 	0.0000160760
+rig exchange: 	0.0000076429
+ 
+Current time: 9.470224
+bot exchange: 	0.0000657649
+top exchange: 	0.0000082061
+lef exchange: 	0.0000085591
+rig exchange: 	0.0000021139
+bot exchange: 	0.0000501920
+top exchange: 	0.0000084350
+lef exchange: 	0.0000086110
+rig exchange: 	0.0000086438
+ 
+Current time: 9.496348
+bot exchange: 	0.0000712210
+top exchange: 	0.0000126481
+lef exchange: 	0.0000030492
+rig exchange: 	0.0000047840
+bot exchange: 	0.0000539930
+top exchange: 	0.0000077679
+lef exchange: 	0.0000058571
+rig exchange: 	0.0000141449
+ 
+Current time: 9.522471
+bot exchange: 	0.0000709740
+top exchange: 	0.0000105791
+lef exchange: 	0.0000068319
+rig exchange: 	0.0000029709
+bot exchange: 	0.0000588109
+top exchange: 	0.0000103600
+lef exchange: 	0.0000020452
+rig exchange: 	0.0000056620
+ 
+Current time: 9.548594
+bot exchange: 	0.0000738581
+top exchange: 	0.0000084070
+lef exchange: 	0.0000044322
+rig exchange: 	0.0000024380
+bot exchange: 	0.0000504970
+top exchange: 	0.0000086462
+lef exchange: 	0.0000055190
+rig exchange: 	0.0000106529
+ 
+Current time: 9.574717
+bot exchange: 	0.0000680690
+top exchange: 	0.0000094611
+lef exchange: 	0.0000122958
+rig exchange: 	0.0000024119
+bot exchange: 	0.0000575918
+top exchange: 	0.0000097479
+lef exchange: 	0.0000021150
+rig exchange: 	0.0000057081
+ 
+Current time: 9.600840
+bot exchange: 	0.0000719640
+top exchange: 	0.0000109579
+lef exchange: 	0.0000079439
+rig exchange: 	0.0000027430
+bot exchange: 	0.0000516649
+top exchange: 	0.0000103149
+lef exchange: 	0.0000043230
+rig exchange: 	0.0000166162
+ 
+Current time: 9.626963
+bot exchange: 	0.0000715670
+top exchange: 	0.0000099870
+lef exchange: 	0.0000084729
+rig exchange: 	0.0000023639
+bot exchange: 	0.0000535150
+top exchange: 	0.0000099270
+lef exchange: 	0.0000097780
+rig exchange: 	0.0000097300
+ 
+Current time: 9.653086
+bot exchange: 	0.0000712760
+top exchange: 	0.0000130339
+lef exchange: 	0.0000057381
+rig exchange: 	0.0000028540
+bot exchange: 	0.0000577040
+top exchange: 	0.0000097139
+lef exchange: 	0.0000052438
+rig exchange: 	0.0000053649
+ 
+Current time: 9.679209
+bot exchange: 	0.0000666420
+top exchange: 	0.0000099170
+lef exchange: 	0.0000064410
+rig exchange: 	0.0000024431
+bot exchange: 	0.0000523010
+top exchange: 	0.0000102201
+lef exchange: 	0.0000098881
+rig exchange: 	0.0000126169
+ 
+Current time: 9.705331
+bot exchange: 	0.0000701440
+top exchange: 	0.0000108131
+lef exchange: 	0.0000042829
+rig exchange: 	0.0000022869
+bot exchange: 	0.0000487750
+top exchange: 	0.0000082511
+lef exchange: 	0.0000076150
+rig exchange: 	0.0000132229
+ 
+Current time: 9.731454
+bot exchange: 	0.0000687370
+top exchange: 	0.0000084639
+lef exchange: 	0.0000045120
+rig exchange: 	0.0000041851
+bot exchange: 	0.0000532861
+top exchange: 	0.0000087891
+lef exchange: 	0.0000117780
+rig exchange: 	0.0000042319
+ 
+Current time: 9.757577
+bot exchange: 	0.0000675770
+top exchange: 	0.0000115889
+lef exchange: 	0.0000073211
+rig exchange: 	0.0000021600
+bot exchange: 	0.0000489410
+top exchange: 	0.0000167820
+lef exchange: 	0.0000054690
+rig exchange: 	0.0000090741
+ 
+Current time: 9.783700
+bot exchange: 	0.0000692569
+top exchange: 	0.0000097570
+lef exchange: 	0.0000099889
+rig exchange: 	0.0000027539
+bot exchange: 	0.0000542940
+top exchange: 	0.0000096872
+lef exchange: 	0.0000043961
+rig exchange: 	0.0000122390
+ 
+Current time: 9.809822
+bot exchange: 	0.0000682210
+top exchange: 	0.0000106851
+lef exchange: 	0.0000065500
+rig exchange: 	0.0000020801
+bot exchange: 	0.0000530570
+top exchange: 	0.0000182220
+lef exchange: 	0.0000026370
+rig exchange: 	0.0000076140
+ 
+Current time: 9.835945
+bot exchange: 	0.0000715889
+top exchange: 	0.0000094471
+lef exchange: 	0.0000077691
+rig exchange: 	0.0000042650
+bot exchange: 	0.0000505319
+top exchange: 	0.0000179680
+lef exchange: 	0.0000048231
+rig exchange: 	0.0000090632
+ 
+Current time: 9.862068
+bot exchange: 	0.0000694431
+top exchange: 	0.0000123109
+lef exchange: 	0.0000084981
+rig exchange: 	0.0000029940
+bot exchange: 	0.0000507289
+top exchange: 	0.0000101221
+lef exchange: 	0.0000041560
+rig exchange: 	0.0000100029
+ 
+Current time: 9.888190
+bot exchange: 	0.0000675321
+top exchange: 	0.0000086650
+lef exchange: 	0.0000059728
+rig exchange: 	0.0000027472
+bot exchange: 	0.0000509771
+top exchange: 	0.0000176309
+lef exchange: 	0.0000105549
+rig exchange: 	0.0000058620
+ 
+Current time: 9.914313
+bot exchange: 	0.0000654159
+top exchange: 	0.0000097030
+lef exchange: 	0.0000078380
+rig exchange: 	0.0000020652
+bot exchange: 	0.0000507131
+top exchange: 	0.0000095868
+lef exchange: 	0.0000069451
+rig exchange: 	0.0000091100
+ 
+Current time: 9.940435
+bot exchange: 	0.0000677751
+top exchange: 	0.0000099218
+lef exchange: 	0.0000074869
+rig exchange: 	0.0000025830
+bot exchange: 	0.0000545001
+top exchange: 	0.0000083861
+lef exchange: 	0.0000104990
+rig exchange: 	0.0000044070
+ 
+Current time: 9.966558
+bot exchange: 	0.0000662708
+top exchange: 	0.0000097500
+lef exchange: 	0.0000144069
+rig exchange: 	0.0000026661
+bot exchange: 	0.0000611979
+top exchange: 	0.0000095470
+lef exchange: 	0.0000050270
+rig exchange: 	0.0000053628
+ 
+Current time: 9.992680
+bot exchange: 	0.0000953511
+top exchange: 	0.0000108650
+lef exchange: 	0.0000030841
+rig exchange: 	0.0000027420
+bot exchange: 	0.0000516030
+top exchange: 	0.0000108411
+lef exchange: 	0.0000019439
+rig exchange: 	0.0000188311
+ 
