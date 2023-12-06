@@ -1,4692 +1,768 @@
 Current time: 0.000000
-bot exchange: 	0.0002279370
-bot receive : 	0.0000000000
-bot send : 	0.0002257021
-lef exchange: 	0.0000365218
-rig exchange: 	0.0000083551
-bot exchange: 	0.0000023588
-bot receive : 	0.0000000000
-bot send : 	0.0000008540
-lef exchange: 	0.0000084720
-rig exchange: 	0.0000070920
  
 Current time: 0.025000
-bot exchange: 	0.0000990650
-bot receive : 	0.0000000000
-bot send : 	0.0000964950
-lef exchange: 	0.0000196451
-rig exchange: 	0.0000098550
-bot exchange: 	0.0000535550
-bot receive : 	0.0000000000
-bot send : 	0.0000520761
-lef exchange: 	0.0000086201
-rig exchange: 	0.0000180160
  
 Current time: 0.050031
-bot exchange: 	0.0000972899
-bot receive : 	0.0000000000
-bot send : 	0.0000953029
-lef exchange: 	0.0000189662
-rig exchange: 	0.0000076001
-bot exchange: 	0.0000528020
-bot receive : 	0.0000000000
-bot send : 	0.0000510779
-lef exchange: 	0.0000185429
-rig exchange: 	0.0000079491
  
 Current time: 0.075093
-bot exchange: 	0.0001006271
-bot receive : 	0.0000000000
-bot send : 	0.0000988259
-lef exchange: 	0.0000209420
-rig exchange: 	0.0000082161
-bot exchange: 	0.0000541720
-bot receive : 	0.0000000000
-bot send : 	0.0000526041
-lef exchange: 	0.0000147859
-rig exchange: 	0.0000079458
  
 Current time: 0.100186
-bot exchange: 	0.0001002729
-bot receive : 	0.0000000000
-bot send : 	0.0000978501
-lef exchange: 	0.0000182842
-rig exchange: 	0.0000096059
-bot exchange: 	0.0000630559
-bot receive : 	0.0000000000
-bot send : 	0.0000606880
-lef exchange: 	0.0000084930
-rig exchange: 	0.0000202318
  
 Current time: 0.125309
-bot exchange: 	0.0001010450
-bot receive : 	0.0000000000
-bot send : 	0.0000983800
-lef exchange: 	0.0000277511
-rig exchange: 	0.0000100639
-bot exchange: 	0.0000466849
-bot receive : 	0.0000000000
-bot send : 	0.0000445719
-lef exchange: 	0.0000253711
-rig exchange: 	0.0000086541
  
 Current time: 0.150462
-bot exchange: 	0.0001034520
-bot receive : 	0.0000000000
-bot send : 	0.0001012778
-lef exchange: 	0.0000112799
-rig exchange: 	0.0000074420
-bot exchange: 	0.0000507520
-bot receive : 	0.0000000000
-bot send : 	0.0000487319
-lef exchange: 	0.0000107130
-rig exchange: 	0.0000072620
  
 Current time: 0.175646
-bot exchange: 	0.0000954019
-bot receive : 	0.0000000000
-bot send : 	0.0000937011
-lef exchange: 	0.0000145379
-rig exchange: 	0.0000074699
-bot exchange: 	0.0000483270
-bot receive : 	0.0000000000
-bot send : 	0.0000461689
-lef exchange: 	0.0000094641
-rig exchange: 	0.0000070860
  
 Current time: 0.200858
-bot exchange: 	0.0000956920
-bot receive : 	0.0000000000
-bot send : 	0.0000930198
-lef exchange: 	0.0000181140
-rig exchange: 	0.0000081698
-bot exchange: 	0.0000543729
-bot receive : 	0.0000000000
-bot send : 	0.0000528649
-lef exchange: 	0.0000144821
-rig exchange: 	0.0000071670
  
 Current time: 0.226100
-bot exchange: 	0.0001211001
-bot receive : 	0.0000000000
-bot send : 	0.0001186931
-lef exchange: 	0.0000201240
-rig exchange: 	0.0000113659
-bot exchange: 	0.0000434138
-bot receive : 	0.0000000000
-bot send : 	0.0000377139
-lef exchange: 	0.0000093102
-rig exchange: 	0.0000069202
  
 Current time: 0.251371
-bot exchange: 	0.0001015600
-bot receive : 	0.0000000000
-bot send : 	0.0000992529
-lef exchange: 	0.0000177689
-rig exchange: 	0.0000079698
-bot exchange: 	0.0000611499
-bot receive : 	0.0000000000
-bot send : 	0.0000587581
-lef exchange: 	0.0000237878
-rig exchange: 	0.0000075982
  
 Current time: 0.276671
-bot exchange: 	0.0000983940
-bot receive : 	0.0000000000
-bot send : 	0.0000959251
-lef exchange: 	0.0000141540
-rig exchange: 	0.0000099170
-bot exchange: 	0.0000514558
-bot receive : 	0.0000000000
-bot send : 	0.0000499249
-lef exchange: 	0.0000090690
-rig exchange: 	0.0000223080
  
 Current time: 0.301999
-bot exchange: 	0.0000985009
-bot receive : 	0.0000000000
-bot send : 	0.0000965321
-lef exchange: 	0.0000154420
-rig exchange: 	0.0000079849
-bot exchange: 	0.0000464960
-bot receive : 	0.0000000000
-bot send : 	0.0000447861
-lef exchange: 	0.0000111179
-rig exchange: 	0.0000098960
  
 Current time: 0.327354
-bot exchange: 	0.0000948401
-bot receive : 	0.0000000000
-bot send : 	0.0000927830
-lef exchange: 	0.0000201149
-rig exchange: 	0.0000084699
-bot exchange: 	0.0000529469
-bot receive : 	0.0000000000
-bot send : 	0.0000512211
-lef exchange: 	0.0000083281
-rig exchange: 	0.0000339521
  
 Current time: 0.352738
-bot exchange: 	0.0001028681
-bot receive : 	0.0000000000
-bot send : 	0.0001006471
-lef exchange: 	0.0000204979
-rig exchange: 	0.0000114948
-bot exchange: 	0.0000445782
-bot receive : 	0.0000000000
-bot send : 	0.0000425579
-lef exchange: 	0.0000145950
-rig exchange: 	0.0000074469
  
 Current time: 0.378148
-bot exchange: 	0.0001022718
-bot receive : 	0.0000000000
-bot send : 	0.0000999991
-lef exchange: 	0.0000157850
-rig exchange: 	0.0000073439
-bot exchange: 	0.0000575841
-bot receive : 	0.0000000000
-bot send : 	0.0000550649
-lef exchange: 	0.0000086599
-rig exchange: 	0.0000150390
  
 Current time: 0.403584
-bot exchange: 	0.0001040490
-bot receive : 	0.0000000000
-bot send : 	0.0001018669
-lef exchange: 	0.0000148411
-rig exchange: 	0.0000100210
-bot exchange: 	0.0000516172
-bot receive : 	0.0000000000
-bot send : 	0.0000491189
-lef exchange: 	0.0000074070
-rig exchange: 	0.0000069989
  
 Current time: 0.429047
-bot exchange: 	0.0001011919
-bot receive : 	0.0000000000
-bot send : 	0.0000992978
-lef exchange: 	0.0000132390
-rig exchange: 	0.0000072680
-bot exchange: 	0.0000488029
-bot receive : 	0.0000000000
-bot send : 	0.0000468842
-lef exchange: 	0.0000107849
-rig exchange: 	0.0000075931
  
 Current time: 0.454536
-bot exchange: 	0.0000980319
-bot receive : 	0.0000000000
-bot send : 	0.0000955870
-lef exchange: 	0.0000149810
-rig exchange: 	0.0000091379
-bot exchange: 	0.0000833299
-bot receive : 	0.0000000000
-bot send : 	0.0000815589
-lef exchange: 	0.0000075272
-rig exchange: 	0.0000248309
  
 Current time: 0.480050
-bot exchange: 	0.0001012830
-bot receive : 	0.0000000000
-bot send : 	0.0000993239
-lef exchange: 	0.0000152711
-rig exchange: 	0.0000098429
-bot exchange: 	0.0000470630
-bot receive : 	0.0000000000
-bot send : 	0.0000456409
-lef exchange: 	0.0000128499
-rig exchange: 	0.0000332221
  
 Current time: 0.505588
-bot exchange: 	0.0000937891
-bot receive : 	0.0000000000
-bot send : 	0.0000913751
-lef exchange: 	0.0000215122
-rig exchange: 	0.0000076462
-bot exchange: 	0.0000481650
-bot receive : 	0.0000000000
-bot send : 	0.0000461231
-lef exchange: 	0.0000123160
-rig exchange: 	0.0000071041
  
 Current time: 0.531151
-bot exchange: 	0.0000972580
-bot receive : 	0.0000000000
-bot send : 	0.0000946550
-lef exchange: 	0.0000409740
-rig exchange: 	0.0000100611
-bot exchange: 	0.0000222600
-bot receive : 	0.0000000000
-bot send : 	0.0000207522
-lef exchange: 	0.0000083700
-rig exchange: 	0.0000081721
  
 Current time: 0.556738
-bot exchange: 	0.0000980699
-bot receive : 	0.0000000000
-bot send : 	0.0000960419
-lef exchange: 	0.0000205692
-rig exchange: 	0.0000103011
-bot exchange: 	0.0000512470
-bot receive : 	0.0000000000
-bot send : 	0.0000491540
-lef exchange: 	0.0000089991
-rig exchange: 	0.0000067358
  
 Current time: 0.582348
-bot exchange: 	0.0000975581
-bot receive : 	0.0000000000
-bot send : 	0.0000950170
-lef exchange: 	0.0000179110
-rig exchange: 	0.0000075409
-bot exchange: 	0.0000517410
-bot receive : 	0.0000000000
-bot send : 	0.0000493191
-lef exchange: 	0.0000129000
-rig exchange: 	0.0000204560
  
 Current time: 0.607981
-bot exchange: 	0.0000953050
-bot receive : 	0.0000000000
-bot send : 	0.0000936801
-lef exchange: 	0.0000271411
-rig exchange: 	0.0000079509
-bot exchange: 	0.0000544731
-bot receive : 	0.0000000000
-bot send : 	0.0000531119
-lef exchange: 	0.0000090890
-rig exchange: 	0.0000127871
  
 Current time: 0.633636
-bot exchange: 	0.0001069410
-bot receive : 	0.0000000000
-bot send : 	0.0001049810
-lef exchange: 	0.0000119552
-rig exchange: 	0.0000096101
-bot exchange: 	0.0000492150
-bot receive : 	0.0000000000
-bot send : 	0.0000466399
-lef exchange: 	0.0000416150
-rig exchange: 	0.0000103929
  
 Current time: 0.659313
-bot exchange: 	0.0000949800
-bot receive : 	0.0000000000
-bot send : 	0.0000929709
-lef exchange: 	0.0000098359
-rig exchange: 	0.0000089020
-bot exchange: 	0.0000584270
-bot receive : 	0.0000000000
-bot send : 	0.0000566081
-lef exchange: 	0.0000081360
-rig exchange: 	0.0000073281
  
 Current time: 0.685012
-bot exchange: 	0.0000957360
-bot receive : 	0.0000000000
-bot send : 	0.0000938950
-lef exchange: 	0.0000124071
-rig exchange: 	0.0000110639
-bot exchange: 	0.0000561199
-bot receive : 	0.0000000000
-bot send : 	0.0000543341
-lef exchange: 	0.0000126921
-rig exchange: 	0.0000086261
  
 Current time: 0.710731
-bot exchange: 	0.0001037200
-bot receive : 	0.0000000000
-bot send : 	0.0001014790
-lef exchange: 	0.0000119791
-rig exchange: 	0.0000092459
-bot exchange: 	0.0000581951
-bot receive : 	0.0000000000
-bot send : 	0.0000556561
-lef exchange: 	0.0000107251
-rig exchange: 	0.0000221040
  
 Current time: 0.736470
-bot exchange: 	0.0000941521
-bot receive : 	0.0000000000
-bot send : 	0.0000921949
-lef exchange: 	0.0000196730
-rig exchange: 	0.0000093151
-bot exchange: 	0.0000505929
-bot receive : 	0.0000000000
-bot send : 	0.0000484979
-lef exchange: 	0.0000096359
-rig exchange: 	0.0000195971
  
 Current time: 0.762230
-bot exchange: 	0.0000991370
-bot receive : 	0.0000000000
-bot send : 	0.0000972329
-lef exchange: 	0.0000146718
-rig exchange: 	0.0000093561
-bot exchange: 	0.0000505841
-bot receive : 	0.0000000000
-bot send : 	0.0000483301
-lef exchange: 	0.0000094390
-rig exchange: 	0.0000290570
  
 Current time: 0.788008
-bot exchange: 	0.0000980340
-bot receive : 	0.0000000000
-bot send : 	0.0000962350
-lef exchange: 	0.0000156350
-rig exchange: 	0.0000072168
-bot exchange: 	0.0000559571
-bot receive : 	0.0000000000
-bot send : 	0.0000536458
-lef exchange: 	0.0000127410
-rig exchange: 	0.0000207210
  
 Current time: 0.813805
-bot exchange: 	0.0000994459
-bot receive : 	0.0000000000
-bot send : 	0.0000969640
-lef exchange: 	0.0000177410
-rig exchange: 	0.0000094981
-bot exchange: 	0.0000557362
-bot receive : 	0.0000000000
-bot send : 	0.0000534221
-lef exchange: 	0.0000098480
-rig exchange: 	0.0000137570
  
 Current time: 0.839621
-bot exchange: 	0.0000970021
-bot receive : 	0.0000000000
-bot send : 	0.0000950359
-lef exchange: 	0.0000174441
-rig exchange: 	0.0000074310
-bot exchange: 	0.0000735151
-bot receive : 	0.0000000000
-bot send : 	0.0000717030
-lef exchange: 	0.0000255820
-rig exchange: 	0.0000075430
  
 Current time: 0.865454
-bot exchange: 	0.0000899499
-bot receive : 	0.0000000000
-bot send : 	0.0000876230
-lef exchange: 	0.0000180579
-rig exchange: 	0.0000082478
-bot exchange: 	0.0000535729
-bot receive : 	0.0000000000
-bot send : 	0.0000514828
-lef exchange: 	0.0000132250
-rig exchange: 	0.0000220761
  
 Current time: 0.891304
-bot exchange: 	0.0000937751
-bot receive : 	0.0000000000
-bot send : 	0.0000917520
-lef exchange: 	0.0000185468
-rig exchange: 	0.0000100599
-bot exchange: 	0.0000487959
-bot receive : 	0.0000000000
-bot send : 	0.0000472108
-lef exchange: 	0.0000156339
-rig exchange: 	0.0000212069
  
 Current time: 0.917171
-bot exchange: 	0.0000920040
-bot receive : 	0.0000000000
-bot send : 	0.0000899581
-lef exchange: 	0.0000169170
-rig exchange: 	0.0000094050
-bot exchange: 	0.0001183690
-bot receive : 	0.0000000000
-bot send : 	0.0001154160
-lef exchange: 	0.0000094040
-rig exchange: 	0.0000078580
  
 Current time: 0.943054
-bot exchange: 	0.0000982881
-bot receive : 	0.0000000000
-bot send : 	0.0000962841
-lef exchange: 	0.0000126918
-rig exchange: 	0.0000078289
-bot exchange: 	0.0000604619
-bot receive : 	0.0000000000
-bot send : 	0.0000584829
-lef exchange: 	0.0000071779
-rig exchange: 	0.0000087521
  
 Current time: 0.968952
-bot exchange: 	0.0001015961
-bot receive : 	0.0000000000
-bot send : 	0.0000991451
-lef exchange: 	0.0000140280
-rig exchange: 	0.0000073020
-bot exchange: 	0.0000581751
-bot receive : 	0.0000000000
-bot send : 	0.0000557110
-lef exchange: 	0.0000081160
-rig exchange: 	0.0000200740
  
 Current time: 0.994866
-bot exchange: 	0.0001021521
-bot receive : 	0.0000000000
-bot send : 	0.0000998059
-lef exchange: 	0.0000179959
-rig exchange: 	0.0000094180
-bot exchange: 	0.0000650801
-bot receive : 	0.0000000000
-bot send : 	0.0000625399
-lef exchange: 	0.0000082492
-rig exchange: 	0.0000146381
- 
-Current time: 1.000000
-bot exchange: 	0.0000984210
-bot receive : 	0.0000000000
-bot send : 	0.0000959800
-lef exchange: 	0.0000220211
-rig exchange: 	0.0000096080
-bot exchange: 	0.0000496451
-bot receive : 	0.0000000000
-bot send : 	0.0000471268
-lef exchange: 	0.0000184849
-rig exchange: 	0.0000076480
- 
-Current time: 1.025931
-bot exchange: 	0.0000947660
-bot receive : 	0.0000000000
-bot send : 	0.0000925949
-lef exchange: 	0.0000199750
-rig exchange: 	0.0000082529
-bot exchange: 	0.0000470991
-bot receive : 	0.0000000000
-bot send : 	0.0000447971
-lef exchange: 	0.0000340331
-rig exchange: 	0.0000093749
- 
-Current time: 1.051876
-bot exchange: 	0.0000982150
-bot receive : 	0.0000000000
-bot send : 	0.0000959940
-lef exchange: 	0.0000150229
-rig exchange: 	0.0000095740
-bot exchange: 	0.0000529471
-bot receive : 	0.0000000000
-bot send : 	0.0000507890
-lef exchange: 	0.0000326040
-rig exchange: 	0.0000098390
- 
-Current time: 1.077835
-bot exchange: 	0.0001019069
-bot receive : 	0.0000000000
-bot send : 	0.0000994909
-lef exchange: 	0.0000147871
-rig exchange: 	0.0000096641
-bot exchange: 	0.0000500130
-bot receive : 	0.0000000000
-bot send : 	0.0000474842
-lef exchange: 	0.0000080650
-rig exchange: 	0.0000071081
- 
-Current time: 1.103806
-bot exchange: 	0.0001006201
-bot receive : 	0.0000000000
-bot send : 	0.0000989300
-lef exchange: 	0.0000128369
-rig exchange: 	0.0000076878
-bot exchange: 	0.0000624771
-bot receive : 	0.0000000000
-bot send : 	0.0000607360
-lef exchange: 	0.0000083209
-rig exchange: 	0.0000070620
- 
-Current time: 1.129790
-bot exchange: 	0.0000940720
-bot receive : 	0.0000000000
-bot send : 	0.0000917770
-lef exchange: 	0.0000158690
-rig exchange: 	0.0000080492
-bot exchange: 	0.0000533771
-bot receive : 	0.0000000000
-bot send : 	0.0000512279
-lef exchange: 	0.0000167049
-rig exchange: 	0.0000228242
- 
-Current time: 1.155787
-bot exchange: 	0.0000979549
-bot receive : 	0.0000000000
-bot send : 	0.0000959281
-lef exchange: 	0.0000111510
-rig exchange: 	0.0000071649
-bot exchange: 	0.0000603779
-bot receive : 	0.0000000000
-bot send : 	0.0000584270
-lef exchange: 	0.0000097400
-rig exchange: 	0.0000085870
- 
-Current time: 1.181794
-bot exchange: 	0.0000978580
-bot receive : 	0.0000000000
-bot send : 	0.0000955539
-lef exchange: 	0.0000145109
-rig exchange: 	0.0000082492
-bot exchange: 	0.0000571420
-bot receive : 	0.0000000000
-bot send : 	0.0000554190
-lef exchange: 	0.0000073579
-rig exchange: 	0.0000284750
- 
-Current time: 1.207813
-bot exchange: 	0.0000899639
-bot receive : 	0.0000000000
-bot send : 	0.0000880370
-lef exchange: 	0.0000162970
-rig exchange: 	0.0000082168
-bot exchange: 	0.0000564549
-bot receive : 	0.0000000000
-bot send : 	0.0000546260
-lef exchange: 	0.0000161291
-rig exchange: 	0.0000072401
- 
-Current time: 1.233843
-bot exchange: 	0.0000960750
-bot receive : 	0.0000000000
-bot send : 	0.0000937569
-lef exchange: 	0.0000201159
-rig exchange: 	0.0000084869
-bot exchange: 	0.0000527119
-bot receive : 	0.0000000000
-bot send : 	0.0000510379
-lef exchange: 	0.0000081081
-rig exchange: 	0.0000071761
- 
-Current time: 1.259883
-bot exchange: 	0.0000985709
-bot receive : 	0.0000000000
-bot send : 	0.0000962880
-lef exchange: 	0.0000181249
-rig exchange: 	0.0000101870
-bot exchange: 	0.0000505121
-bot receive : 	0.0000000000
-bot send : 	0.0000486202
-lef exchange: 	0.0000159149
-rig exchange: 	0.0000090920
- 
-Current time: 1.285933
-bot exchange: 	0.0001017039
-bot receive : 	0.0000000000
-bot send : 	0.0000992711
-lef exchange: 	0.0000512099
-rig exchange: 	0.0000179810
-bot exchange: 	0.0000052010
-bot receive : 	0.0000000000
-bot send : 	0.0000032131
-lef exchange: 	0.0000095039
-rig exchange: 	0.0000211240
- 
-Current time: 1.311992
-bot exchange: 	0.0000983160
-bot receive : 	0.0000000000
-bot send : 	0.0000960261
-lef exchange: 	0.0000176940
-rig exchange: 	0.0000082750
-bot exchange: 	0.0000523110
-bot receive : 	0.0000000000
-bot send : 	0.0000508178
-lef exchange: 	0.0000126490
-rig exchange: 	0.0000080501
- 
-Current time: 1.338061
-bot exchange: 	0.0001022969
-bot receive : 	0.0000000000
-bot send : 	0.0001001130
-lef exchange: 	0.0000376420
-rig exchange: 	0.0000098350
-bot exchange: 	0.0000296521
-bot receive : 	0.0000000000
-bot send : 	0.0000275529
-lef exchange: 	0.0000093430
-rig exchange: 	0.0000090899
- 
-Current time: 1.364137
-bot exchange: 	0.0000971640
-bot receive : 	0.0000000000
-bot send : 	0.0000948210
-lef exchange: 	0.0000164870
-rig exchange: 	0.0000096359
-bot exchange: 	0.0000471971
-bot receive : 	0.0000000000
-bot send : 	0.0000450250
-lef exchange: 	0.0000097849
-rig exchange: 	0.0000070250
- 
-Current time: 1.390223
-bot exchange: 	0.0001056259
-bot receive : 	0.0000000000
-bot send : 	0.0001036031
-lef exchange: 	0.0000142830
-rig exchange: 	0.0000094951
-bot exchange: 	0.0000489210
-bot receive : 	0.0000000000
-bot send : 	0.0000465801
-lef exchange: 	0.0000159179
-rig exchange: 	0.0000255690
- 
-Current time: 1.416315
-bot exchange: 	0.0001050150
-bot receive : 	0.0000000000
-bot send : 	0.0001028420
-lef exchange: 	0.0000161789
-rig exchange: 	0.0000082860
-bot exchange: 	0.0000613669
-bot receive : 	0.0000000000
-bot send : 	0.0000592759
-lef exchange: 	0.0000131980
-rig exchange: 	0.0000091461
- 
-Current time: 1.442416
-bot exchange: 	0.0000914349
-bot receive : 	0.0000000000
-bot send : 	0.0000895259
-lef exchange: 	0.0000187759
-rig exchange: 	0.0000089779
-bot exchange: 	0.0000536072
-bot receive : 	0.0000000000
-bot send : 	0.0000512190
-lef exchange: 	0.0000182681
-rig exchange: 	0.0000244188
- 
-Current time: 1.468523
-bot exchange: 	0.0000991370
-bot receive : 	0.0000000000
-bot send : 	0.0000966031
-lef exchange: 	0.0000146830
-rig exchange: 	0.0000095118
-bot exchange: 	0.0000518649
-bot receive : 	0.0000000000
-bot send : 	0.0000498970
-lef exchange: 	0.0000066708
-rig exchange: 	0.0000086450
- 
-Current time: 1.494637
-bot exchange: 	0.0001000490
-bot receive : 	0.0000000000
-bot send : 	0.0000982461
-lef exchange: 	0.0000168751
-rig exchange: 	0.0000100490
-bot exchange: 	0.0000579550
-bot receive : 	0.0000000000
-bot send : 	0.0000560479
-lef exchange: 	0.0000095090
-rig exchange: 	0.0000088811
- 
-Current time: 1.520758
-bot exchange: 	0.0001004180
-bot receive : 	0.0000000000
-bot send : 	0.0000979712
-lef exchange: 	0.0000175019
-rig exchange: 	0.0000091300
-bot exchange: 	0.0000638042
-bot receive : 	0.0000000000
-bot send : 	0.0000617329
-lef exchange: 	0.0000165161
-rig exchange: 	0.0000128560
- 
-Current time: 1.546885
-bot exchange: 	0.0000955530
-bot receive : 	0.0000000000
-bot send : 	0.0000935560
-lef exchange: 	0.0000125910
-rig exchange: 	0.0000076129
-bot exchange: 	0.0000588449
-bot receive : 	0.0000000000
-bot send : 	0.0000572831
-lef exchange: 	0.0000088329
-rig exchange: 	0.0000086578
- 
-Current time: 1.573017
-bot exchange: 	0.0000930701
-bot receive : 	0.0000000000
-bot send : 	0.0000913911
-lef exchange: 	0.0000148900
-rig exchange: 	0.0000102778
-bot exchange: 	0.0000538251
-bot receive : 	0.0000000000
-bot send : 	0.0000518709
-lef exchange: 	0.0000106110
-rig exchange: 	0.0000230849
- 
-Current time: 1.599155
-bot exchange: 	0.0000974250
-bot receive : 	0.0000000000
-bot send : 	0.0000951600
-lef exchange: 	0.0000165761
-rig exchange: 	0.0000078999
-bot exchange: 	0.0000506260
-bot receive : 	0.0000000000
-bot send : 	0.0000487829
-lef exchange: 	0.0000065470
-rig exchange: 	0.0000072841
- 
-Current time: 1.625297
-bot exchange: 	0.0000952540
-bot receive : 	0.0000000000
-bot send : 	0.0000932289
-lef exchange: 	0.0000172639
-rig exchange: 	0.0000073160
-bot exchange: 	0.0000560810
-bot receive : 	0.0000000000
-bot send : 	0.0000544402
-lef exchange: 	0.0000098839
-rig exchange: 	0.0000190209
- 
-Current time: 1.651445
-bot exchange: 	0.0001055070
-bot receive : 	0.0000000000
-bot send : 	0.0001030080
-lef exchange: 	0.0000129179
-rig exchange: 	0.0000071819
-bot exchange: 	0.0000543520
-bot receive : 	0.0000000000
-bot send : 	0.0000521319
-lef exchange: 	0.0000069949
-rig exchange: 	0.0000210321
- 
-Current time: 1.677597
-bot exchange: 	0.0000999921
-bot receive : 	0.0000000000
-bot send : 	0.0000983269
-lef exchange: 	0.0000195319
-rig exchange: 	0.0000099300
-bot exchange: 	0.0000526931
-bot receive : 	0.0000000000
-bot send : 	0.0000513792
-lef exchange: 	0.0000189070
-rig exchange: 	0.0000202849
- 
-Current time: 1.703753
-bot exchange: 	0.0000936571
-bot receive : 	0.0000000000
-bot send : 	0.0000915760
-lef exchange: 	0.0000176821
-rig exchange: 	0.0000071560
-bot exchange: 	0.0000537359
-bot receive : 	0.0000000000
-bot send : 	0.0000518081
-lef exchange: 	0.0000194691
-rig exchange: 	0.0000177880
- 
-Current time: 1.729914
-bot exchange: 	0.0001037270
-bot receive : 	0.0000000000
-bot send : 	0.0001014429
-lef exchange: 	0.0000187061
-rig exchange: 	0.0000074150
-bot exchange: 	0.0000586761
-bot receive : 	0.0000000000
-bot send : 	0.0000561951
-lef exchange: 	0.0000088331
-rig exchange: 	0.0000083928
- 
-Current time: 1.756078
-bot exchange: 	0.0000980299
-bot receive : 	0.0000000000
-bot send : 	0.0000962499
-lef exchange: 	0.0000191461
-rig exchange: 	0.0000078310
-bot exchange: 	0.0000564521
-bot receive : 	0.0000000000
-bot send : 	0.0000547508
-lef exchange: 	0.0000339400
-rig exchange: 	0.0000124341
- 
-Current time: 1.782245
-bot exchange: 	0.0001018462
-bot receive : 	0.0000000000
-bot send : 	0.0000997069
-lef exchange: 	0.0000160509
-rig exchange: 	0.0000096411
-bot exchange: 	0.0000544509
-bot receive : 	0.0000000000
-bot send : 	0.0000525950
-lef exchange: 	0.0000187489
-rig exchange: 	0.0000070711
- 
-Current time: 1.808416
-bot exchange: 	0.0001002699
-bot receive : 	0.0000000000
-bot send : 	0.0000979360
-lef exchange: 	0.0000084022
-rig exchange: 	0.0000095079
-bot exchange: 	0.0000639351
-bot receive : 	0.0000000000
-bot send : 	0.0000615378
-lef exchange: 	0.0000074210
-rig exchange: 	0.0000235911
- 
-Current time: 1.834590
-bot exchange: 	0.0000975959
-bot receive : 	0.0000000000
-bot send : 	0.0000956170
-lef exchange: 	0.0000162160
-rig exchange: 	0.0000083621
-bot exchange: 	0.0000588039
-bot receive : 	0.0000000000
-bot send : 	0.0000562030
-lef exchange: 	0.0000126169
-rig exchange: 	0.0000191769
- 
-Current time: 1.860766
-bot exchange: 	0.0002572730
-bot receive : 	0.0000000000
-bot send : 	0.0002549130
-lef exchange: 	0.0000307120
-rig exchange: 	0.0000073260
-bot exchange: 	0.0000583602
-bot receive : 	0.0000000000
-bot send : 	0.0000562251
-lef exchange: 	0.0000106900
-rig exchange: 	0.0000154530
- 
-Current time: 1.886945
-bot exchange: 	0.0001017910
-bot receive : 	0.0000000000
-bot send : 	0.0000997351
-lef exchange: 	0.0000147149
-rig exchange: 	0.0000099798
-bot exchange: 	0.0000510709
-bot receive : 	0.0000000000
-bot send : 	0.0000490770
-lef exchange: 	0.0000205359
-rig exchange: 	0.0000260109
- 
-Current time: 1.913126
-bot exchange: 	0.0000979269
-bot receive : 	0.0000000000
-bot send : 	0.0000955311
-lef exchange: 	0.0000134371
-rig exchange: 	0.0000072671
-bot exchange: 	0.0000534691
-bot receive : 	0.0000000000
-bot send : 	0.0000518030
-lef exchange: 	0.0000087209
-rig exchange: 	0.0000194062
- 
-Current time: 1.939310
-bot exchange: 	0.0000960480
-bot receive : 	0.0000000000
-bot send : 	0.0000940261
-lef exchange: 	0.0000178700
-rig exchange: 	0.0000098250
-bot exchange: 	0.0000580458
-bot receive : 	0.0000000000
-bot send : 	0.0000566170
-lef exchange: 	0.0000086380
-rig exchange: 	0.0000088739
- 
-Current time: 1.965495
-bot exchange: 	0.0001012620
-bot receive : 	0.0000000000
-bot send : 	0.0000994769
-lef exchange: 	0.0000142080
-rig exchange: 	0.0000083249
-bot exchange: 	0.0000590791
-bot receive : 	0.0000000000
-bot send : 	0.0000570831
-lef exchange: 	0.0000072091
-rig exchange: 	0.0000070070
- 
-Current time: 1.991682
-bot exchange: 	0.0000962499
-bot receive : 	0.0000000000
-bot send : 	0.0000940899
-lef exchange: 	0.0000149468
-rig exchange: 	0.0000071370
-bot exchange: 	0.0000559271
-bot receive : 	0.0000000000
-bot send : 	0.0000540530
-lef exchange: 	0.0000083570
-rig exchange: 	0.0000102241
- 
-Current time: 2.000000
-bot exchange: 	0.0000938650
-bot receive : 	0.0000000000
-bot send : 	0.0000915441
-lef exchange: 	0.0000139610
-rig exchange: 	0.0000079798
-bot exchange: 	0.0000613220
-bot receive : 	0.0000000000
-bot send : 	0.0000591699
-lef exchange: 	0.0000073370
-rig exchange: 	0.0000080541
- 
-Current time: 2.026189
-bot exchange: 	0.0000921378
-bot receive : 	0.0000000000
-bot send : 	0.0000902219
-lef exchange: 	0.0000207101
-rig exchange: 	0.0000115321
-bot exchange: 	0.0000456541
-bot receive : 	0.0000000000
-bot send : 	0.0000438890
-lef exchange: 	0.0000099260
-rig exchange: 	0.0000168751
- 
-Current time: 2.052380
-bot exchange: 	0.0000911090
-bot receive : 	0.0000000000
-bot send : 	0.0000892219
-lef exchange: 	0.0000162681
-rig exchange: 	0.0000099370
-bot exchange: 	0.0000487529
-bot receive : 	0.0000000000
-bot send : 	0.0000466951
-lef exchange: 	0.0000107349
-rig exchange: 	0.0000249608
- 
-Current time: 2.078572
-bot exchange: 	0.0000983619
-bot receive : 	0.0000000000
-bot send : 	0.0000961770
-lef exchange: 	0.0000184178
-rig exchange: 	0.0000101610
-bot exchange: 	0.0000484549
-bot receive : 	0.0000000000
-bot send : 	0.0000467850
-lef exchange: 	0.0000175510
-rig exchange: 	0.0000068319
- 
-Current time: 2.104765
-bot exchange: 	0.0001013831
-bot receive : 	0.0000000000
-bot send : 	0.0000991120
-lef exchange: 	0.0000159750
-rig exchange: 	0.0000076010
-bot exchange: 	0.0000565920
-bot receive : 	0.0000000000
-bot send : 	0.0000541359
-lef exchange: 	0.0000068138
-rig exchange: 	0.0000257611
- 
-Current time: 2.130958
-bot exchange: 	0.0001006948
-bot receive : 	0.0000000000
-bot send : 	0.0000982510
-lef exchange: 	0.0000126869
-rig exchange: 	0.0000078341
-bot exchange: 	0.0000642329
-bot receive : 	0.0000000000
-bot send : 	0.0000620538
-lef exchange: 	0.0000072890
-rig exchange: 	0.0000097761
- 
-Current time: 2.157153
-bot exchange: 	0.0001026669
-bot receive : 	0.0000000000
-bot send : 	0.0001002401
-lef exchange: 	0.0000859210
-rig exchange: 	0.0000085721
-bot exchange: 	0.0000030999
-bot receive : 	0.0000000000
-bot send : 	0.0000010622
-lef exchange: 	0.0000131810
-rig exchange: 	0.0000091009
- 
-Current time: 2.183349
-bot exchange: 	0.0000993949
-bot receive : 	0.0000000000
-bot send : 	0.0000974440
-lef exchange: 	0.0000182041
-rig exchange: 	0.0000105249
-bot exchange: 	0.0000466439
-bot receive : 	0.0000000000
-bot send : 	0.0000448551
-lef exchange: 	0.0000144530
-rig exchange: 	0.0000071521
- 
-Current time: 2.209544
-bot exchange: 	0.0001002070
-bot receive : 	0.0000000000
-bot send : 	0.0000982368
-lef exchange: 	0.0000164500
-rig exchange: 	0.0000099840
-bot exchange: 	0.0000572470
-bot receive : 	0.0000000000
-bot send : 	0.0000549981
-lef exchange: 	0.0000130690
-rig exchange: 	0.0000072161
- 
-Current time: 2.235741
-bot exchange: 	0.0000954319
-bot receive : 	0.0000000000
-bot send : 	0.0000936240
-lef exchange: 	0.0000151598
-rig exchange: 	0.0000082080
-bot exchange: 	0.0000592710
-bot receive : 	0.0000000000
-bot send : 	0.0000576738
-lef exchange: 	0.0000093170
-rig exchange: 	0.0000069051
- 
-Current time: 2.261938
-bot exchange: 	0.0000937420
-bot receive : 	0.0000000000
-bot send : 	0.0000911669
-lef exchange: 	0.0000184360
-rig exchange: 	0.0000097940
-bot exchange: 	0.0000554379
-bot receive : 	0.0000000000
-bot send : 	0.0000488921
-lef exchange: 	0.0000093870
-rig exchange: 	0.0000203031
- 
-Current time: 2.288135
-bot exchange: 	0.0000921460
-bot receive : 	0.0000000000
-bot send : 	0.0000897020
-lef exchange: 	0.0000162912
-rig exchange: 	0.0000100420
-bot exchange: 	0.0000560170
-bot receive : 	0.0000000000
-bot send : 	0.0000537201
-lef exchange: 	0.0000075009
-rig exchange: 	0.0000079160
- 
-Current time: 2.314332
-bot exchange: 	0.0000980981
-bot receive : 	0.0000000000
-bot send : 	0.0000957530
-lef exchange: 	0.0000178800
-rig exchange: 	0.0000079710
-bot exchange: 	0.0000652389
-bot receive : 	0.0000000000
-bot send : 	0.0000628040
-lef exchange: 	0.0000086601
-rig exchange: 	0.0000210912
- 
-Current time: 2.340529
-bot exchange: 	0.0000966049
-bot receive : 	0.0000000000
-bot send : 	0.0000942780
-lef exchange: 	0.0000202460
-rig exchange: 	0.0000077060
-bot exchange: 	0.0000657530
-bot receive : 	0.0000000000
-bot send : 	0.0000633970
-lef exchange: 	0.0000095339
-rig exchange: 	0.0000074620
- 
-Current time: 2.366726
-bot exchange: 	0.0001004131
-bot receive : 	0.0000000000
-bot send : 	0.0000980638
-lef exchange: 	0.0000180190
-rig exchange: 	0.0000098320
-bot exchange: 	0.0000506169
-bot receive : 	0.0000000000
-bot send : 	0.0000483100
-lef exchange: 	0.0000092161
-rig exchange: 	0.0000230370
- 
-Current time: 2.392923
-bot exchange: 	0.0000923539
-bot receive : 	0.0000000000
-bot send : 	0.0000906531
-lef exchange: 	0.0000191741
-rig exchange: 	0.0000102520
-bot exchange: 	0.0000453310
-bot receive : 	0.0000000000
-bot send : 	0.0000439871
-lef exchange: 	0.0000153659
-rig exchange: 	0.0000133431
- 
-Current time: 2.419120
-bot exchange: 	0.0001008760
-bot receive : 	0.0000000000
-bot send : 	0.0000990978
-lef exchange: 	0.0000147100
-rig exchange: 	0.0000103579
-bot exchange: 	0.0000529331
-bot receive : 	0.0000000000
-bot send : 	0.0000513389
-lef exchange: 	0.0000081731
-rig exchange: 	0.0000070969
- 
-Current time: 2.445316
-bot exchange: 	0.0000988010
-bot receive : 	0.0000000000
-bot send : 	0.0000962049
-lef exchange: 	0.0000246912
-rig exchange: 	0.0000076322
-bot exchange: 	0.0000478888
-bot receive : 	0.0000000000
-bot send : 	0.0000463049
-lef exchange: 	0.0000102150
-rig exchange: 	0.0000142509
- 
-Current time: 2.471512
-bot exchange: 	0.0001022150
-bot receive : 	0.0000000000
-bot send : 	0.0000994410
-lef exchange: 	0.0000135610
-rig exchange: 	0.0000072981
-bot exchange: 	0.0000500211
-bot receive : 	0.0000000000
-bot send : 	0.0000482260
-lef exchange: 	0.0000101342
-rig exchange: 	0.0000163531
- 
-Current time: 2.497708
-bot exchange: 	0.0000987211
-bot receive : 	0.0000000000
-bot send : 	0.0000966191
-lef exchange: 	0.0000134180
-rig exchange: 	0.0000089242
-bot exchange: 	0.0000547171
-bot receive : 	0.0000000000
-bot send : 	0.0000523410
-lef exchange: 	0.0000100131
-rig exchange: 	0.0000073980
- 
-Current time: 2.523904
-bot exchange: 	0.0000997731
-bot receive : 	0.0000000000
-bot send : 	0.0000972741
-lef exchange: 	0.0000160250
-rig exchange: 	0.0000095430
-bot exchange: 	0.0000614689
-bot receive : 	0.0000000000
-bot send : 	0.0000591071
-lef exchange: 	0.0000087731
-rig exchange: 	0.0000221110
- 
-Current time: 2.550099
-bot exchange: 	0.0001027239
-bot receive : 	0.0000000000
-bot send : 	0.0001005919
-lef exchange: 	0.0000163461
-rig exchange: 	0.0000072832
-bot exchange: 	0.0000554491
-bot receive : 	0.0000000000
-bot send : 	0.0000529799
-lef exchange: 	0.0000087118
-rig exchange: 	0.0000085470
- 
-Current time: 2.576293
-bot exchange: 	0.0000967421
-bot receive : 	0.0000000000
-bot send : 	0.0000947788
-lef exchange: 	0.0000179140
-rig exchange: 	0.0000081072
-bot exchange: 	0.0000537820
-bot receive : 	0.0000000000
-bot send : 	0.0000519580
-lef exchange: 	0.0000124141
-rig exchange: 	0.0000070881
- 
-Current time: 2.602487
-bot exchange: 	0.0000946769
-bot receive : 	0.0000000000
-bot send : 	0.0000928279
-lef exchange: 	0.0000181498
-rig exchange: 	0.0000105319
-bot exchange: 	0.0000541960
-bot receive : 	0.0000000000
-bot send : 	0.0000521811
-lef exchange: 	0.0000359782
-rig exchange: 	0.0000177152
- 
-Current time: 2.628680
-bot exchange: 	0.0000941709
-bot receive : 	0.0000000000
-bot send : 	0.0000921520
-lef exchange: 	0.0000174970
-rig exchange: 	0.0000075030
-bot exchange: 	0.0000518418
-bot receive : 	0.0000000000
-bot send : 	0.0000494730
-lef exchange: 	0.0000140541
-rig exchange: 	0.0000210309
- 
-Current time: 2.654872
-bot exchange: 	0.0000972322
-bot receive : 	0.0000000000
-bot send : 	0.0000954219
-lef exchange: 	0.0000186670
-rig exchange: 	0.0000099090
-bot exchange: 	0.0000535070
-bot receive : 	0.0000000000
-bot send : 	0.0000520260
-lef exchange: 	0.0000098930
-rig exchange: 	0.0000078368
- 
-Current time: 2.681064
-bot exchange: 	0.0001058772
-bot receive : 	0.0000000000
-bot send : 	0.0001035519
-lef exchange: 	0.0000094909
-rig exchange: 	0.0000072408
-bot exchange: 	0.0000556719
-bot receive : 	0.0000000000
-bot send : 	0.0000535850
-lef exchange: 	0.0000099980
-rig exchange: 	0.0000071819
- 
-Current time: 2.707255
-bot exchange: 	0.0001017740
-bot receive : 	0.0000000000
-bot send : 	0.0001001728
-lef exchange: 	0.0000149000
-rig exchange: 	0.0000085901
-bot exchange: 	0.0000542530
-bot receive : 	0.0000000000
-bot send : 	0.0000526579
-lef exchange: 	0.0000130718
-rig exchange: 	0.0000074001
- 
-Current time: 2.733445
-bot exchange: 	0.0001020809
-bot receive : 	0.0000000000
-bot send : 	0.0000992310
-lef exchange: 	0.0000180989
-rig exchange: 	0.0000105160
-bot exchange: 	0.0000469720
-bot receive : 	0.0000000000
-bot send : 	0.0000445282
-lef exchange: 	0.0000117358
-rig exchange: 	0.0000071642
- 
-Current time: 2.759634
-bot exchange: 	0.0000938191
-bot receive : 	0.0000000000
-bot send : 	0.0000915551
-lef exchange: 	0.0000201340
-rig exchange: 	0.0000099670
-bot exchange: 	0.0000507000
-bot receive : 	0.0000000000
-bot send : 	0.0000482660
-lef exchange: 	0.0000083919
-rig exchange: 	0.0000072622
- 
-Current time: 2.785823
-bot exchange: 	0.0000965870
-bot receive : 	0.0000000000
-bot send : 	0.0000945509
-lef exchange: 	0.0000207690
-rig exchange: 	0.0000101312
-bot exchange: 	0.0000500190
-bot receive : 	0.0000000000
-bot send : 	0.0000478751
-lef exchange: 	0.0000349241
-rig exchange: 	0.0000107749
- 
-Current time: 2.812011
-bot exchange: 	0.0000976890
-bot receive : 	0.0000000000
-bot send : 	0.0000958459
-lef exchange: 	0.0000143279
-rig exchange: 	0.0000083810
-bot exchange: 	0.0000540710
-bot receive : 	0.0000000000
-bot send : 	0.0000525829
-lef exchange: 	0.0000127740
-rig exchange: 	0.0000080471
- 
-Current time: 2.838198
-bot exchange: 	0.0000992739
-bot receive : 	0.0000000000
-bot send : 	0.0000970040
-lef exchange: 	0.0000172660
-rig exchange: 	0.0000088380
-bot exchange: 	0.0000641989
-bot receive : 	0.0000000000
-bot send : 	0.0000619991
-lef exchange: 	0.0000084601
-rig exchange: 	0.0000196940
- 
-Current time: 2.864384
-bot exchange: 	0.0000992699
-bot receive : 	0.0000000000
-bot send : 	0.0000967961
-lef exchange: 	0.0000129431
-rig exchange: 	0.0000075840
-bot exchange: 	0.0000472229
-bot receive : 	0.0000000000
-bot send : 	0.0000450620
-lef exchange: 	0.0000094660
-rig exchange: 	0.0000071148
- 
-Current time: 2.890569
-bot exchange: 	0.0001002080
-bot receive : 	0.0000000000
-bot send : 	0.0000977430
-lef exchange: 	0.0000140839
-rig exchange: 	0.0000077358
-bot exchange: 	0.0000539331
-bot receive : 	0.0000000000
-bot send : 	0.0000522030
-lef exchange: 	0.0000068431
-rig exchange: 	0.0000149959
- 
-Current time: 2.916753
-bot exchange: 	0.0000945700
-bot receive : 	0.0000000000
-bot send : 	0.0000926610
-lef exchange: 	0.0000183261
-rig exchange: 	0.0000081370
-bot exchange: 	0.0000554072
-bot receive : 	0.0000000000
-bot send : 	0.0000529271
-lef exchange: 	0.0000079919
-rig exchange: 	0.0000088289
- 
-Current time: 2.942936
-bot exchange: 	0.0000989048
-bot receive : 	0.0000000000
-bot send : 	0.0000966450
-lef exchange: 	0.0000159862
-rig exchange: 	0.0000101922
-bot exchange: 	0.0000488481
-bot receive : 	0.0000000000
-bot send : 	0.0000464481
-lef exchange: 	0.0000123898
-rig exchange: 	0.0000085291
- 
-Current time: 2.969119
-bot exchange: 	0.0001023370
-bot receive : 	0.0000000000
-bot send : 	0.0000998152
-lef exchange: 	0.0000155990
-rig exchange: 	0.0000096741
-bot exchange: 	0.0000512418
-bot receive : 	0.0000000000
-bot send : 	0.0000490150
-lef exchange: 	0.0000095710
-rig exchange: 	0.0000207161
- 
-Current time: 2.995300
-bot exchange: 	0.0000996529
-bot receive : 	0.0000000000
-bot send : 	0.0000973111
-lef exchange: 	0.0000133330
-rig exchange: 	0.0000072259
-bot exchange: 	0.0000552312
-bot receive : 	0.0000000000
-bot send : 	0.0000527850
-lef exchange: 	0.0000113221
-rig exchange: 	0.0000182290
- 
-Current time: 3.000000
-bot exchange: 	0.0000978650
-bot receive : 	0.0000000000
-bot send : 	0.0000954189
-lef exchange: 	0.0000179231
-rig exchange: 	0.0000104781
-bot exchange: 	0.0000511738
-bot receive : 	0.0000000000
-bot send : 	0.0000496779
-lef exchange: 	0.0000134429
-rig exchange: 	0.0000069251
- 
-Current time: 3.026180
-bot exchange: 	0.0000988119
-bot receive : 	0.0000000000
-bot send : 	0.0000970771
-lef exchange: 	0.0000206779
-rig exchange: 	0.0000105221
-bot exchange: 	0.0000551930
-bot receive : 	0.0000000000
-bot send : 	0.0000533371
-lef exchange: 	0.0000142409
-rig exchange: 	0.0000073400
- 
-Current time: 3.052360
-bot exchange: 	0.0000940158
-bot receive : 	0.0000000000
-bot send : 	0.0000920182
-lef exchange: 	0.0000245571
-rig exchange: 	0.0000080410
-bot exchange: 	0.0000536840
-bot receive : 	0.0000000000
-bot send : 	0.0000520670
-lef exchange: 	0.0000138250
-rig exchange: 	0.0000079239
- 
-Current time: 3.078538
-bot exchange: 	0.0000927490
-bot receive : 	0.0000000000
-bot send : 	0.0000901199
-lef exchange: 	0.0000194928
-rig exchange: 	0.0000085891
-bot exchange: 	0.0000495042
-bot receive : 	0.0000000000
-bot send : 	0.0000478760
-lef exchange: 	0.0000148201
-rig exchange: 	0.0000225962
- 
-Current time: 3.104716
-bot exchange: 	0.0001031698
-bot receive : 	0.0000000000
-bot send : 	0.0001011968
-lef exchange: 	0.0000151100
-rig exchange: 	0.0000099570
-bot exchange: 	0.0000560980
-bot receive : 	0.0000000000
-bot send : 	0.0000541881
-lef exchange: 	0.0000183869
-rig exchange: 	0.0000144690
- 
-Current time: 3.130892
-bot exchange: 	0.0000990140
-bot receive : 	0.0000000000
-bot send : 	0.0000934510
-lef exchange: 	0.0000187210
-rig exchange: 	0.0000076902
-bot exchange: 	0.0000515569
-bot receive : 	0.0000000000
-bot send : 	0.0000498889
-lef exchange: 	0.0000128399
-rig exchange: 	0.0000163759
- 
-Current time: 3.157068
-bot exchange: 	0.0000944051
-bot receive : 	0.0000000000
-bot send : 	0.0000921199
-lef exchange: 	0.0000198900
-rig exchange: 	0.0000099330
-bot exchange: 	0.0000507019
-bot receive : 	0.0000000000
-bot send : 	0.0000486111
-lef exchange: 	0.0000086960
-rig exchange: 	0.0000070562
- 
-Current time: 3.183243
-bot exchange: 	0.0000915430
-bot receive : 	0.0000000000
-bot send : 	0.0000894801
-lef exchange: 	0.0000210570
-rig exchange: 	0.0000097211
-bot exchange: 	0.0000465340
-bot receive : 	0.0000000000
-bot send : 	0.0000445989
-lef exchange: 	0.0000111090
-rig exchange: 	0.0000072420
- 
-Current time: 3.209417
-bot exchange: 	0.0000952159
-bot receive : 	0.0000000000
-bot send : 	0.0000930240
-lef exchange: 	0.0000125892
-rig exchange: 	0.0000076499
-bot exchange: 	0.0000565362
-bot receive : 	0.0000000000
-bot send : 	0.0000548239
-lef exchange: 	0.0000072219
-rig exchange: 	0.0000089400
- 
-Current time: 3.235590
-bot exchange: 	0.0000957858
-bot receive : 	0.0000000000
-bot send : 	0.0000935821
-lef exchange: 	0.0000152362
-rig exchange: 	0.0000083381
-bot exchange: 	0.0000544561
-bot receive : 	0.0000000000
-bot send : 	0.0000529080
-lef exchange: 	0.0000070340
-rig exchange: 	0.0000078280
- 
-Current time: 3.261762
-bot exchange: 	0.0000972620
-bot receive : 	0.0000000000
-bot send : 	0.0000948231
-lef exchange: 	0.0000228561
-rig exchange: 	0.0000080250
-bot exchange: 	0.0000491929
-bot receive : 	0.0000000000
-bot send : 	0.0000476530
-lef exchange: 	0.0000113840
-rig exchange: 	0.0000169622
- 
-Current time: 3.287933
-bot exchange: 	0.0000906740
-bot receive : 	0.0000000000
-bot send : 	0.0000886570
-lef exchange: 	0.0000202639
-rig exchange: 	0.0000101260
-bot exchange: 	0.0000648352
-bot receive : 	0.0000000000
-bot send : 	0.0000630869
-lef exchange: 	0.0000111931
-rig exchange: 	0.0000069540
- 
-Current time: 3.314103
-bot exchange: 	0.0000960529
-bot receive : 	0.0000000000
-bot send : 	0.0000936540
-lef exchange: 	0.0000184791
-rig exchange: 	0.0000116071
-bot exchange: 	0.0000427631
-bot receive : 	0.0000000000
-bot send : 	0.0000407968
-lef exchange: 	0.0000145249
-rig exchange: 	0.0000196102
- 
-Current time: 3.340272
-bot exchange: 	0.0000985139
-bot receive : 	0.0000000000
-bot send : 	0.0000960720
-lef exchange: 	0.0000161459
-rig exchange: 	0.0000093151
-bot exchange: 	0.0000491850
-bot receive : 	0.0000000000
-bot send : 	0.0000471922
-lef exchange: 	0.0000076389
-rig exchange: 	0.0000079020
- 
-Current time: 3.366440
-bot exchange: 	0.0000983991
-bot receive : 	0.0000000000
-bot send : 	0.0000964939
-lef exchange: 	0.0000142350
-rig exchange: 	0.0000080601
-bot exchange: 	0.0000592610
-bot receive : 	0.0000000000
-bot send : 	0.0000571378
-lef exchange: 	0.0000091200
-rig exchange: 	0.0000234370
- 
-Current time: 3.392608
-bot exchange: 	0.0001020329
-bot receive : 	0.0000000000
-bot send : 	0.0000996590
-lef exchange: 	0.0000161710
-rig exchange: 	0.0000095512
-bot exchange: 	0.0000568591
-bot receive : 	0.0000000000
-bot send : 	0.0000546400
-lef exchange: 	0.0000194728
-rig exchange: 	0.0000099328
- 
-Current time: 3.418775
-bot exchange: 	0.0000988119
-bot receive : 	0.0000000000
-bot send : 	0.0000965390
-lef exchange: 	0.0000187040
-rig exchange: 	0.0000094820
-bot exchange: 	0.0000481650
-bot receive : 	0.0000000000
-bot send : 	0.0000458481
-lef exchange: 	0.0000095870
-rig exchange: 	0.0000218239
- 
-Current time: 3.444940
-bot exchange: 	0.0000944179
-bot receive : 	0.0000000000
-bot send : 	0.0000928070
-lef exchange: 	0.0000180211
-rig exchange: 	0.0000085311
-bot exchange: 	0.0000532751
-bot receive : 	0.0000000000
-bot send : 	0.0000514360
-lef exchange: 	0.0000146469
-rig exchange: 	0.0000071751
- 
-Current time: 3.471105
-bot exchange: 	0.0000968711
-bot receive : 	0.0000000000
-bot send : 	0.0000949081
-lef exchange: 	0.0000147570
-rig exchange: 	0.0000079479
-bot exchange: 	0.0000535669
-bot receive : 	0.0000000000
-bot send : 	0.0000519359
-lef exchange: 	0.0000088848
-rig exchange: 	0.0000094441
- 
-Current time: 3.497270
-bot exchange: 	0.0000967851
-bot receive : 	0.0000000000
-bot send : 	0.0000946741
-lef exchange: 	0.0000171098
-rig exchange: 	0.0000072850
-bot exchange: 	0.0000510891
-bot receive : 	0.0000000000
-bot send : 	0.0000485261
-lef exchange: 	0.0000140748
-rig exchange: 	0.0000072850
- 
-Current time: 3.523433
-bot exchange: 	0.0000922480
-bot receive : 	0.0000000000
-bot send : 	0.0000899951
-lef exchange: 	0.0000164849
-rig exchange: 	0.0000105100
-bot exchange: 	0.0000502130
-bot receive : 	0.0000000000
-bot send : 	0.0000487210
-lef exchange: 	0.0000160679
-rig exchange: 	0.0000071200
- 
-Current time: 3.549595
-bot exchange: 	0.0000982669
-bot receive : 	0.0000000000
-bot send : 	0.0000959591
-lef exchange: 	0.0000123680
-rig exchange: 	0.0000077521
-bot exchange: 	0.0000562889
-bot receive : 	0.0000000000
-bot send : 	0.0000539441
-lef exchange: 	0.0000111661
-rig exchange: 	0.0000069991
- 
-Current time: 3.575757
-bot exchange: 	0.0000966880
-bot receive : 	0.0000000000
-bot send : 	0.0000948380
-lef exchange: 	0.0000195929
-rig exchange: 	0.0000100480
-bot exchange: 	0.0000458721
-bot receive : 	0.0000000000
-bot send : 	0.0000435491
-lef exchange: 	0.0000197119
-rig exchange: 	0.0000209089
- 
-Current time: 3.601918
-bot exchange: 	0.0001099030
-bot receive : 	0.0000000000
-bot send : 	0.0001079189
-lef exchange: 	0.0000144190
-rig exchange: 	0.0000074711
-bot exchange: 	0.0000583450
-bot receive : 	0.0000000000
-bot send : 	0.0000563071
-lef exchange: 	0.0000174360
-rig exchange: 	0.0000187170
- 
-Current time: 3.628078
-bot exchange: 	0.0000990580
-bot receive : 	0.0000000000
-bot send : 	0.0000966939
-lef exchange: 	0.0000160250
-rig exchange: 	0.0000096238
-bot exchange: 	0.0000483620
-bot receive : 	0.0000000000
-bot send : 	0.0000456891
-lef exchange: 	0.0000159910
-rig exchange: 	0.0000078920
- 
-Current time: 3.654238
-bot exchange: 	0.0000940689
-bot receive : 	0.0000000000
-bot send : 	0.0000921001
-lef exchange: 	0.0000150942
-rig exchange: 	0.0000098590
-bot exchange: 	0.0000541150
-bot receive : 	0.0000000000
-bot send : 	0.0000522272
-lef exchange: 	0.0000155298
-rig exchange: 	0.0000202861
- 
-Current time: 3.680396
-bot exchange: 	0.0000934370
-bot receive : 	0.0000000000
-bot send : 	0.0000915329
-lef exchange: 	0.0000155119
-rig exchange: 	0.0000072001
-bot exchange: 	0.0000613909
-bot receive : 	0.0000000000
-bot send : 	0.0000587499
-lef exchange: 	0.0000095409
-rig exchange: 	0.0000187021
- 
-Current time: 3.706554
-bot exchange: 	0.0000951560
-bot receive : 	0.0000000000
-bot send : 	0.0000932750
-lef exchange: 	0.0000151200
-rig exchange: 	0.0000093381
-bot exchange: 	0.0000540311
-bot receive : 	0.0000000000
-bot send : 	0.0000520181
-lef exchange: 	0.0000070231
-rig exchange: 	0.0000091169
- 
-Current time: 3.732712
-bot exchange: 	0.0000918810
-bot receive : 	0.0000000000
-bot send : 	0.0000896300
-lef exchange: 	0.0000202958
-rig exchange: 	0.0000090399
-bot exchange: 	0.0002149581
-bot receive : 	0.0000000000
-bot send : 	0.0002129511
-lef exchange: 	0.0000075249
-rig exchange: 	0.0000078520
- 
-Current time: 3.758868
-bot exchange: 	0.0000986659
-bot receive : 	0.0000000000
-bot send : 	0.0000963020
-lef exchange: 	0.0000204151
-rig exchange: 	0.0000125149
-bot exchange: 	0.0000443768
-bot receive : 	0.0000000000
-bot send : 	0.0000421870
-lef exchange: 	0.0000075251
-rig exchange: 	0.0000171950
- 
-Current time: 3.785024
-bot exchange: 	0.0001001989
-bot receive : 	0.0000000000
-bot send : 	0.0000981819
-lef exchange: 	0.0000127421
-rig exchange: 	0.0000098851
-bot exchange: 	0.0000594680
-bot receive : 	0.0000000000
-bot send : 	0.0000571050
-lef exchange: 	0.0000072001
-rig exchange: 	0.0000068359
- 
-Current time: 3.811179
-bot exchange: 	0.0000958620
-bot receive : 	0.0000000000
-bot send : 	0.0000935630
-lef exchange: 	0.0000157310
-rig exchange: 	0.0000095831
-bot exchange: 	0.0000534090
-bot receive : 	0.0000000000
-bot send : 	0.0000510020
-lef exchange: 	0.0000086050
-rig exchange: 	0.0000156490
- 
-Current time: 3.837334
-bot exchange: 	0.0001001740
-bot receive : 	0.0000000000
-bot send : 	0.0000977989
-lef exchange: 	0.0000157361
-rig exchange: 	0.0000077751
-bot exchange: 	0.0000647949
-bot receive : 	0.0000000000
-bot send : 	0.0000623039
-lef exchange: 	0.0000082718
-rig exchange: 	0.0000318389
- 
-Current time: 3.863488
-bot exchange: 	0.0000912710
-bot receive : 	0.0000000000
-bot send : 	0.0000890121
-lef exchange: 	0.0000184539
-rig exchange: 	0.0000090830
-bot exchange: 	0.0000535089
-bot receive : 	0.0000000000
-bot send : 	0.0000516679
-lef exchange: 	0.0000147361
-rig exchange: 	0.0000068950
- 
-Current time: 3.889641
-bot exchange: 	0.0000943809
-bot receive : 	0.0000000000
-bot send : 	0.0000922261
-lef exchange: 	0.0000152579
-rig exchange: 	0.0000079670
-bot exchange: 	0.0000698939
-bot receive : 	0.0000000000
-bot send : 	0.0000676259
-lef exchange: 	0.0000073640
-rig exchange: 	0.0000127731
- 
-Current time: 3.915794
-bot exchange: 	0.0000925821
-bot receive : 	0.0000000000
-bot send : 	0.0000900789
-lef exchange: 	0.0000142551
-rig exchange: 	0.0000082159
-bot exchange: 	0.0000560570
-bot receive : 	0.0000000000
-bot send : 	0.0000545359
-lef exchange: 	0.0000074760
-rig exchange: 	0.0000086201
- 
-Current time: 3.941946
-bot exchange: 	0.0000883390
-bot receive : 	0.0000000000
-bot send : 	0.0000863122
-lef exchange: 	0.0000175580
-rig exchange: 	0.0000085952
-bot exchange: 	0.0000612801
-bot receive : 	0.0000000000
-bot send : 	0.0000596191
-lef exchange: 	0.0000133349
-rig exchange: 	0.0000069309
- 
-Current time: 3.968097
-bot exchange: 	0.0000945870
-bot receive : 	0.0000000000
-bot send : 	0.0000926950
-lef exchange: 	0.0000248929
-rig exchange: 	0.0000083882
-bot exchange: 	0.0000686948
-bot receive : 	0.0000000000
-bot send : 	0.0000663099
-lef exchange: 	0.0000077840
-rig exchange: 	0.0000189131
- 
-Current time: 3.994248
-bot exchange: 	0.0000994739
-bot receive : 	0.0000000000
-bot send : 	0.0000969791
-lef exchange: 	0.0000158260
-rig exchange: 	0.0000092259
-bot exchange: 	0.0000539499
-bot receive : 	0.0000000000
-bot send : 	0.0000513690
-lef exchange: 	0.0000096119
-rig exchange: 	0.0000150772
- 
-Current time: 4.000000
-bot exchange: 	0.0001055200
-bot receive : 	0.0000000000
-bot send : 	0.0001031649
-lef exchange: 	0.0000119570
-rig exchange: 	0.0000078729
-bot exchange: 	0.0000647330
-bot receive : 	0.0000000000
-bot send : 	0.0000622771
-lef exchange: 	0.0000107200
-rig exchange: 	0.0000080371
- 
-Current time: 4.026150
-bot exchange: 	0.0000946710
-bot receive : 	0.0000000000
-bot send : 	0.0000925942
-lef exchange: 	0.0000198490
-rig exchange: 	0.0000086029
-bot exchange: 	0.0000555450
-bot receive : 	0.0000000000
-bot send : 	0.0000536479
-lef exchange: 	0.0000094029
-rig exchange: 	0.0000128830
- 
-Current time: 4.052300
-bot exchange: 	0.0000917281
-bot receive : 	0.0000000000
-bot send : 	0.0000897390
-lef exchange: 	0.0000181629
-rig exchange: 	0.0000099551
-bot exchange: 	0.0000480670
-bot receive : 	0.0000000000
-bot send : 	0.0000461771
-lef exchange: 	0.0000125701
-rig exchange: 	0.0000146071
- 
-Current time: 4.078449
-bot exchange: 	0.0000957681
-bot receive : 	0.0000000000
-bot send : 	0.0000932629
-lef exchange: 	0.0000194479
-rig exchange: 	0.0000099260
-bot exchange: 	0.0000526370
-bot receive : 	0.0000000000
-bot send : 	0.0000506761
-lef exchange: 	0.0000092231
-rig exchange: 	0.0000079479
- 
-Current time: 4.104598
-bot exchange: 	0.0001015801
-bot receive : 	0.0000000000
-bot send : 	0.0000994280
-lef exchange: 	0.0000171640
-rig exchange: 	0.0000081898
-bot exchange: 	0.0000497331
-bot receive : 	0.0000000000
-bot send : 	0.0000478229
-lef exchange: 	0.0000157829
-rig exchange: 	0.0000227971
- 
-Current time: 4.130746
-bot exchange: 	0.0000954580
-bot receive : 	0.0000000000
-bot send : 	0.0000936650
-lef exchange: 	0.0000193762
-rig exchange: 	0.0000096471
-bot exchange: 	0.0000517520
-bot receive : 	0.0000000000
-bot send : 	0.0000498132
-lef exchange: 	0.0000093931
-rig exchange: 	0.0000089351
- 
-Current time: 4.156893
-bot exchange: 	0.0000938170
-bot receive : 	0.0000000000
-bot send : 	0.0000917481
-lef exchange: 	0.0000206812
-rig exchange: 	0.0000100050
-bot exchange: 	0.0000504130
-bot receive : 	0.0000000000
-bot send : 	0.0000479100
-lef exchange: 	0.0000082119
-rig exchange: 	0.0000086320
- 
-Current time: 4.183040
-bot exchange: 	0.0000928792
-bot receive : 	0.0000000000
-bot send : 	0.0000908191
-lef exchange: 	0.0000206011
-rig exchange: 	0.0000104029
-bot exchange: 	0.0000534800
-bot receive : 	0.0000000000
-bot send : 	0.0000512800
-lef exchange: 	0.0000233229
-rig exchange: 	0.0000242270
- 
-Current time: 4.209187
-bot exchange: 	0.0000984948
-bot receive : 	0.0000000000
-bot send : 	0.0000961900
-lef exchange: 	0.0000141000
-rig exchange: 	0.0000097670
-bot exchange: 	0.0000582149
-bot receive : 	0.0000000000
-bot send : 	0.0000557911
-lef exchange: 	0.0000142041
-rig exchange: 	0.0000190600
- 
-Current time: 4.235333
-bot exchange: 	0.0000980741
-bot receive : 	0.0000000000
-bot send : 	0.0000957102
-lef exchange: 	0.0000141379
-rig exchange: 	0.0000096210
-bot exchange: 	0.0000630689
-bot receive : 	0.0000000000
-bot send : 	0.0000607551
-lef exchange: 	0.0000091481
-rig exchange: 	0.0000066939
- 
-Current time: 4.261479
-bot exchange: 	0.0000946079
-bot receive : 	0.0000000000
-bot send : 	0.0000920461
-lef exchange: 	0.0000181831
-rig exchange: 	0.0000085880
-bot exchange: 	0.0000454390
-bot receive : 	0.0000000000
-bot send : 	0.0000435659
-lef exchange: 	0.0000166651
-rig exchange: 	0.0000073421
- 
-Current time: 4.287624
-bot exchange: 	0.0000972729
-bot receive : 	0.0000000000
-bot send : 	0.0000953681
-lef exchange: 	0.0000155212
-rig exchange: 	0.0000098809
-bot exchange: 	0.0000554021
-bot receive : 	0.0000000000
-bot send : 	0.0000539140
-lef exchange: 	0.0000074040
-rig exchange: 	0.0000098711
- 
-Current time: 4.313769
-bot exchange: 	0.0000952750
-bot receive : 	0.0000000000
-bot send : 	0.0000927779
-lef exchange: 	0.0000147941
-rig exchange: 	0.0000099530
-bot exchange: 	0.0000560801
-bot receive : 	0.0000000000
-bot send : 	0.0000534470
-lef exchange: 	0.0000073081
-rig exchange: 	0.0000075169
- 
-Current time: 4.339913
-bot exchange: 	0.0000945979
-bot receive : 	0.0000000000
-bot send : 	0.0000928522
-lef exchange: 	0.0000178509
-rig exchange: 	0.0000078969
-bot exchange: 	0.0000550039
-bot receive : 	0.0000000000
-bot send : 	0.0000535140
-lef exchange: 	0.0001082390
-rig exchange: 	0.0000087360
- 
-Current time: 4.366057
-bot exchange: 	0.0000976981
-bot receive : 	0.0000000000
-bot send : 	0.0000955330
-lef exchange: 	0.0000125442
-rig exchange: 	0.0000099482
-bot exchange: 	0.0000550521
-bot receive : 	0.0000000000
-bot send : 	0.0000532041
-lef exchange: 	0.0000095791
-rig exchange: 	0.0000068690
- 
-Current time: 4.392201
-bot exchange: 	0.0001034201
-bot receive : 	0.0000000000
-bot send : 	0.0001010550
-lef exchange: 	0.0000151529
-rig exchange: 	0.0000099668
-bot exchange: 	0.0000469468
-bot receive : 	0.0000000000
-bot send : 	0.0000444420
-lef exchange: 	0.0000162390
-rig exchange: 	0.0000124238
- 
-Current time: 4.418344
-bot exchange: 	0.0000977742
-bot receive : 	0.0000000000
-bot send : 	0.0000957032
-lef exchange: 	0.0000153908
-rig exchange: 	0.0000086131
-bot exchange: 	0.0000704532
-bot receive : 	0.0000000000
-bot send : 	0.0000685051
-lef exchange: 	0.0000071218
-rig exchange: 	0.0000088711
- 
-Current time: 4.444487
-bot exchange: 	0.0001014019
-bot receive : 	0.0000000000
-bot send : 	0.0000987761
-lef exchange: 	0.0000181010
-rig exchange: 	0.0000091002
-bot exchange: 	0.0000523911
-bot receive : 	0.0000000000
-bot send : 	0.0000500828
-lef exchange: 	0.0000183720
-rig exchange: 	0.0000080890
- 
-Current time: 4.470629
-bot exchange: 	0.0000928638
-bot receive : 	0.0000000000
-bot send : 	0.0000906941
-lef exchange: 	0.0000181710
-rig exchange: 	0.0000094872
-bot exchange: 	0.0000503941
-bot receive : 	0.0000000000
-bot send : 	0.0000479610
-lef exchange: 	0.0000089381
-rig exchange: 	0.0000088699
- 
-Current time: 4.496771
-bot exchange: 	0.0000970000
-bot receive : 	0.0000000000
-bot send : 	0.0000954361
-lef exchange: 	0.0000169661
-rig exchange: 	0.0000100150
-bot exchange: 	0.0000500060
-bot receive : 	0.0000000000
-bot send : 	0.0000485640
-lef exchange: 	0.0000168500
-rig exchange: 	0.0000246011
- 
-Current time: 4.522913
-bot exchange: 	0.0000977709
-bot receive : 	0.0000000000
-bot send : 	0.0000952859
-lef exchange: 	0.0000151240
-rig exchange: 	0.0000098860
-bot exchange: 	0.0000487370
-bot receive : 	0.0000000000
-bot send : 	0.0000468809
-lef exchange: 	0.0000139761
-rig exchange: 	0.0000220879
- 
-Current time: 4.549054
-bot exchange: 	0.0001023370
-bot receive : 	0.0000000000
-bot send : 	0.0000998680
-lef exchange: 	0.0000187401
-rig exchange: 	0.0000100161
-bot exchange: 	0.0000493051
-bot receive : 	0.0000000000
-bot send : 	0.0000468688
-lef exchange: 	0.0000146979
-rig exchange: 	0.0000441531
- 
-Current time: 4.575195
-bot exchange: 	0.0000961700
-bot receive : 	0.0000000000
-bot send : 	0.0000937791
-lef exchange: 	0.0000146329
-rig exchange: 	0.0000099801
-bot exchange: 	0.0000519420
-bot receive : 	0.0000000000
-bot send : 	0.0000501580
-lef exchange: 	0.0000149780
-rig exchange: 	0.0000074198
- 
-Current time: 4.601336
-bot exchange: 	0.0000954620
-bot receive : 	0.0000000000
-bot send : 	0.0000932231
-lef exchange: 	0.0000184700
-rig exchange: 	0.0000088140
-bot exchange: 	0.0000562200
-bot receive : 	0.0000000000
-bot send : 	0.0000535960
-lef exchange: 	0.0000086960
-rig exchange: 	0.0000176420
- 
-Current time: 4.627477
-bot exchange: 	0.0001002678
-bot receive : 	0.0000000000
-bot send : 	0.0000978620
-lef exchange: 	0.0000172199
-rig exchange: 	0.0000098529
-bot exchange: 	0.0000479810
-bot receive : 	0.0000000000
-bot send : 	0.0000463000
-lef exchange: 	0.0000110401
-rig exchange: 	0.0000367078
- 
-Current time: 4.653617
-bot exchange: 	0.0000974881
-bot receive : 	0.0000000000
-bot send : 	0.0000955050
-lef exchange: 	0.0000175370
-rig exchange: 	0.0000084429
-bot exchange: 	0.0000528859
-bot receive : 	0.0000000000
-bot send : 	0.0000513990
-lef exchange: 	0.0000110290
-rig exchange: 	0.0000077870
- 
-Current time: 4.679756
-bot exchange: 	0.0000964492
-bot receive : 	0.0000000000
-bot send : 	0.0000947299
-lef exchange: 	0.0000182970
-rig exchange: 	0.0000105188
-bot exchange: 	0.0000507550
-bot receive : 	0.0000000000
-bot send : 	0.0000487799
-lef exchange: 	0.0000083670
-rig exchange: 	0.0000089360
- 
-Current time: 4.705896
-bot exchange: 	0.0000984280
-bot receive : 	0.0000000000
-bot send : 	0.0000965639
-lef exchange: 	0.0000186241
-rig exchange: 	0.0000075272
-bot exchange: 	0.0000559681
-bot receive : 	0.0000000000
-bot send : 	0.0000540190
-lef exchange: 	0.0000106860
-rig exchange: 	0.0000078371
- 
-Current time: 4.732035
-bot exchange: 	0.0000971209
-bot receive : 	0.0000000000
-bot send : 	0.0000948710
-lef exchange: 	0.0000154229
-rig exchange: 	0.0000081589
-bot exchange: 	0.0000581050
-bot receive : 	0.0000000000
-bot send : 	0.0000565920
-lef exchange: 	0.0000095251
-rig exchange: 	0.0000097030
- 
-Current time: 4.758174
-bot exchange: 	0.0001041321
-bot receive : 	0.0000000000
-bot send : 	0.0001022108
-lef exchange: 	0.0000170220
-rig exchange: 	0.0000101530
-bot exchange: 	0.0000495829
-bot receive : 	0.0000000000
-bot send : 	0.0000472611
-lef exchange: 	0.0000141771
-rig exchange: 	0.0000081952
- 
-Current time: 4.784313
-bot exchange: 	0.0000981539
-bot receive : 	0.0000000000
-bot send : 	0.0000954950
-lef exchange: 	0.0000132369
-rig exchange: 	0.0000077819
-bot exchange: 	0.0000497131
-bot receive : 	0.0000000000
-bot send : 	0.0000476290
-lef exchange: 	0.0000137570
-rig exchange: 	0.0000077719
- 
-Current time: 4.810451
-bot exchange: 	0.0000985370
-bot receive : 	0.0000000000
-bot send : 	0.0000966620
-lef exchange: 	0.0000225629
-rig exchange: 	0.0000084001
-bot exchange: 	0.0000528151
-bot receive : 	0.0000000000
-bot send : 	0.0000509641
-lef exchange: 	0.0000112120
-rig exchange: 	0.0000072070
- 
-Current time: 4.836589
-bot exchange: 	0.0000945032
-bot receive : 	0.0000000000
-bot send : 	0.0000921430
-lef exchange: 	0.0000183140
-rig exchange: 	0.0000095640
-bot exchange: 	0.0000533760
-bot receive : 	0.0000000000
-bot send : 	0.0000508269
-lef exchange: 	0.0000094480
-rig exchange: 	0.0000243140
- 
-Current time: 4.862727
-bot exchange: 	0.0000963700
-bot receive : 	0.0000000000
-bot send : 	0.0000945129
-lef exchange: 	0.0000162341
-rig exchange: 	0.0000103910
-bot exchange: 	0.0000523620
-bot receive : 	0.0000000000
-bot send : 	0.0000509350
-lef exchange: 	0.0000082620
-rig exchange: 	0.0000072049
- 
-Current time: 4.888865
-bot exchange: 	0.0000998809
-bot receive : 	0.0000000000
-bot send : 	0.0000975360
-lef exchange: 	0.0000108010
-rig exchange: 	0.0000085148
-bot exchange: 	0.0000678061
-bot receive : 	0.0000000000
-bot send : 	0.0000652741
-lef exchange: 	0.0000088210
-rig exchange: 	0.0000087030
- 
-Current time: 4.915002
-bot exchange: 	0.0001013281
-bot receive : 	0.0000000000
-bot send : 	0.0000989230
-lef exchange: 	0.0000208090
-rig exchange: 	0.0000099039
-bot exchange: 	0.0000387651
-bot receive : 	0.0000000000
-bot send : 	0.0000369081
-lef exchange: 	0.0000107030
-rig exchange: 	0.0000088210
- 
-Current time: 4.941140
-bot exchange: 	0.0000962978
-bot receive : 	0.0000000000
-bot send : 	0.0000947660
-lef exchange: 	0.0000179482
-rig exchange: 	0.0000081819
-bot exchange: 	0.0000523250
-bot receive : 	0.0000000000
-bot send : 	0.0000504181
-lef exchange: 	0.0000101801
-rig exchange: 	0.0000086909
- 
-Current time: 4.967277
-bot exchange: 	0.0000972231
-bot receive : 	0.0000000000
-bot send : 	0.0000953360
-lef exchange: 	0.0000139410
-rig exchange: 	0.0000074168
-bot exchange: 	0.0000548852
-bot receive : 	0.0000000000
-bot send : 	0.0000529052
-lef exchange: 	0.0000085791
-rig exchange: 	0.0000074750
- 
-Current time: 4.993413
-bot exchange: 	0.0000995400
-bot receive : 	0.0000000000
-bot send : 	0.0000971910
-lef exchange: 	0.0000155680
-rig exchange: 	0.0000096001
-bot exchange: 	0.0000552400
-bot receive : 	0.0000000000
-bot send : 	0.0000528521
-lef exchange: 	0.0000090629
-rig exchange: 	0.0000072210
- 
-Current time: 5.000000
-bot exchange: 	0.0001028499
-bot receive : 	0.0000000000
-bot send : 	0.0001006511
-lef exchange: 	0.0000162190
-rig exchange: 	0.0000093628
-bot exchange: 	0.0000576340
-bot receive : 	0.0000000000
-bot send : 	0.0000552859
-lef exchange: 	0.0000076061
-rig exchange: 	0.0000084110
- 
-Current time: 5.026136
-bot exchange: 	0.0000991251
-bot receive : 	0.0000000000
-bot send : 	0.0000973672
-lef exchange: 	0.0000301851
-rig exchange: 	0.0000078410
-bot exchange: 	0.0000577159
-bot receive : 	0.0000000000
-bot send : 	0.0000560358
-lef exchange: 	0.0000094061
-rig exchange: 	0.0000181450
- 
-Current time: 5.052273
-bot exchange: 	0.0000903090
-bot receive : 	0.0000000000
-bot send : 	0.0000880559
-lef exchange: 	0.0000183741
-rig exchange: 	0.0000085239
-bot exchange: 	0.0000559720
-bot receive : 	0.0000000000
-bot send : 	0.0000540349
-lef exchange: 	0.0000081880
-rig exchange: 	0.0000407451
- 
-Current time: 5.078409
-bot exchange: 	0.0000986732
-bot receive : 	0.0000000000
-bot send : 	0.0000961870
-lef exchange: 	0.0000168032
-rig exchange: 	0.0000093791
-bot exchange: 	0.0000552582
-bot receive : 	0.0000000000
-bot send : 	0.0000531839
-lef exchange: 	0.0000091570
-rig exchange: 	0.0000209489
- 
-Current time: 5.104545
-bot exchange: 	0.0000981411
-bot receive : 	0.0000000000
-bot send : 	0.0000961949
-lef exchange: 	0.0000182800
-rig exchange: 	0.0000115251
-bot exchange: 	0.0000498639
-bot receive : 	0.0000000000
-bot send : 	0.0000475051
-lef exchange: 	0.0000166818
-rig exchange: 	0.0000208821
- 
-Current time: 5.130680
-bot exchange: 	0.0001141091
-bot receive : 	0.0000000000
-bot send : 	0.0001117100
-lef exchange: 	0.0000139009
-rig exchange: 	0.0000074001
-bot exchange: 	0.0000560400
-bot receive : 	0.0000000000
-bot send : 	0.0000537701
-lef exchange: 	0.0000114869
-rig exchange: 	0.0000215860
- 
-Current time: 5.156816
-bot exchange: 	0.0000937020
-bot receive : 	0.0000000000
-bot send : 	0.0000915299
-lef exchange: 	0.0000232779
-rig exchange: 	0.0000097980
-bot exchange: 	0.0000455591
-bot receive : 	0.0000000000
-bot send : 	0.0000434439
-lef exchange: 	0.0000187210
-rig exchange: 	0.0000226139
- 
-Current time: 5.182951
-bot exchange: 	0.0001003610
-bot receive : 	0.0000000000
-bot send : 	0.0000984431
-lef exchange: 	0.0000170630
-rig exchange: 	0.0000077812
-bot exchange: 	0.0000546770
-bot receive : 	0.0000000000
-bot send : 	0.0000531010
-lef exchange: 	0.0000093752
-rig exchange: 	0.0000097149
- 
-Current time: 5.209086
-bot exchange: 	0.0001017069
-bot receive : 	0.0000000000
-bot send : 	0.0000993009
-lef exchange: 	0.0000096681
-rig exchange: 	0.0000089030
-bot exchange: 	0.0000703319
-bot receive : 	0.0000000000
-bot send : 	0.0000681689
-lef exchange: 	0.0000084070
-rig exchange: 	0.0000082240
- 
-Current time: 5.235221
-bot exchange: 	0.0000975521
-bot receive : 	0.0000000000
-bot send : 	0.0000950589
-lef exchange: 	0.0000164970
-rig exchange: 	0.0000084301
-bot exchange: 	0.0000539380
-bot receive : 	0.0000000000
-bot send : 	0.0000520619
-lef exchange: 	0.0000142760
-rig exchange: 	0.0000206120
- 
-Current time: 5.261356
-bot exchange: 	0.0000956529
-bot receive : 	0.0000000000
-bot send : 	0.0000936070
-lef exchange: 	0.0000191040
-rig exchange: 	0.0000096490
-bot exchange: 	0.0000423209
-bot receive : 	0.0000000000
-bot send : 	0.0000406662
-lef exchange: 	0.0000154311
-rig exchange: 	0.0000071309
- 
-Current time: 5.287491
-bot exchange: 	0.0000929169
-bot receive : 	0.0000000000
-bot send : 	0.0000910591
-lef exchange: 	0.0000157161
-rig exchange: 	0.0000087600
-bot exchange: 	0.0000566961
-bot receive : 	0.0000000000
-bot send : 	0.0000551490
-lef exchange: 	0.0000149300
-rig exchange: 	0.0000069069
- 
-Current time: 5.313625
-bot exchange: 	0.0000971281
-bot receive : 	0.0000000000
-bot send : 	0.0000947940
-lef exchange: 	0.0000165030
-rig exchange: 	0.0000103901
-bot exchange: 	0.0000521950
-bot receive : 	0.0000000000
-bot send : 	0.0000498311
-lef exchange: 	0.0000090029
-rig exchange: 	0.0000073670
- 
-Current time: 5.339759
-bot exchange: 	0.0000935092
-bot receive : 	0.0000000000
-bot send : 	0.0000917830
-lef exchange: 	0.0000165801
-rig exchange: 	0.0000089202
-bot exchange: 	0.0000563359
-bot receive : 	0.0000000000
-bot send : 	0.0000546130
-lef exchange: 	0.0000100280
-rig exchange: 	0.0000072101
- 
-Current time: 5.365893
-bot exchange: 	0.0001107692
-bot receive : 	0.0000000000
-bot send : 	0.0001084399
-lef exchange: 	0.0000161100
-rig exchange: 	0.0000075200
-bot exchange: 	0.0000577590
-bot receive : 	0.0000000000
-bot send : 	0.0000555080
-lef exchange: 	0.0000081961
-rig exchange: 	0.0000192840
- 
-Current time: 5.392027
-bot exchange: 	0.0000934808
-bot receive : 	0.0000000000
-bot send : 	0.0000911669
-lef exchange: 	0.0000218619
-rig exchange: 	0.0000084250
-bot exchange: 	0.0000488099
-bot receive : 	0.0000000000
-bot send : 	0.0000464532
-lef exchange: 	0.0000172250
-rig exchange: 	0.0000174642
- 
-Current time: 5.418161
-bot exchange: 	0.0000978110
-bot receive : 	0.0000000000
-bot send : 	0.0000953751
-lef exchange: 	0.0000175841
-rig exchange: 	0.0000095831
-bot exchange: 	0.0000489650
-bot receive : 	0.0000000000
-bot send : 	0.0000472229
-lef exchange: 	0.0000099610
-rig exchange: 	0.0000070620
- 
-Current time: 5.444295
-bot exchange: 	0.0001016220
-bot receive : 	0.0000000000
-bot send : 	0.0000970180
-lef exchange: 	0.0000168202
-rig exchange: 	0.0000102180
-bot exchange: 	0.0000668841
-bot receive : 	0.0000000000
-bot send : 	0.0000654610
-lef exchange: 	0.0000094410
-rig exchange: 	0.0000099039
- 
-Current time: 5.470428
-bot exchange: 	0.0000936091
-bot receive : 	0.0000000000
-bot send : 	0.0000916640
-lef exchange: 	0.0000180099
-rig exchange: 	0.0000083230
-bot exchange: 	0.0000538270
-bot receive : 	0.0000000000
-bot send : 	0.0000517860
-lef exchange: 	0.0000082350
-rig exchange: 	0.0000088080
- 
-Current time: 5.496562
-bot exchange: 	0.0000920661
-bot receive : 	0.0000000000
-bot send : 	0.0000901010
-lef exchange: 	0.0000167212
-rig exchange: 	0.0000100038
-bot exchange: 	0.0000499820
-bot receive : 	0.0000000000
-bot send : 	0.0000479741
-lef exchange: 	0.0000110788
-rig exchange: 	0.0000080410
- 
-Current time: 5.522695
-bot exchange: 	0.0001000219
-bot receive : 	0.0000000000
-bot send : 	0.0000978350
-lef exchange: 	0.0000163119
-rig exchange: 	0.0000104790
-bot exchange: 	0.0000485189
-bot receive : 	0.0000000000
-bot send : 	0.0000466781
-lef exchange: 	0.0000163869
-rig exchange: 	0.0000181559
- 
-Current time: 5.548828
-bot exchange: 	0.0000914580
-bot receive : 	0.0000000000
-bot send : 	0.0000888789
-lef exchange: 	0.0000162311
-rig exchange: 	0.0000079351
-bot exchange: 	0.0000514518
-bot receive : 	0.0000000000
-bot send : 	0.0000496511
-lef exchange: 	0.0000188628
-rig exchange: 	0.0000210500
- 
-Current time: 5.574961
-bot exchange: 	0.0001003721
-bot receive : 	0.0000000000
-bot send : 	0.0000981230
-lef exchange: 	0.0000176711
-rig exchange: 	0.0000084711
-bot exchange: 	0.0000625821
-bot receive : 	0.0000000000
-bot send : 	0.0000604698
-lef exchange: 	0.0000087949
-rig exchange: 	0.0000246351
- 
-Current time: 5.601094
-bot exchange: 	0.0000935521
-bot receive : 	0.0000000000
-bot send : 	0.0000918801
-lef exchange: 	0.0000228561
-rig exchange: 	0.0000097202
-bot exchange: 	0.0000734380
-bot receive : 	0.0000000000
-bot send : 	0.0000711009
-lef exchange: 	0.0000089540
-rig exchange: 	0.0000134970
- 
-Current time: 5.627227
-bot exchange: 	0.0000982170
-bot receive : 	0.0000000000
-bot send : 	0.0000962832
-lef exchange: 	0.0000179170
-rig exchange: 	0.0000101239
-bot exchange: 	0.0000394441
-bot receive : 	0.0000000000
-bot send : 	0.0000377800
-lef exchange: 	0.0000179929
-rig exchange: 	0.0000088781
- 
-Current time: 5.653359
-bot exchange: 	0.0001044171
-bot receive : 	0.0000000000
-bot send : 	0.0001020441
-lef exchange: 	0.0000143030
-rig exchange: 	0.0000074559
-bot exchange: 	0.0000532230
-bot receive : 	0.0000000000
-bot send : 	0.0000509061
-lef exchange: 	0.0000104671
-rig exchange: 	0.0000204288
- 
-Current time: 5.679492
-bot exchange: 	0.0001097259
-bot receive : 	0.0000000000
-bot send : 	0.0001071149
-lef exchange: 	0.0000104150
-rig exchange: 	0.0000096341
-bot exchange: 	0.0000499159
-bot receive : 	0.0000000000
-bot send : 	0.0000474050
-lef exchange: 	0.0000128131
-rig exchange: 	0.0000070941
- 
-Current time: 5.705624
-bot exchange: 	0.0000949539
-bot receive : 	0.0000000000
-bot send : 	0.0000925630
-lef exchange: 	0.0000143312
-rig exchange: 	0.0000071479
-bot exchange: 	0.0000647670
-bot receive : 	0.0000000000
-bot send : 	0.0000621239
-lef exchange: 	0.0000093360
-rig exchange: 	0.0000284340
- 
-Current time: 5.731757
-bot exchange: 	0.0000947369
-bot receive : 	0.0000000000
-bot send : 	0.0000926000
-lef exchange: 	0.0000143759
-rig exchange: 	0.0000081910
-bot exchange: 	0.0000583481
-bot receive : 	0.0000000000
-bot send : 	0.0000567508
-lef exchange: 	0.0000130641
-rig exchange: 	0.0000243839
- 
-Current time: 5.757889
-bot exchange: 	0.0000943642
-bot receive : 	0.0000000000
-bot send : 	0.0000926680
-lef exchange: 	0.0000163780
-rig exchange: 	0.0000082171
-bot exchange: 	0.0000572810
-bot receive : 	0.0000000000
-bot send : 	0.0000555881
-lef exchange: 	0.0000110508
-rig exchange: 	0.0000069460
- 
-Current time: 5.784021
-bot exchange: 	0.0000959830
-bot receive : 	0.0000000000
-bot send : 	0.0000939551
-lef exchange: 	0.0000127081
-rig exchange: 	0.0000078960
-bot exchange: 	0.0000536311
-bot receive : 	0.0000000000
-bot send : 	0.0000518719
-lef exchange: 	0.0000141209
-rig exchange: 	0.0000071910
- 
-Current time: 5.810153
-bot exchange: 	0.0000991889
-bot receive : 	0.0000000000
-bot send : 	0.0000941011
-lef exchange: 	0.0000170299
-rig exchange: 	0.0000100839
-bot exchange: 	0.0000462960
-bot receive : 	0.0000000000
-bot send : 	0.0000443228
-lef exchange: 	0.0000177231
-rig exchange: 	0.0000201911
- 
-Current time: 5.836284
-bot exchange: 	0.0001030432
-bot receive : 	0.0000000000
-bot send : 	0.0001005891
-lef exchange: 	0.0000162099
-rig exchange: 	0.0000094981
-bot exchange: 	0.0000562251
-bot receive : 	0.0000000000
-bot send : 	0.0000537271
-lef exchange: 	0.0000089118
-rig exchange: 	0.0000208849
- 
-Current time: 5.862416
-bot exchange: 	0.0001016641
-bot receive : 	0.0000000000
-bot send : 	0.0000993509
-lef exchange: 	0.0000144900
-rig exchange: 	0.0000097749
-bot exchange: 	0.0000578391
-bot receive : 	0.0000000000
-bot send : 	0.0000554940
-lef exchange: 	0.0000073281
-rig exchange: 	0.0000067570
- 
-Current time: 5.888548
-bot exchange: 	0.0000939879
-bot receive : 	0.0000000000
-bot send : 	0.0000916780
-lef exchange: 	0.0000232239
-rig exchange: 	0.0000099449
-bot exchange: 	0.0000430439
-bot receive : 	0.0000000000
-bot send : 	0.0000410681
-lef exchange: 	0.0000139731
-rig exchange: 	0.0000077670
- 
-Current time: 5.914679
-bot exchange: 	0.0000954410
-bot receive : 	0.0000000000
-bot send : 	0.0000937639
-lef exchange: 	0.0000163110
-rig exchange: 	0.0000083619
-bot exchange: 	0.0000610282
-bot receive : 	0.0000000000
-bot send : 	0.0000536670
-lef exchange: 	0.0000097400
-rig exchange: 	0.0000270179
- 
-Current time: 5.940811
-bot exchange: 	0.0001012548
-bot receive : 	0.0000000000
-bot send : 	0.0000990499
-lef exchange: 	0.0000119049
-rig exchange: 	0.0000089060
-bot exchange: 	0.0000518030
-bot receive : 	0.0000000000
-bot send : 	0.0000497580
-lef exchange: 	0.0000198102
-rig exchange: 	0.0000223031
- 
-Current time: 5.966942
-bot exchange: 	0.0000972350
-bot receive : 	0.0000000000
-bot send : 	0.0000947679
-lef exchange: 	0.0000193119
-rig exchange: 	0.0000095950
-bot exchange: 	0.0000513790
-bot receive : 	0.0000000000
-bot send : 	0.0000493831
-lef exchange: 	0.0000111801
-rig exchange: 	0.0000071300
- 
-Current time: 5.993073
-bot exchange: 	0.0000946522
-bot receive : 	0.0000000000
-bot send : 	0.0000926561
-lef exchange: 	0.0000199210
-rig exchange: 	0.0000072902
-bot exchange: 	0.0000515459
-bot receive : 	0.0000000000
-bot send : 	0.0000493699
-lef exchange: 	0.0000092259
-rig exchange: 	0.0000072101
- 
-Current time: 6.000000
-bot exchange: 	0.0000912419
-bot receive : 	0.0000000000
-bot send : 	0.0000890880
-lef exchange: 	0.0000204390
-rig exchange: 	0.0000098778
-bot exchange: 	0.0000529171
-bot receive : 	0.0000000000
-bot send : 	0.0000503161
-lef exchange: 	0.0000089500
-rig exchange: 	0.0000096851
- 
-Current time: 6.026131
-bot exchange: 	0.0000988469
-bot receive : 	0.0000000000
-bot send : 	0.0000969991
-lef exchange: 	0.0000198539
-rig exchange: 	0.0000078690
-bot exchange: 	0.0000530349
-bot receive : 	0.0000000000
-bot send : 	0.0000516269
-lef exchange: 	0.0000090799
-rig exchange: 	0.0000075090
- 
-Current time: 6.052262
-bot exchange: 	0.0000961008
-bot receive : 	0.0000000000
-bot send : 	0.0000935220
-lef exchange: 	0.0000126560
-rig exchange: 	0.0000072450
-bot exchange: 	0.0000753589
-bot receive : 	0.0000000000
-bot send : 	0.0000730881
-lef exchange: 	0.0000086990
-rig exchange: 	0.0000215918
- 
-Current time: 6.078393
-bot exchange: 	0.0000985500
-bot receive : 	0.0000000000
-bot send : 	0.0000965388
-lef exchange: 	0.0000142290
-rig exchange: 	0.0000103090
-bot exchange: 	0.0000500521
-bot receive : 	0.0000000000
-bot send : 	0.0000484742
-lef exchange: 	0.0000130001
-rig exchange: 	0.0000260479
- 
-Current time: 6.104524
-bot exchange: 	0.0001015109
-bot receive : 	0.0000000000
-bot send : 	0.0000992839
-lef exchange: 	0.0000197110
-rig exchange: 	0.0000078089
-bot exchange: 	0.0000479992
-bot receive : 	0.0000000000
-bot send : 	0.0000462930
-lef exchange: 	0.0000082010
-rig exchange: 	0.0000086750
- 
-Current time: 6.130654
-bot exchange: 	0.0000940780
-bot receive : 	0.0000000000
-bot send : 	0.0000923141
-lef exchange: 	0.0000164581
-rig exchange: 	0.0000083121
-bot exchange: 	0.0000506639
-bot receive : 	0.0000000000
-bot send : 	0.0000487692
-lef exchange: 	0.0000187000
-rig exchange: 	0.0000206560
- 
-Current time: 6.156785
-bot exchange: 	0.0000971009
-bot receive : 	0.0000000000
-bot send : 	0.0000946110
-lef exchange: 	0.0000148560
-rig exchange: 	0.0000094480
-bot exchange: 	0.0000522761
-bot receive : 	0.0000000000
-bot send : 	0.0000497331
-lef exchange: 	0.0000143431
-rig exchange: 	0.0000229192
- 
-Current time: 6.182915
-bot exchange: 	0.0000977581
-bot receive : 	0.0000000000
-bot send : 	0.0000952249
-lef exchange: 	0.0000206560
-rig exchange: 	0.0000097200
-bot exchange: 	0.0000449049
-bot receive : 	0.0000000000
-bot send : 	0.0000428159
-lef exchange: 	0.0000143531
-rig exchange: 	0.0000215301
- 
-Current time: 6.209046
-bot exchange: 	0.0000984119
-bot receive : 	0.0000000000
-bot send : 	0.0000960890
-lef exchange: 	0.0000204011
-rig exchange: 	0.0000083910
-bot exchange: 	0.0000442420
-bot receive : 	0.0000000000
-bot send : 	0.0000423731
-lef exchange: 	0.0000143801
-rig exchange: 	0.0000181820
- 
-Current time: 6.235176
-bot exchange: 	0.0000949318
-bot receive : 	0.0000000000
-bot send : 	0.0000926638
-lef exchange: 	0.0000150530
-rig exchange: 	0.0000096969
-bot exchange: 	0.0000520481
-bot receive : 	0.0000000000
-bot send : 	0.0000495969
-lef exchange: 	0.0000135188
-rig exchange: 	0.0000223878
- 
-Current time: 6.261306
-bot exchange: 	0.0001011309
-bot receive : 	0.0000000000
-bot send : 	0.0000987181
-lef exchange: 	0.0000166430
-rig exchange: 	0.0000090911
-bot exchange: 	0.0000680070
-bot receive : 	0.0000000000
-bot send : 	0.0000653761
-lef exchange: 	0.0000076639
-rig exchange: 	0.0000140599
- 
-Current time: 6.287437
-bot exchange: 	0.0000980140
-bot receive : 	0.0000000000
-bot send : 	0.0000956559
-lef exchange: 	0.0000184858
-rig exchange: 	0.0000100520
-bot exchange: 	0.0000448350
-bot receive : 	0.0000000000
-bot send : 	0.0000427591
-lef exchange: 	0.0000209908
-rig exchange: 	0.0000074909
- 
-Current time: 6.313567
-bot exchange: 	0.0000912691
-bot receive : 	0.0000000000
-bot send : 	0.0000892570
-lef exchange: 	0.0000191631
-rig exchange: 	0.0000115980
-bot exchange: 	0.0000485610
-bot receive : 	0.0000000000
-bot send : 	0.0000465570
-lef exchange: 	0.0000158651
-rig exchange: 	0.0000091221
- 
-Current time: 6.339697
-bot exchange: 	0.0000970662
-bot receive : 	0.0000000000
-bot send : 	0.0000946531
-lef exchange: 	0.0000124520
-rig exchange: 	0.0000075600
-bot exchange: 	0.0000557201
-bot receive : 	0.0000000000
-bot send : 	0.0000533280
-lef exchange: 	0.0000071160
-rig exchange: 	0.0000195359
- 
-Current time: 6.365826
-bot exchange: 	0.0000996538
-bot receive : 	0.0000000000
-bot send : 	0.0000971139
-lef exchange: 	0.0000121910
-rig exchange: 	0.0000081011
-bot exchange: 	0.0000645970
-bot receive : 	0.0000000000
-bot send : 	0.0000620950
-lef exchange: 	0.0000074590
-rig exchange: 	0.0000082809
- 
-Current time: 6.391956
-bot exchange: 	0.0001011542
-bot receive : 	0.0000000000
-bot send : 	0.0000994799
-lef exchange: 	0.0000153279
-rig exchange: 	0.0000098580
-bot exchange: 	0.0000598808
-bot receive : 	0.0000000000
-bot send : 	0.0000585502
-lef exchange: 	0.0000084951
-rig exchange: 	0.0000078529
- 
-Current time: 6.418086
-bot exchange: 	0.0001014019
-bot receive : 	0.0000000000
-bot send : 	0.0000990960
-lef exchange: 	0.0000160469
-rig exchange: 	0.0000089221
-bot exchange: 	0.0000559790
-bot receive : 	0.0000000000
-bot send : 	0.0000533471
-lef exchange: 	0.0000084161
-rig exchange: 	0.0000241420
- 
-Current time: 6.444216
-bot exchange: 	0.0000938801
-bot receive : 	0.0000000000
-bot send : 	0.0000914440
-lef exchange: 	0.0000199140
-rig exchange: 	0.0000098720
-bot exchange: 	0.0000492712
-bot receive : 	0.0000000000
-bot send : 	0.0000471051
-lef exchange: 	0.0000136560
-rig exchange: 	0.0000091060
- 
-Current time: 6.470345
-bot exchange: 	0.0001029761
-bot receive : 	0.0000000000
-bot send : 	0.0001004720
-lef exchange: 	0.0000145610
-rig exchange: 	0.0000096411
-bot exchange: 	0.0000511289
-bot receive : 	0.0000000000
-bot send : 	0.0000488691
-lef exchange: 	0.0000159210
-rig exchange: 	0.0000222789
- 
-Current time: 6.496475
-bot exchange: 	0.0000985172
-bot receive : 	0.0000000000
-bot send : 	0.0000960990
-lef exchange: 	0.0000167871
-rig exchange: 	0.0000100960
-bot exchange: 	0.0000486800
-bot receive : 	0.0000000000
-bot send : 	0.0000466451
-lef exchange: 	0.0000111139
-rig exchange: 	0.0000077940
- 
-Current time: 6.522604
-bot exchange: 	0.0000955982
-bot receive : 	0.0000000000
-bot send : 	0.0000920061
-lef exchange: 	0.0000163640
-rig exchange: 	0.0000102599
-bot exchange: 	0.0000523750
-bot receive : 	0.0000000000
-bot send : 	0.0000506931
-lef exchange: 	0.0000098760
-rig exchange: 	0.0000073039
- 
-Current time: 6.548734
-bot exchange: 	0.0001015400
-bot receive : 	0.0000000000
-bot send : 	0.0000993840
-lef exchange: 	0.0000184979
-rig exchange: 	0.0000100359
-bot exchange: 	0.0000447328
-bot receive : 	0.0000000000
-bot send : 	0.0000427971
-lef exchange: 	0.0000416120
-rig exchange: 	0.0000140390
- 
-Current time: 6.574863
-bot exchange: 	0.0001017139
-bot receive : 	0.0000000000
-bot send : 	0.0000994871
-lef exchange: 	0.0000159519
-rig exchange: 	0.0000077870
-bot exchange: 	0.0000586419
-bot receive : 	0.0000000000
-bot send : 	0.0000561941
-lef exchange: 	0.0000161109
-rig exchange: 	0.0000236870
- 
-Current time: 6.600992
-bot exchange: 	0.0000914591
-bot receive : 	0.0000000000
-bot send : 	0.0000894570
-lef exchange: 	0.0000158348
-rig exchange: 	0.0000080690
-bot exchange: 	0.0000570782
-bot receive : 	0.0000000000
-bot send : 	0.0000553401
-lef exchange: 	0.0000151158
-rig exchange: 	0.0000226088
- 
-Current time: 6.627121
-bot exchange: 	0.0000953199
-bot receive : 	0.0000000000
-bot send : 	0.0000926999
-lef exchange: 	0.0000218109
-rig exchange: 	0.0000099849
-bot exchange: 	0.0000490141
-bot receive : 	0.0000000000
-bot send : 	0.0000474958
-lef exchange: 	0.0000152651
-rig exchange: 	0.0000079230
- 
-Current time: 6.653250
-bot exchange: 	0.0000959670
-bot receive : 	0.0000000000
-bot send : 	0.0000941132
-lef exchange: 	0.0000185398
-rig exchange: 	0.0000091610
-bot exchange: 	0.0000565590
-bot receive : 	0.0000000000
-bot send : 	0.0000546069
-lef exchange: 	0.0000073519
-rig exchange: 	0.0000258968
- 
-Current time: 6.679379
-bot exchange: 	0.0000989079
-bot receive : 	0.0000000000
-bot send : 	0.0000965281
-lef exchange: 	0.0000185750
-rig exchange: 	0.0000095649
-bot exchange: 	0.0000508488
-bot receive : 	0.0000000000
-bot send : 	0.0000482490
-lef exchange: 	0.0000163061
-rig exchange: 	0.0000219310
- 
-Current time: 6.705508
-bot exchange: 	0.0001677051
-bot receive : 	0.0000000000
-bot send : 	0.0001649591
-lef exchange: 	0.0000089400
-rig exchange: 	0.0000090708
-bot exchange: 	0.0000556470
-bot receive : 	0.0000000000
-bot send : 	0.0000534160
-lef exchange: 	0.0000072941
-rig exchange: 	0.0000068529
- 
-Current time: 6.731637
-bot exchange: 	0.0000996850
-bot receive : 	0.0000000000
-bot send : 	0.0000973889
-lef exchange: 	0.0000129151
-rig exchange: 	0.0000094671
-bot exchange: 	0.0000538679
-bot receive : 	0.0000000000
-bot send : 	0.0000520630
-lef exchange: 	0.0000074231
-rig exchange: 	0.0000094320
- 
-Current time: 6.757766
-bot exchange: 	0.0001043340
-bot receive : 	0.0000000000
-bot send : 	0.0001020001
-lef exchange: 	0.0000154881
-rig exchange: 	0.0000092960
-bot exchange: 	0.0000559459
-bot receive : 	0.0000000000
-bot send : 	0.0000536391
-lef exchange: 	0.0000177061
-rig exchange: 	0.0000066650
- 
-Current time: 6.783894
-bot exchange: 	0.0001004990
-bot receive : 	0.0000000000
-bot send : 	0.0000981239
-lef exchange: 	0.0000233019
-rig exchange: 	0.0000096671
-bot exchange: 	0.0000434900
-bot receive : 	0.0000000000
-bot send : 	0.0000416390
-lef exchange: 	0.0000217010
-rig exchange: 	0.0000071358
- 
-Current time: 6.810023
-bot exchange: 	0.0000935590
-bot receive : 	0.0000000000
-bot send : 	0.0000912391
-lef exchange: 	0.0000208642
-rig exchange: 	0.0000083451
-bot exchange: 	0.0000508721
-bot receive : 	0.0000000000
-bot send : 	0.0000493780
-lef exchange: 	0.0000186439
-rig exchange: 	0.0000210120
- 
-Current time: 6.836151
-bot exchange: 	0.0000998501
-bot receive : 	0.0000000000
-bot send : 	0.0000975342
-lef exchange: 	0.0000159000
-rig exchange: 	0.0000074802
-bot exchange: 	0.0000555050
-bot receive : 	0.0000000000
-bot send : 	0.0000531198
-lef exchange: 	0.0000127831
-rig exchange: 	0.0000184290
- 
-Current time: 6.862280
-bot exchange: 	0.0000963542
-bot receive : 	0.0000000000
-bot send : 	0.0000936731
-lef exchange: 	0.0000141722
-rig exchange: 	0.0000076969
-bot exchange: 	0.0000653171
-bot receive : 	0.0000000000
-bot send : 	0.0000629011
-lef exchange: 	0.0000091840
-rig exchange: 	0.0000085891
- 
-Current time: 6.888408
-bot exchange: 	0.0000965961
-bot receive : 	0.0000000000
-bot send : 	0.0000945311
-lef exchange: 	0.0000167910
-rig exchange: 	0.0000097710
-bot exchange: 	0.0000532821
-bot receive : 	0.0000000000
-bot send : 	0.0000513280
-lef exchange: 	0.0000091719
-rig exchange: 	0.0000092438
- 
-Current time: 6.914537
-bot exchange: 	0.0000950859
-bot receive : 	0.0000000000
-bot send : 	0.0000927551
-lef exchange: 	0.0000183331
-rig exchange: 	0.0000074299
-bot exchange: 	0.0000583092
-bot receive : 	0.0000000000
-bot send : 	0.0000561129
-lef exchange: 	0.0000096050
-rig exchange: 	0.0000071859
- 
-Current time: 6.940665
-bot exchange: 	0.0001022411
-bot receive : 	0.0000000000
-bot send : 	0.0000999081
-lef exchange: 	0.0000138709
-rig exchange: 	0.0000094660
-bot exchange: 	0.0000559669
-bot receive : 	0.0000000000
-bot send : 	0.0000535641
-lef exchange: 	0.0000094380
-rig exchange: 	0.0000181911
- 
-Current time: 6.966793
-bot exchange: 	0.0000996091
-bot receive : 	0.0000000000
-bot send : 	0.0000971190
-lef exchange: 	0.0000162369
-rig exchange: 	0.0000098809
-bot exchange: 	0.0000481959
-bot receive : 	0.0000000000
-bot send : 	0.0000462069
-lef exchange: 	0.0000085260
-rig exchange: 	0.0000086660
- 
-Current time: 6.992921
-bot exchange: 	0.0001025849
-bot receive : 	0.0000000000
-bot send : 	0.0001001989
-lef exchange: 	0.0000179422
-rig exchange: 	0.0000077030
-bot exchange: 	0.0000535029
-bot receive : 	0.0000000000
-bot send : 	0.0000515871
-lef exchange: 	0.0000125931
-rig exchange: 	0.0000221459
- 
-Current time: 7.000000
-bot exchange: 	0.0001056700
-bot receive : 	0.0000000000
-bot send : 	0.0001032019
-lef exchange: 	0.0000182940
-rig exchange: 	0.0000102359
-bot exchange: 	0.0000466870
-bot receive : 	0.0000000000
-bot send : 	0.0000441400
-lef exchange: 	0.0000153070
-rig exchange: 	0.0000203620
- 
-Current time: 7.026128
-bot exchange: 	0.0000936859
-bot receive : 	0.0000000000
-bot send : 	0.0000915050
-lef exchange: 	0.0000173759
-rig exchange: 	0.0000079230
-bot exchange: 	0.0000569220
-bot receive : 	0.0000000000
-bot send : 	0.0000554030
-lef exchange: 	0.0000080960
-rig exchange: 	0.0000187659
- 
-Current time: 7.052256
-bot exchange: 	0.0000969712
-bot receive : 	0.0000000000
-bot send : 	0.0000950161
-lef exchange: 	0.0000186439
-rig exchange: 	0.0000081549
-bot exchange: 	0.0000630270
-bot receive : 	0.0000000000
-bot send : 	0.0000614482
-lef exchange: 	0.0000140418
-rig exchange: 	0.0000232011
- 
-Current time: 7.078384
-bot exchange: 	0.0000969281
-bot receive : 	0.0000000000
-bot send : 	0.0000947169
-lef exchange: 	0.0000200861
-rig exchange: 	0.0000090019
-bot exchange: 	0.0000641451
-bot receive : 	0.0000000000
-bot send : 	0.0000621681
-lef exchange: 	0.0000088760
-rig exchange: 	0.0000230360
- 
-Current time: 7.104512
-bot exchange: 	0.0000901108
-bot receive : 	0.0000000000
-bot send : 	0.0000883630
-lef exchange: 	0.0000163531
-rig exchange: 	0.0000083009
-bot exchange: 	0.0000564880
-bot receive : 	0.0000000000
-bot send : 	0.0000549499
-lef exchange: 	0.0000077020
-rig exchange: 	0.0000068420
- 
-Current time: 7.130640
-bot exchange: 	0.0000935791
-bot receive : 	0.0000000000
-bot send : 	0.0000915038
-lef exchange: 	0.0000166700
-rig exchange: 	0.0000100199
-bot exchange: 	0.0000542051
-bot receive : 	0.0000000000
-bot send : 	0.0000527860
-lef exchange: 	0.0000140599
-rig exchange: 	0.0000071661
- 
-Current time: 7.156767
-bot exchange: 	0.0000961591
-bot receive : 	0.0000000000
-bot send : 	0.0000941579
-lef exchange: 	0.0000281651
-rig exchange: 	0.0000081018
-bot exchange: 	0.0000468451
-bot receive : 	0.0000000000
-bot send : 	0.0000451591
-lef exchange: 	0.0000248901
-rig exchange: 	0.0000097640
- 
-Current time: 7.182895
-bot exchange: 	0.0001054988
-bot receive : 	0.0000000000
-bot send : 	0.0001035710
-lef exchange: 	0.0000167950
-rig exchange: 	0.0000097810
-bot exchange: 	0.0000499261
-bot receive : 	0.0000000000
-bot send : 	0.0000477580
-lef exchange: 	0.0000088690
-rig exchange: 	0.0000087030
- 
-Current time: 7.209023
-bot exchange: 	0.0001010459
-bot receive : 	0.0000000000
-bot send : 	0.0000985879
-lef exchange: 	0.0000150912
-rig exchange: 	0.0000092559
-bot exchange: 	0.0000500169
-bot receive : 	0.0000000000
-bot send : 	0.0000483098
-lef exchange: 	0.0000112299
-rig exchange: 	0.0000071560
- 
-Current time: 7.235150
-bot exchange: 	0.0000944880
-bot receive : 	0.0000000000
-bot send : 	0.0000925919
-lef exchange: 	0.0000187121
-rig exchange: 	0.0000073549
-bot exchange: 	0.0000736769
-bot receive : 	0.0000000000
-bot send : 	0.0000715759
-lef exchange: 	0.0000117668
-rig exchange: 	0.0000220749
- 
-Current time: 7.261278
-bot exchange: 	0.0000993880
-bot receive : 	0.0000000000
-bot send : 	0.0000968061
-lef exchange: 	0.0000166139
-rig exchange: 	0.0000081619
-bot exchange: 	0.0000576752
-bot receive : 	0.0000000000
-bot send : 	0.0000560291
-lef exchange: 	0.0000082429
-rig exchange: 	0.0000087621
- 
-Current time: 7.287405
-bot exchange: 	0.0001017970
-bot receive : 	0.0000000000
-bot send : 	0.0000993561
-lef exchange: 	0.0000168730
-rig exchange: 	0.0000100050
-bot exchange: 	0.0000460390
-bot receive : 	0.0000000000
-bot send : 	0.0000441240
-lef exchange: 	0.0000144709
-rig exchange: 	0.0000217271
- 
-Current time: 7.313532
-bot exchange: 	0.0000966201
-bot receive : 	0.0000000000
-bot send : 	0.0000948932
-lef exchange: 	0.0000157100
-rig exchange: 	0.0000099470
-bot exchange: 	0.0000553010
-bot receive : 	0.0000000000
-bot send : 	0.0000533790
-lef exchange: 	0.0000106771
-rig exchange: 	0.0000098939
- 
-Current time: 7.339660
-bot exchange: 	0.0000981709
-bot receive : 	0.0000000000
-bot send : 	0.0000960601
-lef exchange: 	0.0000135798
-rig exchange: 	0.0000072960
-bot exchange: 	0.0000533441
-bot receive : 	0.0000000000
-bot send : 	0.0000507941
-lef exchange: 	0.0000101661
-rig exchange: 	0.0000247450
- 
-Current time: 7.365787
-bot exchange: 	0.0000950741
-bot receive : 	0.0000000000
-bot send : 	0.0000933220
-lef exchange: 	0.0000201908
-rig exchange: 	0.0000101109
-bot exchange: 	0.0000489831
-bot receive : 	0.0000000000
-bot send : 	0.0000466721
-lef exchange: 	0.0000089379
-rig exchange: 	0.0000094210
- 
-Current time: 7.391914
-bot exchange: 	0.0000978310
-bot receive : 	0.0000000000
-bot send : 	0.0000952212
-lef exchange: 	0.0000202060
-rig exchange: 	0.0000082192
-bot exchange: 	0.0000567981
-bot receive : 	0.0000000000
-bot send : 	0.0000548260
-lef exchange: 	0.0000142681
-rig exchange: 	0.0000089880
- 
-Current time: 7.418041
-bot exchange: 	0.0000910361
-bot receive : 	0.0000000000
-bot send : 	0.0000888989
-lef exchange: 	0.0000182518
-rig exchange: 	0.0000096930
-bot exchange: 	0.0000516921
-bot receive : 	0.0000000000
-bot send : 	0.0000496909
-lef exchange: 	0.0000090091
-rig exchange: 	0.0000078022
- 
-Current time: 7.444168
-bot exchange: 	0.0000972990
-bot receive : 	0.0000000000
-bot send : 	0.0000955742
-lef exchange: 	0.0000167410
-rig exchange: 	0.0000098550
-bot exchange: 	0.0000502740
-bot receive : 	0.0000000000
-bot send : 	0.0000485091
-lef exchange: 	0.0000108350
-rig exchange: 	0.0000068978
- 
-Current time: 7.470295
-bot exchange: 	0.0001019561
-bot receive : 	0.0000000000
-bot send : 	0.0000998501
-lef exchange: 	0.0000163671
-rig exchange: 	0.0000104129
-bot exchange: 	0.0007092080
-bot receive : 	0.0000000000
-bot send : 	0.0007069509
-lef exchange: 	0.0000085800
-rig exchange: 	0.0000088620
- 
-Current time: 7.496422
-bot exchange: 	0.0000987891
-bot receive : 	0.0000000000
-bot send : 	0.0000962759
-lef exchange: 	0.0000166411
-rig exchange: 	0.0000100911
-bot exchange: 	0.0000494451
-bot receive : 	0.0000000000
-bot send : 	0.0000470700
-lef exchange: 	0.0000075991
-rig exchange: 	0.0000079041
- 
-Current time: 7.522549
-bot exchange: 	0.0000926920
-bot receive : 	0.0000000000
-bot send : 	0.0000908999
-lef exchange: 	0.0000182230
-rig exchange: 	0.0000101929
-bot exchange: 	0.0000569930
-bot receive : 	0.0000000000
-bot send : 	0.0000549268
-lef exchange: 	0.0000092320
-rig exchange: 	0.0000224260
- 
-Current time: 7.548676
-bot exchange: 	0.0000959660
-bot receive : 	0.0000000000
-bot send : 	0.0000940142
-lef exchange: 	0.0000178639
-rig exchange: 	0.0000093349
-bot exchange: 	0.0000500851
-bot receive : 	0.0000000000
-bot send : 	0.0000476232
-lef exchange: 	0.0000128299
-rig exchange: 	0.0000069840
- 
-Current time: 7.574803
-bot exchange: 	0.0000970149
-bot receive : 	0.0000000000
-bot send : 	0.0000952750
-lef exchange: 	0.0000162560
-rig exchange: 	0.0000084350
-bot exchange: 	0.0000563171
-bot receive : 	0.0000000000
-bot send : 	0.0000544819
-lef exchange: 	0.0000122050
-rig exchange: 	0.0000071940
- 
-Current time: 7.600929
-bot exchange: 	0.0000935830
-bot receive : 	0.0000000000
-bot send : 	0.0000915730
-lef exchange: 	0.0000183152
-rig exchange: 	0.0000083230
-bot exchange: 	0.0000544740
-bot receive : 	0.0000000000
-bot send : 	0.0000524761
-lef exchange: 	0.0000088001
-rig exchange: 	0.0000088990
- 
-Current time: 7.627056
-bot exchange: 	0.0001027868
-bot receive : 	0.0000000000
-bot send : 	0.0000979919
-lef exchange: 	0.0000220940
-rig exchange: 	0.0000073980
-bot exchange: 	0.0000575869
-bot receive : 	0.0000000000
-bot send : 	0.0000551490
-lef exchange: 	0.0000219529
-rig exchange: 	0.0000122970
- 
-Current time: 7.653183
-bot exchange: 	0.0001007549
-bot receive : 	0.0000000000
-bot send : 	0.0000982850
-lef exchange: 	0.0000121091
-rig exchange: 	0.0000091002
-bot exchange: 	0.0000545299
-bot receive : 	0.0000000000
-bot send : 	0.0000523829
-lef exchange: 	0.0000090702
-rig exchange: 	0.0000186530
- 
-Current time: 7.679309
-bot exchange: 	0.0000954471
-bot receive : 	0.0000000000
-bot send : 	0.0000932012
-lef exchange: 	0.0000132581
-rig exchange: 	0.0000085060
-bot exchange: 	0.0000580770
-bot receive : 	0.0000000000
-bot send : 	0.0000566430
-lef exchange: 	0.0000111270
-rig exchange: 	0.0000098471
- 
-Current time: 7.705436
-bot exchange: 	0.0000889879
-bot receive : 	0.0000000000
-bot send : 	0.0000870370
-lef exchange: 	0.0000157359
-rig exchange: 	0.0000098690
-bot exchange: 	0.0000553071
-bot receive : 	0.0000000000
-bot send : 	0.0000525720
-lef exchange: 	0.0000195438
-rig exchange: 	0.0000198900
- 
-Current time: 7.731562
-bot exchange: 	0.0000963451
-bot receive : 	0.0000000000
-bot send : 	0.0000944850
-lef exchange: 	0.0000183340
-rig exchange: 	0.0000084790
-bot exchange: 	0.0000547250
-bot receive : 	0.0000000000
-bot send : 	0.0000530360
-lef exchange: 	0.0000085491
-rig exchange: 	0.0000200290
- 
-Current time: 7.757688
-bot exchange: 	0.0000949390
-bot receive : 	0.0000000000
-bot send : 	0.0000934261
-lef exchange: 	0.0000239520
-rig exchange: 	0.0000083491
-bot exchange: 	0.0000561450
-bot receive : 	0.0000000000
-bot send : 	0.0000546060
-lef exchange: 	0.0000099430
-rig exchange: 	0.0000078129
- 
-Current time: 7.783815
-bot exchange: 	0.0000961099
-bot receive : 	0.0000000000
-bot send : 	0.0000937399
-lef exchange: 	0.0000147710
-rig exchange: 	0.0000072671
-bot exchange: 	0.0000592219
-bot receive : 	0.0000000000
-bot send : 	0.0000570561
-lef exchange: 	0.0000089800
-rig exchange: 	0.0000206199
- 
-Current time: 7.809941
-bot exchange: 	0.0000932338
-bot receive : 	0.0000000000
-bot send : 	0.0000910028
-lef exchange: 	0.0000141640
-rig exchange: 	0.0000097658
-bot exchange: 	0.0000609281
-bot receive : 	0.0000000000
-bot send : 	0.0000589108
-lef exchange: 	0.0000076261
-rig exchange: 	0.0000075102
- 
-Current time: 7.836067
-bot exchange: 	0.0000993470
-bot receive : 	0.0000000000
-bot send : 	0.0000971700
-lef exchange: 	0.0000165908
-rig exchange: 	0.0000098250
-bot exchange: 	0.0000524290
-bot receive : 	0.0000000000
-bot send : 	0.0000504509
-lef exchange: 	0.0000107910
-rig exchange: 	0.0000091919
- 
-Current time: 7.862193
-bot exchange: 	0.0000948729
-bot receive : 	0.0000000000
-bot send : 	0.0000925148
-lef exchange: 	0.0000148951
-rig exchange: 	0.0000092080
-bot exchange: 	0.0000507901
-bot receive : 	0.0000000000
-bot send : 	0.0000483030
-lef exchange: 	0.0000120581
-rig exchange: 	0.0000215040
- 
-Current time: 7.888319
-bot exchange: 	0.0000937001
-bot receive : 	0.0000000000
-bot send : 	0.0000920340
-lef exchange: 	0.0000142821
-rig exchange: 	0.0000074310
-bot exchange: 	0.0000563620
-bot receive : 	0.0000000000
-bot send : 	0.0000548100
-lef exchange: 	0.0000151449
-rig exchange: 	0.0000085500
- 
-Current time: 7.914445
-bot exchange: 	0.0001000040
-bot receive : 	0.0000000000
-bot send : 	0.0000973539
-lef exchange: 	0.0000166341
-rig exchange: 	0.0000079400
-bot exchange: 	0.0000542479
-bot receive : 	0.0000000000
-bot send : 	0.0000527201
-lef exchange: 	0.0000096201
-rig exchange: 	0.0000080769
- 
-Current time: 7.940571
-bot exchange: 	0.0000961390
-bot receive : 	0.0000000000
-bot send : 	0.0000938699
-lef exchange: 	0.0000179450
-rig exchange: 	0.0000074420
-bot exchange: 	0.0000553709
-bot receive : 	0.0000000000
-bot send : 	0.0000530749
-lef exchange: 	0.0000080860
-rig exchange: 	0.0000102492
- 
-Current time: 7.966697
-bot exchange: 	0.0000943809
-bot receive : 	0.0000000000
-bot send : 	0.0000927581
-lef exchange: 	0.0000144881
-rig exchange: 	0.0000083440
-bot exchange: 	0.0000563499
-bot receive : 	0.0000000000
-bot send : 	0.0000543660
-lef exchange: 	0.0000083470
-rig exchange: 	0.0000071791
- 
-Current time: 7.992823
-bot exchange: 	0.0001000550
-bot receive : 	0.0000000000
-bot send : 	0.0000984771
-lef exchange: 	0.0000180651
-rig exchange: 	0.0000081290
-bot exchange: 	0.0000576549
-bot receive : 	0.0000000000
-bot send : 	0.0000557660
-lef exchange: 	0.0000142909
-rig exchange: 	0.0000073980
- 
-Current time: 8.000000
-bot exchange: 	0.0000923290
-bot receive : 	0.0000000000
-bot send : 	0.0000901751
-lef exchange: 	0.0000198148
-rig exchange: 	0.0000080180
-bot exchange: 	0.0000502551
-bot receive : 	0.0000000000
-bot send : 	0.0000488730
-lef exchange: 	0.0000140371
-rig exchange: 	0.0000077980
- 
-Current time: 8.026126
-bot exchange: 	0.0001003880
-bot receive : 	0.0000000000
-bot send : 	0.0000978140
-lef exchange: 	0.0000165538
-rig exchange: 	0.0000101910
-bot exchange: 	0.0000491149
-bot receive : 	0.0000000000
-bot send : 	0.0000471591
-lef exchange: 	0.0000092741
-rig exchange: 	0.0000071460
- 
-Current time: 8.052252
-bot exchange: 	0.0000938789
-bot receive : 	0.0000000000
-bot send : 	0.0000917430
-lef exchange: 	0.0000163540
-rig exchange: 	0.0000075030
-bot exchange: 	0.0000508891
-bot receive : 	0.0000000000
-bot send : 	0.0000483741
-lef exchange: 	0.0000097149
-rig exchange: 	0.0000087270
- 
-Current time: 8.078377
-bot exchange: 	0.0000993900
-bot receive : 	0.0000000000
-bot send : 	0.0000971069
-lef exchange: 	0.0000178770
-rig exchange: 	0.0000089169
-bot exchange: 	0.0000558021
-bot receive : 	0.0000000000
-bot send : 	0.0000536272
-lef exchange: 	0.0000471489
-rig exchange: 	0.0000093391
- 
-Current time: 8.104503
-bot exchange: 	0.0000931690
-bot receive : 	0.0000000000
-bot send : 	0.0000907960
-lef exchange: 	0.0000233930
-rig exchange: 	0.0000083279
-bot exchange: 	0.0000508679
-bot receive : 	0.0000000000
-bot send : 	0.0000486309
-lef exchange: 	0.0000250901
-rig exchange: 	0.0000157449
- 
-Current time: 8.130628
-bot exchange: 	0.0000962371
-bot receive : 	0.0000000000
-bot send : 	0.0000943521
-lef exchange: 	0.0000175829
-rig exchange: 	0.0000091011
-bot exchange: 	0.0000529252
-bot receive : 	0.0000000000
-bot send : 	0.0000509082
-lef exchange: 	0.0000127461
-rig exchange: 	0.0000148478
- 
-Current time: 8.156754
-bot exchange: 	0.0000991800
-bot receive : 	0.0000000000
-bot send : 	0.0000968529
-lef exchange: 	0.0000168921
-rig exchange: 	0.0000093959
-bot exchange: 	0.0000513401
-bot receive : 	0.0000000000
-bot send : 	0.0000492171
-lef exchange: 	0.0000086708
-rig exchange: 	0.0000208670
- 
-Current time: 8.182880
-bot exchange: 	0.0001019631
-bot receive : 	0.0000000000
-bot send : 	0.0000995710
-lef exchange: 	0.0000144849
-rig exchange: 	0.0000076951
-bot exchange: 	0.0000522910
-bot receive : 	0.0000000000
-bot send : 	0.0000496851
-lef exchange: 	0.0000097391
-rig exchange: 	0.0000072820
- 
-Current time: 8.209005
-bot exchange: 	0.0000961821
-bot receive : 	0.0000000000
-bot send : 	0.0000942321
-lef exchange: 	0.0000180739
-rig exchange: 	0.0000093132
-bot exchange: 	0.0000536840
-bot receive : 	0.0000000000
-bot send : 	0.0000513440
-lef exchange: 	0.0000079379
-rig exchange: 	0.0000073439
- 
-Current time: 8.235130
-bot exchange: 	0.0000920838
-bot receive : 	0.0000000000
-bot send : 	0.0000904270
-lef exchange: 	0.0000161901
-rig exchange: 	0.0000083810
-bot exchange: 	0.0000594491
-bot receive : 	0.0000000000
-bot send : 	0.0000578840
-lef exchange: 	0.0000108310
-rig exchange: 	0.0000141710
- 
-Current time: 8.261256
-bot exchange: 	0.0000982541
-bot receive : 	0.0000000000
-bot send : 	0.0000959779
-lef exchange: 	0.0000166551
-rig exchange: 	0.0000079400
-bot exchange: 	0.0000529231
-bot receive : 	0.0000000000
-bot send : 	0.0000505152
-lef exchange: 	0.0000090159
-rig exchange: 	0.0000166409
- 
-Current time: 8.287381
-bot exchange: 	0.0000946531
-bot receive : 	0.0000000000
-bot send : 	0.0000925271
-lef exchange: 	0.0000179179
-rig exchange: 	0.0000073549
-bot exchange: 	0.0000615001
-bot receive : 	0.0000000000
-bot send : 	0.0000592619
-lef exchange: 	0.0000350911
-rig exchange: 	0.0000092641
- 
-Current time: 8.313506
-bot exchange: 	0.0000967099
-bot receive : 	0.0000000000
-bot send : 	0.0000941770
-lef exchange: 	0.0000164250
-rig exchange: 	0.0000108948
-bot exchange: 	0.0000504700
-bot receive : 	0.0000000000
-bot send : 	0.0000485149
-lef exchange: 	0.0000124751
-rig exchange: 	0.0000215890
- 
-Current time: 8.339631
-bot exchange: 	0.0001000650
-bot receive : 	0.0000000000
-bot send : 	0.0000977151
-lef exchange: 	0.0000185631
-rig exchange: 	0.0000116210
-bot exchange: 	0.0000491240
-bot receive : 	0.0000000000
-bot send : 	0.0000470220
-lef exchange: 	0.0000090641
-rig exchange: 	0.0000086909
- 
-Current time: 8.365757
-bot exchange: 	0.0000924501
-bot receive : 	0.0000000000
-bot send : 	0.0000901560
-lef exchange: 	0.0000217520
-rig exchange: 	0.0000077800
-bot exchange: 	0.0000501568
-bot receive : 	0.0000000000
-bot send : 	0.0000479110
-lef exchange: 	0.0000141200
-rig exchange: 	0.0000097281
- 
-Current time: 8.391882
-bot exchange: 	0.0000964750
-bot receive : 	0.0000000000
-bot send : 	0.0000940380
-lef exchange: 	0.0000180758
-rig exchange: 	0.0000106769
-bot exchange: 	0.0000439112
-bot receive : 	0.0000000000
-bot send : 	0.0000418851
-lef exchange: 	0.0000245271
-rig exchange: 	0.0000179540
- 
-Current time: 8.418007
-bot exchange: 	0.0001089131
-bot receive : 	0.0000000000
-bot send : 	0.0001066159
-lef exchange: 	0.0000145321
-rig exchange: 	0.0000103358
-bot exchange: 	0.0000512030
-bot receive : 	0.0000000000
-bot send : 	0.0000497189
-lef exchange: 	0.0000157489
-rig exchange: 	0.0000210139
- 
-Current time: 8.444132
-bot exchange: 	0.0000943758
-bot receive : 	0.0000000000
-bot send : 	0.0000923730
-lef exchange: 	0.0000189140
-rig exchange: 	0.0000092790
-bot exchange: 	0.0000516179
-bot receive : 	0.0000000000
-bot send : 	0.0000494069
-lef exchange: 	0.0000216160
-rig exchange: 	0.0000177589
- 
-Current time: 8.470257
-bot exchange: 	0.0000954650
-bot receive : 	0.0000000000
-bot send : 	0.0000928850
-lef exchange: 	0.0000195419
-rig exchange: 	0.0000101090
-bot exchange: 	0.0000488390
-bot receive : 	0.0000000000
-bot send : 	0.0000467619
-lef exchange: 	0.0000124560
-rig exchange: 	0.0000175831
- 
-Current time: 8.496382
-bot exchange: 	0.0000990890
-bot receive : 	0.0000000000
-bot send : 	0.0000967120
-lef exchange: 	0.0000165070
-rig exchange: 	0.0000077970
-bot exchange: 	0.0000488341
-bot receive : 	0.0000000000
-bot send : 	0.0000467489
-lef exchange: 	0.0000121591
-rig exchange: 	0.0000078510
- 
-Current time: 8.522506
-bot exchange: 	0.0000942720
-bot receive : 	0.0000000000
-bot send : 	0.0000918149
-lef exchange: 	0.0000175601
-rig exchange: 	0.0000097239
-bot exchange: 	0.0000466791
-bot receive : 	0.0000000000
-bot send : 	0.0000446031
-lef exchange: 	0.0000147300
-rig exchange: 	0.0000074881
- 
-Current time: 8.548631
-bot exchange: 	0.0000994341
-bot receive : 	0.0000000000
-bot send : 	0.0000969281
-lef exchange: 	0.0000114909
-rig exchange: 	0.0000071828
-bot exchange: 	0.0000639509
-bot receive : 	0.0000000000
-bot send : 	0.0000618431
-lef exchange: 	0.0000094322
-rig exchange: 	0.0000134560
- 
-Current time: 8.574756
-bot exchange: 	0.0000988250
-bot receive : 	0.0000000000
-bot send : 	0.0000968899
-lef exchange: 	0.0000154062
-rig exchange: 	0.0000088739
-bot exchange: 	0.0000583220
-bot receive : 	0.0000000000
-bot send : 	0.0000564819
-lef exchange: 	0.0000076031
-rig exchange: 	0.0000164858
- 
-Current time: 8.600881
-bot exchange: 	0.0000979800
-bot receive : 	0.0000000000
-bot send : 	0.0000955109
-lef exchange: 	0.0000131291
-rig exchange: 	0.0000073200
-bot exchange: 	0.0000559438
-bot receive : 	0.0000000000
-bot send : 	0.0000534630
-lef exchange: 	0.0000117009
-rig exchange: 	0.0000074918
- 
-Current time: 8.627005
-bot exchange: 	0.0000989931
-bot receive : 	0.0000000000
-bot send : 	0.0000967199
-lef exchange: 	0.0000130848
-rig exchange: 	0.0000093961
-bot exchange: 	0.0000598209
-bot receive : 	0.0000000000
-bot send : 	0.0000573560
-lef exchange: 	0.0000076129
-rig exchange: 	0.0000163410
- 
-Current time: 8.653130
-bot exchange: 	0.0001047330
-bot receive : 	0.0000000000
-bot send : 	0.0001028599
-lef exchange: 	0.0000162511
-rig exchange: 	0.0000083770
-bot exchange: 	0.0000531441
-bot receive : 	0.0000000000
-bot send : 	0.0000510230
-lef exchange: 	0.0000202551
-rig exchange: 	0.0000175619
- 
-Current time: 8.679254
-bot exchange: 	0.0001037421
-bot receive : 	0.0000000000
-bot send : 	0.0001011880
-lef exchange: 	0.0000125382
-rig exchange: 	0.0000092289
-bot exchange: 	0.0000522789
-bot receive : 	0.0000000000
-bot send : 	0.0000497461
-lef exchange: 	0.0000177489
-rig exchange: 	0.0000116210
- 
-Current time: 8.705379
-bot exchange: 	0.0000957721
-bot receive : 	0.0000000000
-bot send : 	0.0000938738
-lef exchange: 	0.0000130490
-rig exchange: 	0.0000078599
-bot exchange: 	0.0000562100
-bot receive : 	0.0000000000
-bot send : 	0.0000541080
-lef exchange: 	0.0000072939
-rig exchange: 	0.0000073721
- 
-Current time: 8.731503
-bot exchange: 	0.0001005521
-bot receive : 	0.0000000000
-bot send : 	0.0000976620
-lef exchange: 	0.0003481898
-rig exchange: 	0.0000167580
-bot exchange: 	0.0000032401
-bot receive : 	0.0000000000
-bot send : 	0.0000010950
-lef exchange: 	0.0000111479
-rig exchange: 	0.0000085759
- 
-Current time: 8.757628
-bot exchange: 	0.0000910680
-bot receive : 	0.0000000000
-bot send : 	0.0000887832
-lef exchange: 	0.0000157892
-rig exchange: 	0.0000091449
-bot exchange: 	0.0000614650
-bot receive : 	0.0000000000
-bot send : 	0.0000594012
-lef exchange: 	0.0000337351
-rig exchange: 	0.0000081591
- 
-Current time: 8.783752
-bot exchange: 	0.0000925080
-bot receive : 	0.0000000000
-bot send : 	0.0000905008
-lef exchange: 	0.0000164681
-rig exchange: 	0.0000099631
-bot exchange: 	0.0000524549
-bot receive : 	0.0000000000
-bot send : 	0.0000501201
-lef exchange: 	0.0000105030
-rig exchange: 	0.0000218940
- 
-Current time: 8.809877
-bot exchange: 	0.0000972520
-bot receive : 	0.0000000000
-bot send : 	0.0000952110
-lef exchange: 	0.0000181261
-rig exchange: 	0.0000095689
-bot exchange: 	0.0000588861
-bot receive : 	0.0000000000
-bot send : 	0.0000569250
-lef exchange: 	0.0000118471
-rig exchange: 	0.0000069540
- 
-Current time: 8.836001
-bot exchange: 	0.0000976229
-bot receive : 	0.0000000000
-bot send : 	0.0000953032
-lef exchange: 	0.0000165920
-rig exchange: 	0.0000093360
-bot exchange: 	0.0000568179
-bot receive : 	0.0000000000
-bot send : 	0.0000545820
-lef exchange: 	0.0000155061
-rig exchange: 	0.0000125130
- 
-Current time: 8.862125
-bot exchange: 	0.0001062420
-bot receive : 	0.0000000000
-bot send : 	0.0001039091
-lef exchange: 	0.0000216642
-rig exchange: 	0.0000101048
-bot exchange: 	0.0000517722
-bot receive : 	0.0000000000
-bot send : 	0.0000498979
-lef exchange: 	0.0000150481
-rig exchange: 	0.0000076809
- 
-Current time: 8.888249
-bot exchange: 	0.0001073231
-bot receive : 	0.0000000000
-bot send : 	0.0001050010
-lef exchange: 	0.0000251310
-rig exchange: 	0.0000091309
-bot exchange: 	0.0000644680
-bot receive : 	0.0000000000
-bot send : 	0.0000624668
-lef exchange: 	0.0000088760
-rig exchange: 	0.0000219659
- 
-Current time: 8.914373
-bot exchange: 	0.0000984881
-bot receive : 	0.0000000000
-bot send : 	0.0000968101
-lef exchange: 	0.0000147412
-rig exchange: 	0.0000077770
-bot exchange: 	0.0000499219
-bot receive : 	0.0000000000
-bot send : 	0.0000483012
-lef exchange: 	0.0000089570
-rig exchange: 	0.0000098420
- 
-Current time: 8.940498
-bot exchange: 	0.0000965791
-bot receive : 	0.0000000000
-bot send : 	0.0000945090
-lef exchange: 	0.0000116101
-rig exchange: 	0.0000077609
-bot exchange: 	0.0000596789
-bot receive : 	0.0000000000
-bot send : 	0.0000579089
-lef exchange: 	0.0000070941
-rig exchange: 	0.0000073609
- 
-Current time: 8.966622
-bot exchange: 	0.0000960499
-bot receive : 	0.0000000000
-bot send : 	0.0000939639
-lef exchange: 	0.0000278789
-rig exchange: 	0.0000101670
-bot exchange: 	0.0000627011
-bot receive : 	0.0000000000
-bot send : 	0.0000601520
-lef exchange: 	0.0000076049
-rig exchange: 	0.0000086010
- 
-Current time: 8.992746
-bot exchange: 	0.0000936580
-bot receive : 	0.0000000000
-bot send : 	0.0000915560
-lef exchange: 	0.0000231750
-rig exchange: 	0.0000082070
-bot exchange: 	0.0000505659
-bot receive : 	0.0000000000
-bot send : 	0.0000487040
-lef exchange: 	0.0000161652
-rig exchange: 	0.0000241341
- 
-Current time: 9.000000
-bot exchange: 	0.0000963861
-bot receive : 	0.0000000000
-bot send : 	0.0000941381
-lef exchange: 	0.0000219480
-rig exchange: 	0.0000083419
-bot exchange: 	0.0000550381
-bot receive : 	0.0000000000
-bot send : 	0.0000535341
-lef exchange: 	0.0000163720
-rig exchange: 	0.0000271560
- 
-Current time: 9.026124
-bot exchange: 	0.0000937642
-bot receive : 	0.0000000000
-bot send : 	0.0000914631
-lef exchange: 	0.0000147331
-rig exchange: 	0.0000095421
-bot exchange: 	0.0000603220
-bot receive : 	0.0000000000
-bot send : 	0.0000586309
-lef exchange: 	0.0000058990
-rig exchange: 	0.0000092320
- 
-Current time: 9.052248
-bot exchange: 	0.0000983251
-bot receive : 	0.0000000000
-bot send : 	0.0000963851
-lef exchange: 	0.0000181640
-rig exchange: 	0.0000085051
-bot exchange: 	0.0000571171
-bot receive : 	0.0000000000
-bot send : 	0.0000549799
-lef exchange: 	0.0000164211
-rig exchange: 	0.0000128851
- 
-Current time: 9.078372
-bot exchange: 	0.0000982250
-bot receive : 	0.0000000000
-bot send : 	0.0000956599
-lef exchange: 	0.0000165880
-rig exchange: 	0.0000097060
-bot exchange: 	0.0000501759
-bot receive : 	0.0000000000
-bot send : 	0.0000479869
-lef exchange: 	0.0000082711
-rig exchange: 	0.0000072219
- 
-Current time: 9.104496
-bot exchange: 	0.0000918910
-bot receive : 	0.0000000000
-bot send : 	0.0000896230
-lef exchange: 	0.0000181920
-rig exchange: 	0.0000083700
-bot exchange: 	0.0000577241
-bot receive : 	0.0000000000
-bot send : 	0.0000553501
-lef exchange: 	0.0000086541
-rig exchange: 	0.0000071279
- 
-Current time: 9.130619
-bot exchange: 	0.0001015491
-bot receive : 	0.0000000000
-bot send : 	0.0000993439
-lef exchange: 	0.0000275760
-rig exchange: 	0.0000099281
-bot exchange: 	0.0000614701
-bot receive : 	0.0000000000
-bot send : 	0.0000594580
-lef exchange: 	0.0000066881
-rig exchange: 	0.0000207950
- 
-Current time: 9.156743
-bot exchange: 	0.0000967102
-bot receive : 	0.0000000000
-bot send : 	0.0000941951
-lef exchange: 	0.0000219159
-rig exchange: 	0.0000118031
-bot exchange: 	0.0000433240
-bot receive : 	0.0000000000
-bot send : 	0.0000413351
-lef exchange: 	0.0000095170
-rig exchange: 	0.0000070699
- 
-Current time: 9.182867
-bot exchange: 	0.0000927560
-bot receive : 	0.0000000000
-bot send : 	0.0000904109
-lef exchange: 	0.0000177119
-rig exchange: 	0.0000102180
-bot exchange: 	0.0000506260
-bot receive : 	0.0000000000
-bot send : 	0.0000491459
-lef exchange: 	0.0000153990
-rig exchange: 	0.0000072578
- 
-Current time: 9.208990
-bot exchange: 	0.0001005940
-bot receive : 	0.0000000000
-bot send : 	0.0000983342
-lef exchange: 	0.0000121719
-rig exchange: 	0.0000083689
-bot exchange: 	0.0000625211
-bot receive : 	0.0000000000
-bot send : 	0.0000600251
-lef exchange: 	0.0000081290
-rig exchange: 	0.0000082289
- 
-Current time: 9.235114
-bot exchange: 	0.0000969239
-bot receive : 	0.0000000000
-bot send : 	0.0000952769
-lef exchange: 	0.0000193429
-rig exchange: 	0.0000078920
-bot exchange: 	0.0000553501
-bot receive : 	0.0000000000
-bot send : 	0.0000535629
-lef exchange: 	0.0000158681
-rig exchange: 	0.0000142602
- 
-Current time: 9.261238
-bot exchange: 	0.0000957481
-bot receive : 	0.0000000000
-bot send : 	0.0000936920
-lef exchange: 	0.0000155971
-rig exchange: 	0.0000095281
-bot exchange: 	0.0000513820
-bot receive : 	0.0000000000
-bot send : 	0.0000494039
-lef exchange: 	0.0000137151
-rig exchange: 	0.0000189841
- 
-Current time: 9.287361
-bot exchange: 	0.0000971921
-bot receive : 	0.0000000000
-bot send : 	0.0000947260
-lef exchange: 	0.0000131309
-rig exchange: 	0.0000091130
-bot exchange: 	0.0000560980
-bot receive : 	0.0000000000
-bot send : 	0.0000537001
-lef exchange: 	0.0000139009
-rig exchange: 	0.0000172490
- 
-Current time: 9.313485
-bot exchange: 	0.0001204810
-bot receive : 	0.0000000000
-bot send : 	0.0001182160
-lef exchange: 	0.0000078790
-rig exchange: 	0.0000094401
-bot exchange: 	0.0000597760
-bot receive : 	0.0000000000
-bot send : 	0.0000575159
-lef exchange: 	0.0000076210
-rig exchange: 	0.0000087761
- 
-Current time: 9.339608
-bot exchange: 	0.0001033000
-bot receive : 	0.0000000000
-bot send : 	0.0001008089
-lef exchange: 	0.0000151459
-rig exchange: 	0.0000119980
-bot exchange: 	0.0000493990
-bot receive : 	0.0000000000
-bot send : 	0.0000472111
-lef exchange: 	0.0000175568
-rig exchange: 	0.0000210290
- 
-Current time: 9.365731
-bot exchange: 	0.0000981980
-bot receive : 	0.0000000000
-bot send : 	0.0000958531
-lef exchange: 	0.0000161100
-rig exchange: 	0.0000089358
-bot exchange: 	0.0000556551
-bot receive : 	0.0000000000
-bot send : 	0.0000533231
-lef exchange: 	0.0000090420
-rig exchange: 	0.0000202910
- 
-Current time: 9.391855
-bot exchange: 	0.0000949351
-bot receive : 	0.0000000000
-bot send : 	0.0000930470
-lef exchange: 	0.0000157189
-rig exchange: 	0.0000095621
-bot exchange: 	0.0000555941
-bot receive : 	0.0000000000
-bot send : 	0.0000535101
-lef exchange: 	0.0000096080
-rig exchange: 	0.0000150830
- 
-Current time: 9.417978
-bot exchange: 	0.0001001388
-bot receive : 	0.0000000000
-bot send : 	0.0000975910
-lef exchange: 	0.0000173859
-rig exchange: 	0.0000078459
-bot exchange: 	0.0000503261
-bot receive : 	0.0000000000
-bot send : 	0.0000477049
-lef exchange: 	0.0000154509
-rig exchange: 	0.0000157452
- 
-Current time: 9.444101
-bot exchange: 	0.0000953949
-bot receive : 	0.0000000000
-bot send : 	0.0000935730
-lef exchange: 	0.0000185142
-rig exchange: 	0.0000098031
-bot exchange: 	0.0000534579
-bot receive : 	0.0000000000
-bot send : 	0.0000513529
-lef exchange: 	0.0000110250
-rig exchange: 	0.0000075491
- 
-Current time: 9.470224
-bot exchange: 	0.0000998909
-bot receive : 	0.0000000000
-bot send : 	0.0000975581
-lef exchange: 	0.0000202220
-rig exchange: 	0.0000102411
-bot exchange: 	0.0000475699
-bot receive : 	0.0000000000
-bot send : 	0.0000456430
-lef exchange: 	0.0000130821
-rig exchange: 	0.0000074769
- 
-Current time: 9.496348
-bot exchange: 	0.0000929439
-bot receive : 	0.0000000000
-bot send : 	0.0000907332
-lef exchange: 	0.0000226989
-rig exchange: 	0.0000098399
-bot exchange: 	0.0000501161
-bot receive : 	0.0000000000
-bot send : 	0.0000485240
-lef exchange: 	0.0000149938
-rig exchange: 	0.0000089800
- 
-Current time: 9.522471
-bot exchange: 	0.0000967570
-bot receive : 	0.0000000000
-bot send : 	0.0000942580
-lef exchange: 	0.0000145962
-rig exchange: 	0.0000084199
-bot exchange: 	0.0000618650
-bot receive : 	0.0000000000
-bot send : 	0.0000602352
-lef exchange: 	0.0000081849
-rig exchange: 	0.0000088180
- 
-Current time: 9.548594
-bot exchange: 	0.0001096779
-bot receive : 	0.0000000000
-bot send : 	0.0001070141
-lef exchange: 	0.0000167629
-rig exchange: 	0.0000099989
-bot exchange: 	0.0000485561
-bot receive : 	0.0000000000
-bot send : 	0.0000470248
-lef exchange: 	0.0000221350
-rig exchange: 	0.0000210761
- 
-Current time: 9.574717
-bot exchange: 	0.0000959500
-bot receive : 	0.0000000000
-bot send : 	0.0000941390
-lef exchange: 	0.0000182469
-rig exchange: 	0.0000086089
-bot exchange: 	0.0000548610
-bot receive : 	0.0000000000
-bot send : 	0.0000530300
-lef exchange: 	0.0000087710
-rig exchange: 	0.0000071828
- 
-Current time: 9.600840
-bot exchange: 	0.0000915001
-bot receive : 	0.0000000000
-bot send : 	0.0000895930
-lef exchange: 	0.0000185810
-rig exchange: 	0.0000085300
-bot exchange: 	0.0000516709
-bot receive : 	0.0000000000
-bot send : 	0.0000494129
-lef exchange: 	0.0000143482
-rig exchange: 	0.0000073090
- 
-Current time: 9.626963
-bot exchange: 	0.0001018620
-bot receive : 	0.0000000000
-bot send : 	0.0000996308
-lef exchange: 	0.0000157091
-rig exchange: 	0.0000074152
-bot exchange: 	0.0000549890
-bot receive : 	0.0000000000
-bot send : 	0.0000523741
-lef exchange: 	0.0000096629
-rig exchange: 	0.0000199040
- 
-Current time: 9.653086
-bot exchange: 	0.0000973120
-bot receive : 	0.0000000000
-bot send : 	0.0000953751
-lef exchange: 	0.0000151619
-rig exchange: 	0.0000092180
-bot exchange: 	0.0000547341
-bot receive : 	0.0000000000
-bot send : 	0.0000531650
-lef exchange: 	0.0000089011
-rig exchange: 	0.0000246000
- 
-Current time: 9.679209
-bot exchange: 	0.0000941220
-bot receive : 	0.0000000000
-bot send : 	0.0000922990
-lef exchange: 	0.0000142630
-rig exchange: 	0.0000076529
-bot exchange: 	0.0000503999
-bot receive : 	0.0000000000
-bot send : 	0.0000486108
-lef exchange: 	0.0000072878
-rig exchange: 	0.0000094972
- 
-Current time: 9.705331
-bot exchange: 	0.0001018441
-bot receive : 	0.0000000000
-bot send : 	0.0000995118
-lef exchange: 	0.0000129691
-rig exchange: 	0.0000086371
-bot exchange: 	0.0000674559
-bot receive : 	0.0000000000
-bot send : 	0.0000653858
-lef exchange: 	0.0000088490
-rig exchange: 	0.0000080641
- 
-Current time: 9.731454
-bot exchange: 	0.0000952142
-bot receive : 	0.0000000000
-bot send : 	0.0000927949
-lef exchange: 	0.0000185838
-rig exchange: 	0.0000093100
-bot exchange: 	0.0000568370
-bot receive : 	0.0000000000
-bot send : 	0.0000548791
-lef exchange: 	0.0000090490
-rig exchange: 	0.0000086189
- 
-Current time: 9.757577
-bot exchange: 	0.0000967879
-bot receive : 	0.0000000000
-bot send : 	0.0000950289
-lef exchange: 	0.0000182369
-rig exchange: 	0.0000084450
-bot exchange: 	0.0000541939
-bot receive : 	0.0000000000
-bot send : 	0.0000520791
-lef exchange: 	0.0000097661
-rig exchange: 	0.0000205690
- 
-Current time: 9.783700
-bot exchange: 	0.0000970990
-bot receive : 	0.0000000000
-bot send : 	0.0000945220
-lef exchange: 	0.0000156281
-rig exchange: 	0.0000093610
-bot exchange: 	0.0000522670
-bot receive : 	0.0000000000
-bot send : 	0.0000500639
-lef exchange: 	0.0000115391
-rig exchange: 	0.0000079111
- 
-Current time: 9.809822
-bot exchange: 	0.0000966280
-bot receive : 	0.0000000000
-bot send : 	0.0000949199
-lef exchange: 	0.0000183419
-rig exchange: 	0.0000110520
-bot exchange: 	0.0000532891
-bot receive : 	0.0000000000
-bot send : 	0.0000509270
-lef exchange: 	0.0000087800
-rig exchange: 	0.0000068371
- 
-Current time: 9.835945
-bot exchange: 	0.0000924161
-bot receive : 	0.0000000000
-bot send : 	0.0000905129
-lef exchange: 	0.0000169480
-rig exchange: 	0.0000082022
-bot exchange: 	0.0000583092
-bot receive : 	0.0000000000
-bot send : 	0.0000562731
-lef exchange: 	0.0000111070
-rig exchange: 	0.0000243811
- 
-Current time: 9.862068
-bot exchange: 	0.0000961160
-bot receive : 	0.0000000000
-bot send : 	0.0000938422
-lef exchange: 	0.0000161680
-rig exchange: 	0.0000074429
-bot exchange: 	0.0000579562
-bot receive : 	0.0000000000
-bot send : 	0.0000558749
-lef exchange: 	0.0000093970
-rig exchange: 	0.0000265331
- 
-Current time: 9.888190
-bot exchange: 	0.0000958410
-bot receive : 	0.0000000000
-bot send : 	0.0000932750
-lef exchange: 	0.0000141540
-rig exchange: 	0.0000074380
-bot exchange: 	0.0000502481
-bot receive : 	0.0000000000
-bot send : 	0.0000482230
-lef exchange: 	0.0000080720
-rig exchange: 	0.0000075970
- 
-Current time: 9.914313
-bot exchange: 	0.0001009940
-bot receive : 	0.0000000000
-bot send : 	0.0000989751
-lef exchange: 	0.0000135449
-rig exchange: 	0.0000100790
-bot exchange: 	0.0000499429
-bot receive : 	0.0000000000
-bot send : 	0.0000474900
-lef exchange: 	0.0000120108
-rig exchange: 	0.0000085740
- 
-Current time: 9.940435
-bot exchange: 	0.0001010830
-bot receive : 	0.0000000000
-bot send : 	0.0000986911
-lef exchange: 	0.0000184909
-rig exchange: 	0.0000098150
-bot exchange: 	0.0000469331
-bot receive : 	0.0000000000
-bot send : 	0.0000449200
-lef exchange: 	0.0000166371
-rig exchange: 	0.0000069959
- 
-Current time: 9.966558
-bot exchange: 	0.0000966480
-bot receive : 	0.0000000000
-bot send : 	0.0000948820
-lef exchange: 	0.0000163880
-rig exchange: 	0.0000083761
-bot exchange: 	0.0000553380
-bot receive : 	0.0000000000
-bot send : 	0.0000538139
-lef exchange: 	0.0000142241
-rig exchange: 	0.0000171941
- 
-Current time: 9.992680
-bot exchange: 	0.0000963479
-bot receive : 	0.0000000000
-bot send : 	0.0000939129
-lef exchange: 	0.0000163920
-rig exchange: 	0.0000101072
-bot exchange: 	0.0000521441
-bot receive : 	0.0000000000
-bot send : 	0.0000502439
-lef exchange: 	0.0000156029
-rig exchange: 	0.0000201710
+ 
+Current time: 1.020794
+ 
+Current time: 1.046736
+ 
+Current time: 1.072692
+ 
+Current time: 1.098661
+ 
+Current time: 1.124643
+ 
+Current time: 1.150637
+ 
+Current time: 1.176643
+ 
+Current time: 1.202659
+ 
+Current time: 1.228687
+ 
+Current time: 1.254725
+ 
+Current time: 1.280773
+ 
+Current time: 1.306831
+ 
+Current time: 1.332897
+ 
+Current time: 1.358972
+ 
+Current time: 1.385056
+ 
+Current time: 1.411147
+ 
+Current time: 1.437246
+ 
+Current time: 1.463352
+ 
+Current time: 1.489465
+ 
+Current time: 1.515585
+ 
+Current time: 1.541710
+ 
+Current time: 1.567841
+ 
+Current time: 1.593978
+ 
+Current time: 1.620120
+ 
+Current time: 1.646267
+ 
+Current time: 1.672418
+ 
+Current time: 1.698573
+ 
+Current time: 1.724733
+ 
+Current time: 1.750896
+ 
+Current time: 1.777063
+ 
+Current time: 1.803233
+ 
+Current time: 1.829406
+ 
+Current time: 1.855582
+ 
+Current time: 1.881761
+ 
+Current time: 1.907941
+ 
+Current time: 1.934124
+ 
+Current time: 1.960310
+ 
+Current time: 1.986496
+ 
+Current time: 2.012685
+ 
+Current time: 2.038875
+ 
+Current time: 2.065066
+ 
+Current time: 2.091258
+ 
+Current time: 2.117452
+ 
+Current time: 2.143646
+ 
+Current time: 2.169841
+ 
+Current time: 2.196037
+ 
+Current time: 2.222233
+ 
+Current time: 2.248430
+ 
+Current time: 2.274627
+ 
+Current time: 2.300824
+ 
+Current time: 2.327021
+ 
+Current time: 2.353218
+ 
+Current time: 2.379415
+ 
+Current time: 2.405612
+ 
+Current time: 2.431809
+ 
+Current time: 2.458005
+ 
+Current time: 2.484201
+ 
+Current time: 2.510397
+ 
+Current time: 2.536592
+ 
+Current time: 2.562786
+ 
+Current time: 2.588981
+ 
+Current time: 2.615174
+ 
+Current time: 2.641367
+ 
+Current time: 2.667559
+ 
+Current time: 2.693750
+ 
+Current time: 2.719941
+ 
+Current time: 2.746131
+ 
+Current time: 2.772320
+ 
+Current time: 2.798508
+ 
+Current time: 2.824695
+ 
+Current time: 2.850882
+ 
+Current time: 2.877067
+ 
+Current time: 2.903252
+ 
+Current time: 2.929436
+ 
+Current time: 2.955619
+ 
+Current time: 2.981801
+ 
+Current time: 3.007982
+ 
+Current time: 3.034162
+ 
+Current time: 3.060341
+ 
+Current time: 3.086519
+ 
+Current time: 3.112696
+ 
+Current time: 3.138873
+ 
+Current time: 3.165048
+ 
+Current time: 3.191222
+ 
+Current time: 3.217396
+ 
+Current time: 3.243568
+ 
+Current time: 3.269740
+ 
+Current time: 3.295911
+ 
+Current time: 3.322081
+ 
+Current time: 3.348250
+ 
+Current time: 3.374418
+ 
+Current time: 3.400585
+ 
+Current time: 3.426752
+ 
+Current time: 3.452917
+ 
+Current time: 3.479082
+ 
+Current time: 3.505246
+ 
+Current time: 3.531409
+ 
+Current time: 3.557571
+ 
+Current time: 3.583733
+ 
+Current time: 3.609893
+ 
+Current time: 3.636053
+ 
+Current time: 3.662213
+ 
+Current time: 3.688371
+ 
+Current time: 3.714529
+ 
+Current time: 3.740686
+ 
+Current time: 3.766842
+ 
+Current time: 3.792998
+ 
+Current time: 3.819153
+ 
+Current time: 3.845307
+ 
+Current time: 3.871461
+ 
+Current time: 3.897614
+ 
+Current time: 3.923766
+ 
+Current time: 3.949918
+ 
+Current time: 3.976070
+ 
+Current time: 4.002220
+ 
+Current time: 4.028370
+ 
+Current time: 4.054520
+ 
+Current time: 4.080669
+ 
+Current time: 4.106818
+ 
+Current time: 4.132966
+ 
+Current time: 4.159113
+ 
+Current time: 4.185260
+ 
+Current time: 4.211407
+ 
+Current time: 4.237553
+ 
+Current time: 4.263699
+ 
+Current time: 4.289844
+ 
+Current time: 4.315989
+ 
+Current time: 4.342133
+ 
+Current time: 4.368277
+ 
+Current time: 4.394420
+ 
+Current time: 4.420564
+ 
+Current time: 4.446706
+ 
+Current time: 4.472849
+ 
+Current time: 4.498991
+ 
+Current time: 4.525132
+ 
+Current time: 4.551274
+ 
+Current time: 4.577415
+ 
+Current time: 4.603556
+ 
+Current time: 4.629696
+ 
+Current time: 4.655836
+ 
+Current time: 4.681976
+ 
+Current time: 4.708115
+ 
+Current time: 4.734254
+ 
+Current time: 4.760393
+ 
+Current time: 4.786532
+ 
+Current time: 4.812670
+ 
+Current time: 4.838809
+ 
+Current time: 4.864946
+ 
+Current time: 4.891084
+ 
+Current time: 4.917221
+ 
+Current time: 4.943359
+ 
+Current time: 4.969496
+ 
+Current time: 4.995632
+ 
+Current time: 5.021769
+ 
+Current time: 5.047905
+ 
+Current time: 5.074041
+ 
+Current time: 5.100177
+ 
+Current time: 5.126313
+ 
+Current time: 5.152448
+ 
+Current time: 5.178584
+ 
+Current time: 5.204719
+ 
+Current time: 5.230854
+ 
+Current time: 5.256989
+ 
+Current time: 5.283123
+ 
+Current time: 5.309258
+ 
+Current time: 5.335392
+ 
+Current time: 5.361526
+ 
+Current time: 5.387660
+ 
+Current time: 5.413794
+ 
+Current time: 5.439928
+ 
+Current time: 5.466061
+ 
+Current time: 5.492195
+ 
+Current time: 5.518328
+ 
+Current time: 5.544461
+ 
+Current time: 5.570594
+ 
+Current time: 5.596727
+ 
+Current time: 5.622860
+ 
+Current time: 5.648992
+ 
+Current time: 5.675125
+ 
+Current time: 5.701257
+ 
+Current time: 5.727390
+ 
+Current time: 5.753522
+ 
+Current time: 5.779654
+ 
+Current time: 5.805786
+ 
+Current time: 5.831917
+ 
+Current time: 5.858049
+ 
+Current time: 5.884181
+ 
+Current time: 5.910312
+ 
+Current time: 5.936444
+ 
+Current time: 5.962575
+ 
+Current time: 5.988706
+ 
+Current time: 6.014837
+ 
+Current time: 6.040968
+ 
+Current time: 6.067099
+ 
+Current time: 6.093230
+ 
+Current time: 6.119361
+ 
+Current time: 6.145491
+ 
+Current time: 6.171622
+ 
+Current time: 6.197752
+ 
+Current time: 6.223883
+ 
+Current time: 6.250013
+ 
+Current time: 6.276143
+ 
+Current time: 6.302273
+ 
+Current time: 6.328403
+ 
+Current time: 6.354533
+ 
+Current time: 6.380663
+ 
+Current time: 6.406793
+ 
+Current time: 6.432922
+ 
+Current time: 6.459052
+ 
+Current time: 6.485182
+ 
+Current time: 6.511311
+ 
+Current time: 6.537440
+ 
+Current time: 6.563570
+ 
+Current time: 6.589699
+ 
+Current time: 6.615828
+ 
+Current time: 6.641957
+ 
+Current time: 6.668086
+ 
+Current time: 6.694215
+ 
+Current time: 6.720344
+ 
+Current time: 6.746473
+ 
+Current time: 6.772601
+ 
+Current time: 6.798730
+ 
+Current time: 6.824859
+ 
+Current time: 6.850987
+ 
+Current time: 6.877116
+ 
+Current time: 6.903244
+ 
+Current time: 6.929372
+ 
+Current time: 6.955501
+ 
+Current time: 6.981629
+ 
+Current time: 7.007757
+ 
+Current time: 7.033885
+ 
+Current time: 7.060013
+ 
+Current time: 7.086141
+ 
+Current time: 7.112269
+ 
+Current time: 7.138396
+ 
+Current time: 7.164524
+ 
+Current time: 7.190652
+ 
+Current time: 7.216779
+ 
+Current time: 7.242907
+ 
+Current time: 7.269034
+ 
+Current time: 7.295162
+ 
+Current time: 7.321289
+ 
+Current time: 7.347416
+ 
+Current time: 7.373543
+ 
+Current time: 7.399671
+ 
+Current time: 7.425798
+ 
+Current time: 7.451925
+ 
+Current time: 7.478052
+ 
+Current time: 7.504179
+ 
+Current time: 7.530305
+ 
+Current time: 7.556432
+ 
+Current time: 7.582559
+ 
+Current time: 7.608686
+ 
+Current time: 7.634812
+ 
+Current time: 7.660939
+ 
+Current time: 7.687065
+ 
+Current time: 7.713192
+ 
+Current time: 7.739318
+ 
+Current time: 7.765445
+ 
+Current time: 7.791571
+ 
+Current time: 7.817697
+ 
+Current time: 7.843823
+ 
+Current time: 7.869949
+ 
+Current time: 7.896075
+ 
+Current time: 7.922201
+ 
+Current time: 7.948327
+ 
+Current time: 7.974453
+ 
+Current time: 8.000579
+ 
+Current time: 8.026705
+ 
+Current time: 8.052831
+ 
+Current time: 8.078956
+ 
+Current time: 8.105082
+ 
+Current time: 8.131208
+ 
+Current time: 8.157333
+ 
+Current time: 8.183459
+ 
+Current time: 8.209584
+ 
+Current time: 8.235710
+ 
+Current time: 8.261835
+ 
+Current time: 8.287960
+ 
+Current time: 8.314085
+ 
+Current time: 8.340211
+ 
+Current time: 8.366336
+ 
+Current time: 8.392461
+ 
+Current time: 8.418586
+ 
+Current time: 8.444711
+ 
+Current time: 8.470836
+ 
+Current time: 8.496961
+ 
+Current time: 8.523086
+ 
+Current time: 8.549210
+ 
+Current time: 8.575335
+ 
+Current time: 8.601460
+ 
+Current time: 8.627584
+ 
+Current time: 8.653709
+ 
+Current time: 8.679834
+ 
+Current time: 8.705958
+ 
+Current time: 8.732083
+ 
+Current time: 8.758207
+ 
+Current time: 8.784331
+ 
+Current time: 8.810456
+ 
+Current time: 8.836580
+ 
+Current time: 8.862704
+ 
+Current time: 8.888828
+ 
+Current time: 8.914953
+ 
+Current time: 8.941077
+ 
+Current time: 8.967201
+ 
+Current time: 8.993325
+ 
+Current time: 9.019449
+ 
+Current time: 9.045573
+ 
+Current time: 9.071697
+ 
+Current time: 9.097820
+ 
+Current time: 9.123944
+ 
+Current time: 9.150068
+ 
+Current time: 9.176192
+ 
+Current time: 9.202315
+ 
+Current time: 9.228439
+ 
+Current time: 9.254562
+ 
+Current time: 9.280686
+ 
+Current time: 9.306809
+ 
+Current time: 9.332933
+ 
+Current time: 9.359056
+ 
+Current time: 9.385180
+ 
+Current time: 9.411303
+ 
+Current time: 9.437426
+ 
+Current time: 9.463549
+ 
+Current time: 9.489673
+ 
+Current time: 9.515796
+ 
+Current time: 9.541919
+ 
+Current time: 9.568042
+ 
+Current time: 9.594165
+ 
+Current time: 9.620288
+ 
+Current time: 9.646411
+ 
+Current time: 9.672534
+ 
+Current time: 9.698657
+ 
+Current time: 9.724779
+ 
+Current time: 9.750902
+ 
+Current time: 9.777025
+ 
+Current time: 9.803148
+ 
+Current time: 9.829270
+ 
+Current time: 9.855393
+ 
+Current time: 9.881515
+ 
+Current time: 9.907638
+ 
+Current time: 9.933760
+ 
+Current time: 9.959883
+ 
+Current time: 9.986005
  

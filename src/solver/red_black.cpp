@@ -104,144 +104,112 @@ void RedBlack::setBoundaryValues(){
 }
 
 void RedBlack::exchangeGhost(int current_it){
-    // TODO: Optimierung -> sende je nach Schritt nur die Hälfte der Daten
+    // TODO: Arthurs Magie
+    int row_count = i_end - i_beg;
+    int col_count = j_end - j_beg;
 
-    int ref_iteration = 20;
-    
-    double starttime_bot = MPI_Wtime();
+    MPI_Request requestBottom;
+    MPI_Request requestTop;
+    MPI_Request requestLeft;
+    MPI_Request requestRight;
+
+    std::vector<double> bufferReceiveBottom(row_count, 0);
+    std::vector<double> bufferReceiveTop(row_count, 0);
+    std::vector<double> bufferReceiveLeft(col_count, 0);
+    std::vector<double> bufferReceiveRight(col_count, 0);
     
     if (!partitioning_->ownPartitionContainsBottomBoundary()){
 
         std::vector<double> buffer = discretization_->p().getRow(j_beg, i_beg, i_end);
-        std::vector<double> buffer_receive;
-        int buffer_size = i_end - i_beg;
 
-        double send_time, receive_time;
 
-        if (partitioning_->sendsFirstUpDown()){
-            double starttime_send = MPI_Wtime();
-            communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer);
-            double starttime_receive = MPI_Wtime();
-            buffer_receive = communicator_->receiveFrom(partitioning_->bottomNeighbourRankNo(), buffer_size);
-            double receive_end = MPI_Wtime();
-            receive_time = receive_end -starttime_receive;
-            send_time = starttime_receive-starttime_send;
-        } else{
-            double starttime_receive = MPI_Wtime();
-            buffer_receive = communicator_->receiveFrom(partitioning_->bottomNeighbourRankNo(), buffer_size);
-            double starttime_send = MPI_Wtime();
-            communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer);
-            double send_time_end = MPI_Wtime();
-            send_time = send_time_end-starttime_send;
-            send_time = starttime_send-starttime_receive;
-        }
-        
-        // Write the buffer
-        for (int i = i_beg; i < i_end; i++){
-            discretization_->p(i, j_beg-1) = buffer_receive[i - i_beg];
-        }
+        communicator_->sendTo(partitioning_->bottomNeighbourRankNo(),
+                              buffer,
+                              requestBottom);
 
-        if(current_it == ref_iteration){
-            double bottom_exchange = MPI_Wtime();
-            std::ostringstream bot_time, receive_time_, send_time_;
-            bot_time << std::fixed << std::setprecision(10) << bottom_exchange-starttime_bot;
-            receive_time_ << std::fixed << std::setprecision(10) << receive_time;
-            send_time_ << std::fixed << std::setprecision(10) << send_time;
-            printer_->add_new_parameter_to_print("bot exchange: \t" + bot_time.str());
-            printer_->add_new_parameter_to_print("bot receive : \t" + receive_time_.str());
-            printer_->add_new_parameter_to_print("bot send : \t" + send_time_.str());
-        } 
-    }
+        bufferReceiveBottom = communicator_->receiveFrom(partitioning_->bottomNeighbourRankNo(),
+                                                         row_count,
+                                                         requestBottom);
+    } 
     
-    double starttime_top = MPI_Wtime();
-
     
     if (!partitioning_->ownPartitionContainsTopBoundary()){
 
         std::vector<double> buffer = discretization_->p().getRow(j_end - 1, i_beg, i_end);
-        std::vector<double> buffer_receive;
-        int buffer_size = i_end - i_beg;
 
-        if (partitioning_->sendsFirstUpDown()){
-            communicator_->sendTo(partitioning_->topNeighbourRankNo(), buffer);
-            buffer_receive = communicator_->receiveFrom(partitioning_->topNeighbourRankNo(), buffer_size);
-        } else {
-            buffer_receive = communicator_->receiveFrom(partitioning_->topNeighbourRankNo(), buffer_size);
-            communicator_->sendTo(partitioning_->topNeighbourRankNo(), buffer);
-        }
 
-        // Write the buffer
-        for (int i = i_beg; i < i_end; i++){
-            discretization_->p(i, j_end) = buffer_receive[i - i_beg];
-        }
+        communicator_->sendTo(partitioning_->topNeighbourRankNo(),
+                              buffer,
+                              requestTop);
 
-        if(current_it == ref_iteration){
-            double top_exchange = MPI_Wtime();
-            std::ostringstream top_time;
-            top_time << std::fixed << std::setprecision(10) << top_exchange-starttime_top;
-            printer_->add_new_parameter_to_print("top exchange: \t" + top_time.str());
-        }
+        bufferReceiveTop = communicator_->receiveFrom(partitioning_->topNeighbourRankNo(),
+                                                      row_count,
+                                                      requestTop);
     }
-    
-    double starttime_left = MPI_Wtime();
-
     
     if (!partitioning_->ownPartitionContainsLeftBoundary()){
 
         std::vector<double> buffer = discretization_->p().getColumn(i_beg, j_beg, j_end);
-        std::vector<double> buffer_receive;
-        int buffer_size = j_end - j_beg;
 
-        if (partitioning_->sendsFirstLeftRight()){
-            communicator_->sendTo(partitioning_->leftNeighbourRankNo(), buffer);
-            buffer_receive = communicator_->receiveFrom(partitioning_->leftNeighbourRankNo(), buffer_size);
-        } else {
-            buffer_receive = communicator_->receiveFrom(partitioning_->leftNeighbourRankNo(), buffer_size);
-            communicator_->sendTo(partitioning_->leftNeighbourRankNo(), buffer);
-        }
         
-        // Write the buffer
-        for (int j = j_beg; j < j_end; j++){
-            discretization_->p(i_beg - 1, j) = buffer_receive[j - j_beg];
-        }
+        communicator_->sendTo(partitioning_->leftNeighbourRankNo(),
+                              buffer,
+                              requestLeft);
 
-        if(current_it == ref_iteration){
-            double left_exchange = MPI_Wtime();
-            std::ostringstream left_time;
-            left_time << std::fixed << std::setprecision(10) << left_exchange-starttime_left;
-            printer_->add_new_parameter_to_print("lef exchange: \t" + left_time.str());
-        }
+        bufferReceiveLeft = communicator_->receiveFrom(partitioning_->leftNeighbourRankNo(),
+                                                       col_count,
+                                                       requestLeft);
     }
-    
-    
-    double starttime_right = MPI_Wtime();
     
     if (!partitioning_->ownPartitionContainsRightBoundary()){
 
         std::vector<double> buffer = discretization_->p().getColumn(i_end - 1, j_beg, j_end);
-        std::vector<double> buffer_receive;
-        int buffer_size = j_end - j_beg;
 
-        if (partitioning_->sendsFirstLeftRight()){
-            communicator_->sendTo(partitioning_->rightNeighbourRankNo(), buffer);
-            buffer_receive = communicator_->receiveFrom(partitioning_->rightNeighbourRankNo(), buffer_size);
-        } else {
-            buffer_receive = communicator_->receiveFrom(partitioning_->rightNeighbourRankNo(), buffer_size);
-            communicator_->sendTo(partitioning_->rightNeighbourRankNo(), buffer);
-        }
+        communicator_->sendTo(partitioning_->rightNeighbourRankNo(),
+                              buffer,
+                              requestRight);
         
-        // Write the buffer
-        for (int j = j_beg; j < j_end; j++){
-            discretization_->p(i_end, j) = buffer_receive[j - j_beg];
-        }
+        bufferReceiveRight = communicator_->receiveFrom(partitioning_->rightNeighbourRankNo(),
+                                                        col_count,
+                                                        requestRight);
+        
+    }
 
-        if(current_it == ref_iteration){
-            double right_exchange = MPI_Wtime();
-            std::ostringstream right_time;
-            right_time << std::fixed << std::setprecision(10) << right_exchange-starttime_right;
-            printer_->add_new_parameter_to_print("rig exchange: \t" + right_time.str());
+
+
+    // Write in the buffer
+    if (!partitioning_->ownPartitionContainsBottomBoundary()){
+        communicator_->wait(requestBottom);
+        for (int i = i_beg; i < i_end; i++){
+                    discretization_->p(i, j_beg-1) = bufferReceiveBottom[i - i_beg];
         }
     }
+    if (!partitioning_->ownPartitionContainsTopBoundary()){
+        communicator_->wait(requestTop);
+        for (int i = i_beg; i < i_end; i++){
+            discretization_->p(i, j_end) = bufferReceiveTop[i - i_beg];
+        }
+    }
+
+    if (!partitioning_->ownPartitionContainsLeftBoundary()){
+        communicator_->wait(requestLeft);
+        for (int j = j_beg; j < j_end; j++){
+            discretization_->p(i_beg - 1, j) = bufferReceiveLeft[j - j_beg];
+        }
+    }
+
+    if (!partitioning_->ownPartitionContainsRightBoundary()){
+        communicator_->wait(requestRight);
+        for (int j = j_beg; j < j_end; j++){
+            discretization_->p(i_end, j) = bufferReceiveRight[j - j_beg];
+        }
+    }
+
+
+        
+
+
+    
     
     
 
@@ -266,3 +234,193 @@ void RedBlack::exchangeGhost(int current_it){
     // }
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// GIT
+
+
+// void RedBlack::exchangeGhost(int current_it){
+    
+//     int ref_iteration = 20;
+    
+//     double starttime_bot = MPI_Wtime();
+    
+//     if (!partitioning_->ownPartitionContainsBottomBoundary()){
+
+//         std::vector<double> buffer = discretization_->p().getRow(j_beg, i_beg, i_end);
+//         std::vector<double> buffer_receive;
+//         int buffer_size = i_end - i_beg;
+
+//         double send_time, receive_time;
+
+//         if (partitioning_->sendsFirstUpDown()){
+//             double starttime_send = MPI_Wtime();
+
+
+//             communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer);
+
+
+//             double starttime_receive = MPI_Wtime();
+//             buffer_receive = communicator_->receiveFrom(partitioning_->bottomNeighbourRankNo(), buffer_size);
+//             double receive_end = MPI_Wtime();
+
+
+//             receive_time = receive_end -starttime_receive;
+//             send_time = starttime_receive-starttime_send;
+//         } else{
+//             double starttime_receive = MPI_Wtime();
+
+
+//             buffer_receive = communicator_->receiveFrom(partitioning_->bottomNeighbourRankNo(), buffer_size);
+            
+            
+//             double starttime_send = MPI_Wtime();
+//             communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer);
+//             double send_time_end = MPI_Wtime();
+            
+            
+//             send_time = send_time_end-starttime_send;
+//             send_time = starttime_send-starttime_receive;
+//         }
+        
+//         // Write the buffer
+//         for (int i = i_beg; i < i_end; i++){
+//             discretization_->p(i, j_beg-1) = buffer_receive[i - i_beg];
+//         }
+
+//         if(current_it == ref_iteration){
+//             double bottom_exchange = MPI_Wtime();
+//             std::ostringstream bot_time, receive_time_, send_time_;
+//             bot_time << std::fixed << std::setprecision(10) << bottom_exchange-starttime_bot;
+//             receive_time_ << std::fixed << std::setprecision(10) << receive_time;
+//             send_time_ << std::fixed << std::setprecision(10) << send_time;
+//             printer_->add_new_parameter_to_print("bot exchange: \t" + bot_time.str());
+//             printer_->add_new_parameter_to_print("bot receive : \t" + receive_time_.str());
+//             printer_->add_new_parameter_to_print("bot send : \t" + send_time_.str());
+//         } 
+//     }
+    
+//     double starttime_top = MPI_Wtime();
+
+    
+//     if (!partitioning_->ownPartitionContainsTopBoundary()){
+
+//         std::vector<double> buffer = discretization_->p().getRow(j_end - 1, i_beg, i_end);
+//         std::vector<double> buffer_receive;
+//         int buffer_size = i_end - i_beg;
+
+//         if (partitioning_->sendsFirstUpDown()){
+//             communicator_->sendTo(partitioning_->topNeighbourRankNo(), buffer);
+//             buffer_receive = communicator_->receiveFrom(partitioning_->topNeighbourRankNo(), buffer_size);
+//         } else {
+//             buffer_receive = communicator_->receiveFrom(partitioning_->topNeighbourRankNo(), buffer_size);
+//             communicator_->sendTo(partitioning_->topNeighbourRankNo(), buffer);
+//         }
+
+//         // Write the buffer
+//         for (int i = i_beg; i < i_end; i++){
+//             discretization_->p(i, j_end) = buffer_receive[i - i_beg];
+//         }
+
+//         if(current_it == ref_iteration){
+//             double top_exchange = MPI_Wtime();
+//             std::ostringstream top_time;
+//             top_time << std::fixed << std::setprecision(10) << top_exchange-starttime_top;
+//             printer_->add_new_parameter_to_print("top exchange: \t" + top_time.str());
+//         }
+//     }
+    
+//     double starttime_left = MPI_Wtime();
+
+    
+//     if (!partitioning_->ownPartitionContainsLeftBoundary()){
+
+//         std::vector<double> buffer = discretization_->p().getColumn(i_beg, j_beg, j_end);
+//         std::vector<double> buffer_receive;
+//         int buffer_size = j_end - j_beg;
+
+//         if (partitioning_->sendsFirstLeftRight()){
+//             communicator_->sendTo(partitioning_->leftNeighbourRankNo(), buffer);
+//             buffer_receive = communicator_->receiveFrom(partitioning_->leftNeighbourRankNo(), buffer_size);
+//         } else {
+//             buffer_receive = communicator_->receiveFrom(partitioning_->leftNeighbourRankNo(), buffer_size);
+//             communicator_->sendTo(partitioning_->leftNeighbourRankNo(), buffer);
+//         }
+        
+//         // Write the buffer
+//         for (int j = j_beg; j < j_end; j++){
+//             discretization_->p(i_beg - 1, j) = buffer_receive[j - j_beg];
+//         }
+
+//         if(current_it == ref_iteration){
+//             double left_exchange = MPI_Wtime();
+//             std::ostringstream left_time;
+//             left_time << std::fixed << std::setprecision(10) << left_exchange-starttime_left;
+//             printer_->add_new_parameter_to_print("lef exchange: \t" + left_time.str());
+//         }
+//     }
+    
+    
+//     double starttime_right = MPI_Wtime();
+    
+//     if (!partitioning_->ownPartitionContainsRightBoundary()){
+
+//         std::vector<double> buffer = discretization_->p().getColumn(i_end - 1, j_beg, j_end);
+//         std::vector<double> buffer_receive;
+//         int buffer_size = j_end - j_beg;
+
+//         if (partitioning_->sendsFirstLeftRight()){
+//             communicator_->sendTo(partitioning_->rightNeighbourRankNo(), buffer);
+//             buffer_receive = communicator_->receiveFrom(partitioning_->rightNeighbourRankNo(), buffer_size);
+//         } else {
+//             buffer_receive = communicator_->receiveFrom(partitioning_->rightNeighbourRankNo(), buffer_size);
+//             communicator_->sendTo(partitioning_->rightNeighbourRankNo(), buffer);
+//         }
+        
+//         // Write the buffer
+//         for (int j = j_beg; j < j_end; j++){
+//             discretization_->p(i_end, j) = buffer_receive[j - j_beg];
+//         }
+
+//         if(current_it == ref_iteration){
+//             double right_exchange = MPI_Wtime();
+//             std::ostringstream right_time;
+//             right_time << std::fixed << std::setprecision(10) << right_exchange-starttime_right;
+//             printer_->add_new_parameter_to_print("rig exchange: \t" + right_time.str());
+//         }
+//     }
+    
+    
+
+//     // if(current_it == 20){
+//     //     std::ostringstream bot_time;
+//     //     bot_time << std::fixed << std::setprecision(10) << bottom_exchange-starttime;
+
+//     //     std::ostringstream top_time;
+//     //     top_time << std::fixed << std::setprecision(10) << top_exchange-bottom_exchange;
+
+//     //     std::ostringstream left_time;
+//     //     left_time << std::fixed << std::setprecision(10) << left_exchange-top_exchange;
+
+//     //     std::ostringstream right_time;
+//     //     right_time << std::fixed << std::setprecision(10) << right_exchange-left_exchange;
+
+
+//     //     printer_->add_new_parameter_to_print("bot exchange: \t" + bot_time.str());
+//     //     printer_->add_new_parameter_to_print("top exchange: \t" + top_time.str());
+//     //     printer_->add_new_parameter_to_print("lef exchange: \t" + left_time.str());
+//     //     printer_->add_new_parameter_to_print("rig exchange: \t" + right_time.str());
+//     // }
+    
+// }

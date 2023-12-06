@@ -377,6 +377,9 @@ void ComputationParallel::computeVelocitiesParallel(){
 void ComputationParallel::exchangeVelocities(){
     // TODO: Optimierung Setzt Ecken mit (man kann eigentlich noch v_i + 1 und v_end - 1 machen)
     // TODO: Nutze nur einen Buffer weil gleiche Größe
+    
+
+
     if (!partitioning_->ownPartitionContainsBottomBoundary()){
         // u
         std::vector<double> buffer_u = discretization_->u().getRow(discretization_->uJBegin() + 1,
