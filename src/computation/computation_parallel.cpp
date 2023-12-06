@@ -54,17 +54,19 @@ void ComputationParallel::runSimulationParallel(){
         computeRightHandSideParallel();
         pressureSolver_->solve();
         computeVelocitiesParallel();
-
         exchangeVelocities();
-        outputWriterParaviewParallel_->writeFile(currentTime);
         currentTime += dt_;
-        // currentTime += 10;
-
-        #ifndef NDEBUG
-        if (communicator_->ownRankNo() == 0){
+    #ifndef NDEBUG
+    if (communicator_->ownRankNo() == 0){
             std::cout << "Time: " << currentTime << " and dt " << dt_ << std::endl;
         }
-        #endif
+        outputWriterParaviewParallel_->writeFile(currentTime);
+    #else
+        if (std::floor(currentTime)==currentTime){
+            outputWriterParaviewParallel_->writeFile(currentTime);
+        }
+    #endif
+
 
 
 
@@ -114,10 +116,10 @@ void ComputationParallel::computeTimeStepWidthParallel(double currentTime){
     // Print every whole second
     double nextWholeSecond = std::floor(currentTime) + 1;
 
-    // if (currentTime + dt_ > nextWholeSecond)
-    // {
-    //     dt_ = nextWholeSecond - currentTime;
-    // };
+    if (currentTime + dt_ > nextWholeSecond)
+    {
+        dt_ = nextWholeSecond - currentTime;
+    };
 }
 
 
