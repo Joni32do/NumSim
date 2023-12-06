@@ -42,15 +42,16 @@ double Communicator::getGlobalSum(double local_value){
 
 std::vector<double> Communicator::receiveFrom(int rank, int message_size, int tag){
     std::vector<double> received_data(message_size);
+    // MPI_Irecv(received_data.data(), message_size, MPI_DOUBLE, rank, tag, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
     MPI_Recv(received_data.data(), message_size, MPI_DOUBLE, rank, tag, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
     return received_data;
 }
 
 
 void Communicator::sendTo(int rank, std::vector<double> buffer, int tag){
+    // MPI_Isend(buffer.data(), buffer.size(), MPI_DOUBLE, rank, tag, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
     MPI_Send(buffer.data(), buffer.size(), MPI_DOUBLE, rank, tag, MPI_COMM_WORLD);
 }
-
 
 
 

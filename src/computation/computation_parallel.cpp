@@ -44,7 +44,7 @@ void ComputationParallel::runSimulationParallel(){
     double currentTime = 0;
 
     // TODO: remove prints
-    Printer printer_(communicator_->ownRankNo());
+    // Printer printer_(communicator_->ownRankNo());
     OutputWriterTextParallel out = OutputWriterTextParallel(discretization_, *partitioning_); 
     do
     {   
@@ -84,10 +84,10 @@ void ComputationParallel::runSimulationParallel(){
 
         
         // printer_.add_new_double_to_print(et1-starttime);
-        printer_.add_new_parameter_to_print(out_string);
+        // printer_.add_new_parameter_to_print(out_string);
 
 
-        currentTime += dt_;
+        currentTime += 10; //dt_;
 
     #ifndef NDEBUG
     if (communicator_->ownRankNo() == 0){
@@ -117,7 +117,7 @@ void ComputationParallel::runSimulationParallel(){
     
     // TODO: remove prints
     // printer_.save_doubles_to_file();
-    printer_.save_values_to_file();
+    // printer_.save_values_to_file();
 }
 
 

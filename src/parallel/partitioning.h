@@ -62,9 +62,29 @@ public:
   //! (i_local,j_local) + nodeOffset = (i_global,j_global)
   //! used in OutputWriterParaviewParallel
   std::array<int,2> nodeOffset() const;
+
+  /**
+   * @brief Return whether this corner is red or black
+  */
   bool lowerLeftIsRed();
 
+  /**
+   * @brief processes in x and y direction
+  */
   std::array<int,2> nProcesses();
+
+  /**
+   * @brief decides whether it first sends or first receives horizontally
+  */
+  bool sendsFirstUpDown();
+
+  /**
+   * @brief decides whether it first sends or first receives vertically
+  */
+ bool sendsFirstLeftRight();
+
+
+
 
   private:
     void calcNodeOffset();

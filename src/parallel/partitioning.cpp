@@ -143,6 +143,14 @@ bool Partitioning::lowerLeftIsRed(){
     return lowerLeftIsRed_;
 }
 
+bool Partitioning::sendsFirstUpDown(){
+    return (ownProcess_[1]%2) == 0;
+}
+
+bool Partitioning::sendsFirstLeftRight(){
+    return (ownProcess_[0]%2) == 0;
+}
+
 
 
 std::array<int,2> Partitioning::findOptimumProcessAlignment(){
