@@ -48,14 +48,47 @@ void ComputationParallel::runSimulationParallel(){
     OutputWriterTextParallel out = OutputWriterTextParallel(discretization_, *partitioning_); 
     do
     {   
+        
+        double starttime, et1, et2, et3, et4, et5, et6, et7, endtime_full;
+        
+        starttime = MPI_Wtime();
         applyBoundaryValuesParallel();
+        et1 = MPI_Wtime();
         computeTimeStepWidthParallel(currentTime);
+        et2 = MPI_Wtime();
         computePreliminaryVelocitiesParallel();
+        et3 = MPI_Wtime();
         computeRightHandSideParallel();
+        et4 = MPI_Wtime();
         pressureSolver_->solve();
+        et5 = MPI_Wtime();
         computeVelocitiesParallel();
+        et6 = MPI_Wtime();
         exchangeVelocities();
+        et7 = MPI_Wtime();
+
+        endtime_full = MPI_Wtime();
+        
+        
+        std::string out_string = "Full run time: ";
+
+        out_string += (" " +std::to_string(endtime_full-starttime));
+        out_string += " split ";
+        out_string += (" et1: " + std::to_string(et1-starttime));
+        out_string += (" et2: " + std::to_string(et2-et1));
+        out_string += (" et3: " + std::to_string(et3-et2));
+        out_string += (" et4: " + std::to_string(et4-et3));
+        out_string += (" et5: " + std::to_string(et5-et4));
+        out_string += (" et6: " + std::to_string(et6-et5));
+        out_string += (" et7: " + std::to_string(et7-et6));
+
+        
+        // printer_.add_new_double_to_print(et1-starttime);
+        printer_.add_new_parameter_to_print(out_string);
+
+
         currentTime += dt_;
+
     #ifndef NDEBUG
     if (communicator_->ownRankNo() == 0){
             std::cout << "Time: " << currentTime << " and dt " << dt_ << std::endl;
@@ -83,7 +116,8 @@ void ComputationParallel::runSimulationParallel(){
     } while (currentTime < settings_.endTime);
     
     // TODO: remove prints
-    // printer_.save_values_to_file();
+    // printer_.save_doubles_to_file();
+    printer_.save_values_to_file();
 }
 
 
@@ -356,16 +390,16 @@ void ComputationParallel::exchangeVelocities(){
 
         // v
         std::vector<double> buffer_v = discretization_->v().getRow(discretization_->vJBegin() + 1,
-                                                        discretization_->vIBegin(),
-                                                        discretization_->vIEnd());
-        int buffer_v_size = discretization_->vIEnd() - discretization_->vIBegin();
+                                                        discretization_->vIBegin()+1,
+                                                        discretization_->vIEnd()-1);
+        int buffer_v_size = discretization_->vIEnd() - discretization_->vIBegin()-2;
 
         std::vector<double> buffer_receive_v = communicator_->receiveFrom(
                                 partitioning_->bottomNeighbourRankNo(), buffer_v_size);
         communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer_v);
 
-        for (int i = discretization_->vIBegin(); i < discretization_->vIEnd(); i++){
-            discretization_->v(i, discretization_->vBottomGhost()) = buffer_receive_v[i - discretization_->vIBegin()];
+        for (int i = discretization_->vIBegin()+1; i < discretization_->vIEnd()-1; i++){
+            discretization_->v(i, discretization_->vBottomGhost()) = buffer_receive_v[i - discretization_->vIBegin()-1];
         }
 
     }   
@@ -387,16 +421,16 @@ void ComputationParallel::exchangeVelocities(){
 
         // v
         std::vector<double> buffer_v = discretization_->v().getRow(discretization_->vJEnd() - 2,
-                                                        discretization_->vIBegin(),
-                                                        discretization_->vIEnd());
-        int buffer_v_size = discretization_->vIEnd() - discretization_->vIBegin();
+                                                        discretization_->vIBegin()+1,
+                                                        discretization_->vIEnd()-1);
+        int buffer_v_size = discretization_->vIEnd() - discretization_->vIBegin()-2;
 
         communicator_->sendTo(partitioning_->topNeighbourRankNo(), buffer_v);
         std::vector<double> buffer_receive_v = communicator_->receiveFrom(
                                 partitioning_->topNeighbourRankNo(), buffer_v_size);
 
-        for (int i = discretization_->vIBegin(); i < discretization_->vIEnd(); i++){
-            discretization_->v(i, discretization_->vTopGhost() - 1) = buffer_receive_v[i - discretization_->vIBegin()];
+        for (int i = discretization_->vIBegin()+1; i < discretization_->vIEnd()-1; i++){
+            discretization_->v(i, discretization_->vTopGhost() - 1) = buffer_receive_v[i - discretization_->vIBegin()-1];
         }
 
     }   
@@ -404,16 +438,16 @@ void ComputationParallel::exchangeVelocities(){
     if (!partitioning_->ownPartitionContainsLeftBoundary()){
         // u
         std::vector<double> buffer_u = discretization_->u().getColumn(discretization_->uIBegin() + 1,
-                                                        discretization_->uJBegin(),
-                                                        discretization_->uJEnd());
-        int buffer_u_size = discretization_->uJEnd() - discretization_->uJBegin();
+                                                        discretization_->uJBegin()+1,
+                                                        discretization_->uJEnd()-1);
+        int buffer_u_size = discretization_->uJEnd() - discretization_->uJBegin()-2;
 
         std::vector<double> buffer_receive_u = communicator_->receiveFrom(
                                 partitioning_->leftNeighbourRankNo(), buffer_u_size);
         communicator_->sendTo(partitioning_->leftNeighbourRankNo(), buffer_u);
 
-        for (int j = discretization_->uJBegin(); j < discretization_->uJEnd(); j++){
-            discretization_->u(discretization_->uLeftGhost(), j) = buffer_receive_u[j - discretization_->uJBegin()];
+        for (int j = discretization_->uJBegin()+1; j < discretization_->uJEnd()-1; j++){
+            discretization_->u(discretization_->uLeftGhost(), j) = buffer_receive_u[j - discretization_->uJBegin()-1];
 
         }
         // v
@@ -436,16 +470,16 @@ void ComputationParallel::exchangeVelocities(){
     if (!partitioning_->ownPartitionContainsRightBoundary()){
         // u
         std::vector<double> buffer_u = discretization_->u().getColumn(discretization_->uIEnd() - 2,
-                                                        discretization_->uJBegin(),
-                                                        discretization_->uJEnd());
-        int buffer_u_size = discretization_->uJEnd() - discretization_->uJBegin();
+                                                        discretization_->uJBegin()+1,
+                                                        discretization_->uJEnd()-1);
+        int buffer_u_size = discretization_->uJEnd() - discretization_->uJBegin()-2;
 
         communicator_->sendTo(partitioning_->rightNeighbourRankNo(), buffer_u);
         std::vector<double> buffer_receive_u = communicator_->receiveFrom(
                                 partitioning_->rightNeighbourRankNo(), buffer_u_size);
 
-        for (int j = discretization_->uJBegin(); j < discretization_->uJEnd(); j++){
-            discretization_->u(discretization_->uRightGhost() - 1, j) = buffer_receive_u[j - discretization_->uJBegin()];
+        for (int j = discretization_->uJBegin()+1; j < discretization_->uJEnd()-1; j++){
+            discretization_->u(discretization_->uRightGhost() - 1, j) = buffer_receive_u[j - discretization_->uJBegin()-1];
 
         }
         // v

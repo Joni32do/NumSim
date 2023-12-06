@@ -103,6 +103,8 @@ void RedBlack::setBoundaryValues(){
 
 void RedBlack::exchangeGhost(){
     // TODO: Optimierung -> sende je nach Schritt nur die Hälfte der Daten
+
+    
     if (!partitioning_->ownPartitionContainsBottomBoundary()){
         std::vector<double> buffer = discretization_->p().getRow(j_beg, i_beg, i_end);
         std::vector<double> buffer_receive;
@@ -156,4 +158,5 @@ void RedBlack::exchangeGhost(){
         }
     }
 
+    
 }
