@@ -25,7 +25,7 @@ void RedBlack::solve()
 
     double res = sqrt(communicator_->getGlobalSum(calculateResiduum()));
 
-    while (n < maximumNumberOfIterations_ && res > epsilon_)
+    while (n < maximumNumberOfIterations_ && res > epsilon_) //
     {
         for (int redBlack=0; redBlack < 2; redBlack++){
             if (partitioning_->lowerLeftIsRed()){
@@ -37,27 +37,40 @@ void RedBlack::solve()
             // out.writePressureFile();
 
             // TODO: Opti (kann man N^2/2 Schleifendurchläufe sparen?)
-            for (int i = i_beg; i < i_end; i++)
+            for (int j = j_beg; j < j_end; j++)
             {
-                for (int j = j_beg; j < j_end; j++)
+                int i_start = i_beg + (currentModulo + j)%2;
+                for (int i = i_start; i < i_end; i+=2)
                 {
-                    if ((i + j)%2 == currentModulo){
-                        //std::cout << "i, j: " << i << j << std::endl;
-                        double p_x = 1 / dx2 * (discretization_->p(i + 1, j) + discretization_->p(i - 1, j));
-                        double p_y = 1 / dy2 * (discretization_->p(i, j + 1) + discretization_->p(i, j - 1));
 
-                        discretization_->p(i, j) = d_fac * (p_x + p_y - discretization_->rhs(i, j));
-                    }
+                    // std::cout << "i, j: " << i << j << std::endl;
+                    double p_x = 1 / dx2 * (discretization_->p(i + 1, j) + discretization_->p(i - 1, j));
+                    double p_y = 1 / dy2 * (discretization_->p(i, j + 1) + discretization_->p(i, j - 1));
+
+                    discretization_->p(i, j) = d_fac * (p_x + p_y - discretization_->rhs(i, j));
+
                     
                 }
             }
             exchangeGhost();
+            setBoundaryValues();
         }
-        setBoundaryValues();
+
+
+
+
         // Compute the residual with new values
         res = sqrt(communicator_->getGlobalSum(calculateResiduum()));
         n++;
     }
+
+    // for (int i = i_beg; i< i_end; i++){
+    //     for (int j = j_beg; j < j_end; j++){
+    //         double val = discretization_->p(i,j) - 0.00077935;
+    //         discretization_->p(i,j) = val;
+    //         // std::cout << "p(" << i + 10*communicator_->ownRankNo()%2 << "," << j + 10*(communicator_->ownRankNo()/2)<< ") = " << discretization_->p(i,j) << std::endl;
+    //     }
+    // }
 
 #ifndef NDEBUG
     std::cout << "[Solver] Number of iterations: " << n << ", final residuum: " << res << std::endl;

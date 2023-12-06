@@ -26,13 +26,11 @@ void ComputationParallel::initializeParallel(int argc, char *argv[]){
         discretization_ = std::make_shared<CentralDifferences>(partitioning_->nCellsLocal(), meshWidth_);
     }
 
-    if (settings_.pressureSolver == "RedBlack"){
-        pressureSolver_ = std::make_unique<RedBlack>(discretization_,
-                                                     settings_.epsilon, 
-                                                     settings_.maximumNumberOfIterations,
-                                                     communicator_,
-                                                     partitioning_);
-    }
+    pressureSolver_ = std::make_unique<RedBlack>(discretization_,
+                                                    settings_.epsilon, 
+                                                    settings_.maximumNumberOfIterations,
+                                                    communicator_,
+                                                    partitioning_);
 
 
 
@@ -54,17 +52,13 @@ void ComputationParallel::runSimulationParallel(){
         computeTimeStepWidthParallel(currentTime);
         computePreliminaryVelocitiesParallel();
         computeRightHandSideParallel();
-        // std::cout << "yes 2" << std::endl;
         pressureSolver_->solve();
-        // std::cout << "yes 3" << std::endl;
         computeVelocitiesParallel();
-        exchangeVelocities();
-        out.writePressureFile();
 
-        
-        out.writeFile(currentTime);
+        exchangeVelocities();
+        outputWriterParaviewParallel_->writeFile(currentTime);
         currentTime += dt_;
-        //currentTime += 10;
+        // currentTime += 10;
 
         #ifndef NDEBUG
         std::cout << "Time: " << currentTime << " and dt " << dt_ << std::endl;
@@ -80,7 +74,6 @@ void ComputationParallel::runSimulationParallel(){
         //                              + " dt"    + std::to_string(dt_);
         // printer_.add_new_parameter_to_print(str);
 
-        outputWriterParaviewParallel_->writeFile(currentTime);
 
 
     } while (currentTime < settings_.endTime);
@@ -119,10 +112,10 @@ void ComputationParallel::computeTimeStepWidthParallel(double currentTime){
     // Print every whole second
     double nextWholeSecond = std::floor(currentTime) + 1;
 
-    if (currentTime + dt_ > nextWholeSecond)
-    {
-        dt_ = nextWholeSecond - currentTime;
-    };
+    // if (currentTime + dt_ > nextWholeSecond)
+    // {
+    //     dt_ = nextWholeSecond - currentTime;
+    // };
 }
 
 
@@ -151,6 +144,10 @@ void ComputationParallel::applyBoundaryValuesParallel(){
             discretization_->u(i, discretization_->uJEnd() - 1) = 
                                     2 * settings_.dirichletBcTop[0] 
                                     - discretization_->u(i, discretization_->uJEnd() - 2);
+            // TODO: remove
+            // std::cout << "This is lower" << discretization_->u(i, discretization_->uJEnd() - 2) << std::endl;
+            // std::cout << "This is upper" << discretization_->u(i, discretization_->uJEnd() - 1) << std::endl;
+            // std::cout << "This is upper" << discretization_->u(i, discretization_->uJEnd()) << std::endl;
         }
         // v
         for (int i = discretization_->vIBegin(); i < discretization_->vIEnd(); i++){
@@ -205,6 +202,7 @@ void ComputationParallel::computePreliminaryVelocitiesParallel(){
 
     if (partitioning_->ownPartitionContainsLeftBoundary()){
         f_i_beg += 1;
+        std::cout << f_i_beg << " " << discretization_->fIBegin() << std::endl;
         // f
         for (int j = discretization_->fJBegin(); j < discretization_->fJEnd(); j++){
             discretization_->f(discretization_->fIBegin(), j) =
@@ -294,17 +292,27 @@ void ComputationParallel::computeVelocitiesParallel(){
     // wenn Rand dann doch eher uIBegin()
 
     // Copy from serial
-    for (int i = discretization_->uLeftGhost() + 1; i < discretization_->uRightGhost() - 1; i++)
+    if (!partitioning_->ownPartitionContainsLeftBoundary()){
+        
+    }
+
+    for (int i = discretization_->uIBegin() + 1; i < discretization_->uJEnd() - 1; i++)
     {
         for (int j = discretization_->uJBegin() + 1; j < discretization_->uJEnd() - 1; j++)
         {
+            if (i == 1 || i == 21){
+                // This should be set if is not boundary
+                std::cout << " f(" << i << ", " << j << ") " << discretization_->f(i, j) << std::endl;
+                std::cout << " b " << - dt_ * discretization_->computeDpDx(i, j) << std::endl;
+                std::cout << " c " << discretization_->u(i,j) << std::endl;
+            }
             discretization_->u(i, j) = discretization_->f(i, j) - dt_ * discretization_->computeDpDx(i, j);
         }
     }
 
     for (int i = discretization_->vIBegin() + 1; i < discretization_->vIEnd() - 1; i++)
     {
-        for (int j = discretization_->vBottomGhost() + 1; j < discretization_->vTopGhost() - 1; j++)
+        for (int j = discretization_->vJBegin() + 1; j < discretization_->vJEnd() - 1; j++)
         {
             discretization_->v(i, j) = discretization_->g(i, j) - dt_ * discretization_->computeDpDy(i, j);
         }

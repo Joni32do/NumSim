@@ -15,27 +15,12 @@ export CPATH=/scratch-nfs/maierbn/openmpi/install-3.1/include
 export PATH=/scratch-nfs/maierbn/openmpi/install-3.1/bin:$PATH
 
 
-rm -rf src/debugging/debug_out
-mkdir src/debugging/debug_out
-
 rm -rf build
 mkdir -p build
 cd build
 
-if [[ "${1,,}" == "release" ]]; then
-	cmake -DCMAKE_BUILD_TYPE=Release ..
-else
-	cmake -DCMAKE_BUILD_TYPE=Debug ..
-fi
 
-make install -j4
+# Compare Files
+cmake ..
 
-srun -n 4 ./numsim ../input/settings_debug.txt
-
-
-
-# zip -r submission.zip src/ CMakeLists.txt
-
-# rm output.zip
-zip -r out.zip out/
-
+make install

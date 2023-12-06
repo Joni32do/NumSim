@@ -1,0 +1,3 @@
+/home/schnitjn/NumSim/CMakeFiles/rebuild_cache.dir
+/home/schnitjn/NumSim/CMakeFiles/edit_cache.dir
+/home/schnitjn/NumSim/CMakeFiles/compare_output.dir

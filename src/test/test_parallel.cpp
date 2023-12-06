@@ -4,6 +4,7 @@ TestParallel::TestParallel(){
 
 };
 
+
 void TestParallel::testCommunicationVector(){
 
     Communicator com = Communicator();
