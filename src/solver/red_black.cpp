@@ -116,12 +116,24 @@ void RedBlack::exchangeGhost(int current_it){
         std::vector<double> buffer_receive;
         int buffer_size = i_end - i_beg;
 
+        double send_time, receive_time;
+
         if (partitioning_->sendsFirstUpDown()){
+            double starttime_send = MPI_Wtime();
             communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer);
+            double starttime_receive = MPI_Wtime();
             buffer_receive = communicator_->receiveFrom(partitioning_->bottomNeighbourRankNo(), buffer_size);
+            double receive_end = MPI_Wtime();
+            receive_time = receive_end -starttime_receive;
+            send_time = starttime_receive-starttime_send;
         } else{
+            double starttime_receive = MPI_Wtime();
             buffer_receive = communicator_->receiveFrom(partitioning_->bottomNeighbourRankNo(), buffer_size);
+            double starttime_send = MPI_Wtime();
             communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer);
+            double send_time_end = MPI_Wtime();
+            send_time = send_time_end-starttime_send;
+            send_time = starttime_send-starttime_receive;
         }
         
         // Write the buffer
@@ -131,9 +143,13 @@ void RedBlack::exchangeGhost(int current_it){
 
         if(current_it == ref_iteration){
             double bottom_exchange = MPI_Wtime();
-            std::ostringstream bot_time;
+            std::ostringstream bot_time, receive_time_, send_time_;
             bot_time << std::fixed << std::setprecision(10) << bottom_exchange-starttime_bot;
+            receive_time_ << std::fixed << std::setprecision(10) << receive_time;
+            send_time_ << std::fixed << std::setprecision(10) << send_time;
             printer_->add_new_parameter_to_print("bot exchange: \t" + bot_time.str());
+            printer_->add_new_parameter_to_print("bot receive : \t" + receive_time_.str());
+            printer_->add_new_parameter_to_print("bot send : \t" + send_time_.str());
         } 
     }
     
