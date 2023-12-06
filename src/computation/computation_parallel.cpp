@@ -52,10 +52,22 @@ void ComputationParallel::runSimulationParallel(){
         computeTimeStepWidthParallel(currentTime);
         computePreliminaryVelocitiesParallel();
         computeRightHandSideParallel();
+
+        double starttime, endtime;
+        starttime = MPI_Wtime();
+
         pressureSolver_->solve();
+
+        endtime   = MPI_Wtime();
+        printer_.add_new_double_to_print(endtime-starttime);
+
         computeVelocitiesParallel();
         exchangeVelocities();
+
+
         currentTime += dt_;
+        // currentTime += 10;
+
     #ifndef NDEBUG
     if (communicator_->ownRankNo() == 0){
             std::cout << "Time: " << currentTime << " and dt " << dt_ << std::endl;
@@ -83,7 +95,7 @@ void ComputationParallel::runSimulationParallel(){
     } while (currentTime < settings_.endTime);
     
     // TODO: remove prints
-    // printer_.save_values_to_file();
+    printer_.save_doubles_to_file();
 }
 
 

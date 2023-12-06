@@ -4,6 +4,7 @@
 #include <array>
 #include <cassert>
 #include <iostream>
+#include <cmath>
 
 /**
  * @class Array2D
@@ -45,9 +46,9 @@ public:
      */
     std::array<int, 2> size() const;
 
-    std::vector<double> getRow(int i, int start, int end) const; 
+    std::vector<double> getRow(int i, int start, int end, int step=1) const;
 
-    std::vector<double> getColumn(int j, int start, int end) const;
+    std::vector<double> getColumn(int j, int start, int end, int step=1) const;
 
     void* data();
 

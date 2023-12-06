@@ -17,8 +17,6 @@ void RedBlack::solve()
     OutputWriterTextParallel out = OutputWriterTextParallel(discretization_, *partitioning_);
     setBoundaryValues();
     
-    
-
     int n = 0;
     int currentModulo;
     double d_fac = (dx2 * dy2) / (2 * (dx2 + dy2));
@@ -41,7 +39,7 @@ void RedBlack::solve()
             // TODO: Opti (kann man N^2/2 Schleifendurchläufe sparen?)
             for (int j = j_beg; j < j_end; j++)
             {
-                int i_start = i_beg + (currentModulo + j)%2;
+                int i_start = i_beg + (currentModulo + j)%2; // black first
                 for (int i = i_start; i < i_end; i+=2)
                 {
 
@@ -53,7 +51,7 @@ void RedBlack::solve()
                     
                 }
             }
-            exchangeGhost();
+            exchangeGhost(currentModulo);
             setBoundaryValues();
         }
 
@@ -66,7 +64,7 @@ void RedBlack::solve()
 #ifndef NDEBUG
     if (communicator_->ownRankNo() == 0){
         std::cout << "[Solver] Number of iterations: " << n << ", final residuum: " << res << std::endl;
-        std::cout << "\t" << "Omega Optimal: " << omegaOpt << std::endl;
+        // std::cout << "\t" << "Omega Optimal: " << omegaOpt << std::endl;
     }
 #endif
 }
@@ -101,58 +99,95 @@ void RedBlack::setBoundaryValues(){
 
 }
 
-void RedBlack::exchangeGhost(){
+void RedBlack::exchangeGhost(int currentModulo){
+
+    #ifndef NDEBUG
+    std::cout << "Rank " << communicator_->ownRankNo()
+              << " has lowerLeftIsRed=" << partitioning_->lowerLeftIsRed()
+              << " , currentModulo=" << currentModulo
+              << ", i_beg=" << i_beg << ", j_beg=" << j_beg
+              << ", i_end=" << i_end << ", j_end=" << j_end
+              << std::endl;
+    #endif
+
+    int step = 2; // step of getRow, getColumn
+    bool exchange_half = ((step-1)%2); // if step==1, leave start=beg
+    int buffer_size_i = int(std::ceil((i_end - i_beg)/step));
+    int buffer_size_j = int(std::ceil((j_end - j_beg)/step));
+
     // TODO: Optimierung -> sende je nach Schritt nur die Hälfte der Daten
     if (!partitioning_->ownPartitionContainsBottomBoundary()){
-        std::vector<double> buffer = discretization_->p().getRow(j_beg, i_beg, i_end);
-        std::vector<double> buffer_receive;
-        int buffer_size = i_end - i_beg;
+        int i_start = i_beg + exchange_half*(currentModulo + 1)%2;
 
-        buffer_receive = communicator_->receiveFrom(partitioning_->bottomNeighbourRankNo(), buffer_size);
+        #ifndef NDEBUG
+        std::cout << "\t[Bottom] Rank " << communicator_->ownRankNo() << ", i_start=" << i_start << ", i_beg=" << i_beg << std::endl;
+        #endif
+
+        std::vector<double> buffer = discretization_->p().getRow(j_beg, i_start, i_end, step);
+        std::vector<double> buffer_receive;
+
+        buffer_receive = communicator_->receiveFrom(partitioning_->bottomNeighbourRankNo(), buffer_size_i);
         communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer);
 
-        for (int i = i_beg; i < i_end; i++){
-            discretization_->p(i, j_beg-1) = buffer_receive[i - i_beg];
+        for (int i = i_start; i < i_end; i += step){
+            discretization_->p(i, j_beg-1) = buffer_receive[(i - i_start)/step];
         }
 
     }
 
     if (!partitioning_->ownPartitionContainsTopBoundary()){
-        std::vector<double> buffer = discretization_->p().getRow(j_end - 1, i_beg, i_end);
+        int modulo_height = (j_end - j_beg)%2;
+        int i_start = i_beg + exchange_half*(currentModulo + modulo_height)%2;
+
+        #ifndef NDEBUG
+        std::cout << "\t[  Top ] Rank " << communicator_->ownRankNo() << ", i_start=" << i_start << ", i_beg=" << i_beg << std::endl;
+        #endif
+
+        std::vector<double> buffer = discretization_->p().getRow(j_end - 1, i_start, i_end, step);
         std::vector<double> buffer_receive;
-        int buffer_size = i_end - i_beg;
 
         communicator_->sendTo(partitioning_->topNeighbourRankNo(), buffer);
-        buffer_receive = communicator_->receiveFrom(partitioning_->topNeighbourRankNo(), buffer_size);
+        buffer_receive = communicator_->receiveFrom(partitioning_->topNeighbourRankNo(), buffer_size_i);
 
-        for (int i = i_beg; i < i_end; i++){
-            discretization_->p(i, j_end) = buffer_receive[i - i_beg];
+        for (int i = i_start; i < i_end; i += step){
+            discretization_->p(i, j_end) = buffer_receive[(i - i_start)/step];
         }
     }
 
     if (!partitioning_->ownPartitionContainsLeftBoundary()){
-        std::vector<double> buffer = discretization_->p().getColumn(i_beg, j_beg, j_end);
-        std::vector<double> buffer_receive;
-        int buffer_size = j_end - j_beg;
+        int j_start = j_beg + exchange_half*(currentModulo + 1)%2;
 
-        buffer_receive = communicator_->receiveFrom(partitioning_->leftNeighbourRankNo(), buffer_size);
+        #ifndef NDEBUG
+        std::cout << "\t[ Left ] Rank " << communicator_->ownRankNo() << ", j_start=" << j_start << ", j_beg=" << j_beg << std::endl;
+        #endif
+
+        std::vector<double> buffer = discretization_->p().getColumn(i_beg, j_start, j_end, step);
+        std::vector<double> buffer_receive;
+
+        buffer_receive = communicator_->receiveFrom(partitioning_->leftNeighbourRankNo(), buffer_size_j);
         communicator_->sendTo(partitioning_->leftNeighbourRankNo(), buffer);
 
-        for (int j = j_beg; j < j_end; j++){
-            discretization_->p(i_beg - 1, j) = buffer_receive[j - j_beg];
+        for (int j = j_start; j < j_end; j += step){
+            discretization_->p(i_beg - 1, j) = buffer_receive[(j - j_start)/step];
         }
     }
 
         if (!partitioning_->ownPartitionContainsRightBoundary()){
-        std::vector<double> buffer = discretization_->p().getColumn(i_end - 1, j_beg, j_end);
+        int modulo_width = (i_end - i_beg)%2;
+        int j_start = j_beg + exchange_half*(currentModulo + modulo_width)%2;
+
+        #ifndef NDEBUG
+        std::cout << "\t[ Right] Rank " << communicator_->ownRankNo() << ", j_start=" << j_start << ", j_beg=" << j_beg << std::endl;
+        #endif
+
+        std::vector<double> buffer = discretization_->p().getColumn(i_end - 1, j_start, j_end, step);
         std::vector<double> buffer_receive;
-        int buffer_size = j_end - j_beg;
 
         communicator_->sendTo(partitioning_->rightNeighbourRankNo(), buffer);
-        buffer_receive = communicator_->receiveFrom(partitioning_->rightNeighbourRankNo(), buffer_size);
+        buffer_receive = communicator_->receiveFrom(partitioning_->rightNeighbourRankNo(), buffer_size_j);
 
-        for (int j = j_beg; j < j_end; j++){
-            discretization_->p(i_end, j) = buffer_receive[j - j_beg];
+        for (int j = j_start; j < j_end; j += step){
+            discretization_->p(i_end, j) = buffer_receive[(j - j_start)/step];
         }
     }
 

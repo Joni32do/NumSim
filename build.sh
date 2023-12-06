@@ -32,12 +32,11 @@ make install -j4
 
 time srun -n 4 ./numsim_parallel ../input/settings.txt
 
-time mpirun -n 4 ./numsim_parallel ../input/settings.txt
+# time mpirun -n 4 ./numsim_parallel ../input/settings.txt
 
+cd ..
+rm output.zip
+zip -r output.zip build/out/ src/debugging/debug_out/
 
-# # rm output.zip
-# zip -r out.zip out/
-
-# cd ..
-# rm submission.zip
-# zip -r submission.zip src/ CMakeLists.txt
+rm submission.zip
+zip -r submission.zip src/ CMakeLists.txt

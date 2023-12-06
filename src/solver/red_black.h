@@ -36,7 +36,7 @@ public:
 
     void setBoundaryValues();
 
-    void exchangeGhost();
+    void exchangeGhost(int currentModulo);
 
 private:
     std::shared_ptr<Communicator> communicator_;
