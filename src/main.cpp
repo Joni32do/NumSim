@@ -15,9 +15,6 @@ int main(int argc, char** argv) {
 
   MPI_Init(NULL, NULL);
 
-  TestParallel test;
-  test.testRowAndColumn();
-
 
   ComputationParallel computation;
   computation.initializeParallel(argc, argv);

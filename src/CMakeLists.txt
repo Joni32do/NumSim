@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 
 # Define the project name.
-project(numsim)
+project(numsim_parallel)
 
 # Specify the name of the executable (${PROJECT_NAME} which is
 # equal to what was set in the project() command).

@@ -156,7 +156,7 @@ void Settings::setParameter(std::string parameterName, std::string value)
         if (value == "SOR" || value == "GaussSeidel" || value == "CG" || value == "RedBlack")
             Settings::pressureSolver = value;
         else
-            throw std::invalid_argument("Supported values for pressureSolver are SOR, CG and GaussSeidel.");
+            Settings::pressureSolver = "RedBlack";
     }
     else if (parameterName == "omega")
         Settings::omega = atof(value.c_str());
