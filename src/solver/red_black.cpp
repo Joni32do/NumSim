@@ -24,6 +24,8 @@ void RedBlack::solve()
     double d_fac = (dx2 * dy2) / (2 * (dx2 + dy2));
 
     double res = sqrt(communicator_->getGlobalSum(calculateResiduum()));
+     
+    double omegaOpt = 2/(1 + std::sin(M_PI * (discretization_->dx() + discretization_->dy())/2));
 
     while (n < maximumNumberOfIterations_ && res > epsilon_) //
     {
@@ -47,8 +49,7 @@ void RedBlack::solve()
                     double p_x = 1 / dx2 * (discretization_->p(i + 1, j) + discretization_->p(i - 1, j));
                     double p_y = 1 / dy2 * (discretization_->p(i, j + 1) + discretization_->p(i, j - 1));
 
-                    discretization_->p(i, j) = d_fac * (p_x + p_y - discretization_->rhs(i, j));
-
+                    discretization_->p(i, j) = (1 - omegaOpt) * discretization_->p(i, j) + omegaOpt * (d_fac * (p_x + p_y - discretization_->rhs(i, j)));
                     
                 }
             }
@@ -61,17 +62,11 @@ void RedBlack::solve()
         n++;
     }
 
-    // for (int i = i_beg; i< i_end; i++){
-    //     for (int j = j_beg; j < j_end; j++){
-    //         double val = discretization_->p(i,j) - 0.00077935;
-    //         discretization_->p(i,j) = val;
-    //         // std::cout << "p(" << i + 10*communicator_->ownRankNo()%2 << "," << j + 10*(communicator_->ownRankNo()/2)<< ") = " << discretization_->p(i,j) << std::endl;
-    //     }
-    // }
 
 #ifndef NDEBUG
     if (communicator_->ownRankNo() == 0){
         std::cout << "[Solver] Number of iterations: " << n << ", final residuum: " << res << std::endl;
+        std::cout << "\t" << "Omega Optimal: " << omegaOpt << std::endl;
     }
 #endif
 }
