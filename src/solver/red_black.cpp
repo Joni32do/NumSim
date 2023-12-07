@@ -12,7 +12,15 @@ RedBlack::RedBlack(const std::shared_ptr<Discretization> &data,
                 PressureSolver(data, epsilon, maximumNumberOfIterations),
                 communicator_(communicator),
                 partitioning_(partitioning),
-                printer_(printer)
+                printer_(printer),
+                bufferReceiveBottom(row_count_, 0),
+                bufferReceiveTop(row_count_, 0),
+                bufferReceiveLeft(col_count_, 0),
+                bufferReceiveRight(col_count_, 0),
+                bufferBottom(row_count_, 0),
+                bufferTop(row_count_, 0),
+                bufferLeft(col_count_, 0),
+                bufferRight(col_count_, 0)
 {
 }
 
@@ -40,7 +48,7 @@ void RedBlack::solve()
                 currentModulo = (redBlack+1)%2;
             }
 
-
+            //double start_time_loop = MPI_Wtime();
             for (int j = j_beg; j < j_end; j++)
             {
                 int i_start = i_beg + (currentModulo + j)%2;
@@ -55,11 +63,25 @@ void RedBlack::solve()
                     
                 }
             }
+            // double end_time_loop = MPI_Wtime();
             exchangeGhost(n);
+            // double end_time_exchange_ghost = MPI_Wtime();
             setBoundaryValues();
+            // double end_time_set_boundary_values= MPI_Wtime();
+
+            // if (n == 20){
+            //     std::ostringstream loop_time, exchange_time, set_time;
+            //     // loop_time << std::fixed << std::setprecision(10) << end_time_loop-start_time_loop;
+            //     exchange_time << std::fixed << std::setprecision(10) << end_time_exchange_ghost-end_time_loop;
+            //     // set_time << std::fixed << std::setprecision(10) << end_time_set_boundary_values-end_time_exchange_ghost;
+            //     // printer_->add_new_parameter_to_print("loop time: " + loop_time.str());
+            //     printer_->add_new_parameter_to_print("exchange_time: " + exchange_time.str());
+            //     // printer_->add_new_parameter_to_print("set_time: " + set_time.str());
+            // }
         }
 
         // Compute the residual with new values
+
         res = sqrt(communicator_->getGlobalSum(calculateResiduum()));
         n++;
     }
@@ -105,76 +127,74 @@ void RedBlack::setBoundaryValues(){
 
 void RedBlack::exchangeGhost(int current_it){
     // TODO: Arthurs Magie
-    int row_count = i_end - i_beg;
-    int col_count = j_end - j_beg;
+
 
     MPI_Request requestBottom;
     MPI_Request requestTop;
     MPI_Request requestLeft;
     MPI_Request requestRight;
 
-    std::vector<double> bufferReceiveBottom(row_count, 0);
-    std::vector<double> bufferReceiveTop(row_count, 0);
-    std::vector<double> bufferReceiveLeft(col_count, 0);
-    std::vector<double> bufferReceiveRight(col_count, 0);
+
+    // double start_time_send = MPI_Wtime();
     
     if (!partitioning_->ownPartitionContainsBottomBoundary()){
 
-        std::vector<double> buffer = discretization_->p().getRow(j_beg, i_beg, i_end);
+        bufferBottom = discretization_->p().getRow(j_beg, i_beg, i_end);
 
 
         communicator_->sendTo(partitioning_->bottomNeighbourRankNo(),
-                              buffer,
+                              bufferBottom,
                               requestBottom);
 
         bufferReceiveBottom = communicator_->receiveFrom(partitioning_->bottomNeighbourRankNo(),
-                                                         row_count,
+                                                         row_count_,
                                                          requestBottom);
     } 
     
     
     if (!partitioning_->ownPartitionContainsTopBoundary()){
 
-        std::vector<double> buffer = discretization_->p().getRow(j_end - 1, i_beg, i_end);
+        bufferTop = discretization_->p().getRow(j_end - 1, i_beg, i_end);
 
 
         communicator_->sendTo(partitioning_->topNeighbourRankNo(),
-                              buffer,
+                              bufferTop,
                               requestTop);
 
         bufferReceiveTop = communicator_->receiveFrom(partitioning_->topNeighbourRankNo(),
-                                                      row_count,
+                                                      row_count_,
                                                       requestTop);
     }
     
     if (!partitioning_->ownPartitionContainsLeftBoundary()){
 
-        std::vector<double> buffer = discretization_->p().getColumn(i_beg, j_beg, j_end);
+        bufferLeft = discretization_->p().getColumn(i_beg, j_beg, j_end);
 
         
         communicator_->sendTo(partitioning_->leftNeighbourRankNo(),
-                              buffer,
+                              bufferLeft,
                               requestLeft);
 
         bufferReceiveLeft = communicator_->receiveFrom(partitioning_->leftNeighbourRankNo(),
-                                                       col_count,
+                                                       col_count_,
                                                        requestLeft);
     }
     
     if (!partitioning_->ownPartitionContainsRightBoundary()){
 
-        std::vector<double> buffer = discretization_->p().getColumn(i_end - 1, j_beg, j_end);
+        bufferRight = discretization_->p().getColumn(i_end - 1, j_beg, j_end);
 
         communicator_->sendTo(partitioning_->rightNeighbourRankNo(),
-                              buffer,
+                              bufferRight,
                               requestRight);
         
         bufferReceiveRight = communicator_->receiveFrom(partitioning_->rightNeighbourRankNo(),
-                                                        col_count,
+                                                        col_count_,
                                                         requestRight);
         
     }
 
+    // double end_time_send = MPI_Wtime();
 
 
     // Write in the buffer
@@ -205,7 +225,18 @@ void RedBlack::exchangeGhost(int current_it){
         }
     }
 
+    // double end_time_receiv = MPI_Wtime();
 
+    
+    // if(current_it == 20){
+    //     std::ostringstream init_time, send_time, receive_time;
+    //     init_time << std::fixed << std::setprecision(10) << start_time_send-start_time_init;
+    //     send_time << std::fixed << std::setprecision(10) << end_time_send-start_time_send;
+    //     receive_time << std::fixed << std::setprecision(10) << end_time_receiv-end_time_send;
+    //     printer_->add_new_parameter_to_print("init_time: " + init_time.str());
+    //     printer_->add_new_parameter_to_print("send_time: " + send_time.str());
+    //     printer_->add_new_parameter_to_print("recv_time: " + receive_time.str());
+    // }
         
 
 

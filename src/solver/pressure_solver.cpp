@@ -17,6 +17,9 @@ PressureSolver::PressureSolver(std::shared_ptr<Discretization> discretization,
     j_beg = discretization_->rhsJBegin();
     j_end = discretization_->rhsJEnd();
 
+    row_count_ = i_end - i_beg;
+    col_count_ = j_end - j_beg;
+
     // squared mesh widths
     dx2 = pow(discretization_->dx(), 2);
     dy2 = pow(discretization_->dy(), 2);

@@ -48,4 +48,14 @@ private:
     std::shared_ptr<Communicator> communicator_;
     std::shared_ptr<Partitioning> partitioning_;
     std::shared_ptr<Printer> printer_;
+
+    std::vector<double> bufferReceiveBottom;
+    std::vector<double> bufferReceiveTop;
+    std::vector<double> bufferReceiveLeft;
+    std::vector<double> bufferReceiveRight;
+
+    std::vector<double> bufferBottom;
+    std::vector<double> bufferTop;
+    std::vector<double> bufferLeft;
+    std::vector<double> bufferRight;
 };
