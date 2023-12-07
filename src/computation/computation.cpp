@@ -7,9 +7,10 @@ void Computation::initialize(int argc, char *argv[])
 
     // load settings from file
     settings_.loadFromFile(filename);
-#ifndef NDEBUG
-    settings_.printSettings();
-#endif
+    
+    #ifndef NDEBUG
+        settings_.printSettings();
+    #endif
 
     std::array<double, 2> meshWidth_ = {settings_.physicalSize[0] / settings_.nCells[0],
                                         settings_.physicalSize[1] / settings_.nCells[1]};
@@ -37,9 +38,7 @@ void Computation::initialize(int argc, char *argv[])
                                                         settings_.maximumNumberOfIterations);
     }
 
-    // outputWriterParaview_ = std::make_unique<OutputWriterParaview>(discretization_);
-    // outputWriterText_ = std::make_unique<OutputWriterText>(discretization_);
-}
+
 
 void Computation::runSimulation()
 {

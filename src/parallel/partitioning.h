@@ -11,109 +11,110 @@
 class Partitioning
 {
 public:
-  Partitioning(std::array<int,2> nCellsGlobal,
+  /**
+   * @brief Constructor
+   *
+   * @param nCellsGlobal the number of overall cells in domain
+   * @param communicator Communicator for communication with neighbouring processes
+   */
+  Partitioning(std::array<int, 2> nCellsGlobal,
                std::shared_ptr<Communicator> communicator);
-  // Use Constructor instead of initialize
-  //! compute partitioning, set internal variables
-  // void initialize();
-
-  //! get the local number of cells in the own subdomain
-  std::array<int,2> nCellsLocal() const;
-
-  //! get the global number of cells in the whole computational domain
-  //! used in OutputWriterParaviewParallel
-  std::array<int,2> nCellsGlobal() const;
-
-  //! get the own MPI rank no
-  //! used in OutputWriterParaviewParallel and OutputWriterTextParallel
-  int ownRankNo() const;
-
-  //! number of MPI ranks
-  int nRanks() const;
-
-  //! if the own partition has part of the bottom boundary of the whole domain
-  bool ownPartitionContainsBottomBoundary() const;
-
-  //! if the own partition has part of the top boundary of the whole domain
-  //! used in OutputWriterParaviewParallel
-  bool ownPartitionContainsTopBoundary() const;
-
-  //! if the own partition has part of the left boundary of the whole domain
-  bool ownPartitionContainsLeftBoundary() const;
-
-  //! if the own partition has part of the right boundary of the whole domain
-  //! used in OutputWriterParaviewParallel
-  bool ownPartitionContainsRightBoundary() const;
-
-  //! get the rank no of the left neighbouring rank
-  int leftNeighbourRankNo() const;
-
-  //! get the rank no of the right neighbouring rank
-  int rightNeighbourRankNo() const;
-
-  //! get the rank no of the top neighbouring rank
-  int topNeighbourRankNo() const;
-
-  //! get the rank no of the bottom neighbouring rank
-  int bottomNeighbourRankNo() const;
-
-
-  //! get the offset values for counting local nodes in x and y direction. 
-  //! (i_local,j_local) + nodeOffset = (i_global,j_global)
-  //! used in OutputWriterParaviewParallel
-  std::array<int,2> nodeOffset() const;
 
   /**
-   * @brief Return whether this corner is red or black
-  */
+   * @brief return the number of cells in subdomain
+   */
+  std::array<int, 2> nCellsLocal() const;
+
+  /**
+   * @brief return the number of cells in full domain 
+   */
+  std::array<int, 2> nCellsGlobal() const;
+
+  /**
+   * @brief return the number of the own rank 
+   */
+  int ownRankNo() const;
+
+  /**
+   * @brief return the total number of ranks 
+   */
+  int nRanks() const;
+
+  /**
+   * @brief return true if partition contains bottom boundary 
+   */
+  bool ownPartitionContainsBottomBoundary() const;
+
+  /**
+   * @brief return true if partition contains top boundary 
+   */
+  bool ownPartitionContainsTopBoundary() const;
+
+  /**
+   * @brief return true if partition contains left boundary 
+   */
+  bool ownPartitionContainsLeftBoundary() const;
+
+  /**
+   * @brief return true if partition contains right boundary 
+   */
+  bool ownPartitionContainsRightBoundary() const;
+
+  /**
+   * @brief rank number of left neighbour 
+   */
+  int leftNeighbourRankNo() const;
+
+  /**
+   * @brief rank number of right neighbour 
+   */
+  int rightNeighbourRankNo() const;
+
+  /**
+   * @brief rank number of top neighbour 
+   */
+  int topNeighbourRankNo() const;
+
+  /**
+   * @brief rank number of bottom neighbour 
+   */
+  int bottomNeighbourRankNo() const;
+
+  /**
+   * @brief the offset of the subdomain in cells relative to the global coordinate system
+   */
+  std::array<int, 2> nodeOffset() const;
+
+  /**
+   * @brief Return whether this lower left corner is red or black in the global coordinate system
+   */
   bool lowerLeftIsRed();
 
   /**
-   * @brief processes in x and y direction
-  */
-  std::array<int,2> nProcesses();
+   * @brief global processes in x and y direction
+   */
+  std::array<int, 2> nProcesses();
 
-  /**
-   * @brief decides whether it first sends or first receives horizontally
-  */
-  bool sendsFirstUpDown();
+private:
+  void calcNodeOffset();
+  void calcLowerLeftIsRed();
+  std::array<int, 2> findOptimumProcessAlignment();
+  std::array<int, 2> calculateNCellsLocal();
 
-  /**
-   * @brief decides whether it first sends or first receives vertically
-  */
- bool sendsFirstLeftRight();
+  std::shared_ptr<Communicator> communicator_;
 
+  const std::array<int, 2> nCellsGlobal_;
 
+  std::array<int, 2> nCellsLocal_;
 
+  std::array<int, 2> ownProcess_;
+  std::array<int, 2> nProcesses_;
 
-  private:
-    void calcNodeOffset();
-    void calcLowerLeftIsRed();
-    std::array<int,2> findOptimumProcessAlignment();
-    std::array<int,2> calculateNCellsLocal();
+  std::array<int, 2> remainderLocalCells_;
 
+  const int ownRankNo_;
+  const int nRanks_;
 
-    std::shared_ptr<Communicator> communicator_;
-
-    const std::array<int,2> nCellsGlobal_;
-
-    std::array<int,2> nCellsLocal_;
-
-    std::array<int,2> ownProcess_;
-    std::array<int,2> nProcesses_;
-
-    std::array<int,2> remainderLocalCells_;
-
-
-    const int ownRankNo_;
-    const int nRanks_;
-
-    bool lowerLeftIsRed_;
-    std::array<int,2> nodeOffset_;
-
-
-    // std::array<int,2> remainderLocalCells_;
-
-    void printDebugInformation();
+  bool lowerLeftIsRed_;
+  std::array<int, 2> nodeOffset_;
 };
-

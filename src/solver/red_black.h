@@ -3,7 +3,6 @@
 #include "pressure_solver.h"
 #include "../parallel/communicator.h"
 #include "../parallel/partitioning.h"
-#include "../debugging/debug_printer.h"
 
 #include <iostream>
 #include <sstream>
@@ -28,11 +27,10 @@ public:
      * @param omega relaxation factor
      */
     RedBlack(const std::shared_ptr<Discretization> &data,
-        double epsilon,
-        int maximumNumberOfIterations,
-        std::shared_ptr<Communicator> communicator,
-        std::shared_ptr<Partitioning> partitioning,
-        std::shared_ptr<Printer>);
+             double epsilon,
+             int maximumNumberOfIterations,
+             std::shared_ptr<Communicator> communicator,
+             std::shared_ptr<Partitioning> partitioning);
 
     /**
      * @brief override function that starts solver.
@@ -40,22 +38,29 @@ public:
      */
     void solve() override;
 
+    /**
+     * @brief set boundary values of pressure.
+     *
+     */
     void setBoundaryValues();
 
+    /**
+     * @brief exchange ghost.
+     *
+     */
     void exchangeGhost(int current_it);
 
 private:
-    std::shared_ptr<Communicator> communicator_;
-    std::shared_ptr<Partitioning> partitioning_;
-    std::shared_ptr<Printer> printer_;
+    std::shared_ptr<Communicator> communicator_; //!< comminucator instance
+    std::shared_ptr<Partitioning> partitioning_; //!< partitioning instance
 
-    std::vector<double> bufferReceiveBottom;
-    std::vector<double> bufferReceiveTop;
-    std::vector<double> bufferReceiveLeft;
-    std::vector<double> bufferReceiveRight;
+    std::vector<double> bufferReceiveBottom; //!< bufferReceiveBottom vector
+    std::vector<double> bufferReceiveTop;    //!< bufferReceiveTop vector
+    std::vector<double> bufferReceiveLeft;   //!< bufferReceiveLeft vector
+    std::vector<double> bufferReceiveRight;  //!< bufferReceiveRight vector
 
-    std::vector<double> bufferBottom;
-    std::vector<double> bufferTop;
-    std::vector<double> bufferLeft;
-    std::vector<double> bufferRight;
+    std::vector<double> bufferBottom; //!< bufferBottom vector
+    std::vector<double> bufferTop;    //!< bufferTop vector
+    std::vector<double> bufferLeft;   //!< bufferLeft vector
+    std::vector<double> bufferRight;  //!< bufferRight vector
 };
