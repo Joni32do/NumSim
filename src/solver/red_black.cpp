@@ -106,7 +106,7 @@ void RedBlack::setBoundaryValues()
     }
 }
 
-void RedBlack::exchangeGhost(int current_it)
+void RedBlack::exchangeGhost()
 {
 
     MPI_Request requestBottom;

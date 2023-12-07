@@ -11,10 +11,6 @@ Partitioning::Partitioning(std::array<int, 2> nCellsGlobal,
     nCellsLocal_ = calculateNCellsLocal();
     calcNodeOffset();
     calcLowerLeftIsRed();
-
-#ifndef NDEBUG
-    printDebugInformation();
-#endif
 }
 
 std::array<int, 2> Partitioning::nCellsLocal() const
@@ -165,15 +161,6 @@ bool Partitioning::lowerLeftIsRed()
     return lowerLeftIsRed_;
 }
 
-bool Partitioning::sendsFirstUpDown()
-{
-    return (ownProcess_[1] % 2) == 0;
-}
-
-bool Partitioning::sendsFirstLeftRight()
-{
-    return (ownProcess_[0] % 2) == 0;
-}
 
 std::array<int, 2> Partitioning::findOptimumProcessAlignment()
 {

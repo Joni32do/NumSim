@@ -37,7 +37,7 @@ void Computation::initialize(int argc, char *argv[])
                                                         settings_.epsilon,
                                                         settings_.maximumNumberOfIterations);
     }
-
+}
 
 
 void Computation::runSimulation()
