@@ -12,6 +12,18 @@ Partitioning::Partitioning(std::array<int,2> nCellsGlobal,
     nCellsLocal_ = calculateNCellsLocal();
     calcNodeOffset();
     calcLowerLeftIsRed();
+
+    // Contains Boundaries
+    containsBottomBoundary_ = (ownRankNo_ < nProcesses_[0]);
+    containsTopBoundary_ = (ownRankNo_ >= nProcesses_[0] * (nProcesses_[1] - 1));
+    containsLeftBoundary_ = (ownRankNo_%nProcesses_[0] == 0);
+    containsRightBoundary_ = (ownRankNo_%nProcesses_[0] == nProcesses_[0] - 1);
+    
+    // Calculate Rank Numbers (also invalid once)
+    bottomNeighbourRankNo_ = ownRankNo_ - nProcesses_[0];
+    topNeighbourRankNo_ = ownRankNo_ + nProcesses_[0];
+    leftNeighbourRankNo_ = ownRankNo_ - 1;
+    rightNeighbourRankNo_ = ownRankNo_ + 1;
     
 #ifndef NDEBUG
     printDebugInformation();
@@ -37,57 +49,40 @@ int Partitioning::nRanks() const{
 }
 
 bool Partitioning::ownPartitionContainsBottomBoundary() const{
-    if (ownRankNo_ < nProcesses_[0]){
-        return true;
-    } else {
-        return false;
-    }
+    return containsBottomBoundary_;
 }
 
 bool Partitioning::ownPartitionContainsTopBoundary() const{
-    if (ownRankNo_ >= nProcesses_[0] * (nProcesses_[1] - 1)){
-        return true;
-    } else {
-        return false;
-    }
+    return containsTopBoundary_;
 }
 
 bool Partitioning::ownPartitionContainsLeftBoundary() const{
-    if (ownRankNo_%nProcesses_[0] == 0){
-        return true;
-    } else {
-        return false;
-    }
+    return containsLeftBoundary_;
 }
 
 bool Partitioning::ownPartitionContainsRightBoundary() const{
-    if (ownRankNo_%nProcesses_[0] == nProcesses_[0] - 1){
-        return true;
-    } else {
-        return false;
-    }
-}
-
-int Partitioning::leftNeighbourRankNo() const{
-    assert(!ownPartitionContainsLeftBoundary());
-    return ownRankNo_ - 1;
-}
-
-
-int Partitioning::rightNeighbourRankNo() const{
-    assert(!ownPartitionContainsRightBoundary());
-    return ownRankNo_ + 1;
-    
-}
-
-int Partitioning::topNeighbourRankNo() const{
-    assert(!ownPartitionContainsTopBoundary());
-    return ownRankNo_ + nProcesses_[0];
+    return containsRightBoundary_;
 }
 
 int Partitioning::bottomNeighbourRankNo() const{
     assert(!ownPartitionContainsBottomBoundary());
-    return ownRankNo_ - nProcesses_[0];
+    return bottomNeighbourRankNo_;
+}
+
+int Partitioning::topNeighbourRankNo() const{
+    assert(!ownPartitionContainsTopBoundary());
+    return topNeighbourRankNo_;
+}
+
+int Partitioning::leftNeighbourRankNo() const{
+    assert(!ownPartitionContainsLeftBoundary());
+    return leftNeighbourRankNo_;
+}
+
+int Partitioning::rightNeighbourRankNo() const{
+    assert(!ownPartitionContainsRightBoundary());
+    return rightNeighbourRankNo_;
+    
 }
 
 void Partitioning::calcNodeOffset(){

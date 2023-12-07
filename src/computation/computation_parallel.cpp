@@ -29,11 +29,11 @@ void ComputationParallel::initializeParallel(int argc, char *argv[]){
     }
 
     pressureSolver_ = std::make_unique<RedBlack>(discretization_,
-                                                    settings_.epsilon, 
-                                                    settings_.maximumNumberOfIterations,
-                                                    communicator_,
-                                                    partitioning_,
-                                                    printer_);
+                                                 settings_.epsilon, 
+                                                 settings_.maximumNumberOfIterations,
+                                                 communicator_,
+                                                 partitioning_,
+                                                 printer_);
 
 
 
@@ -51,47 +51,47 @@ void ComputationParallel::runSimulationParallel(){
     OutputWriterTextParallel out = OutputWriterTextParallel(discretization_, *partitioning_); 
     do
     {   
-        printer_->add_new_parameter_to_print("Current time: " + std::to_string(currentTime));
-        double starttime, et1, et2, et3, et4, et5, et6, et7, endtime_full;
+        // printer_->add_new_parameter_to_print("Current time: " + std::to_string(currentTime));
+        // double starttime, et1, et2, et3, et4, et5, et6, et7, endtime_full;
         
-        starttime = MPI_Wtime();
+        // starttime = MPI_Wtime();
         applyBoundaryValuesParallel();
-        et1 = MPI_Wtime();
+        // et1 = MPI_Wtime();
         computeTimeStepWidthParallel(currentTime);
-        et2 = MPI_Wtime();
+        // et2 = MPI_Wtime();
         computePreliminaryVelocitiesParallel();
-        et3 = MPI_Wtime();
+        // et3 = MPI_Wtime();
         computeRightHandSideParallel();
-        et4 = MPI_Wtime();
+        // et4 = MPI_Wtime();
         pressureSolver_->solve();
-        et5 = MPI_Wtime();
+        // et5 = MPI_Wtime();
         computeVelocitiesParallel();
-        et6 = MPI_Wtime();
+        // et6 = MPI_Wtime();
         exchangeVelocities();
-        et7 = MPI_Wtime();
+        // et7 = MPI_Wtime();
 
-        endtime_full = MPI_Wtime();
+        // endtime_full = MPI_Wtime();
         
         
-        std::string out_string = "Full run time: ";
+        // std::string out_string = "Full run time: ";
 
-        out_string += (" " +std::to_string(endtime_full-starttime));
-        out_string += " split ";
-        out_string += (" et1: " + std::to_string(et1-starttime));
-        out_string += (" et2: " + std::to_string(et2-et1));
-        out_string += (" et3: " + std::to_string(et3-et2));
-        out_string += (" et4: " + std::to_string(et4-et3));
-        out_string += (" et5: " + std::to_string(et5-et4));
-        out_string += (" et6: " + std::to_string(et6-et5));
-        out_string += (" et7: " + std::to_string(et7-et6));
+        // out_string += (" " +std::to_string(endtime_full-starttime));
+        // out_string += " split ";
+        // out_string += (" et1: " + std::to_string(et1-starttime));
+        // out_string += (" et2: " + std::to_string(et2-et1));
+        // out_string += (" et3: " + std::to_string(et3-et2));
+        // out_string += (" et4: " + std::to_string(et4-et3));
+        // out_string += (" et5: " + std::to_string(et5-et4));
+        // out_string += (" et6: " + std::to_string(et6-et5));
+        // out_string += (" et7: " + std::to_string(et7-et6));
 
         
-        // printer_.add_new_double_to_print(et1-starttime);
-        //printer_.add_new_parameter_to_print(out_string);
+        // // printer_.add_new_double_to_print(et1-starttime);
+        // //printer_.add_new_parameter_to_print(out_string);
 
-        printer_->add_new_parameter_to_print(" ");
+        // printer_->add_new_parameter_to_print(" ");
         currentTime += dt_;
-        //currentTime = 10;
+        // currentTime = 10;
 
     #ifndef NDEBUG
     if (communicator_->ownRankNo() == 0){
@@ -103,18 +103,6 @@ void ComputationParallel::runSimulationParallel(){
             outputWriterParaviewParallel_->writeFile(currentTime);
         }
     #endif
-
-
-
-
-        // DEBUGGING 
-        // std::string str = "Rank: " + std::to_string(communicator_->ownRankNo()) 
-        //                              + " PartX" + std::to_string(partitioning_->nProcesses()[0]) 
-        //                              + " PartY" + std::to_string(partitioning_->nProcesses()[1])
-        //                              + " Zeit " + std::to_string(currentTime) 
-        //                              + " dt"    + std::to_string(dt_);
-        // printer_.add_new_parameter_to_print(str);
-
 
 
     } while (currentTime < settings_.endTime);
@@ -154,10 +142,11 @@ void ComputationParallel::computeTimeStepWidthParallel(double currentTime){
     // Print every whole second
     double nextWholeSecond = std::floor(currentTime) + 1;
 
-    if (currentTime + dt_ > nextWholeSecond)
-    {
-        dt_ = nextWholeSecond - currentTime;
-    };
+    // TODO:
+    // if (currentTime + dt_ > nextWholeSecond)
+    // {
+    //     dt_ = nextWholeSecond - currentTime;
+    // };
 }
 
 

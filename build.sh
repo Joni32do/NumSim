@@ -30,12 +30,19 @@ fi
 
 make install -j4
 
-time srun -n 16 ./numsim_parallel ../input/settings.txt
+# time srun -n 1 ./numsim_parallel ../input/settings_debug.txt
+# time srun -n 4 ./numsim_parallel ../input/settings_debug.txt
+
+# time srun -n 1 ./numsim_parallel ../input/settings.txt
+time srun -n 2 ./numsim_parallel ../input/settings.txt
+# time srun -n 4 ./numsim_parallel ../input/settings.txt
+# time srun -n 8 ./numsim_parallel ../input/settings.txt
+# time srun -n 12 ./numsim_parallel ../input/settings.txt
+# time srun -n 16 ./numsim_parallel ../input/settings.txt
 
 cd ..
 rm output.zip
-zip -r output.zip build/out/ src/debugging/debug_out/
+zip -rq output.zip build/out/ src/debugging/debug_out/
 
-# cd ..
-# rm submission.zip
-# zip -r submission.zip src/ CMakeLists.txt
+rm submission.zip
+zip -rq submission.zip src/ CMakeLists.txt

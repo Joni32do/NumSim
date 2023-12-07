@@ -111,6 +111,16 @@ public:
     bool lowerLeftIsRed_;
     std::array<int,2> nodeOffset_;
 
+    int bottomNeighbourRankNo_;
+    int topNeighbourRankNo_;
+    int leftNeighbourRankNo_;
+    int rightNeighbourRankNo_;
+
+    bool containsBottomBoundary_;
+    bool containsTopBoundary_;
+    bool containsLeftBoundary_;
+    bool containsRightBoundary_;
+
 
     // std::array<int,2> remainderLocalCells_;
 

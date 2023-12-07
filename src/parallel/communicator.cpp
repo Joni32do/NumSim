@@ -75,6 +75,10 @@ void Communicator::sendTo(int rank, std::vector<double> buffer){
 }
 
 
+void Communicator::wait(MPI_Request &request){
+    MPI_Wait(&request, MPI_STATUS_IGNORE);
+}
+
 // void Communicator::waitForAll(){
 //     for (int i = 0; i < 4; i++){
 //         MPI_Wait(requestReceived[i]);

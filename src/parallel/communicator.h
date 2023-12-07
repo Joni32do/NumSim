@@ -74,9 +74,10 @@ class Communicator{
         std::vector<double> receiveFrom(int rank, int message_size);
 
 
-        void wait(MPI_Request &request){
-            MPI_Wait(&request, MPI_STATUS_IGNORE);
-        }
+        /**
+         * @brief Waits for a request
+        */
+        void wait(MPI_Request &request);
 
         // /**
         //  * @brief waits till all receives and send request for all directions are fullfilled

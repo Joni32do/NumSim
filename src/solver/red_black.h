@@ -32,7 +32,7 @@ public:
         int maximumNumberOfIterations,
         std::shared_ptr<Communicator> communicator,
         std::shared_ptr<Partitioning> partitioning,
-        std::shared_ptr<Printer>);
+        std::shared_ptr<Printer> printer);
 
     /**
      * @brief override function that starts solver.
@@ -42,10 +42,29 @@ public:
 
     void setBoundaryValues();
 
-    void exchangeGhost(int current_it);
+    /**
+     * @brief exchanges the whole boundary rows and cols of neighbouring processes
+    */
+    void exchangeGhost();
+
+    /**
+     * @brief only exchanges half the boundary according to which value is required for the next red-black step
+    */
+    void exchangeGhost(int startShift);
 
 private:
     std::shared_ptr<Communicator> communicator_;
     std::shared_ptr<Partitioning> partitioning_;
     std::shared_ptr<Printer> printer_;
+
+    std::vector<double> bufferReceiveBottom;
+    std::vector<double> bufferReceiveTop;
+    std::vector<double> bufferReceiveLeft;
+    std::vector<double> bufferReceiveRight;
+
+    std::vector<double> bufferBottom;
+    std::vector<double> bufferTop;
+    std::vector<double> bufferLeft;
+    std::vector<double> bufferRight;
+
 };
