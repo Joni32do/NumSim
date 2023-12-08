@@ -43,7 +43,6 @@ void Computation::initialize(int argc, char *argv[])
 
 void Computation::runSimulation()
 {
-    std::cout << "Test" << std::endl;
     double currentTime = 0.;
     do
     {

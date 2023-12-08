@@ -1,21 +1,16 @@
 #include "computation_parallel.h"
 
-void ComputationParallel::initializeParallel(int argc, char *argv[]){
+void ComputationParallel::initializeParallel(int argc, char *argv[])
+{
 
     std::string filename = argv[1];
 
-    // load settings from file
     settings_.loadFromFile(filename);
-// #ifndef NDEBUG
-//     settings_.printSettings();
-// #endif
 
     communicator_ = std::make_shared<Communicator>();
     partitioning_ = std::make_shared<Partitioning>(settings_.nCells,
-                                            communicator_);
+                                                   communicator_);
 
-    printer_ = std::make_shared<Printer>(communicator_->ownRankNo());
-                                            
     std::array<double, 2> meshWidth_ = {settings_.physicalSize[0] / settings_.nCells[0],
                                         settings_.physicalSize[1] / settings_.nCells[1]};
 
@@ -29,100 +24,51 @@ void ComputationParallel::initializeParallel(int argc, char *argv[]){
     }
 
     pressureSolver_ = std::make_unique<RedBlack>(discretization_,
-                                                    settings_.epsilon, 
-                                                    settings_.maximumNumberOfIterations,
-                                                    communicator_,
-                                                    partitioning_,
-                                                    printer_);
-
-
+                                                 settings_.epsilon,
+                                                 settings_.maximumNumberOfIterations,
+                                                 communicator_,
+                                                 partitioning_);
 
     outputWriterParaviewParallel_ = std::make_unique<OutputWriterParaviewParallel>(
-                                                 discretization_, *partitioning_);
-
-
+        discretization_, *partitioning_);
 }
 
-void ComputationParallel::runSimulationParallel(){
+void ComputationParallel::runSimulationParallel()
+{
     double currentTime = 0;
 
-    // TODO: remove prints
-    //Printer printer_(communicator_->ownRankNo());
-    OutputWriterTextParallel out = OutputWriterTextParallel(discretization_, *partitioning_); 
+    OutputWriterTextParallel out = OutputWriterTextParallel(discretization_, *partitioning_);
     do
-    {   
-        // printer_->add_new_parameter_to_print("Current time: " + std::to_string(currentTime));
-        // double starttime, et1, et2, et3, et4, et5, et6, et7, endtime_full;
-        
-        // starttime = MPI_Wtime();
+    {
         applyBoundaryValuesParallel();
-        // et1 = MPI_Wtime();
         computeTimeStepWidthParallel(currentTime);
-        // et2 = MPI_Wtime();
         computePreliminaryVelocitiesParallel();
-        // et3 = MPI_Wtime();
         computeRightHandSideParallel();
-        // et4 = MPI_Wtime();
         pressureSolver_->solve();
-        // et5 = MPI_Wtime();
         computeVelocitiesParallel();
-        // et6 = MPI_Wtime();
         exchangeVelocities();
-        // et7 = MPI_Wtime();
 
-        // endtime_full = MPI_Wtime();
-        
-        
-        // std::string out_string = "Full run time: ";
-
-        // out_string += (" " +std::to_string(endtime_full-starttime));
-        // out_string += " split ";
-        // out_string += (" et1: " + std::to_string(et1-starttime));
-        // out_string += (" et2: " + std::to_string(et2-et1));
-        // out_string += (" et3: " + std::to_string(et3-et2));
-        // out_string += (" et4: " + std::to_string(et4-et3));
-        // out_string += (" et5: " + std::to_string(et5-et4));
-        // out_string += (" et6: " + std::to_string(et6-et5));
-        // out_string += (" et7: " + std::to_string(et7-et6));
-
-        
-        // // printer_.add_new_double_to_print(et1-starttime);
-        // //printer_.add_new_parameter_to_print(out_string);
-
-        // printer_->add_new_parameter_to_print(" ");
         currentTime += dt_;
-        // currentTime = 10;
 
-    #ifndef NDEBUG
-    if (communicator_->ownRankNo() == 0){
+#ifndef NDEBUG
+        if (communicator_->ownRankNo() == 0)
+        {
             std::cout << "Time: " << currentTime << " and dt " << dt_ << std::endl;
         }
         outputWriterParaviewParallel_->writeFile(currentTime);
-    #else
-        if (std::floor(currentTime)==currentTime){
+#else
+        if (std::floor(currentTime) == currentTime)
+        {
             outputWriterParaviewParallel_->writeFile(currentTime);
         }
-    #endif
-
+#endif
 
     } while (currentTime < settings_.endTime);
-    
-    // TODO: remove prints
-    // printer_.save_doubles_to_file();
-    //printer_->save_values_to_file();
 }
 
-
-
-
-
-
-
-
-
-
-void ComputationParallel::computeTimeStepWidthParallel(double currentTime){
-        // Diffusion operator (always > 0)
+void ComputationParallel::computeTimeStepWidthParallel(double currentTime)
+{
+    // Diffusion operator (always > 0)
     double dx2 = discretization_->dx() * discretization_->dx();
     double dy2 = discretization_->dy() * discretization_->dy();
     double diff = settings_.re / 2 * (dx2 * dy2) / (dx2 + dy2);
@@ -135,9 +81,7 @@ void ComputationParallel::computeTimeStepWidthParallel(double currentTime){
     double global_max_v = communicator_->getGlobalMax(discretization_->v().findAbsMax());
     double max_v_dt = discretization_->dy() / global_max_v;
 
-
     dt_ = settings_.tau * std::min({diff, max_u_dt, max_v_dt, settings_.maximumDt});
-
 
     // Print every whole second
     double nextWholeSecond = std::floor(currentTime) + 1;
@@ -148,73 +92,78 @@ void ComputationParallel::computeTimeStepWidthParallel(double currentTime){
     };
 }
 
+void ComputationParallel::applyBoundaryValuesParallel()
+{
 
-void ComputationParallel::applyBoundaryValuesParallel(){
+    // TODO: Think about Corners of the Domain
 
-    //TODO: Think about Corners of the Domain
-
-    if (partitioning_->ownPartitionContainsBottomBoundary()){
+    if (partitioning_->ownPartitionContainsBottomBoundary())
+    {
         // u
-        for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++){
-            discretization_->u(i, discretization_->uJBegin()) = 
-                                    2 * settings_.dirichletBcBottom[0] 
-                                    - discretization_->u(i, discretization_->uJBegin()+1);
+        for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++)
+        {
+            discretization_->u(i, discretization_->uJBegin()) =
+                2 * settings_.dirichletBcBottom[0] - discretization_->u(i, discretization_->uJBegin() + 1);
         }
         // v
-        for (int i = discretization_->vIBegin(); i < discretization_->vIEnd(); i++){
-            discretization_->v(i, discretization_->vJBegin()) = 
-                                    settings_.dirichletBcBottom[1];
-        }        
+        for (int i = discretization_->vIBegin(); i < discretization_->vIEnd(); i++)
+        {
+            discretization_->v(i, discretization_->vJBegin()) =
+                settings_.dirichletBcBottom[1];
+        }
     }
-    
 
-    if (partitioning_->ownPartitionContainsTopBoundary()){
+    if (partitioning_->ownPartitionContainsTopBoundary())
+    {
         // u
-        for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++){
-            discretization_->u(i, discretization_->uJEnd() - 1) = 
-                                    2 * settings_.dirichletBcTop[0] 
-                                    - discretization_->u(i, discretization_->uJEnd() - 2);
+        for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++)
+        {
+            discretization_->u(i, discretization_->uJEnd() - 1) =
+                2 * settings_.dirichletBcTop[0] - discretization_->u(i, discretization_->uJEnd() - 2);
         }
         // v
-        for (int i = discretization_->vIBegin(); i < discretization_->vIEnd(); i++){
-            discretization_->v(i, discretization_->vJEnd() - 1) = 
-                                    settings_.dirichletBcTop[1];
-        }        
+        for (int i = discretization_->vIBegin(); i < discretization_->vIEnd(); i++)
+        {
+            discretization_->v(i, discretization_->vJEnd() - 1) =
+                settings_.dirichletBcTop[1];
+        }
     }
-    
 
-   if (partitioning_->ownPartitionContainsLeftBoundary()){
+    if (partitioning_->ownPartitionContainsLeftBoundary())
+    {
         // u
-        for (int j = discretization_->uJBegin(); j < discretization_->uJEnd(); j++){
+        for (int j = discretization_->uJBegin(); j < discretization_->uJEnd(); j++)
+        {
             discretization_->u(discretization_->uIBegin(), j) =
-                                    settings_.dirichletBcLeft[0];
+                settings_.dirichletBcLeft[0];
         }
         // v
-        for (int j = discretization_->vJBegin(); j < discretization_->vJEnd(); j++){
+        for (int j = discretization_->vJBegin(); j < discretization_->vJEnd(); j++)
+        {
             discretization_->v(discretization_->vIBegin(), j) =
-                                    2 * settings_.dirichletBcLeft[1]
-                                    - discretization_->v(discretization_->vIBegin() + 1, j);
+                2 * settings_.dirichletBcLeft[1] - discretization_->v(discretization_->vIBegin() + 1, j);
         }
-   }
+    }
 
-   
-
-    if (partitioning_->ownPartitionContainsRightBoundary()){
+    if (partitioning_->ownPartitionContainsRightBoundary())
+    {
         // u
-        for (int j = discretization_->uJBegin(); j < discretization_->uJEnd(); j++){
+        for (int j = discretization_->uJBegin(); j < discretization_->uJEnd(); j++)
+        {
             discretization_->u(discretization_->uIEnd() - 1, j) =
-                                    settings_.dirichletBcRight[0];
+                settings_.dirichletBcRight[0];
         }
         // v
-        for (int j = discretization_->vJBegin(); j < discretization_->vJEnd(); j++){
+        for (int j = discretization_->vJBegin(); j < discretization_->vJEnd(); j++)
+        {
             discretization_->v(discretization_->vIEnd() - 1, j) =
-                                    2 * settings_.dirichletBcRight[1]
-                                    - discretization_->v(discretization_->vIEnd() - 2, j);
+                2 * settings_.dirichletBcRight[1] - discretization_->v(discretization_->vIEnd() - 2, j);
         }
-   }
+    }
 }
 
-void ComputationParallel::computePreliminaryVelocitiesParallel(){
+void ComputationParallel::computePreliminaryVelocitiesParallel()
+{
 
     int f_i_beg = discretization_->fIBegin();
     int f_i_end = discretization_->fIEnd();
@@ -226,39 +175,47 @@ void ComputationParallel::computePreliminaryVelocitiesParallel(){
     int g_j_beg = discretization_->gJBegin();
     int g_j_end = discretization_->gJEnd();
 
-    if (partitioning_->ownPartitionContainsLeftBoundary()){
+    if (partitioning_->ownPartitionContainsLeftBoundary())
+    {
         f_i_beg += 1;
         // f
-        for (int j = discretization_->fJBegin(); j < discretization_->fJEnd(); j++){
+        for (int j = discretization_->fJBegin(); j < discretization_->fJEnd(); j++)
+        {
             discretization_->f(discretization_->fIBegin(), j) =
-                                    discretization_->u(discretization_->fIBegin(), j);
+                discretization_->u(discretization_->fIBegin(), j);
         }
     }
 
-    if (partitioning_->ownPartitionContainsRightBoundary()){
+    if (partitioning_->ownPartitionContainsRightBoundary())
+    {
         f_i_end -= 1;
         // f
-        for (int j = discretization_->fJBegin(); j < discretization_->fJEnd(); j++){
+        for (int j = discretization_->fJBegin(); j < discretization_->fJEnd(); j++)
+        {
             discretization_->f(discretization_->fIEnd() - 1, j) =
-                                    discretization_->u(discretization_->fIEnd() - 1, j);
+                discretization_->u(discretization_->fIEnd() - 1, j);
         }
     }
 
-    if (partitioning_->ownPartitionContainsBottomBoundary()){
+    if (partitioning_->ownPartitionContainsBottomBoundary())
+    {
         g_j_beg += 1;
         // g
-        for (int i = discretization_->gIBegin(); i < discretization_->gIEnd(); i++){
+        for (int i = discretization_->gIBegin(); i < discretization_->gIEnd(); i++)
+        {
             discretization_->g(i, discretization_->gJBegin()) =
-                                    discretization_->v(i, discretization_->gJBegin());
+                discretization_->v(i, discretization_->gJBegin());
         }
     }
 
-    if (partitioning_->ownPartitionContainsTopBoundary()){
+    if (partitioning_->ownPartitionContainsTopBoundary())
+    {
         g_j_end -= 1;
         // g
-        for (int i = discretization_->gIBegin(); i < discretization_->gIEnd(); i++){
+        for (int i = discretization_->gIBegin(); i < discretization_->gIEnd(); i++)
+        {
             discretization_->g(i, discretization_->gJEnd() - 1) =
-                                    discretization_->v(i, discretization_->gJEnd() - 1);
+                discretization_->v(i, discretization_->gJEnd() - 1);
         }
     }
 
@@ -269,7 +226,7 @@ void ComputationParallel::computePreliminaryVelocitiesParallel(){
         {
             double diffusion = 1 / settings_.re * (discretization_->computeD2uDx2(i, j) + discretization_->computeD2uDy2(i, j));
             double convection = -discretization_->computeDu2Dx(i, j) - discretization_->computeDuvDy(i, j);
-            
+
             discretization_->f(i, j) = discretization_->u(i, j) + dt_ * (diffusion + convection + settings_.g[0]);
         }
     }
@@ -284,10 +241,11 @@ void ComputationParallel::computePreliminaryVelocitiesParallel(){
 
             discretization_->g(i, j) = discretization_->v(i, j) + dt_ * (diffusion + convection + settings_.g[1]);
         }
-    }  
+    }
 }
 
-void ComputationParallel::computeRightHandSideParallel(){
+void ComputationParallel::computeRightHandSideParallel()
+{
 
     int i_beg = discretization_->rhsIBegin();
     int i_end = discretization_->rhsIEnd();
@@ -299,48 +257,43 @@ void ComputationParallel::computeRightHandSideParallel(){
     {
         for (int j = j_beg; j < j_end; j++)
         {
-            // TODO: make the used knowledge of the staggered grid explicit, we go from rhs -> to f and g idx which are different
-            // double dF = (1 / discretization_->dx()) * (discretization_->f(i, j) - discretization_->f(i - 1, j));
-            // double dG = (1 / discretization_->dy()) * (discretization_->g(i, j) - discretization_->g(i, j - 1));
             double dF = (1 / discretization_->dx()) * (discretization_->f(i + 1, j) - discretization_->f(i, j));
             double dG = (1 / discretization_->dy()) * (discretization_->g(i, j + 1) - discretization_->g(i, j));
             discretization_->rhs(i, j) = (1 / dt_) * (dF + dG);
         }
     }
-
 }
 
-
-void ComputationParallel::computeVelocitiesParallel(){
-
-    // TODO: Doppelrechnung - setzen Rand falsch, um dann BV zu setzen
-    // wenn Rand dann doch eher uIBegin()
-
-    // Copy from serial
-    if (!partitioning_->ownPartitionContainsLeftBoundary()){
-        for (int j = discretization_->uJBegin() + 1; j < discretization_->uJEnd() - 1; j++){
-            discretization_->u(discretization_->uIBegin(), j) = discretization_->f(discretization_->uIBegin(), j) 
-                                            - dt_ * discretization_->computeDpDx(discretization_->uIBegin(), j);
+void ComputationParallel::computeVelocitiesParallel()
+{
+    if (!partitioning_->ownPartitionContainsLeftBoundary())
+    {
+        for (int j = discretization_->uJBegin() + 1; j < discretization_->uJEnd() - 1; j++)
+        {
+            discretization_->u(discretization_->uIBegin(), j) = discretization_->f(discretization_->uIBegin(), j) - dt_ * discretization_->computeDpDx(discretization_->uIBegin(), j);
         }
     }
-    if (!partitioning_->ownPartitionContainsRightBoundary()){
-        for (int j = discretization_->uJBegin() + 1; j < discretization_->uJEnd() - 1; j++){
-            discretization_->u(discretization_->uIEnd() - 1, j) = discretization_->f(discretization_->uIEnd() - 1, j)
-                                            - dt_ * discretization_->computeDpDx(discretization_->uIEnd() - 1, j);
+    if (!partitioning_->ownPartitionContainsRightBoundary())
+    {
+        for (int j = discretization_->uJBegin() + 1; j < discretization_->uJEnd() - 1; j++)
+        {
+            discretization_->u(discretization_->uIEnd() - 1, j) = discretization_->f(discretization_->uIEnd() - 1, j) - dt_ * discretization_->computeDpDx(discretization_->uIEnd() - 1, j);
         }
     }
 
-    if (!partitioning_->ownPartitionContainsBottomBoundary()){
-        for (int i = discretization_->vIBegin() + 1; i < discretization_->vIEnd() - 1; i++){
-            discretization_->v(i, discretization_->vJBegin()) = discretization_->g(i, discretization_->vJBegin())
-                                            - dt_ * discretization_->computeDpDy(i, discretization_->vJBegin());
+    if (!partitioning_->ownPartitionContainsBottomBoundary())
+    {
+        for (int i = discretization_->vIBegin() + 1; i < discretization_->vIEnd() - 1; i++)
+        {
+            discretization_->v(i, discretization_->vJBegin()) = discretization_->g(i, discretization_->vJBegin()) - dt_ * discretization_->computeDpDy(i, discretization_->vJBegin());
         }
     }
 
-    if (!partitioning_->ownPartitionContainsTopBoundary()){
-        for (int i = discretization_->vIBegin() + 1; i < discretization_->vIEnd() - 1; i++){
-            discretization_->v(i, discretization_->vJEnd() - 1) = discretization_->g(i, discretization_->vJEnd() - 1)
-                                            - dt_ * discretization_->computeDpDy(i, discretization_->vJEnd() - 1);
+    if (!partitioning_->ownPartitionContainsTopBoundary())
+    {
+        for (int i = discretization_->vIBegin() + 1; i < discretization_->vIEnd() - 1; i++)
+        {
+            discretization_->v(i, discretization_->vJEnd() - 1) = discretization_->g(i, discretization_->vJEnd() - 1) - dt_ * discretization_->computeDpDy(i, discretization_->vJEnd() - 1);
         }
     }
     // Main Loop
@@ -359,142 +312,138 @@ void ComputationParallel::computeVelocitiesParallel(){
             discretization_->v(i, j) = discretization_->g(i, j) - dt_ * discretization_->computeDpDy(i, j);
         }
     }
-
 }
 
-void ComputationParallel::exchangeVelocities(){
-    // TODO: Optimierung Setzt Ecken mit (man kann eigentlich noch v_i + 1 und v_end - 1 machen)
-    // TODO: Nutze nur einen Buffer weil gleiche Größe
-    
+void ComputationParallel::exchangeVelocities()
+{
 
-
-    if (!partitioning_->ownPartitionContainsBottomBoundary()){
+    if (!partitioning_->ownPartitionContainsBottomBoundary())
+    {
         // u
         std::vector<double> buffer_u = discretization_->u().getRow(discretization_->uJBegin() + 1,
-                                                        discretization_->uIBegin(),
-                                                        discretization_->uIEnd());
+                                                                   discretization_->uIBegin(),
+                                                                   discretization_->uIEnd());
         int buffer_u_size = discretization_->uIEnd() - discretization_->uIBegin();
 
         std::vector<double> buffer_receive_u = communicator_->receiveFrom(
-                                partitioning_->bottomNeighbourRankNo(), buffer_u_size);
+            partitioning_->bottomNeighbourRankNo(), buffer_u_size);
         communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer_u);
 
-        for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++){
+        for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++)
+        {
             discretization_->u(i, discretization_->uJBegin()) = buffer_receive_u[i - discretization_->uIBegin()];
         }
 
         // v
         std::vector<double> buffer_v = discretization_->v().getRow(discretization_->vJBegin() + 1,
-                                                        discretization_->vIBegin()+1,
-                                                        discretization_->vIEnd()-1);
-        int buffer_v_size = discretization_->vIEnd() - discretization_->vIBegin()-2;
+                                                                   discretization_->vIBegin() + 1,
+                                                                   discretization_->vIEnd() - 1);
+        int buffer_v_size = discretization_->vIEnd() - discretization_->vIBegin() - 2;
 
         std::vector<double> buffer_receive_v = communicator_->receiveFrom(
-                                partitioning_->bottomNeighbourRankNo(), buffer_v_size);
+            partitioning_->bottomNeighbourRankNo(), buffer_v_size);
         communicator_->sendTo(partitioning_->bottomNeighbourRankNo(), buffer_v);
 
-        for (int i = discretization_->vIBegin()+1; i < discretization_->vIEnd()-1; i++){
-            discretization_->v(i, discretization_->vBottomGhost()) = buffer_receive_v[i - discretization_->vIBegin()-1];
+        for (int i = discretization_->vIBegin() + 1; i < discretization_->vIEnd() - 1; i++)
+        {
+            discretization_->v(i, discretization_->vBottomGhost()) = buffer_receive_v[i - discretization_->vIBegin() - 1];
         }
+    }
 
-    }   
-
-    if (!partitioning_->ownPartitionContainsTopBoundary()){
+    if (!partitioning_->ownPartitionContainsTopBoundary())
+    {
         // u
         std::vector<double> buffer_u = discretization_->u().getRow(discretization_->uJEnd() - 2,
-                                                        discretization_->uIBegin(),
-                                                        discretization_->uIEnd());
+                                                                   discretization_->uIBegin(),
+                                                                   discretization_->uIEnd());
         int buffer_u_size = discretization_->uIEnd() - discretization_->uIBegin();
 
         communicator_->sendTo(partitioning_->topNeighbourRankNo(), buffer_u);
         std::vector<double> buffer_receive_u = communicator_->receiveFrom(
-                                partitioning_->topNeighbourRankNo(), buffer_u_size);
+            partitioning_->topNeighbourRankNo(), buffer_u_size);
 
-        for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++){
-            discretization_->u(i, discretization_->uJEnd()-1) = buffer_receive_u[i - discretization_->uIBegin()];
+        for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++)
+        {
+            discretization_->u(i, discretization_->uJEnd() - 1) = buffer_receive_u[i - discretization_->uIBegin()];
         }
 
         // v
         std::vector<double> buffer_v = discretization_->v().getRow(discretization_->vJEnd() - 2,
-                                                        discretization_->vIBegin()+1,
-                                                        discretization_->vIEnd()-1);
-        int buffer_v_size = discretization_->vIEnd() - discretization_->vIBegin()-2;
+                                                                   discretization_->vIBegin() + 1,
+                                                                   discretization_->vIEnd() - 1);
+        int buffer_v_size = discretization_->vIEnd() - discretization_->vIBegin() - 2;
 
         communicator_->sendTo(partitioning_->topNeighbourRankNo(), buffer_v);
         std::vector<double> buffer_receive_v = communicator_->receiveFrom(
-                                partitioning_->topNeighbourRankNo(), buffer_v_size);
+            partitioning_->topNeighbourRankNo(), buffer_v_size);
 
-        for (int i = discretization_->vIBegin()+1; i < discretization_->vIEnd()-1; i++){
-            discretization_->v(i, discretization_->vTopGhost() - 1) = buffer_receive_v[i - discretization_->vIBegin()-1];
+        for (int i = discretization_->vIBegin() + 1; i < discretization_->vIEnd() - 1; i++)
+        {
+            discretization_->v(i, discretization_->vTopGhost() - 1) = buffer_receive_v[i - discretization_->vIBegin() - 1];
         }
+    }
 
-    }   
-
-    if (!partitioning_->ownPartitionContainsLeftBoundary()){
+    if (!partitioning_->ownPartitionContainsLeftBoundary())
+    {
         // u
         std::vector<double> buffer_u = discretization_->u().getColumn(discretization_->uIBegin() + 1,
-                                                        discretization_->uJBegin()+1,
-                                                        discretization_->uJEnd()-1);
-        int buffer_u_size = discretization_->uJEnd() - discretization_->uJBegin()-2;
+                                                                      discretization_->uJBegin() + 1,
+                                                                      discretization_->uJEnd() - 1);
+        int buffer_u_size = discretization_->uJEnd() - discretization_->uJBegin() - 2;
 
         std::vector<double> buffer_receive_u = communicator_->receiveFrom(
-                                partitioning_->leftNeighbourRankNo(), buffer_u_size);
+            partitioning_->leftNeighbourRankNo(), buffer_u_size);
         communicator_->sendTo(partitioning_->leftNeighbourRankNo(), buffer_u);
 
-        for (int j = discretization_->uJBegin()+1; j < discretization_->uJEnd()-1; j++){
-            discretization_->u(discretization_->uLeftGhost(), j) = buffer_receive_u[j - discretization_->uJBegin()-1];
-
+        for (int j = discretization_->uJBegin() + 1; j < discretization_->uJEnd() - 1; j++)
+        {
+            discretization_->u(discretization_->uLeftGhost(), j) = buffer_receive_u[j - discretization_->uJBegin() - 1];
         }
         // v
         std::vector<double> buffer_v = discretization_->v().getColumn(discretization_->vIBegin() + 1,
-                                                        discretization_->vJBegin(),
-                                                        discretization_->vJEnd());
+                                                                      discretization_->vJBegin(),
+                                                                      discretization_->vJEnd());
         int buffer_v_size = discretization_->vJEnd() - discretization_->vJBegin();
 
         std::vector<double> buffer_receive_v = communicator_->receiveFrom(
-                                partitioning_->leftNeighbourRankNo(), buffer_v_size);
+            partitioning_->leftNeighbourRankNo(), buffer_v_size);
         communicator_->sendTo(partitioning_->leftNeighbourRankNo(), buffer_v);
 
-        for (int j = discretization_->vJBegin(); j < discretization_->vJEnd(); j++){
+        for (int j = discretization_->vJBegin(); j < discretization_->vJEnd(); j++)
+        {
             discretization_->v(discretization_->vIBegin(), j) = buffer_receive_v[j - discretization_->vJBegin()];
-
         }
-
     }
 
-    if (!partitioning_->ownPartitionContainsRightBoundary()){
+    if (!partitioning_->ownPartitionContainsRightBoundary())
+    {
         // u
         std::vector<double> buffer_u = discretization_->u().getColumn(discretization_->uIEnd() - 2,
-                                                        discretization_->uJBegin()+1,
-                                                        discretization_->uJEnd()-1);
-        int buffer_u_size = discretization_->uJEnd() - discretization_->uJBegin()-2;
+                                                                      discretization_->uJBegin() + 1,
+                                                                      discretization_->uJEnd() - 1);
+        int buffer_u_size = discretization_->uJEnd() - discretization_->uJBegin() - 2;
 
         communicator_->sendTo(partitioning_->rightNeighbourRankNo(), buffer_u);
         std::vector<double> buffer_receive_u = communicator_->receiveFrom(
-                                partitioning_->rightNeighbourRankNo(), buffer_u_size);
+            partitioning_->rightNeighbourRankNo(), buffer_u_size);
 
-        for (int j = discretization_->uJBegin()+1; j < discretization_->uJEnd()-1; j++){
-            discretization_->u(discretization_->uRightGhost() - 1, j) = buffer_receive_u[j - discretization_->uJBegin()-1];
-
+        for (int j = discretization_->uJBegin() + 1; j < discretization_->uJEnd() - 1; j++)
+        {
+            discretization_->u(discretization_->uRightGhost() - 1, j) = buffer_receive_u[j - discretization_->uJBegin() - 1];
         }
         // v
         std::vector<double> buffer_v = discretization_->v().getColumn(discretization_->vIEnd() - 2,
-                                                        discretization_->vJBegin(),
-                                                        discretization_->vJEnd());
+                                                                      discretization_->vJBegin(),
+                                                                      discretization_->vJEnd());
         int buffer_v_size = discretization_->vJEnd() - discretization_->vJBegin();
 
         communicator_->sendTo(partitioning_->rightNeighbourRankNo(), buffer_v);
         std::vector<double> buffer_receive_v = communicator_->receiveFrom(
-                                partitioning_->rightNeighbourRankNo(), buffer_v_size);
+            partitioning_->rightNeighbourRankNo(), buffer_v_size);
 
-        for (int j = discretization_->vJBegin(); j < discretization_->vJEnd(); j++){
+        for (int j = discretization_->vJBegin(); j < discretization_->vJEnd(); j++)
+        {
             discretization_->v(discretization_->vIEnd() - 1, j) = buffer_receive_v[j - discretization_->vJBegin()];
-
         }
-
     }
-
-
-    
-
 }

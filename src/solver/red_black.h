@@ -25,27 +25,31 @@ public:
      * @param data instance of Discretization holding the needed field variables for rhs and p
      * @param epsilon tolerance for the solver
      * @param maximumNumberOfIterations maximum of iteration
-     * @param omega relaxation factor
+     * @param communicator communicator instance for exchanging data with neighbout processes
+     * @param partitioning partinioning instance
      */
     RedBlack(const std::shared_ptr<Discretization> &data,
-        double epsilon,
-        int maximumNumberOfIterations,
-        std::shared_ptr<Communicator> communicator,
-        std::shared_ptr<Partitioning> partitioning,
-        std::shared_ptr<Printer> printer);
+             double epsilon,
+             int maximumNumberOfIterations,
+             std::shared_ptr<Communicator> communicator,
+             std::shared_ptr<Partitioning> partitioning);
 
     /**
      * @brief override function that starts solver.
-     *
      */
     void solve() override;
 
+    /**
+     * @brief set boundary values of pressure.
+     */
     void setBoundaryValues();
 
+    /**
+     * @brief exchange ghost.
+     */
     void exchangeGhost(bool isLowerLeft);
 
 private:
-    std::shared_ptr<Communicator> communicator_;
-    std::shared_ptr<Partitioning> partitioning_;
-    std::shared_ptr<Printer> printer_;
+    std::shared_ptr<Communicator> communicator_; //!< comminucator instance
+    std::shared_ptr<Partitioning> partitioning_; //!< partitioning instance
 };

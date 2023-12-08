@@ -7,8 +7,7 @@
  *  All values are written to the file as they are stored in the field variables,
  *  no interpolation takes place.
  */
-class OutputWriterTextParallel : 
-  public OutputWriterText
+class OutputWriterTextParallel : public OutputWriterText
 {
 public:
   //! use constructor of base class

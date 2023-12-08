@@ -45,11 +45,28 @@ public:
      */
     std::array<int, 2> size() const;
 
-    std::vector<double> getRow(int i, int start, int end) const; 
+    /**
+     * @brief returns row of array2D as vector
+     *
+     * @param i index of row to return
+     * @param start first element of row
+     * @param end last element of row (exclusiv)
+     */
+    std::vector<double> getRow(int i, int start, int end) const;
 
+    /**
+     * @brief returns column of array2D as vector
+     *
+     * @param i index of row to return
+     * @param start first element of row
+     * @param end last element of row (exclusiv)
+     */
     std::vector<double> getColumn(int j, int start, int end) const;
 
-    void* data();
+    /**
+     * @brief returns array2D data for communication
+     */
+    void *data();
 
 protected:
     const std::array<int, 2> size_; //!< size of array in x and y direction

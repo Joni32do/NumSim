@@ -108,11 +108,11 @@ public:
 
     /**
      * @brief index of the left ghost layer
-    */
-   int uLeftGhost() const;
+     */
+    int uLeftGhost() const;
     /**
      * @brief one after last index of the right ghost layer
-    */
+     */
     int uRightGhost() const;
 
     /**
@@ -141,15 +141,15 @@ public:
      * @brief one after last valid index for v in y direction
      */
     int vJEnd() const;
-    
+
     /**
      * @brief index of the lower ghost layer
-    */
-   int vBottomGhost() const;
+     */
+    int vBottomGhost() const;
     /**
      * @brief one after the index of the upper ghost layer
-    */
-   int vTopGhost() const;
+     */
+    int vTopGhost() const;
 
     /**
      * @brief  first valid index for p in x direction
@@ -222,7 +222,6 @@ public:
      * @brief  one after last valid index for rhs in y direction
      */
     int rhsJEnd() const;
-    
 
 protected:
     const std::array<int, 2> nCells_;       //!< array containing number of cells in x and y directions

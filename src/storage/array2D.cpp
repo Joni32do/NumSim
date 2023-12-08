@@ -35,14 +35,13 @@ std::array<int, 2> Array2D::size() const
   return size_;
 }
 
-std::vector<double> Array2D::getRow(int row, int start, int end) const{
-  std::vector<double> slice(end-start);
-  //int ownRankNo_;
-  //MPI_Comm_rank(MPI_COMM_WORLD, &ownRankNo_);
-  //std::cout << ownRankNo_ <<  "end: " << end << i << " " << j << std::endl;
+std::vector<double> Array2D::getRow(int row, int start, int end) const
+{
+  std::vector<double> slice(end - start);
   int idx = 0;
 
-  for (int i = start; i < end; i++){
+  for (int i = start; i < end; i++)
+  {
     slice[idx] = (*this)(i, row);
     idx++;
   }
@@ -50,17 +49,19 @@ std::vector<double> Array2D::getRow(int row, int start, int end) const{
   return slice;
 }
 
-
-std::vector<double> Array2D::getColumn(int col, int start, int end) const{
-  std::vector<double> slice(end-start);
+std::vector<double> Array2D::getColumn(int col, int start, int end) const
+{
+  std::vector<double> slice(end - start);
   int idx = 0;
-  for (int j = start; j < end; j++){
+  for (int j = start; j < end; j++)
+  {
     slice[idx] = (*this)(col, j);
     idx++;
   }
   return slice;
 }
 
-void* Array2D::data(){
+void *Array2D::data()
+{
   return data_.data();
 }

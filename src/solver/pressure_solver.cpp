@@ -61,6 +61,6 @@ double PressureSolver::calculateResiduum()
             res_current_point = pxx + pyy - discretization_->rhs(i, j);
             sum_of_squares += pow(res_current_point, 2);
         }
-    } // TODO: removed sqrt - not consistent with serial implementation
+    } 
     return sum_of_squares / N;
 }
