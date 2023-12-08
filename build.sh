@@ -30,7 +30,7 @@ fi
 
 make install -j4
 
-time srun -n 8 ./numsim_parallel ../input/settings.txt
+time srun -n 16 ./numsim_parallel ../input/settings.txt
 
 cd ..
 rm output.zip

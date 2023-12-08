@@ -109,7 +109,7 @@ void ComputationParallel::runSimulationParallel(){
     
     // TODO: remove prints
     // printer_.save_doubles_to_file();
-    printer_->save_values_to_file();
+    //printer_->save_values_to_file();
 }
 
 
