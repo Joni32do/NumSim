@@ -34,8 +34,8 @@ time srun -n 8 ./numsim_parallel ../input/settings.txt
 
 cd ..
 rm output.zip
-zip -r output.zip build/out/ src/debugging/debug_out/
+zip -qr output.zip build/out/ src/debugging/debug_out/
 
 
 rm submission.zip
-zip -r submission.zip src/ CMakeLists.txt
+zip -qr submission.zip src/ CMakeLists.txt
