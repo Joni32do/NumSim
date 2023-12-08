@@ -7,9 +7,9 @@ DonorCell::DonorCell(std::array<int, 2> nCells, std::array<double, 2> meshWidth,
 
 double DonorCell::computeDuvDx(int i, int j) const
 {
-    double u_i_jminus = 0.5 * (u(i, j) + u(i, j - 1));
+    double u_i_jminus = 0.5*(u(i,j)+u(i,j-1)); // adapted this for parallel
     double v_iplus_j = 0.5 * (v(i, j) + v(i + 1, j));
-    double u_iplus1_jminus = 0.5 * (u(i + 1, j) + u(i + 1, j - 1));
+    double u_iplus1_jminus = 0.5*(u(i+1,j)+u(i+1,j-1)); // adapted this for parallel
     double v_ipdiff_j = 0.5 * (v(i, j) - v(i + 1, j));
     double v_iminus_j = 0.5 * (v(i - 1, j) + v(i, j));
     double v_imdiff_j = 0.5 * (v(i - 1, j) - v(i, j));
@@ -21,8 +21,8 @@ double DonorCell::computeDuvDx(int i, int j) const
 
 double DonorCell::computeDuvDy(int i, int j) const
 {
-    double v_iminus_jplus1 = 0.5 * (v(i, j + 1) + v(i - 1, j + 1));
-    double v_iminus_j = 0.5 * (v(i, j) + v(i - 1, j));
+    double v_iminus_jplus1 = 0.5*(v(i,j+1)+v(i-1, j+1)); // adapted after staggered grid extension
+    double v_iminus_j = 0.5*(v(i,j)+v(i-1, j)); // adapted after staggered grid extension
     double u_i_jplus = 0.5 * (u(i, j) + u(i, j + 1));
     double u_i_jpdiff = 0.5 * (u(i, j) - u(i, j + 1));
     double u_i_jminus = 0.5 * (u(i, j - 1) + u(i, j));

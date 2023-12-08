@@ -17,9 +17,6 @@ PressureSolver::PressureSolver(std::shared_ptr<Discretization> discretization,
     j_beg = discretization_->rhsJBegin();
     j_end = discretization_->rhsJEnd();
 
-    row_count_ = i_end - i_beg;
-    col_count_ = j_end - j_beg;
-
     // squared mesh widths
     dx2 = pow(discretization_->dx(), 2);
     dy2 = pow(discretization_->dy(), 2);
@@ -64,6 +61,6 @@ double PressureSolver::calculateResiduum()
             res_current_point = pxx + pyy - discretization_->rhs(i, j);
             sum_of_squares += pow(res_current_point, 2);
         }
-    }
+    } // TODO: removed sqrt - not consistent with serial implementation
     return sum_of_squares / N;
 }

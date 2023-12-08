@@ -237,3 +237,5 @@ int StaggeredGrid::rhsJEnd() const
 {
     return nCells_[1] + 1;
 }
+
+

@@ -20,25 +20,40 @@ double CentralDifferences::computeDv2Dy(int i, int j) const
 
 double CentralDifferences::computeDuvDx(int i, int j) const
 {
-    // left
-    double u_i_jminus = 0.5 * (u(i, j) + u(i, j - 1));
+    //left 
+    double u_i_jminus = 0.5*(u(i,j)+u(i,j-1));
     double v_iplus_j = 0.5 * (v(i + 1, j) + v(i, j));
 
-    // right
-    double u_iplus1_jminus = 0.5 * (u(i + 1, j) + u(i + 1, j - 1));
+    //right
+    double u_iplus1_jminus = 0.5*(u(i+1,j)+u(i+1,j-1));
     double v_iminus_j = 0.5 * (v(i - 1, j) + v(i, j));
 
-    return (u_i_jminus * v_iplus_j - u_iplus1_jminus * v_iminus_j) / dx();
+    return (u_i_jminus * v_iplus_j - u_iplus1_jminus* v_iminus_j) / dx();
+    
+    // // left
+    // double u_i_jplus = 0.5 * (u(i, j) + u(i, j + 1));
+    // double v_iplus_j = 0.5 * (v(i + 1, j) + v(i, j));
+    // // right
+    // double u_iminus1_jplus = 0.5 * (u(i - 1, j) + u(i - 1, j + 1));
+    // double v_iminus_j = 0.5 * (v(i - 1, j) + v(i, j));
+    // return (u_i_jplus * v_iplus_j - u_iminus1_jplus * v_iminus_j) / dx();
 }
 
 double CentralDifferences::computeDuvDy(int i, int j) const
 {
-
+    
     double u_i_jplus = 0.5 * (u(i, j) + u(i, j + 1));
     double u_i_jminus = 0.5 * (u(i, j) + u(i, j - 1));
 
-    double v_iminus_jplus1 = 0.5 * (v(i, j + 1) + v(i - 1, j + 1));
-    double v_iminus_j = 0.5 * (v(i, j) + v(i - 1, j));
+    double v_iminus_jplus1 = 0.5*(v(i,j+1)+v(i-1, j+1));
+    double v_iminus_j = 0.5*(v(i,j)+v(i-1,j));
 
-    return (v_iminus_jplus1 * u_i_jplus - v_iminus_j * u_i_jminus) / dy();
+    return (v_iminus_jplus1* u_i_jplus - v_iminus_j * u_i_jminus) / dy();
+    
+    
+    // double v_iplus_j = 0.5 * (v(i + 1, j) + v(i, j));
+    // double v_iplus_jminus1 = 0.5 * (v(i + 1, j - 1) + v(i, j - 1));
+    // double u_i_jplus = 0.5 * (u(i, j) + u(i, j + 1));
+    // double u_i_jminus = 0.5 * (u(i, j) + u(i, j - 1));
+    // return (v_iplus_j * u_i_jplus - v_iplus_jminus1 * u_i_jminus) / dy();
 }
