@@ -47,7 +47,7 @@ public:
     /**
      * @brief exchange ghost.
      */
-    void exchangeGhost(bool isLowerLeft);
+    void exchangeGhost();
 
 private:
     std::shared_ptr<Communicator> communicator_; //!< comminucator instance

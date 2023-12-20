@@ -4,8 +4,7 @@ RedBlack::RedBlack(const std::shared_ptr<Discretization> &data,
                    double epsilon,
                    int maximumNumberOfIterations,
                    std::shared_ptr<Communicator> communicator,
-                   std::shared_ptr<Partitioning> partitioning,
-                   std::shared_ptr<Printer> printer) : PressureSolver(data, epsilon, maximumNumberOfIterations),
+                   std::shared_ptr<Partitioning> partitioning) : PressureSolver(data, epsilon, maximumNumberOfIterations),
                                                        communicator_(communicator),
                                                        partitioning_(partitioning)
 {
