@@ -44,12 +44,14 @@ boundaryField
 
     sym1
     {
-        type            symmetryPlane;
+        type            fixedValue;
+        value           uniform (0 0 0);
     }
 
     sym2
     {
-        type            symmetryPlane;
+        type            fixedValue;
+        value           uniform (0 0 0);
     }
 
     back

@@ -179,7 +179,7 @@ boundary
 
     sym1
     {
-		type symmetryPlane;
+		type wall;
 		faces
 		(
 		    (7 8 27 26)
@@ -191,7 +191,7 @@ boundary
       
     sym2
     {
-		type symmetryPlane;
+		type wall;
 		faces
 		(
 		    (43 42 55 56) 

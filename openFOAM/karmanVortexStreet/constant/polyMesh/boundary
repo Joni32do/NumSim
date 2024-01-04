@@ -24,15 +24,15 @@ FoamFile
     }
     sym1
     {
-        type            symmetryPlane;
-        inGroups        List<word> 1(symmetryPlane);
+        type            wall;
+        inGroups        List<word> 1(wall);
         nFaces          260;
         startFace       50860;
     }
     sym2
     {
-        type            symmetryPlane;
-        inGroups        List<word> 1(symmetryPlane);
+        type            wall;
+        inGroups        List<word> 1(wall);
         nFaces          260;
         startFace       51120;
     }

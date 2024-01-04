@@ -38,12 +38,12 @@ boundaryField
 
     sym1
     {
-        type            symmetryPlane;
+        type            zeroGradient;
     }
 
     sym2
     {
-        type            symmetryPlane;
+        type            zeroGradient;
     }
 
     back
