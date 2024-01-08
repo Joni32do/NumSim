@@ -39,6 +39,8 @@ For `p` of type `fixedValue` with value $0$
 |write Interval | 20|
 |solver    |icoFoam|
 
+as mentioned below, this value for the dynamic viscosity $\nu$ corresponds to $\text{Re} = 1000$ 
+
 ### Process
 
 1. `blockMesh`
@@ -51,6 +53,9 @@ The problem was solved for different resolutions:
 * 1 Unit = 10 Nodes -> 225 Cells 
   * upper left square I is 5x5
   * took 2.3s
+* 1 Unit = 20 Nodes -> 900 Cells
+  * upper left square I is 10x10
+  * took 4.68s
 * 1 Unit = 100 Nodes -> 22 500 Cells 
   * upper left square I is 50x50
   * took 337s
@@ -58,36 +63,64 @@ The problem was solved for different resolutions:
 ### Results
 
 ##### Note: 
-Unfortunately the colorbar uses white font, so white background makes it invisble. See accompanying pdf or change background in editor.
-`pandoc README.md -s -o README.pdf -H cavityChannelWithStep/media/custom.tex`
+Unfortunately some of the plots colorbar uses white font, so white background makes it invisble. See accompanying pdf or change background in editor.
+
 
 #### Flow U
 
-##### Start Value t = 0
-![t=0](cavityChannelWithStep/media/step_uMag_t0_fine.png)
-<!-- <img src="cavityChannelWithStep/media/step_uMag_t1_fine.png" alt="t = 1" width="1000"/> -->
+##### Start Value t = 0.01
+![t=0.01](cavityChannelWithStep/media/step_uMag_t0_fine.png)
+
 
 ##### End Value t = 2 
 ![t=2](cavityChannelWithStep/media/step_uMag_t2_fine.png)
 
 
-#### Pressure p
+#### Pressure p for t = 2
 ![p](cavityChannelWithStep/media/step_p_tEnd_fine.png)
 
 
-#### Streamlines
+#### Streamlines for t = 2
 ![Streamline](cavityChannelWithStep/media/step_uMag_Stream_fine.png)
 
 
-#### Glyphs (Arrows)
+#### Glyphs (Arrows) for t = 2
 ![Glyph](cavityChannelWithStep/media/step_uMag_Glyph_fine.png)
 
 
-
 #### Low resolution 3D Visualization
-![3D initial](cavityChannelWithStep/media/step_3D_init.png)
 
 ![3D end](cavityChannelWithStep/media/step_uMag_tEnd.png)
+
+### Different values for $\nu$
+
+$$ \text{Re} = \frac{v d}{\nu} $$
+
+with $d = 5$ characteristic length, $v = 1$
+
+We can observe how the length of the vortex varies when adapting $\nu$.
+
+
+#### $\nu = 0.5 \to \text{Re} = 10$
+![nu=0.5](cavityChannelWithStep/media/step_5e-1_Stream.png)
+
+
+#### $\nu = 0.005 \to \text{Re} = 1000$
+![nu=0.005](cavityChannelWithStep/media/step_5e-3_Stream.png)
+
+
+
+#### $\nu = 0.0001 \to \text{Re} = 50000$
+
+##### $t = 0.6$
+![nu=1e-4 time = 0.6](cavityChannelWithStep/media/step_1e-4_Stream_t06.png)
+
+##### $t = 1.0$
+![nu=1e-4 time = 1.0](cavityChannelWithStep/media/step_1e-4_Stream_t10.png)
+
+##### $t = 10.0$
+![nu=1e-4 time = 10.0](cavityChannelWithStep/media/step_1e-4_Stream_t99.png)
+
 
  
 
