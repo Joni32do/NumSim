@@ -42,3 +42,8 @@ resources/
 
 sol/
 .vscode/
+
+# Intermediate Simulation results from openfoam
+0.*/
+1.*/
+2.*/
