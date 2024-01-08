@@ -47,8 +47,12 @@ For `p` of type `fixedValue` with value $0$
 ### Resolution
 
 The problem was solved for different resolutions: 
-* 1 Unit = 10 Nodes -> 225 Cells (upper left square I is 5x5)
-* 1 Unit = 100 Nodes -> 22 500 Cells (upper left square I is 50x50)
+* 1 Unit = 10 Nodes -> 225 Cells 
+  * upper left square I is 5x5
+  * took 2.3s
+* 1 Unit = 100 Nodes -> 22 500 Cells 
+  * upper left square I is 50x50
+  * took 337s
 
 ### Results
 
@@ -75,7 +79,7 @@ The problem was solved for different resolutions:
 
 
 
-#### Low resolution 3D vis
+#### Low resolution 3D Visualization
 
 <img src="cavityChannelWithStep/media/step_3D_init.png" alt="step_3D_init" width="400"/>
 <img src="cavityChannelWithStep/media/step_uMag_tEnd.png" alt="step_3D_uMag_tEnd" width="400"/>
