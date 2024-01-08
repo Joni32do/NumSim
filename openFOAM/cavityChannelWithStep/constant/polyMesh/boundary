@@ -22,29 +22,29 @@ FoamFile
     {
         type            wall;
         inGroups        1(wall);
-        nFaces          105;
-        startFace       890;
+        nFaces          1050;
+        startFace       94400;
     }
     inflowWall
     {
         type            wall;
         inGroups        1(wall);
-        nFaces          5;
-        startFace       995;
+        nFaces          50;
+        startFace       95450;
     }
     outflowWall
     {
         type            wall;
         inGroups        1(wall);
-        nFaces          10;
-        startFace       1000;
+        nFaces          100;
+        startFace       95500;
     }
     frontAndBack
     {
         type            empty;
         inGroups        1(empty);
-        nFaces          950;
-        startFace       1010;
+        nFaces          95000;
+        startFace       95600;
     }
 )
 
