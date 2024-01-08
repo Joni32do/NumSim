@@ -7,10 +7,9 @@ Project for the lecture Numerische Simulation at the University of Stuttgart. De
 * `libvtk`
 
 
-## TODO
-* Documentation with **doxygen**
-* Testing
-* Visualization with **Paraview**
+## Task 3: OpenFoam
+
+The documentation of different scenarios with openFoam can be found [here](openFOAM/README.md)
 
 
 ## Contributors

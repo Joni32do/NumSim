@@ -34,6 +34,7 @@ For `p` of type `fixedValue` with value $0$
 
 |parameter | value |
 |----------|-------|
+|nu        | 0.005 |
 |deltaT    | 0.0005|
 |write Interval | 20|
 |solver    |icoFoam|
@@ -56,33 +57,37 @@ The problem was solved for different resolutions:
 
 ### Results
 
+##### Note: 
+Unfortunately the colorbar uses white font, so white background makes it invisble. See accompanying pdf or change background in editor.
+`pandoc README.md -s -o README.pdf -H cavityChannelWithStep/media/custom.tex`
+
 #### Flow U
 
 ##### Start Value t = 0
-<img src="cavityChannelWithStep/media/step_uMag_t0_fine.png" alt="t = 0" width="1000"/>
+![t=0](cavityChannelWithStep/media/step_uMag_t0_fine.png)
 <!-- <img src="cavityChannelWithStep/media/step_uMag_t1_fine.png" alt="t = 1" width="1000"/> -->
 
 ##### End Value t = 2 
-<img src="cavityChannelWithStep/media/step_uMag_t2_fine.png" alt="t = 2" width="1000"/>
+![t=2](cavityChannelWithStep/media/step_uMag_t2_fine.png)
 
 
 #### Pressure p
-<img src="cavityChannelWithStep/media/step_p_tEnd_fine.png" alt="p" width="1000"/>
+![p](cavityChannelWithStep/media/step_p_tEnd_fine.png)
 
 
 #### Streamlines
-<img src="cavityChannelWithStep/media/step_uMag_Stream_fine.png" alt="Streamline" width="1000"/>
+![Streamline](cavityChannelWithStep/media/step_uMag_Stream_fine.png)
 
 
 #### Glyphs (Arrows)
-<img src="cavityChannelWithStep/media/step_uMag_Glyph_fine.png" alt="Glyph" width="1000"/>
+![Glyph](cavityChannelWithStep/media/step_uMag_Glyph_fine.png)
 
 
 
 #### Low resolution 3D Visualization
+![3D initial](cavityChannelWithStep/media/step_3D_init.png)
 
-<img src="cavityChannelWithStep/media/step_3D_init.png" alt="step_3D_init" width="400"/>
-<img src="cavityChannelWithStep/media/step_uMag_tEnd.png" alt="step_3D_uMag_tEnd" width="400"/>
+![3D end](cavityChannelWithStep/media/step_uMag_tEnd.png)
 
  
 
