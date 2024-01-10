@@ -3,10 +3,48 @@
 This submission uses the tool *OpenFOAM* to generate different simulation scenarios
 
 
-## Scenario 1: Lid Driven Cavity
+## Scenario 1a: Lid Driven Cavity
 
 This solves the lid driven cavity problem similar to the first submission in this lecture. This serves as a initial plausibilization with OpenFOAM.
 
+### Geometry
+
+The lid driven cavity consists of a quadratic cavity with dimensions of 2m. The top side of the cavity moves with a fixed speed of 1 $\frac{m}{s}$. 
+
+![Task for Step Description](cavity/media/cavity.png)
+
+### Parameters
+
+|parameter | value |
+|----------|-------|
+|$\nu$        | 0.002 |
+|$R_{e}$        | 1000 |
+|$\Delta t$    | 0.005|
+|solver    |icoFoam|
+
+### Results
+
+
+## Scenario 1b: Heated Lid Driven Cavity
+
+This solves the lid driven cavity problem with an additional temperature difference between bottom and lid of the cavity.
+
+### Geometry
+
+Same as lid driven cavity without heat 
+
+### Parameters
+
+|parameter | value |
+|----------|-------|
+|$\nu$        | 0.002 |
+|$R_{e}$        | 1000 |
+|$\beta$        | 3e-03 |
+|$T_{Ref}$    | 300|
+|$P_{r}$    | 0.7|
+|$P_{rt}$    | 0.85|
+|$\Delta t$    | 0.005|
+|solver    |buoyantBoussinesqPimpleFoam|
 
 ## Scenario 2: Cavity with a Step
 
