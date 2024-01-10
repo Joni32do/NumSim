@@ -24,6 +24,30 @@ The lid driven cavity consists of a quadratic cavity with dimensions of 2m. The 
 
 ### Results
 
+#### Velocity U
+
+##### Start: t = 0.01
+![u_0](cavity/media/u_0.png)
+![u_0_trace](cavity/media/u_0_trace.png)
+
+
+##### End: t = 10 
+![u_10](cavity/media/u_10.png)
+![u_10_trace](cavity/media/u_10_trace.png)
+
+
+
+#### Pressure P
+
+##### Start: t = 0.01
+![p_0](cavity/media/p_0.png)
+![p_0_trace](cavity/media/p_0_trace.png)
+
+
+##### End: t = 10 
+![p_10](cavity/media/p_10.png)
+![p_10_trace](cavity/media/p_10_trace.png)
+
 
 ## Scenario 1b: Heated Lid Driven Cavity
 
@@ -45,6 +69,43 @@ Same as lid driven cavity without heat
 |$P_{rt}$    | 0.85|
 |$\Delta t$    | 0.005|
 |solver    |buoyantBoussinesqPimpleFoam|
+
+### Results
+
+#### Velocity U
+
+##### Start: t = 0.01
+![u_0](heatedCavity/media/u_0.png)
+![u_0_trace](heatedCavity/media/u_0_trace.png)
+
+
+##### End: t = 10 
+![u_10](heatedCavity/media/u_10.png)
+![u_10_trace](heatedCavity/media/u_10_trace.png)
+
+
+
+#### Pressure P
+
+##### Start: t = 0.01
+![p_0](heatedCavity/media/p_0.png)
+![p_0_trace](heatedCavity/media/p_0_trace.png)
+
+
+##### End: t = 10 
+![p_10](heatedCavity/media/p_10.png)
+![p_10_trace](heatedCavity/media/p_10_trace.png)
+
+#### Temperature T
+
+##### Start: t = 0.01
+![T_0](heatedCavity/media/T_0.png)
+![T_0_trace](heatedCavity/media/T_0_trace.png)
+
+
+##### End: t = 10 
+![T_10](heatedCavity/media/T_10.png)
+![T_10_trace](heatedCavity/media/T_10_trace.png)
 
 ## Scenario 2: Cavity with a Step
 
