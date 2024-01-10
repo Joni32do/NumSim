@@ -51,7 +51,7 @@ The lid driven cavity consists of a quadratic cavity with dimensions of 2m. The 
 
 ## Scenario 1b: Heated Lid Driven Cavity
 
-This solves the lid driven cavity problem with an additional temperature difference between bottom and lid of the cavity.
+This solves the lid driven cavity problem with an additional temperature difference between bottom and lid of the cavity. The Bottom is at 600K, the lid at 300K.
 
 ### Geometry
 
