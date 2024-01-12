@@ -221,6 +221,100 @@ We can observe how the length of the vortex varies when adapting $\nu$.
 ![nu=1e-4 time = 10.0](cavityChannelWithStep/media/step_1e-4_Stream_t99.png)
 
 
+ ## Scenario 3: Karman Vortex Street
+
+ ### Geometry and Problem Description
+ In this task, we are concerned with the simulation of a flow around a cilinder, analizing the vortex street formed behind it. The geometry was given in the exercise description:
  
+![Geometry](karmanVortexStreet/media/ProblemDescription.png)
 
+### Mesh
+The mesh was built by having in mind that the area close to the walls and the cilinder contain boundary layers, which generally need a finer mesh than the regions far away from walls. A circular area around the cilinder was defined to assist in building the mesh close to the cylinder while having a smooth transition to the other parts of the mesh.
 
+#### General (unzoomed) view of the mesh
+
+![Mesh unzoomed](karmanVortexStreet/media/Mesh0.png)
+
+#### Zoomed view of the mesh around the cylinder
+
+![Mesh around Cylinder](karmanVortexStreet/media/Mesh1.png)
+
+#### Detail of the mesh for the boundary layer area around the cylinder
+
+![Mesh Detail BL](karmanVortexStreet/media/Mesh2.png)
+
+### Boundary Conditions
+The boundary conditions are the analogous to those from Scenario 2, but now with the addition of the cylinder wall:
+
+#### Inflow
+**U:** `fixedValue`, set to `(1 0 0)`
+**p:** `zeroGradient`
+
+#### Outflow
+**U:** `zeroGradient`
+**p:** `fixedValue` set to `0`
+
+#### Walls (top and bottom)
+**U:** `fixedValue` set to `(0 0 0)`
+**p:** `zeroGradient`
+
+#### Front and Back plans
+**U:** `empty`
+**p:** `empty`
+
+#### Cylinder wall
+**U:** `fixedValue` set to `(0 0 0)`
+**p:** `zeroGradient`
+
+### Parameters
+
+#### $\delta t$ and Courant number
+To determine a suitable time step (i.e., not too large to create instabilities and not excessively small to spare computational resources), we can analyze the Courant number. It is defined  as 
+$$Co=\frac{U\delta t}{\delta h}<Co_{max}=1.$$
+(Here, we're only taking the x-direction into account, since that's the main flow direction.) Since we want $Co<1$ in every cell, we choose $\delta t$ based on the "worst case scenario", i.e. with the highest velocity and the smallest edge lenght of the mesh. Based on preliminary computations, $U_{x,max}\approx 1.9$, and $\delta h_{min}\approx 0.002$. Thus
+$$\delta t < \frac{\delta h_{x,min}}{U_{x,max}}\approx \frac{0.0021}{1.9}=0.0011.$$
+Therefore, $\delta t$ was chosen to be $0.001$.
+
+#### $\nu$, $\Re$ and solver
+$\nu$ was kept the same as in Scenario 1, i.e. $\nu=0.002$. With this,
+$$Re=\frac{UL}{\nu}=\frac{1\times 5}{0.002}=2500.$$
+Thus, the solver for this scenario was also `icoFoam`.
+
+### Results
+
+#### Generating the results
+If using the IPVS cluster, simply run `./run_parallel.sh`. Otherwise run the following commands:
+1. `blockMesh` 
+2. `decomposePar` (only for parallel computation)
+3. `srun -n 6 icoFoam -parallel` for parallel computation or `icoFoam`for sequential computing
+4. `reconstructPar` (only for parallel computation)
+
+#### Results for $t=2$
+- **$U$ (on surface)**
+![U surface t=2](karmanVortexStreet/media/U_2.png)
+
+- **$U$ (stream tracer)**
+![U stream stracer t=2](karmanVortexStreet/media/streamTracer_2.png)
+
+- **$p$**
+![p t=2](karmanVortexStreet/media/p_2.png)
+
+#### Results for $t=12$
+- **$U$ (on surface)**
+![U surface t=12](karmanVortexStreet/media/U_12.png)
+
+- **$U$ (stream tracer)**
+![U stream stracer t=12](karmanVortexStreet/media/streamTracer_12.png)
+
+- **$p$**
+![p t=12](karmanVortexStreet/media/p_12.png)
+
+#### Results for $t=20$
+- **$U$ (on surface)**
+![U surface t=20](karmanVortexStreet/media/U_20.png)
+
+- **$U$ (stream tracer)**
+![U stream stracer t=20](karmanVortexStreet/media/streamTracer_20.png)
+
+- **$p$**
+![p t=20](karmanVortexStreet/media/p_20.png)
