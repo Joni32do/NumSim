@@ -248,34 +248,39 @@ The boundary conditions are the analogous to those from Scenario 2, but now with
 
 #### Inflow
 **U:** `fixedValue`, set to `(1 0 0)`
+
 **p:** `zeroGradient`
 
 #### Outflow
 **U:** `zeroGradient`
+
 **p:** `fixedValue` set to `0`
 
 #### Walls (top and bottom)
 **U:** `fixedValue` set to `(0 0 0)`
+
 **p:** `zeroGradient`
 
 #### Front and Back plans
 **U:** `empty`
+
 **p:** `empty`
 
 #### Cylinder wall
 **U:** `fixedValue` set to `(0 0 0)`
+
 **p:** `zeroGradient`
 
 ### Parameters
 
 #### $\delta t$ and Courant number
 To determine a suitable time step (i.e., not too large to create instabilities and not excessively small to spare computational resources), we can analyze the Courant number. It is defined  as 
-$$Co=\frac{U\delta t}{\delta h}<Co_{max}=1.$$
+$$Co = \frac{U\delta t}{\delta h} < Co_{max} = 1.$$
 (Here, we're only taking the x-direction into account, since that's the main flow direction.) Since we want $Co<1$ in every cell, we choose $\delta t$ based on the "worst case scenario", i.e. with the highest velocity and the smallest edge lenght of the mesh. Based on preliminary computations, $U_{x,max}\approx 1.9$, and $\delta h_{min}\approx 0.002$. Thus
 $$\delta t < \frac{\delta h_{x,min}}{U_{x,max}}\approx \frac{0.0021}{1.9}=0.0011.$$
 Therefore, $\delta t$ was chosen to be $0.001$.
 
-#### $\nu$, $\Re$ and solver
+#### $\nu$, $Re$ and solver
 $\nu$ was kept the same as in Scenario 1, i.e. $\nu=0.002$. With this,
 $$Re=\frac{UL}{\nu}=\frac{1\times 5}{0.002}=2500.$$
 Thus, the solver for this scenario was also `icoFoam`.
@@ -286,7 +291,7 @@ Thus, the solver for this scenario was also `icoFoam`.
 If using the IPVS cluster, simply run `./run_parallel.sh`. Otherwise run the following commands:
 1. `blockMesh` 
 2. `decomposePar` (only for parallel computation)
-3. `srun -n 6 icoFoam -parallel` for parallel computation or `icoFoam`for sequential computing
+3. `srun -n 6 icoFoam -parallel` for parallel computation or `icoFoam`for sequential computation
 4. `reconstructPar` (only for parallel computation)
 
 #### Results for $t=2$
