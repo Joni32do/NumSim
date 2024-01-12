@@ -296,30 +296,39 @@ If using the IPVS cluster, simply run `./run_parallel.sh`. Otherwise run the fol
 
 #### Results for $t=2$
 - **$U$ (on surface)**
+
 ![U surface t=2](karmanVortexStreet/media/U_2.png)
 
 - **$U$ (stream tracer)**
+
 ![U stream stracer t=2](karmanVortexStreet/media/streamTracer_2.png)
 
 - **$p$**
+
 ![p t=2](karmanVortexStreet/media/p_2.png)
 
 #### Results for $t=12$
 - **$U$ (on surface)**
+
 ![U surface t=12](karmanVortexStreet/media/U_12.png)
 
 - **$U$ (stream tracer)**
+
 ![U stream stracer t=12](karmanVortexStreet/media/streamTracer_12.png)
 
 - **$p$**
+
 ![p t=12](karmanVortexStreet/media/p_12.png)
 
 #### Results for $t=20$
 - **$U$ (on surface)**
+
 ![U surface t=20](karmanVortexStreet/media/U_20.png)
 
 - **$U$ (stream tracer)**
+
 ![U stream stracer t=20](karmanVortexStreet/media/streamTracer_20.png)
 
 - **$p$**
+
 ![p t=20](karmanVortexStreet/media/p_20.png)
