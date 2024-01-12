@@ -233,15 +233,15 @@ The mesh was built by having in mind that the area close to the walls and the ci
 
 #### General (unzoomed) view of the mesh
 
-![Mesh unzoomed](karmanVortexStreet/media/Mesh0.png)
+![Mesh unzoomed](karmanVortexStreet/media/Mesh_0.png)
 
 #### Zoomed view of the mesh around the cylinder
 
-![Mesh around Cylinder](karmanVortexStreet/media/Mesh1.png)
+![Mesh around Cylinder](karmanVortexStreet/media/Mesh_1.png)
 
 #### Detail of the mesh for the boundary layer area around the cylinder
 
-![Mesh Detail BL](karmanVortexStreet/media/Mesh2.png)
+![Mesh Detail BL](karmanVortexStreet/media/Mesh_2.png)
 
 ### Boundary Conditions
 The boundary conditions are the analogous to those from Scenario 2, but now with the addition of the cylinder wall:
@@ -279,6 +279,7 @@ $$Co = \frac{U\delta t}{\delta h} < Co_{max} = 1.$$
 (Here, we're only taking the x-direction into account, since that's the main flow direction.) Since we want $Co<1$ in every cell, we choose $\delta t$ based on the "worst case scenario", i.e. with the highest velocity and the smallest edge lenght of the mesh. Based on preliminary computations, $U_{x,max}\approx 1.9$, and $\delta h_{min}\approx 0.002$. Thus
 $$\delta t < \frac{\delta h_{x,min}}{U_{x,max}}\approx \frac{0.0021}{1.9}=0.0011.$$
 Therefore, $\delta t$ was chosen to be $0.001$.
+![minimum edge length](karmanVortexStreet/media/minimumMeshSize.png)
 
 #### $\nu$, $Re$ and solver
 $\nu$ was kept the same as in Scenario 1, i.e. $\nu=0.002$. With this,
