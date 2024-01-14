@@ -11,7 +11,6 @@ int main(int argc, char *argv[])
     std::cout << "usage: " << argv[0] << " <filename>" << std::endl;
     return EXIT_FAILURE;
   }
-
   Computation computation;
 
   auto start = std::chrono::system_clock::now();
