@@ -42,10 +42,10 @@ void Settings::printSettings()
     std::cout << "Settings: " << std::endl
               << "  physicalSize: " << physicalSize[0] << " x " << physicalSize[1] << ", nCells: " << nCells[0] << " x " << nCells[1] << std::endl
               << "  endTime: " << endTime << " s, re: " << re << ", g: (" << g[0] << "," << g[1] << "), tau: " << tau << ", maximum dt: " << maximumDt << std::endl
-              << "  dirichletBC: bottom: (" << dirichletBcBottom[0] << "," << dirichletBcBottom[1] << ")"
-              << ", top: (" << dirichletBcTop[0] << "," << dirichletBcTop[1] << ")"
-              << ", left: (" << dirichletBcLeft[0] << "," << dirichletBcLeft[1] << ")"
-              << ", right: (" << dirichletBcRight[0] << "," << dirichletBcRight[1] << ")" << std::endl
+              << "  dirichletBC: bottom: (" << dirBotVelocity[0] << "," << dirBotVelocity[1] << ")"
+              << ", top: (" << dirTopVelocity[0] << "," << dirTopVelocity[1] << ")"
+              << ", left: (" << dirLeftVelocity[0] << "," << dirLeftVelocity[1] << ")"
+              << ", right: (" << dirRightVelocity[0] << "," << dirRightVelocity[1] << ")" << std::endl
               << "  useDonorCell: " << std::boolalpha << useDonorCell << ", alpha: " << alpha << std::endl
               << "  pressureSolver: " << pressureSolver << ", omega: " << omega << ", epsilon: " << epsilon << ", maximumNumberOfIterations: " << maximumNumberOfIterations << std::endl;
 }
@@ -111,23 +111,52 @@ void Settings::setParameter(std::string parameterName, std::string value)
     else if (parameterName == "gY")
         Settings::g[1] = atof(value.c_str());
 
-    // Dirichlet boundary conditions
-    else if (parameterName == "dirichletBottomX")
-        Settings::dirichletBcBottom[0] = atof(value.c_str());
-    else if (parameterName == "dirichletBottomY")
-        Settings::dirichletBcBottom[1] = atof(value.c_str());
-    else if (parameterName == "dirichletTopX")
-        Settings::dirichletBcTop[0] = atof(value.c_str());
-    else if (parameterName == "dirichletTopY")
-        Settings::dirichletBcTop[1] = atof(value.c_str());
-    else if (parameterName == "dirichletLeftX")
-        Settings::dirichletBcLeft[0] = atof(value.c_str());
-    else if (parameterName == "dirichletLeftY")
-        Settings::dirichletBcLeft[1] = atof(value.c_str());
-    else if (parameterName == "dirichletRightX")
-        Settings::dirichletBcRight[0] = atof(value.c_str());
-    else if (parameterName == "dirichletRightY")
-        Settings::dirichletBcRight[1] = atof(value.c_str());
+    // Dirichlet boundary conditions for velocity
+    else if (parameterName == "useNoSlipConditions"){
+        if (value == "true" || value == "True")
+                Settings::useNoSlipConditions = true;
+            else if (value == "false" || value == "False")
+                Settings::useNoSlipConditions = false;
+            else
+                throw std::invalid_argument("useNoSlipConditions must be a boolean (true or false).");
+    }
+    else if (parameterName == "dirBotU")
+        Settings::dirBotVelocity[0] = atof(value.c_str());
+    else if (parameterName == "dirBotV")
+        Settings::dirBotVelocity[1] = atof(value.c_str());
+    else if (parameterName == "dirTopU")
+        Settings::dirTopVelocity[0] = atof(value.c_str());
+    else if (parameterName == "dirTopV")
+        Settings::dirTopVelocity[1] = atof(value.c_str());
+    else if (parameterName == "dirLeftU")
+        Settings::dirLeftVelocity[0] = atof(value.c_str());
+    else if (parameterName == "dirLeftV")
+        Settings::dirLeftVelocity[1] = atof(value.c_str());
+    else if (parameterName == "dirRightU")
+        Settings::dirRightVelocity[0] = atof(value.c_str());
+    else if (parameterName == "dirRightV")
+        Settings::dirRightVelocity[1] = atof(value.c_str());
+    
+    // Dirichlet boundary conditions for pressure
+    else if (parameterName == "usePressureConditions"){
+        if (value == "true" || value == "True")
+                Settings::usePressureConditions = true;
+            else if (value == "false" || value == "False")
+                Settings::usePressureConditions = false;
+            else
+                throw std::invalid_argument("usePressureConditions must be a boolean (true or false).");
+    }
+    else if (parameterName == "dirBotP")
+        Settings::dirBotPressure = atof(value.c_str());
+    else if (parameterName == "dirTopP")
+        Settings::dirTopPressure = atof(value.c_str());
+    else if (parameterName == "dirLeftP")
+        Settings::dirLeftPressure = atof(value.c_str());
+    else if (parameterName == "dirRightP")
+        Settings::dirRightPressure= atof(value.c_str());
+
+    if (Settings::usePressureConditions == Settings::useNoSlipConditions)
+        throw std::invalid_argument("useNoSlipConditions and usePressureConditions cannot both be true/false");
 
     // Discretization parameters
     else if (parameterName == "nCellsX")

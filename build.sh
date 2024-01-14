@@ -16,7 +16,7 @@ else
 fi
 
 make install -j4
-# ./numsim ../input/settings_v3.txt
+./numsim ../input/settings.txt
 
 # run different resolution
 # ./numsim ../input/different_resolutions/settings_01.txt

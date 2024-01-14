@@ -79,14 +79,14 @@ void Computation::applyBoundaryValues()
     // Vertical
     for (int j = j_beg; j < j_end; j++)
     {
-        discretization_->u(i_beg, j) = settings_.dirichletBcLeft[0];
-        discretization_->u(i_end - 1, j) = settings_.dirichletBcRight[0];
+        discretization_->u(i_beg, j) = settings_.dirLeftVelocity[0];
+        discretization_->u(i_end - 1, j) = settings_.dirRightVelocity[0];
     }
     // Horizontal (leave out corners)
     for (int i = i_beg + 1; i < i_end - 1; i++)
     {
-        discretization_->u(i, j_beg) = 2 * settings_.dirichletBcBottom[0] - discretization_->u(i, j_beg + 1);
-        discretization_->u(i, j_end - 1) = 2 * settings_.dirichletBcTop[0] - discretization_->u(i, j_end - 2);
+        discretization_->u(i, j_beg) = 2 * settings_.dirBotVelocity[0] - discretization_->u(i, j_beg + 1);
+        discretization_->u(i, j_end - 1) = 2 * settings_.dirTopVelocity[0] - discretization_->u(i, j_end - 2);
     }
 
     // BV for v
@@ -98,14 +98,14 @@ void Computation::applyBoundaryValues()
     // Vertical
     for (int j = j_beg; j < j_end; j++)
     {
-        discretization_->v(i_beg, j) = 2 * settings_.dirichletBcLeft[1] - discretization_->v(i_beg + 1, j);
-        discretization_->v(i_end - 1, j) = 2 * settings_.dirichletBcRight[1] - discretization_->v(i_end - 2, j);
+        discretization_->v(i_beg, j) = 2 * settings_.dirLeftVelocity[1] - discretization_->v(i_beg + 1, j);
+        discretization_->v(i_end - 1, j) = 2 * settings_.dirRightVelocity[1] - discretization_->v(i_end - 2, j);
     }
     // Horizontal (leave out corners)
     for (int i = i_beg + 1; i < i_end - 1; i++)
     {
-        discretization_->v(i, j_beg) = settings_.dirichletBcBottom[1];
-        discretization_->v(i, j_end - 1) = settings_.dirichletBcTop[1];
+        discretization_->v(i, j_beg) = settings_.dirBotVelocity[1];
+        discretization_->v(i, j_end - 1) = settings_.dirTopVelocity[1];
     }
 }
 

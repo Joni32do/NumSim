@@ -24,10 +24,17 @@ struct Settings
   bool useDonorCell = false; //!< if the donor cell scheme schould be used
   double alpha = 0.5;        //!< factor for donor-cell scheme
 
-  std::array<double, 2> dirichletBcBottom; //!< prescribed values of u,v at bottom of domain
-  std::array<double, 2> dirichletBcTop;    //!< prescribed values of u,v at top of domain
-  std::array<double, 2> dirichletBcLeft;   //!< prescribed values of u,v at left of domain
-  std::array<double, 2> dirichletBcRight;  //!< prescribed values of u,v at right of domain
+  bool useNoSlipConditions = true;
+  std::array<double, 2> dirBotVelocity; //!< prescribed values of u,v at bottom of domain
+  std::array<double, 2> dirTopVelocity;    //!< prescribed values of u,v at top of domain
+  std::array<double, 2> dirLeftVelocity;   //!< prescribed values of u,v at left of domain
+  std::array<double, 2> dirRightVelocity;  //!< prescribed values of u,v at right of domain
+
+  bool usePressureConditions = false;
+  double dirBotPressure;    //!< prescribed values of p at bottom of domain
+  double dirTopPressure;    //!< prescribed values of p at top of domain
+  double dirLeftPressure;   //!< prescribed values of p at left of domain
+  double dirRightPressure;  //!< prescribed values of p at right of domain
 
   std::string pressureSolver = "SOR";  //!< which pressure solver to use, "GaussSeidel" or "SOR"
   double omega = 1.0;                  //!< overrelaxation factor
