@@ -35,6 +35,8 @@ void Settings::loadFromFile(std::string filename)
         // parse actual value and set corresponding parameter
         Settings::setParameter(lineContent.parameterName, lineContent.value);
     }
+    if (Settings::usePressureConditions == Settings::useNoSlipConditions)
+        throw std::invalid_argument("useNoSlipConditions and usePressureConditions cannot both be true/false");
 }
 
 void Settings::printSettings()
@@ -154,9 +156,6 @@ void Settings::setParameter(std::string parameterName, std::string value)
         Settings::dirLeftPressure = atof(value.c_str());
     else if (parameterName == "dirRightP")
         Settings::dirRightPressure= atof(value.c_str());
-
-    if (Settings::usePressureConditions == Settings::useNoSlipConditions)
-        throw std::invalid_argument("useNoSlipConditions and usePressureConditions cannot both be true/false");
 
     // Discretization parameters
     else if (parameterName == "nCellsX")

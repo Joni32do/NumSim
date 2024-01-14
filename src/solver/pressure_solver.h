@@ -2,6 +2,9 @@
 #include "../storage/field_variable.h"
 #include "../discretization/discretization.h"
 #include <memory>
+#include <math.h>
+#include <iostream>
+#include "settings_parser/settings.h"
 
 /**
  * @class PressureSolver
@@ -17,13 +20,10 @@ public:
     /**
      * @brief Constructor.
      *
-     * @param discretization instance of Discretization holding the needed field variables for rhs and p
-     * @param epsilon tolerance for the solver
-     * @param maximumNumberOfIterations maximum of iteration
+     * @param seettings contains settings for solver
      */
     PressureSolver(std::shared_ptr<Discretization> discretization,
-                   double epsilon,
-                   int maximumNumberOfIterations);
+                    Settings settings);
 
     /**
      * @brief virtual function that starts solver.
@@ -54,7 +54,5 @@ protected:
 
     std::shared_ptr<Discretization> discretization_; //!< object holding the needed field variables for rhs and p
 
-    double epsilon_; //!< tolerance for the solver
-
-    int maximumNumberOfIterations_; //!< maximum number of iterations
+    Settings settings_;
 };

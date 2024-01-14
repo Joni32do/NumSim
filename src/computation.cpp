@@ -26,15 +26,12 @@ void Computation::initialize(int argc, char *argv[])
     if (settings_.pressureSolver == "SOR")
     {
         pressureSolver_ = std::make_unique<SOR>(discretization_,
-                                                settings_.epsilon,
-                                                settings_.maximumNumberOfIterations,
-                                                settings_.omega);
+                                                settings_);
     }
     else
     {
         pressureSolver_ = std::make_unique<GaussSeidel>(discretization_,
-                                                        settings_.epsilon,
-                                                        settings_.maximumNumberOfIterations);
+                                                        settings_);
     }
 
     outputWriterParaview_ = std::make_unique<OutputWriterParaview>(discretization_);
@@ -67,45 +64,134 @@ void Computation::runSimulation()
 
 void Computation::applyBoundaryValues()
 {
-
-    // set Dirichlet BC
-
-    // BV for u
-    int i_beg = discretization_->uIBegin();
-    int i_end = discretization_->uIEnd();
-    int j_beg = discretization_->uJBegin();
-    int j_end = discretization_->uJEnd();
-
-    // Vertical
-    for (int j = j_beg; j < j_end; j++)
+    if (settings_.useNoSlipConditions)
     {
-        discretization_->u(i_beg, j) = settings_.dirLeftVelocity[0];
-        discretization_->u(i_end - 1, j) = settings_.dirRightVelocity[0];
+        // set Dirichlet BC
+
+        // BV for u
+        int i_beg = discretization_->uIBegin();
+        int i_end = discretization_->uIEnd();
+        int j_beg = discretization_->uJBegin();
+        int j_end = discretization_->uJEnd();
+
+        // Vertical
+        for (int j = j_beg; j < j_end; j++)
+        {
+            discretization_->u(i_beg, j) = settings_.dirLeftVelocity[0];
+            discretization_->u(i_end - 1, j) = settings_.dirRightVelocity[0];
+        }
+        // Horizontal (leave out corners)
+        for (int i = i_beg + 1; i < i_end - 1; i++)
+        {
+            discretization_->u(i, j_beg) = 2 * settings_.dirBotVelocity[0] - discretization_->u(i, j_beg + 1);
+            discretization_->u(i, j_end - 1) = 2 * settings_.dirTopVelocity[0] - discretization_->u(i, j_end - 2);
+        }
+
+        // BV for v
+        i_beg = discretization_->vIBegin();
+        i_end = discretization_->vIEnd();
+        j_beg = discretization_->vJBegin();
+        j_end = discretization_->vJEnd();
+
+        // Vertical
+        for (int j = j_beg; j < j_end; j++)
+        {
+            discretization_->v(i_beg, j) = 2 * settings_.dirLeftVelocity[1] - discretization_->v(i_beg + 1, j);
+            discretization_->v(i_end - 1, j) = 2 * settings_.dirRightVelocity[1] - discretization_->v(i_end - 2, j);
+        }
+        // Horizontal (leave out corners)
+        for (int i = i_beg + 1; i < i_end - 1; i++)
+        {
+            discretization_->v(i, j_beg) = settings_.dirBotVelocity[1];
+            discretization_->v(i, j_end - 1) = settings_.dirTopVelocity[1];
+        }
     }
-    // Horizontal (leave out corners)
-    for (int i = i_beg + 1; i < i_end - 1; i++)
+    else if (settings_.usePressureConditions)
     {
-        discretization_->u(i, j_beg) = 2 * settings_.dirBotVelocity[0] - discretization_->u(i, j_beg + 1);
-        discretization_->u(i, j_end - 1) = 2 * settings_.dirTopVelocity[0] - discretization_->u(i, j_end - 2);
-    }
 
-    // BV for v
-    i_beg = discretization_->vIBegin();
-    i_end = discretization_->vIEnd();
-    j_beg = discretization_->vJBegin();
-    j_end = discretization_->vJEnd();
+        // Top
+        if (settings_.dirTopPressure > 0)
+        {
+            for (int i = discretization_->pIBegin() + 1; i < discretization_->pIEnd() - 1; i++)
+            {
+                discretization_->p(i, discretization_->pJEnd() - 1) = 2 * settings_.dirTopPressure - discretization_->p(i, discretization_->pJEnd() - 2);
+            }
+        }
+        else
+        {
+            for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++)
+            {
+                discretization_->u(i, discretization_->uJEnd() - 1) = -discretization_->u(i, discretization_->uJEnd() - 2);
+            }
 
-    // Vertical
-    for (int j = j_beg; j < j_end; j++)
-    {
-        discretization_->v(i_beg, j) = 2 * settings_.dirLeftVelocity[1] - discretization_->v(i_beg + 1, j);
-        discretization_->v(i_end - 1, j) = 2 * settings_.dirRightVelocity[1] - discretization_->v(i_end - 2, j);
-    }
-    // Horizontal (leave out corners)
-    for (int i = i_beg + 1; i < i_end - 1; i++)
-    {
-        discretization_->v(i, j_beg) = settings_.dirBotVelocity[1];
-        discretization_->v(i, j_end - 1) = settings_.dirTopVelocity[1];
+            for (int i = discretization_->vIBegin(); i < discretization_->vIEnd(); i++)
+            {
+                discretization_->v(i, discretization_->vJEnd() - 1) = 0.0;
+            }
+        }
+
+        // Bottom
+        if (settings_.dirBotPressure > 0)
+        {
+            for (int i = discretization_->pIBegin() + 1; i < discretization_->pIEnd() - 1; i++)
+            {
+                discretization_->p(i, discretization_->pJBegin()) = 2 * settings_.dirBotPressure - discretization_->p(i, discretization_->pJBegin() + 1);
+            }
+        }
+        else
+        {
+            for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++)
+            {
+                discretization_->u(i, discretization_->uJBegin()) = -discretization_->u(i, discretization_->uJBegin() + 1);
+            }
+
+            for (int i = discretization_->vIBegin(); i < discretization_->vIEnd(); i++)
+            {
+                discretization_->v(i, discretization_->vJBegin()) = 0.0;
+            }
+        }
+
+        // Left
+        if (settings_.dirLeftPressure > 0)
+        {
+            for (int j = discretization_->pJBegin() + 1; j < discretization_->pJEnd() - 1; j++)
+            {
+                discretization_->p(discretization_->pIBegin(), j) = 2 * settings_.dirLeftPressure - discretization_->p(discretization_->pIBegin() + 1, j);
+            }
+        }
+        else
+        {
+            for (int j = discretization_->uJBegin(); j < discretization_->uJEnd(); j++)
+            {
+                discretization_->u(discretization_->uIBegin(), j) = 0.0;
+            }
+
+            for (int j = discretization_->vJBegin(); j < discretization_->vJEnd(); j++)
+            {
+                discretization_->v(discretization_->vIBegin(), j) = -discretization_->v(discretization_->vIBegin() + 1, j);
+            }
+        }
+
+        // Right
+        if (settings_.dirRightPressure > 0)
+        {
+            for (int j = discretization_->pJBegin() + 1; j < discretization_->pJEnd() - 1; j++)
+            {
+                discretization_->p(discretization_->pIEnd() - 1, j) = 2 * settings_.dirRightPressure - discretization_->p(discretization_->pIBegin() + 1, j);
+            }
+        }
+        else
+        {
+            for (int j = discretization_->uJBegin(); j < discretization_->uJEnd(); j++)
+            {
+                discretization_->u(discretization_->uIEnd() - 1, j) = 0.0;
+            }
+
+            for (int j = discretization_->vJBegin(); j < discretization_->vJEnd(); j++)
+            {
+                discretization_->v(discretization_->vIEnd() - 1, j) = -discretization_->v(discretization_->vIEnd() - 2, j);
+            }
+        }
     }
 }
 

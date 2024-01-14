@@ -1,15 +1,12 @@
 #include "pressure_solver.h"
-#include <math.h>
-#include <iostream>
+
 
 PressureSolver::PressureSolver(std::shared_ptr<Discretization> discretization,
-                               double epsilon,
-                               int maximumNumberOfIterations) : discretization_(discretization),
-                                                                epsilon_(epsilon),
-                                                                maximumNumberOfIterations_(maximumNumberOfIterations)
+                               Settings settings) : discretization_(discretization),
+                                                                settings_(settings)
 {
-    assert(epsilon > 0);
-    assert(maximumNumberOfIterations > 0);
+    assert(settings_.epsilon > 0);
+    assert(settings_.maximumNumberOfIterations > 0);
 
     // loop boundaries
     i_beg = discretization_->rhsIBegin();
@@ -24,19 +21,74 @@ PressureSolver::PressureSolver(std::shared_ptr<Discretization> discretization,
 
 void PressureSolver::setBoundaryValues()
 {
+    if (settings_.useNoSlipConditions){
+        // Horizontal (without corners)
+        for (int i = i_beg; i < i_end; i++)
+        {
+            discretization_->p(i, j_beg - 1) = discretization_->p(i, j_beg);
+            discretization_->p(i, j_end) = discretization_->p(i, j_end - 1);
+        }
 
-    // Horizontal (without corners)
-    for (int i = i_beg; i < i_end; i++)
-    {
-        discretization_->p(i, j_beg - 1) = discretization_->p(i, j_beg);
-        discretization_->p(i, j_end) = discretization_->p(i, j_end - 1);
-    }
+        // Vertical (without corners)
+        for (int j = j_beg - 1; j < j_end + 1; j++)
+        {
+            discretization_->p(i_beg - 1, j) = discretization_->p(i_beg, j);
+            discretization_->p(i_end, j) = discretization_->p(i_end - 1, j);
+        }
+    } else if (settings_.usePressureConditions){
+        
+        // Top
+        if (settings_.dirTopPressure){
+            for (int i = i_beg; i < i_end; i++)
+            {
+                discretization_->p(i, j_end) = 2 * settings_.dirTopPressure - discretization_->p(i, j_end - 1);
+            }
+        } else {
+            for (int i = i_beg; i < i_end; i++)
+            {
+                discretization_->p(i, j_end) = discretization_->p(i, j_end - 1);
+            }
+        }
 
-    // Vertical (without corners)
-    for (int j = j_beg - 1; j < j_end + 1; j++)
-    {
-        discretization_->p(i_beg - 1, j) = discretization_->p(i_beg, j);
-        discretization_->p(i_end, j) = discretization_->p(i_end - 1, j);
+        // Bottom
+        if (settings_.dirBotPressure){
+            for (int i = i_beg; i < i_end; i++)
+            {
+                discretization_->p(i, j_beg-1) = 2 * settings_.dirTopPressure - discretization_->p(i, j_beg);
+            }
+        } else {
+            for (int i = i_beg; i < i_end; i++)
+            {
+                discretization_->p(i, j_beg - 1) = discretization_->p(i, j_beg);
+            }
+        }
+
+        // Left
+        if (settings_.dirLeftPressure){
+            for (int j = j_beg - 1; j < j_end + 1; j++)
+            {
+                discretization_->p(i_beg - 1, j) = 2 * settings_.dirLeftPressure - discretization_->p(i_beg, j);
+
+            }
+        } else {
+            for (int j = j_beg - 1; j < j_end + 1; j++)
+            {
+                discretization_->p(i_beg - 1, j) = discretization_->p(i_beg, j);
+            }
+        }
+
+        // Right
+        if (settings_.dirRightPressure){
+            for (int j = j_beg - 1; j < j_end + 1; j++)
+            {
+                discretization_->p(i_end, j) = 2 * settings_.dirRightPressure - discretization_->p(i_end - 1, j);
+            }
+        } else {
+            for (int j = j_beg - 1; j < j_end + 1; j++)
+            {
+                discretization_->p(i_end, j) = discretization_->p(i_end - 1, j);
+            }
+        }
     }
 }
 

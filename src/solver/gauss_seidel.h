@@ -15,13 +15,11 @@ public:
     /**
      * @brief Constructor.
      *
-     * @param data instance of Discretization holding the needed field variables for rhs and p
-     * @param epsilon tolerance for the solver
-     * @param maximumNumberOfIterations maximum of iteration
+* @param seettings contains settings for solver
      */
     GaussSeidel(const std::shared_ptr<Discretization> &data,
-                double epsilon,
-                int maximumNumberOfIterations);
+                Settings settings);
+             
     /**
      * @brief override function that starts solver.
      *

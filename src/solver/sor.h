@@ -14,22 +14,14 @@ public:
     /**
      * @brief Constructor.
      *
-     * @param data instance of Discretization holding the needed field variables for rhs and p
-     * @param epsilon tolerance for the solver
-     * @param maximumNumberOfIterations maximum of iteration
-     * @param omega relaxation factor
+     * @param seettings contains settings for solver
      */
     SOR(const std::shared_ptr<Discretization> &data,
-        double epsilon,
-        int maximumNumberOfIterations,
-        double omega);
+        Settings settings);
 
     /**
      * @brief override function that starts solver.
      *
      */
     void solve() override;
-
-private:
-    double omega_; //!< relaxation factor for SOR
 };

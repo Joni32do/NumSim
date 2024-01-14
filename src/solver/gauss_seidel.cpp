@@ -1,8 +1,7 @@
 #include "gauss_seidel.h"
 
 GaussSeidel::GaussSeidel(const std::shared_ptr<Discretization> &data,
-                         double epsilon,
-                         int maximumNumberOfIterations) : PressureSolver(data, epsilon, maximumNumberOfIterations)
+                         Settings settings) : PressureSolver(data, settings)
 {
 }
 
@@ -11,7 +10,7 @@ void GaussSeidel::solve()
     setBoundaryValues();
 
     int n = 0;
-    double res = epsilon_ + 1;
+    double res = settings_.epsilon + 1;
 
     double d_fac = (dx2 * dy2) / (2 * (dx2 + dy2));
     do
@@ -31,7 +30,7 @@ void GaussSeidel::solve()
         // Compute the residual with new values
         res = calculateResiduum();
         n++;
-    } while (n < maximumNumberOfIterations_ && res > epsilon_);
+    } while (n < settings_.maximumNumberOfIterations && res > settings_.epsilon);
 
 #ifndef NDEBUG
     std::cout << "[Solver] Number of iterations: " << n << ", final residuum: " << res << std::endl;
