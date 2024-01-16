@@ -25,25 +25,23 @@ std::array<int, 2> Mask::size() const
 
 void Mask::updateMaskBoundaries()
 {
-  std::vector<int> data_temp = data_;
   for (int i = 0; i < size_[0]; i++)
   {
     for (int j = 0; j < size_[1]; j++)
     {
       int idx = i + j * size_[0];
-      bool isFluid = data_[idx] < 100;
+      bool isFluid = data_[idx] < FLUID_TYPE;
 
       if (isFluid)
       {
-        data_temp[idx] =  1 * (data_[idx - 1] < FLUID_TYPE) 
-                        + 2 * (data_[idx + size_[0]] < FLUID_TYPE)
-                        + 4 * (data_[idx + 1] < FLUID_TYPE)
-                        + 8 * (data_[idx - size_[0]] < FLUID_TYPE);
+        data_[idx] =  1 * (data_[idx - 1] < FLUID_TYPE) 
+                    + 2 * (data_[idx + size_[0]] < FLUID_TYPE)
+                    + 4 * (data_[idx + 1] < FLUID_TYPE)
+                    + 8 * (data_[idx - size_[0]] < FLUID_TYPE);
 
       }
     }
   }
-  data_ = data_temp;
 }
 
 
@@ -61,7 +59,7 @@ bool Mask::isFluid(int i, int j) const
 
 bool Mask::isObstacle(int i, int j) const
     {
-        return (data_[i + j * size_[0]] > OBSTACLE);
+        return (data_[i + j * size_[0]] >= OBSTACLE);
     }
 
 bool Mask::isFluidBorder(int i, int j) const
