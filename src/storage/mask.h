@@ -2,10 +2,14 @@
 
 #include "array2D.h"
 
+#include <iostream>
+#include <fstream>
+
 //TODO: it is weird but if we would use `char` instead of int, we would use less memory
 
 enum CellType{
-    FLUID = 0,
+    DROPLET = 0,
+    FLUID = 15,
 
     FLUID_SINGLE_LEFT = 1,
     FLUID_SINGLE_TOP = 2,
@@ -20,9 +24,9 @@ enum CellType{
     FLUID_COLUMN_HORIZONTAL = 5,
     FLUID_COLUMN_VERTICAL = 10,
 
-    FLUID_BORDER_LEFT = 15,
-    FLUID_BORDER_TOP = 14,
-    FLUID_BORDER_RIGHT = 12,
+    FLUID_BORDER_LEFT = 14,
+    FLUID_BORDER_TOP = 13,
+    FLUID_BORDER_RIGHT = 11,
     FLUID_BORDER_BOTTOM = 7,
 
     FLUID_TYPE = 50,
@@ -49,6 +53,7 @@ class Mask{
      * @param size size of array in x and y direction
      */
     Mask(std::array<int, 2> size);
+    
 
     /**
      * @brief set array value.
@@ -88,9 +93,10 @@ class Mask{
      * 
      * @param i index in x direction
      * @param j index in y direction
+     * 
+     * If i and j are out of bond returns false
      */
     bool isFluid(int i, int j) const;
-
 
     /**
      * @brief Returns a boolean indicating whether the cell at (i,j) is an obstacle or not
@@ -113,13 +119,36 @@ class Mask{
      * 
      * @param i index in x direction
      * @param j index in y direction
+     * 
+     * If i and j are out of bond returns false
      */
     bool isAir(int i, int j) const;
 
+    /**
+     * @brief Returns a boolean indicating whether the cell at (i,j) is not a air cell or not
+     * 
+     * @param i index in x direction
+     * @param j index in y direction
+     * 
+     * If i and j are out of bond returns true
+     */
+    bool isNotAir(int i, int j) const;
+
+
+
+
+
+    // void placeRectangle()
+
+
+    void printMask() const;
+
+    // void createBitmap() const;
 
 
 
 protected:
     const std::array<int, 2> size_; //!< size of array in x and y direction
     std::vector<int> data_;      //!< storage array values, in row-major order
+    std::vector<int> boundary_list;  //!< stores the indices of the boundary cells
 };

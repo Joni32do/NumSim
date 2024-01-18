@@ -1,6 +1,7 @@
 #pragma once
 #include "../storage/field_variable.h"
 #include "../discretization/discretization.h"
+#include "../discretization/boundary.h"
 #include <memory>
 
 /**
@@ -53,6 +54,7 @@ protected:
     int j_end; //!< end   of loop for rhs in y direction
 
     std::shared_ptr<Discretization> discretization_; //!< object holding the needed field variables for rhs and p
+    std::shared_ptr<Boundary> boundary_;             //!< object managing boundary for obstacle and surface tension
 
     double epsilon_; //!< tolerance for the solver
 
