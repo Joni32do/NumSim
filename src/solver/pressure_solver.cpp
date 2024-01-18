@@ -24,9 +24,7 @@ PressureSolver::PressureSolver(std::shared_ptr<Discretization> discretization,
 
 void PressureSolver::setBoundaryValues()
 {
-    boundary_->updateBoundaryPressure();
-
-
+    // discretization_->boundary()->updateBoundaryPressure();
 }
 
 double PressureSolver::calculateResiduum()
