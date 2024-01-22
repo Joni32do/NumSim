@@ -6,6 +6,7 @@
 #include <cmath>
 
 #include <iostream>
+#include <iomanip> 
 #include <fstream>
 
 
@@ -59,6 +60,11 @@ enum CellType{
     OBSTACLE_CORNER_TOP_LEFT = 121,
     OBSTACLE_CORNER_TOP_RIGHT = 122,
     OBSTACLE_CORNER_BOTTOM_RIGHT = 123,
+
+    DOMAIN_LEFT = 130,
+    DOMAIN_TOP = 131,
+    DOMAIN_RIGHT = 132,
+    DOMAIN_BOTTOM = 133,
 };
     
 

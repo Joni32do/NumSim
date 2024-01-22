@@ -8,13 +8,13 @@ Mask::Mask(std::array<int, 2> size) : size_({size[0]+2, size[1]+2})
   // Set domain boundaries to obstacle
   for (int i = 0; i < size_[0]; i++)
   {
-    data_[i] = OBSTACLE_BORDER_TOP; // is bottom therefore the top of an obstacle
-    data_[i + (size_[1] - 1) * size_[0]] = OBSTACLE_BORDER_BOTTOM;
+    data_[i] = DOMAIN_BOTTOM;
+    data_[i + (size_[1] - 1) * size_[0]] = DOMAIN_TOP;
   }
   for (int j = 0; j < size_[1]; j++)
   {
-    data_[j * size_[0]] = OBSTACLE_BORDER_RIGHT;
-    data_[(size_[0] - 1) + j * size_[0]] = OBSTACLE_BORDER_LEFT;
+    data_[j * size_[0]] = DOMAIN_LEFT;
+    data_[(size_[0] - 1) + j * size_[0]] = DOMAIN_RIGHT;
   }
 }
 
@@ -74,9 +74,7 @@ bool Mask::isObstacle(int i, int j) const
 
 bool Mask::isFluidBorder(int i, int j) const
     {
-        int val = data_[i + j * size_[0]];
-        return (val >= FLUID_BORDER_LEFT && 
-                val <= FLUID_TYPE);
+        return data_[i + j * size_[0]] < FLUID;
     }
 
 bool Mask::isBorder(int i, int j) const
@@ -139,7 +137,7 @@ void Mask::makeRectangularObstacle(std::array<double, 2> obstaclePosition_ , std
 void Mask::printMask() const{
     for (int j = size_[1] - 1; j >= 0; j--){
         for (int i = 0; i < size_[0]; i++){
-            std::cout << data_[i + j * size_[0]] << " ";
+            std::cout << std::setw(3) << std::setfill('0') << data_[i + j * size_[0]] << " ";
         }
         std::cout << std::endl;
     }

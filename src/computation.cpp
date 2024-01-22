@@ -49,8 +49,6 @@ void Computation::initialize(int argc, char *argv[])
                                                         boundary_);
     }
 
-    std::cout << "testfasldfj" << std::endl;
-    boundary_->setVelocityBoundaryValues();
 
     outputWriterParaview_ = std::make_unique<OutputWriterParaview>(discretization_);
     outputWriterText_ = std::make_unique<OutputWriterText>(discretization_);
