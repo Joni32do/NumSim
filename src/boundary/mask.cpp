@@ -4,7 +4,7 @@ Mask::Mask(std::array<int, 2> size) : size_({size[0]+2, size[1]+2})
 {
   assert(size[0] > 0 && size[1] > 0);
   data_.resize(size_[0] * size_[1], FLUID);
-    
+
   // Set domain boundaries to obstacle
   for (int i = 0; i < size_[0]; i++)
   {
@@ -98,8 +98,43 @@ bool Mask::isNotAir(int i, int j) const
         return (data_[i + j * size_[0]] != AIR);
       }
     }
-///////////////////////////////////////////////////
-// Temporary Print Statements
+
+// ************************
+// P R I M I T I V E S
+// ************************
+
+
+void Mask::makeRectangularObstacle(std::array<double, 2> obstaclePosition_ , std::array<double, 2> obstacleSize_){
+  // only works for global size {1.0; 1.0}
+    int i_beg = static_cast<int>(std::floor(obstaclePosition_[0] * size_[0]));
+    int i_end = static_cast<int>(std::ceil(obstaclePosition_[0] + obstacleSize_[0]) * size_[0]);
+    int j_beg = static_cast<int>(std::floor(obstaclePosition_[1] * size_[1]));
+    int j_end = static_cast<int>(std::ceil(obstaclePosition_[1] + obstacleSize_[1]) * size_[1]);
+    // interior obstacle
+    for (int i = i_beg + 1; i < i_end - 1; i++){
+        for (int j = j_beg + 1; j < j_end - 1; j++){
+            data_[i + j * size_[0]] = OBSTACLE;
+        }
+    }
+    // boundary obstacle
+    for (int i = i_beg; i < i_end; i++){
+        data_[i + j_beg * size_[0]] = OBSTACLE_BORDER_BOTTOM;
+        data_[i + (j_end - 1) * size_[0]] = OBSTACLE_BORDER_TOP;
+    }
+    for (int j = j_beg; j < j_end; j++){
+        data_[i_beg + j * size_[0]] = OBSTACLE_BORDER_LEFT;
+        data_[(i_end - 1) + j * size_[0]] = OBSTACLE_BORDER_RIGHT;
+    }  
+};
+
+
+
+
+
+
+// ******************************
+//  P R I N T I N G
+// ******************************
 
 void Mask::printMask() const{
     for (int j = size_[1] - 1; j >= 0; j--){

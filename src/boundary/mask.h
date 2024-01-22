@@ -3,6 +3,7 @@
 #include <vector>
 #include <array>
 #include <cassert>
+#include <cmath>
 
 #include <iostream>
 #include <fstream>
@@ -150,10 +151,28 @@ enum CellType{
     bool isNotAir(int i, int j) const;
 
 
+    // ******************************
+    //  P R I M I T I V E S
+    // ******************************
+
+    /**
+     * @brief creates an obstacle at the given position
+     * 
+     * assumes 
+     *   * that the obstacle is within the boundary and sets the boundaries of the obstacle to its
+     *     according value
+     *   * 
+     * 
+     * @param obstaclePosition_ 
+     * @param obstacleSize_ 
+     */
+    void makeRectangularObstacle(std::array<double, 2> obstaclePosition_ , std::array<double, 2> obstacleSize_);
 
 
 
-    // void placeRectangle()
+    // ******************************
+    //  P R I N T I N G
+    // ******************************
 
 
     void printMask() const;

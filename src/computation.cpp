@@ -24,9 +24,14 @@ void Computation::initialize(int argc, char *argv[])
     }
     
     // create boundary
-    std::shared_ptr<Mask> mask_ = std::make_shared<Mask>(settings_.nCells);
-    std::shared_ptr<Boundary> boundary_ = std::make_shared<Boundary>(mask_, discretization_);
+
+    // Obstacle from Primitives: Can be done inside boundary, since I give it the settings file
+    mask_ = std::make_shared<Mask>(settings_.nCells);
+    // std::array<double, 2> obstaclePosition_ = {0.4, 0.4}; //settings.obstaclePosition;
+    // std::array<double, 2> obstacleSize_ = {0.2, 0.2}; //settings.obstacleSize;
+    // mask_->makeRectangularObstacle(obstaclePosition_ , obstacleSize_);
     
+    boundary_ = std::make_shared<Boundary>(mask_, discretization_, settings_);
 
     if (settings_.pressureSolver == "SOR")
     {
@@ -43,6 +48,9 @@ void Computation::initialize(int argc, char *argv[])
                                                         settings_.maximumNumberOfIterations,
                                                         boundary_);
     }
+
+    std::cout << "testfasldfj" << std::endl;
+    boundary_->setVelocityBoundaryValues();
 
     outputWriterParaview_ = std::make_unique<OutputWriterParaview>(discretization_);
     outputWriterText_ = std::make_unique<OutputWriterText>(discretization_);
@@ -74,46 +82,8 @@ void Computation::runSimulation()
 
 void Computation::applyBoundaryValues()
 {
-
     // set Dirichlet BC
-
-    // BV for u
-    int i_beg = discretization_->uIBegin();
-    int i_end = discretization_->uIEnd();
-    int j_beg = discretization_->uJBegin();
-    int j_end = discretization_->uJEnd();
-
-    // Vertical
-    for (int j = j_beg; j < j_end; j++)
-    {
-        discretization_->u(i_beg, j) = settings_.dirichletBcLeft[0];
-        discretization_->u(i_end - 1, j) = settings_.dirichletBcRight[0];
-    }
-    // Horizontal (leave out corners)
-    for (int i = i_beg + 1; i < i_end - 1; i++)
-    {
-        discretization_->u(i, j_beg) = 2 * settings_.dirichletBcBottom[0] - discretization_->u(i, j_beg + 1);
-        discretization_->u(i, j_end - 1) = 2 * settings_.dirichletBcTop[0] - discretization_->u(i, j_end - 2);
-    }
-
-    // BV for v
-    i_beg = discretization_->vIBegin();
-    i_end = discretization_->vIEnd();
-    j_beg = discretization_->vJBegin();
-    j_end = discretization_->vJEnd();
-
-    // Vertical
-    for (int j = j_beg; j < j_end; j++)
-    {
-        discretization_->v(i_beg, j) = 2 * settings_.dirichletBcLeft[1] - discretization_->v(i_beg + 1, j);
-        discretization_->v(i_end - 1, j) = 2 * settings_.dirichletBcRight[1] - discretization_->v(i_end - 2, j);
-    }
-    // Horizontal (leave out corners)
-    for (int i = i_beg + 1; i < i_end - 1; i++)
-    {
-        discretization_->v(i, j_beg) = settings_.dirichletBcBottom[1];
-        discretization_->v(i, j_end - 1) = settings_.dirichletBcTop[1];
-    }
+    boundary_->setVelocityBoundaryValues();
 }
 
 void Computation::computeTimeStepWidth(double currentTime)

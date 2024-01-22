@@ -76,6 +76,8 @@ private:
     Settings settings_;
     std::shared_ptr<Discretization> discretization_;             //!< discretization instance
     std::shared_ptr<Boundary> boundary_;                         //!< boundary instance
+    std::shared_ptr<Mask> mask_;
+
     std::unique_ptr<PressureSolver> pressureSolver_;             //!< pressureSolver instance
     std::unique_ptr<OutputWriterParaview> outputWriterParaview_; //!< outputWriterParaview instance
     std::unique_ptr<OutputWriterText> outputWriterText_;         //!< outputWriterText instance

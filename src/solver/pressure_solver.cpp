@@ -46,7 +46,7 @@ double PressureSolver::calculateResiduum()
     {
         for (int j = j_beg; j < j_end; j++)
         {
-            // if (mask_->isFluid(i, j))
+            // if (mask_->isNotFluid(i, j))
             // {
             //     continue;
             // }

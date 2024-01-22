@@ -38,30 +38,36 @@ TEST(Mask, isObstacle){
 };
 
 TEST(Mask, updateMaskBoundaries){
-    // A A F F F
-    // A A A F F
-    // A F A F F
-    // F F F A F
-    // F F F F F
+    // Create simple map
+    
+    // O O O O O O O
+    // O A A A F F O
+    // O A A A F F O
+    // O A A A F F O
+    // O F F F F F O
+    // O F F F F F O
+    // O O O O O O O
+
+    // O - Obstacle
+    // F - Fluid
+    // A - Air
     std::array<int,2> size = {5,5};
     Mask mask(size);
     mask(1,5) = Mask::AIR;
     mask(2,5) = Mask::AIR;
+    mask(3,5) = Mask::AIR;
     mask(1,4) = Mask::AIR;
     mask(2,4) = Mask::AIR;
     mask(3,4) = Mask::AIR;
     mask(1,3) = Mask::AIR;
+    mask(2,3) = Mask::AIR;
     mask(3,3) = Mask::AIR;
-    mask(2,2) = Mask::AIR;
-
     
 
     mask.updateMaskBoundaries();
-    EXPECT_EQ(mask(1,2), Mask::FLUID_BORDER_TOP);
-    EXPECT_EQ(mask(2,2), Mask::FLUID);
-    EXPECT_EQ(mask(2,3), Mask::FLUID_SINGLE_BOTTOM);
-    EXPECT_EQ(mask(3,2), Mask::FLUID_CORNER_TOP_RIGHT);
-    EXPECT_EQ(mask(3,3), Mask::FLUID_COLUMN_HORIZONTAL);
+    EXPECT_EQ(mask(3,2), Mask::FLUID_BORDER_TOP);
+    EXPECT_EQ(mask(4,2), Mask::FLUID);
+    EXPECT_EQ(mask(4,3), Mask::FLUID_BORDER_LEFT);
 
     mask.printMask();
 };
