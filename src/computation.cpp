@@ -22,19 +22,26 @@ void Computation::initialize(int argc, char *argv[])
     {
         discretization_ = std::make_shared<CentralDifferences>(settings_.nCells, meshWidth_);
     }
+    
+    // create boundary
+    std::shared_ptr<Mask> mask_ = std::make_shared<Mask>(settings_.nCells);
+    std::shared_ptr<Boundary> boundary_ = std::make_shared<Boundary>(mask_, discretization_);
+    
 
     if (settings_.pressureSolver == "SOR")
     {
         pressureSolver_ = std::make_unique<SOR>(discretization_,
                                                 settings_.epsilon,
                                                 settings_.maximumNumberOfIterations,
+                                                boundary_,
                                                 settings_.omega);
     }
     else
     {
         pressureSolver_ = std::make_unique<GaussSeidel>(discretization_,
                                                         settings_.epsilon,
-                                                        settings_.maximumNumberOfIterations);
+                                                        settings_.maximumNumberOfIterations,
+                                                        boundary_);
     }
 
     outputWriterParaview_ = std::make_unique<OutputWriterParaview>(discretization_);

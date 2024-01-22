@@ -4,7 +4,8 @@
 SOR::SOR(const std::shared_ptr<Discretization> &data,
          double epsilon,
          int maximumNumberOfIterations,
-         double omega) : PressureSolver(data, epsilon, maximumNumberOfIterations), omega_(omega)
+         std::shared_ptr<Boundary> boundary,
+         double omega) : PressureSolver(data, epsilon, maximumNumberOfIterations, boundary), omega_(omega)
 {
 }
 

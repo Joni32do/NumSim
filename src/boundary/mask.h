@@ -1,9 +1,24 @@
 #pragma once
 
-#include "array2D.h"
+#include <vector>
+#include <array>
+#include <cassert>
 
 #include <iostream>
 #include <fstream>
+
+
+
+class Mask{
+    public:
+    /**
+     * @brief constructor.
+     *
+     * @param size size of array in x and y direction
+     */
+    Mask(std::array<int, 2> size);
+
+
 
 //TODO: it is weird but if we would use `char` instead of int, we would use less memory
 
@@ -44,15 +59,6 @@ enum CellType{
     OBSTACLE_CORNER_TOP_RIGHT = 122,
     OBSTACLE_CORNER_BOTTOM_RIGHT = 123,
 };
-
-class Mask{
-    public:
-    /**
-     * @brief constructor.
-     *
-     * @param size size of array in x and y direction
-     */
-    Mask(std::array<int, 2> size);
     
 
     /**
@@ -89,7 +95,7 @@ class Mask{
 
 
     /**
-     * @brief Returns a boolean indicating whether the cell at (i,j) is fluid or not
+     * @brief Cell at (i,j) is fluid or not
      * 
      * @param i index in x direction
      * @param j index in y direction
@@ -99,7 +105,7 @@ class Mask{
     bool isFluid(int i, int j) const;
 
     /**
-     * @brief Returns a boolean indicating whether the cell at (i,j) is an obstacle or not
+     * @brief Cell at (i,j) is an obstacle or not
      * 
      * @param i index in x direction
      * @param j index in y direction
@@ -107,12 +113,21 @@ class Mask{
     bool isObstacle(int i, int j) const;
 
     /**
-     * @brief Returns a boolean indicating whether the cell at (i,j) is a border cell or not
+     * @brief Cell at (i,j) is a fluid border cell or not
      * 
      * @param i index in x direction
      * @param j index in y direction
      */
     bool isFluidBorder(int i, int j) const;
+
+    /**
+     * @brief Cell at (i,j) is border cell (fluid or obstacle) or not
+     * 
+     * @param i index in x direction
+     * @param j index in y direction
+     */
+    bool isBorder(int i, int j) const;
+    
 
     /**
      * @brief Returns a boolean indicating whether the cell at (i,j) is a air cell or not

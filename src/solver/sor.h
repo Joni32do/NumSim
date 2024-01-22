@@ -22,6 +22,7 @@ public:
     SOR(const std::shared_ptr<Discretization> &data,
         double epsilon,
         int maximumNumberOfIterations,
+        std::shared_ptr<Boundary> boundary,
         double omega);
 
     /**

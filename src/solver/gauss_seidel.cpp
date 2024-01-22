@@ -2,7 +2,8 @@
 
 GaussSeidel::GaussSeidel(const std::shared_ptr<Discretization> &data,
                          double epsilon,
-                         int maximumNumberOfIterations) : PressureSolver(data, epsilon, maximumNumberOfIterations)
+                         int maximumNumberOfIterations,
+                         std::shared_ptr<Boundary> boundary) : PressureSolver(data, epsilon, maximumNumberOfIterations, boundary)
 {
 }
 

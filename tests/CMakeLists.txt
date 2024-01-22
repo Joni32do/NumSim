@@ -18,7 +18,7 @@ add_executable(run_tests
     test_central_differences.cpp
     ../src/storage/array2D.cpp
     ../src/storage/field_variable.cpp
-    ../src/storage/mask.cpp
+    ../src/boundary/mask.cpp
     ../src/discretization/staggered_grid.cpp
     ../src/discretization/discretization.cpp
     ../src/discretization/donor_cell.cpp

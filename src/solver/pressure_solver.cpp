@@ -1,12 +1,15 @@
 #include "pressure_solver.h"
-#include <math.h>
-#include <iostream>
+
+
 
 PressureSolver::PressureSolver(std::shared_ptr<Discretization> discretization,
                                double epsilon,
-                               int maximumNumberOfIterations) : discretization_(discretization),
-                                                                epsilon_(epsilon),
-                                                                maximumNumberOfIterations_(maximumNumberOfIterations)
+                               int maximumNumberOfIterations,
+                               std::shared_ptr<Boundary> boundary) : 
+                                                discretization_(discretization),
+                                                epsilon_(epsilon),
+                                                maximumNumberOfIterations_(maximumNumberOfIterations),
+                                                boundary_(boundary)
 {
     assert(epsilon > 0);
     assert(maximumNumberOfIterations > 0);
@@ -24,7 +27,7 @@ PressureSolver::PressureSolver(std::shared_ptr<Discretization> discretization,
 
 void PressureSolver::setBoundaryValues()
 {
-    // discretization_->boundary()->updateBoundaryPressure();
+    boundary_->setPressureBoundaryValues();
 }
 
 double PressureSolver::calculateResiduum()

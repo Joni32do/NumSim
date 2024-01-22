@@ -1,18 +1,20 @@
 #include "mask.h"
 
-Mask::Mask(std::array<int, 2> size) : size_(size)
+Mask::Mask(std::array<int, 2> size) : size_({size[0]+2, size[1]+2})
 {
   assert(size[0] > 0 && size[1] > 0);
   data_.resize(size_[0] * size_[1], FLUID);
+    
+  // Set domain boundaries to obstacle
   for (int i = 0; i < size_[0]; i++)
   {
-    data_[i] = OBSTACLE;
-    data_[i + (size_[1] - 1) * size_[0]] = OBSTACLE;
+    data_[i] = OBSTACLE_BORDER_TOP; // is bottom therefore the top of an obstacle
+    data_[i + (size_[1] - 1) * size_[0]] = OBSTACLE_BORDER_BOTTOM;
   }
   for (int j = 0; j < size_[1]; j++)
   {
-    data_[j * size_[0]] = OBSTACLE;
-    data_[(size_[0] - 1) + j * size_[0]] = OBSTACLE;
+    data_[j * size_[0]] = OBSTACLE_BORDER_RIGHT;
+    data_[(size_[0] - 1) + j * size_[0]] = OBSTACLE_BORDER_LEFT;
   }
 }
 
@@ -75,6 +77,11 @@ bool Mask::isFluidBorder(int i, int j) const
         int val = data_[i + j * size_[0]];
         return (val >= FLUID_BORDER_LEFT && 
                 val <= FLUID_TYPE);
+    }
+
+bool Mask::isBorder(int i, int j) const
+    {
+        return isFluidBorder(i, j) || isObstacle(i, j);
     }
 
 bool Mask::isAir(int i, int j) const
