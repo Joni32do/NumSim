@@ -38,24 +38,35 @@ void Boundary::setPressureBoundaryValues(){
     }
 }
 
-
+// its important that first the velocities are updated
 void Boundary::setPressureBoundarySurface(int i, int j){
-    //TODO: Implement
+    // switch((*mask_)(i, j)){
+    //     case Mask::FLUID_BORDER_LEFT:
+    //         break;
+    //     case Mask::FLUID_BORDER_TOP:
+    //         break;
+    //     case Mask::FLUID_BORDER_RIGHT:
+    //         discretization_->p(i, j) = 2/settings_.re * ( discretization_->u(i, j) - discretization_->u(i - 1, j))/discretization_->dx();
+    //         break;
+    //     case Mask::FLUID_BORDER_BOTTOM:
+    //         discretization_->p(i, j) = 2/settings_.re * ( discretization_->v(i, j) - discretization_->v(i, j - 1))/discretization_->dy();
+    //         break;
+    // }
 }
 
 void Boundary::setPressureBoundaryObstacle(int i, int j){
     switch((*mask_)(i, j)){
-        case Mask::OBSTACLE_BORDER_LEFT:
-            discretization_->p(i, j) = discretization_->p(i - 1, j);
-            break;
-        case Mask::OBSTACLE_BORDER_TOP:
-            discretization_->p(i, j) = discretization_->p(i, j + 1);
-            break;
-        case Mask::OBSTACLE_BORDER_RIGHT:
+        case Mask::DOMAIN_LEFT:
             discretization_->p(i, j) = discretization_->p(i + 1, j);
             break;
-        case Mask::OBSTACLE_BORDER_BOTTOM:
+        case Mask::DOMAIN_TOP:
             discretization_->p(i, j) = discretization_->p(i, j - 1);
+            break;
+        case Mask::DOMAIN_RIGHT:
+            discretization_->p(i, j) = discretization_->p(i - 1, j);
+            break;
+        case Mask::DOMAIN_BOTTOM:
+            discretization_->p(i, j) = discretization_->p(i, j + 1);
             break;
     }
 
@@ -101,7 +112,7 @@ void Boundary::setVelocityBoundaryObstacleU(int i, int j){
             discretization_->u(i, j) = 2 * settings_.dirichletBcTop[0] - discretization_->u(i, j - 1);
             break;
         case Mask::DOMAIN_RIGHT:
-            discretization_->u(i - 1, j) = settings_.dirichletBcRight[0];
+            discretization_->u(i - 1, j) = settings_.dirichletBcRight[0]; // index shift for u in x direction
             break;
         case Mask::DOMAIN_BOTTOM:
             discretization_->u(i, j) = 2 * settings_.dirichletBcBottom[0] - discretization_->u(i, j + 1);
@@ -136,7 +147,7 @@ void Boundary::setVelocityBoundaryObstacleV(int i, int j){
             discretization_->v(i, j) = 2 * settings_.dirichletBcLeft[1] - discretization_->v(i + 1, j);
             break;
         case Mask::DOMAIN_TOP:
-            discretization_->v(i, j - 1) = settings_.dirichletBcTop[1];
+            discretization_->v(i, j - 1) = settings_.dirichletBcTop[1]; // index shift for v in y direction
             break;
         case Mask::DOMAIN_RIGHT:
             discretization_->v(i, j) = 2 * settings_.dirichletBcRight[1] - discretization_->v(i - 1, j);
