@@ -12,13 +12,16 @@ Boundary::Boundary(std::shared_ptr<Mask> mask,
             if (mask_->isBorder(i, j))
             {
                 boundaryCells_.push_back(i + j * mask_->size()[0]);
-                std::cout << "Boundary cell: " << i << ", " << j << std::endl;
             }
         }
     }
-    mask_->printMask();
-    
+    #ifndef NDEBUG
+        mask_->printMask();
+    #endif
+}
 
+int Boundary::getNumberOfBoundaryCells() const {
+    return boundaryCells_.size();
 }
 
 void Boundary::setPressureBoundaryValues(){
@@ -69,7 +72,6 @@ void Boundary::setPressureBoundaryObstacle(int i, int j){
             discretization_->p(i, j) = discretization_->p(i, j + 1);
             break;
     }
-
 }
 
 void Boundary::setVelocityBoundaryValues(){

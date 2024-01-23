@@ -137,7 +137,7 @@ enum CellType{
     
 
     /**
-     * @brief Returns a boolean indicating whether the cell at (i,j) is a air cell or not
+     * @brief Cell at (i,j) is a air cell or not
      * 
      * @param i index in x direction
      * @param j index in y direction
@@ -147,7 +147,7 @@ enum CellType{
     bool isAir(int i, int j) const;
 
     /**
-     * @brief Returns a boolean indicating whether the cell at (i,j) is not a air cell or not
+     * @brief Cell at (i,j) is not a air cell or not
      * 
      * @param i index in x direction
      * @param j index in y direction
@@ -155,6 +155,15 @@ enum CellType{
      * If i and j are out of bond returns true
      */
     bool isNotAir(int i, int j) const;
+
+    /**
+     * @brief number of fluid cells
+     * 
+     * not efficient but is only used once in the creation of the fluid tracer
+     * 
+     */
+    int getNumberOfFluidCells() const;
+
 
 
     // ******************************

@@ -97,6 +97,22 @@ bool Mask::isNotAir(int i, int j) const
       }
     }
 
+int Mask::getNumberOfFluidCells() const
+{
+  int numFluidCells = 0;
+  for (int i = 0; i < size_[0]; i++)
+  {
+    for (int j = 0; j < size_[1]; j++)
+    {
+      if (isFluid(i, j))
+      {
+        numFluidCells++;
+      }
+    }
+  }
+  return numFluidCells;
+}
+
 // ************************
 // P R I M I T I V E S
 // ************************
