@@ -4,7 +4,8 @@
 SOR::SOR(const std::shared_ptr<Discretization> &data,
          double epsilon,
          int maximumNumberOfIterations,
-         double omega) : PressureSolver(data, epsilon, maximumNumberOfIterations), omega_(omega)
+         std::shared_ptr<Boundary> boundary,
+         double omega) : PressureSolver(data, epsilon, maximumNumberOfIterations, boundary), omega_(omega)
 {
 }
 
@@ -22,6 +23,9 @@ void SOR::solve()
         {
             for (int j = j_beg; j < j_end; j++)
             {
+                // if (boundary_->isBoundary(i, j)){
+                //     continue;
+                // }
 
                 p_x = 1 / dx2 * (discretization_->p(i + 1, j) + discretization_->p(i - 1, j));
                 p_y = 1 / dy2 * (discretization_->p(i, j + 1) + discretization_->p(i, j - 1));

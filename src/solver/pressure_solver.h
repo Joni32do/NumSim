@@ -1,7 +1,13 @@
 #pragma once
+
+#include <math.h>
+#include <iostream>
+#include <memory>
+
 #include "../storage/field_variable.h"
 #include "../discretization/discretization.h"
-#include <memory>
+#include "../boundary/boundary.h"
+
 
 /**
  * @class PressureSolver
@@ -20,11 +26,13 @@ public:
      * @param discretization instance of Discretization holding the needed field variables for rhs and p
      * @param epsilon tolerance for the solver
      * @param maximumNumberOfIterations maximum of iteration
+     * @param boundary object managing boundary for obstacle and surface tension
      */
     PressureSolver(std::shared_ptr<Discretization> discretization,
                    double epsilon,
-                   int maximumNumberOfIterations);
-
+                   int maximumNumberOfIterations,
+                   std::shared_ptr<Boundary> boundary);
+ 
     /**
      * @brief virtual function that starts solver.
      *
@@ -53,6 +61,7 @@ protected:
     int j_end; //!< end   of loop for rhs in y direction
 
     std::shared_ptr<Discretization> discretization_; //!< object holding the needed field variables for rhs and p
+    std::shared_ptr<Boundary> boundary_;             //!< object managing boundary for obstacle and surface tension
 
     double epsilon_; //!< tolerance for the solver
 

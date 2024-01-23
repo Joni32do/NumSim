@@ -16,21 +16,9 @@ else
 fi
 
 make install -j4
-# ./numsim ../input/settings_v3.txt
+./numsim ../input/settings.txt
 
-# run different resolution
-# ./numsim ../input/different_resolutions/settings_01.txt
-# ./numsim ../input/different_resolutions/settings_02.txt
-# ./numsim ../input/different_resolutions/settings_03.txt
-# ./numsim ../input/different_resolutions/settings_04.txt
-# ./numsim ../input/different_resolutions/settings_05.txt
-# ./numsim ../input/different_resolutions/settings_06.txt
 
-# run different viscosity
-# ./numsim ../input/different_re/100.txt
-# ./numsim ../input/different_re/500.txt
-# ./numsim ../input/different_re/2000.txt
-# ./numsim ../input/different_re/10000.txt
 
 cd ..
 
@@ -47,6 +35,6 @@ cd ..
 # cd ..
 
 # run tests
-# build/tests/run_tests
+build/tests/run_tests
 
-zip -r submission.zip src/ CMakeLists.txt
+# zip -r submission.zip src/ CMakeLists.txt

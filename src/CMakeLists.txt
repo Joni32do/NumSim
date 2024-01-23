@@ -21,6 +21,9 @@ add_executable(${PROJECT_NAME}
 
    storage/array2D.cpp
    storage/field_variable.cpp
+   
+   boundary/mask.cpp
+   boundary/boundary.cpp
 
    solver/pressure_solver.cpp
    solver/gauss_seidel.cpp
