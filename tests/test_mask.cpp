@@ -11,7 +11,7 @@ TEST(Mask, ConstructorInitAllInnerCellsAsFluid){
     }
 };
 
-TEST(Mask, SetAndGet){
+TEST(Mask, SetOriginToAir){
     std::array<int,2> size = {3,3};
     Mask mask(size);
     mask(0,0) = Mask::AIR;

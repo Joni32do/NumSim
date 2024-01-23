@@ -19,11 +19,16 @@ class FluidTracer {
 
         int getNumberOfParticles() const;
 
+        int val2CellX(double xVal);
+        int val2CellY(double yVal);
+
+        std::array<double, 2> getParticlePosition(int i) const;
 
 
     private:
 
         void initializeFluidCell(int i, int j, int numParticlesPerCell);
+
 
         int numParticles_;
         int numParticlesPerCell_; // <! is usually because of ceil larger then numParticlesPerCell> 
