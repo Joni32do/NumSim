@@ -22,10 +22,9 @@ FluidTracer::FluidTracer(int numParticlesPerCell,
     // Resize for speed up
     x_.resize(numParticles_);
     y_.resize(numParticles_);
-
-
-    for (int i = 0; i < discretization->nCells()[0]; i++) {
-        for (int j = 0; j < discretization->nCells()[1]; j++) {
+    ;
+    for (int i = 1; i < mask_->size()[0] - 1; i++) {
+        for (int j = 1; j < mask_->size()[1] - 1; j++) {
             if (mask_->isFluid(i, j)) {
                 initializeFluidCell(i, j, numParticlesPerCell);
             }
@@ -35,10 +34,13 @@ FluidTracer::FluidTracer(int numParticlesPerCell,
 
 void FluidTracer::initializeFluidCell(int i, int j, int numParticlesPerCell) {
     int idx = 0;
-    for (int k = 0; k < n_x; k++) {
-        for (int l = 0; l < n_y; l++) {
-            x_[idx] = (k + 0.5) * discretization_->dx() / n_x;
-            y_[idx] = (l + 0.5) * discretization_->dy() / n_y;
+    double cell_x = discretization_->dx() * (i - 1);
+    double cell_y = discretization_->dy() * (j - 1);
+    // fills in from bottom left to top right
+    for (int l = 0; l < n_y; l++) {
+        for (int k = 0; k < n_x; k++) {
+            x_[idx] = cell_x + (0.5 + (k * discretization_->dx())) / n_x;
+            y_[idx] = cell_y + (0.5 + (l * discretization_->dy())) / n_y;
             idx++;
         }
     }
