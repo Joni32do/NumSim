@@ -71,3 +71,42 @@ TEST(Mask, updateMaskBoundaries){
 
     mask.printMask();
 };
+
+TEST(Mask, makeSmallRectangularObstacleCenter){
+    // Create simple map
+    
+    // 130 131 131 131 131 131 131 131 131 131 131 132 
+    // 130 015 015 015 015 015 015 015 015 015 015 132 
+    // 130 015 015 015 015 015 015 015 015 015 015 132 
+    // 130 015 015 015 015 015 015 015 015 015 015 132 
+    // 130 015 015 015 015 015 015 015 015 015 015 132 
+    // 130 015 015 015 015 121 122 015 015 015 015 132 
+    // 130 015 015 015 015 120 123 015 015 015 015 132 
+    // 130 015 015 015 015 015 015 015 015 015 015 132 
+    // 130 015 015 015 015 015 015 015 015 015 015 132 
+    // 130 015 015 015 015 015 015 015 015 015 015 132 
+    // 130 015 015 015 015 015 015 015 015 015 015 132 
+    // 130 133 133 133 133 133 133 133 133 133 133 132
+
+    // O - Obstacle
+    // F - Fluid
+    // A - Air
+    std::array<int,2> size = {10,10};
+    Mask mask(size);
+    // std::array<double, 2> meshWidth = {1.0, 1.0};
+    // std::array<double, 2> physicalSize = {1.0, 1.0};
+
+    std::array<double, 2> obstaclePosition = {0.45, 0.45};
+    std::array<double, 2> obstacleSize = {0.1, 0.1};
+
+    mask.makeRectangularObstacle(obstaclePosition, obstacleSize);
+    
+    EXPECT_EQ(mask(5,5), Mask::OBSTACLE_CORNER_BOTTOM_LEFT);
+    EXPECT_EQ(mask(5,6), Mask::OBSTACLE_CORNER_TOP_LEFT);
+    EXPECT_EQ(mask(6,5), Mask::OBSTACLE_CORNER_BOTTOM_RIGHT);
+    EXPECT_EQ(mask(6,6), Mask::OBSTACLE_CORNER_TOP_RIGHT);
+
+
+    mask.printMask();
+};
+

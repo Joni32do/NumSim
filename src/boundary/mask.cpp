@@ -120,10 +120,14 @@ int Mask::getNumberOfFluidCells() const
 
 void Mask::makeRectangularObstacle(std::array<double, 2> obstaclePosition_ , std::array<double, 2> obstacleSize_){
   // only works for global size {1.0; 1.0}
-    int i_beg = static_cast<int>(std::floor(obstaclePosition_[0] * size_[0]));
-    int i_end = static_cast<int>(std::ceil(obstaclePosition_[0] + obstacleSize_[0]) * size_[0]);
-    int j_beg = static_cast<int>(std::floor(obstaclePosition_[1] * size_[1]));
-    int j_end = static_cast<int>(std::ceil(obstaclePosition_[1] + obstacleSize_[1]) * size_[1]);
+  // should work with changing factor from `obstaclePosition_` to `obstaclePosition_[0]/globalSize_[0]`
+    int i_beg = static_cast<int>(std::floor(obstaclePosition_[0] * (size_[0] - 2))) + 1;
+    int i_end = static_cast<int>(std::ceil((obstaclePosition_[0] + obstacleSize_[0]) * (size_[0] - 2))) + 1;
+    int j_beg = static_cast<int>(std::floor(obstaclePosition_[1] * (size_[1] - 2))) + 1;
+    int j_end = static_cast<int>(std::ceil((obstaclePosition_[1] + obstacleSize_[1]) * (size_[1] - 2))) + 1;
+
+    std::cout << i_beg << " from obstacle Position" << obstaclePosition_[0] << " and size " << size_[0] - 2 << std::endl; 
+    std::cout << i_end << " from obstacle Size " << obstacleSize_[0] << " and size " << size_[0] - 2 << std::endl;
     // interior obstacle
     for (int i = i_beg + 1; i < i_end - 1; i++){
         for (int j = j_beg + 1; j < j_end - 1; j++){
@@ -131,14 +135,21 @@ void Mask::makeRectangularObstacle(std::array<double, 2> obstaclePosition_ , std
         }
     }
     // boundary obstacle
-    for (int i = i_beg; i < i_end; i++){
+    data_[i_beg + j_beg * size_[0]] = OBSTACLE_CORNER_BOTTOM_LEFT;
+    data_[i_beg + (j_end - 1) * size_[0]] = OBSTACLE_CORNER_TOP_LEFT;
+    data_[(i_end - 1) + j_beg * size_[0]] = OBSTACLE_CORNER_BOTTOM_RIGHT;
+    data_[(i_end - 1) + (j_end - 1) * size_[0]] = OBSTACLE_CORNER_TOP_RIGHT;
+
+    for (int i = i_beg + 1; i < i_end - 1; i++){
         data_[i + j_beg * size_[0]] = OBSTACLE_BORDER_BOTTOM;
         data_[i + (j_end - 1) * size_[0]] = OBSTACLE_BORDER_TOP;
     }
-    for (int j = j_beg; j < j_end; j++){
+    for (int j = j_beg + 1; j < j_end - 1; j++){
         data_[i_beg + j * size_[0]] = OBSTACLE_BORDER_LEFT;
         data_[(i_end - 1) + j * size_[0]] = OBSTACLE_BORDER_RIGHT;
     }  
+
+    // TODO: think of edges
 };
 
 
