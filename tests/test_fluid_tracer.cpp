@@ -2,6 +2,7 @@
 #include "../src/surface/fluid_tracer.h"
 #include "../src/discretization/central_differences.h"
 
+// Experimental stuff
 #include <unistd.h>
 
 TEST(FluidTracer, NumberParticlesSingleCell){
@@ -234,14 +235,23 @@ TEST(FluidTracer, moveParticles_1Cell_1Particle_WithCollision){
 }
 
 
-TEST(FluidTracer, moveParticleInLargeGrid){
+TEST(FluidTracer, moveParticlesInLargeGrid){
     // Flow Field like this:
     //
     // Right Down
     // Up    Left
-
+    // 
+    // Or larger
+    //
+    // R R R D D D
+    // R R R D D D
+    // R R R D D D
+    // U U U L L L
+    // U U U L L L
+    // U U U L L L
 
     std::array<int,2> n_cells = {9, 9};
+
 
     std::array<double,2> meshWidth = {1.0/n_cells[0], 1.0/n_cells[1]};
     std::shared_ptr<Mask> mask = std::make_shared<Mask>(n_cells);
@@ -284,6 +294,72 @@ TEST(FluidTracer, moveParticleInLargeGrid){
         // std::cout << "\033[2J\033[1;1H";
         // usleep(500000);
 
+        // 1st particle is still in the box
+        EXPECT_GE(fluidTracer.getParticlePosition(0)[0], 0.0);
+        EXPECT_LE(fluidTracer.getParticlePosition(0)[0], 1.0);
+        EXPECT_GE(fluidTracer.getParticlePosition(0)[1], 0.0);
+        EXPECT_LE(fluidTracer.getParticlePosition(0)[1], 1.0);
+    }
+
+}
+
+TEST(FluidTracer, moveDistributedParticlesInLargeGrid){
+    // Flow Field like this:
+    //
+    // Right Down
+    // Up    Left
+    // 
+    // Or larger
+    //
+    // R R R D D D
+    // R R R D D D
+    // R R R D D D
+    // U U U L L L
+    // U U U L L L
+    // U U U L L L
+
+    std::array<int,2> n_cells = {5, 5};
+
+
+    std::array<double,2> meshWidth = {1.0/n_cells[0], 1.0/n_cells[1]};
+
+    std::shared_ptr<Discretization> discretization = std::make_shared<CentralDifferences>(n_cells, meshWidth);
+    std::shared_ptr<Mask> mask = std::make_shared<Mask>(n_cells);
+    mask->printMask();
+
+    FluidTracer fluidTracer(1, discretization, mask);
+
+    double vel = meshWidth[0];
+    for (int i = 0; i < n_cells[0]; i++){
+        for (int j = 0; j < n_cells[1] + 1; j++){
+    // Flow to right
+            discretization->u(i,j) = vel;
+    // Wirbel
+            // if (i > n_cells[0]/2){
+            //     if (j > n_cells[1]/2){
+            //         discretization->v(i,j) = -vel;
+            //     } else {
+            //         discretization->u(i,j) = -vel;
+            //     }
+            // } else {
+            //     if (j > n_cells[1]/2){
+            //         discretization->u(i,j) = vel;
+            //     } else {
+            //         discretization->v(i,j) = vel;
+            //     }
+            // }
+        }
+    }
+
+    double dt = 0.5;
+    for (int k = 0; k < 1; k++){
+        fluidTracer.moveParticles(dt);
+
+        // does a cool animation
+    // mask->printMask();
+    // std::cout << "\033[2J\033[1;1H";
+    // usleep(1000000);
+
         // Particle is still in the box
         EXPECT_GE(fluidTracer.getParticlePosition(0)[0], 0.0);
         EXPECT_LE(fluidTracer.getParticlePosition(0)[0], 1.0);
@@ -291,10 +367,7 @@ TEST(FluidTracer, moveParticleInLargeGrid){
         EXPECT_LE(fluidTracer.getParticlePosition(0)[1], 1.0);
     }
 
-
-
 }
-
 
 
 

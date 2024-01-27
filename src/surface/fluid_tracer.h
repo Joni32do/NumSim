@@ -3,6 +3,7 @@
 #include <iostream>
 #include <memory>
 #include <cmath>
+#include <cassert>
 
 #include "../discretization/discretization.h"
 #include "../boundary/boundary.h"
@@ -53,8 +54,14 @@ class FluidTracer {
         int val2CellY(double yVal);
 
     private:
-
-        void initializeFluidCell(int i, int j, int numParticlesPerCell);
+        /**
+         * @brief initializes a single cell according to nx, ny and numParticlesPerCell_
+         * 
+         * @param i index of inner cells in x direction
+         * @param j index of inner cells in y direction
+         * @param idx current number of particles
+         */
+        void initializeFluidCell(int i, int j, int idx);
 
         void updateParticle(int i, double dt, double vel_x, double vel_y);
 

@@ -43,18 +43,19 @@ void Boundary::setPressureBoundaryValues(){
 
 // its important that first the velocities are updated
 void Boundary::setPressureBoundarySurface(int i, int j){
-    // switch((*mask_)(i, j)){
-    //     case Mask::FLUID_BORDER_LEFT:
-    //         break;
-    //     case Mask::FLUID_BORDER_TOP:
-    //         break;
-    //     case Mask::FLUID_BORDER_RIGHT:
-    //         discretization_->p(i, j) = 2/settings_.re * ( discretization_->u(i, j) - discretization_->u(i - 1, j))/discretization_->dx();
-    //         break;
-    //     case Mask::FLUID_BORDER_BOTTOM:
-    //         discretization_->p(i, j) = 2/settings_.re * ( discretization_->v(i, j) - discretization_->v(i, j - 1))/discretization_->dy();
-    //         break;
-    // }
+    // u and v must be updated before p
+    switch((*mask_)(i, j)){
+        case Mask::FLUID_BORDER_LEFT:
+            break;
+        case Mask::FLUID_BORDER_TOP:
+            break;
+        case Mask::FLUID_BORDER_RIGHT:
+            discretization_->p(i, j) = 2/settings_.re * ( discretization_->u(i, j) - discretization_->u(i - 1, j))/discretization_->dx();
+            break;
+        case Mask::FLUID_BORDER_BOTTOM:
+            discretization_->p(i, j) = 2/settings_.re * ( discretization_->v(i, j) - discretization_->v(i, j - 1))/discretization_->dy();
+            break;
+    }
 }
 
 void Boundary::setPressureBoundaryObstacle(int i, int j){
@@ -82,8 +83,8 @@ void Boundary::setVelocityBoundaryValues(){
 
         if (mask_->isFluid(i, j))
         {
-            setVelocityBoundarySurfaceU(i, j);
-            setVelocityBoundarySurfaceV(i, j);
+            // setVelocityBoundarySurfaceU(i, j);
+            // setVelocityBoundarySurfaceV(i, j);
         }
         else if (mask_->isObstacle(i, j))
         {
@@ -95,10 +96,20 @@ void Boundary::setVelocityBoundaryValues(){
 }
 
 void Boundary::setVelocityBoundarySurfaceU(int i, int j){
+    // important that this is solved 
+    //     from left to right (increasing i)
+    //     from bottom to top (increasing j)
+    double dxByDy = discretization_->dx() / discretization_->dy();
+
     switch ((*mask_)(i, j)) {
         case Mask::FLUID_BORDER_LEFT:
-
-            
+            discretization_->u(i, j);
+            break;
+        case Mask::FLUID_BORDER_TOP:
+            break;
+        case Mask::FLUID_BORDER_RIGHT:
+            discretization_->u(i, j) = discretization_->u(i - 1, j)
+                - dxByDy * (discretization_->v(i, j) - discretization_->v(i, j - 1));
             break;
         
         default:

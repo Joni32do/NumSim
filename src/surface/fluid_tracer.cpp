@@ -1,32 +1,5 @@
 #include "fluid_tracer.h"
 
-FluidTracer::FluidTracer(int numParticlesPerCell,
-                         std::shared_ptr<Discretization> discretization,
-                         std::shared_ptr<Mask> mask) {
-    
-    discretization_ = discretization;
-    mask_ = mask;
-
-
-    seedRelationDyDx_ = discretization_->dy()/ discretization_->dx();
-    n_x = static_cast<int>(std::ceil(std::sqrt(numParticlesPerCell/seedRelationDyDx_)));
-    n_y = static_cast<int>(std::ceil(n_x * seedRelationDyDx_));
-    numParticlesPerCell_ = n_x * n_y;
-    numParticles_ = numParticlesPerCell_ * mask_->getNumberOfFluidCells();
-    
-    // Resize for speed up
-    x_.resize(numParticles_);
-    y_.resize(numParticles_);
-    ;
-    for (int i = 1; i < mask_->size()[0] - 1; i++) {
-        for (int j = 1; j < mask_->size()[1] - 1; j++) {
-            if (mask_->isFluid(i, j)) {
-                initializeFluidCell(i, j, numParticlesPerCell);
-            }
-        }
-    }
-}
-
 FluidTracer::FluidTracer(std::vector<double> x, std::vector<double> y,
                         std::shared_ptr<Discretization> discretization,
                         std::shared_ptr<Mask> mask) {
@@ -38,15 +11,46 @@ FluidTracer::FluidTracer(std::vector<double> x, std::vector<double> y,
 }
 
 
-void FluidTracer::initializeFluidCell(int i, int j, int numParticlesPerCell) {
-    int idx = 0;
+FluidTracer::FluidTracer(int numParticlesPerCell,
+                         std::shared_ptr<Discretization> discretization,
+                         std::shared_ptr<Mask> mask) {
+    
+    discretization_ = discretization;
+    mask_ = mask;
+
+
+    seedRelationDyDx_ = discretization_->dy()/ discretization_->dx();
+    n_x = static_cast<int>(std::ceil(std::sqrt(numParticlesPerCell/seedRelationDyDx_)));
+    n_y = static_cast<int>(std::ceil(n_x * seedRelationDyDx_));
+
+    numParticlesPerCell_ = n_x * n_y;
+    numParticles_ = numParticlesPerCell_ * mask_->getNumberOfFluidCells();
+    
+    // Resize for speed up
+    x_.resize(numParticles_);
+    y_.resize(numParticles_);
+    
+    int placedParticles = 0;
+    for (int i = 1; i < mask_->size()[0] - 1; i++) {
+        for (int j = 1; j < mask_->size()[1] - 1; j++) {
+            if (mask_->isFluid(i, j)) {
+                initializeFluidCell(i, j, placedParticles);
+                placedParticles += numParticlesPerCell_;
+            }
+        }
+    }
+    assert(placedParticles == numParticles_);
+}
+
+
+void FluidTracer::initializeFluidCell(int i, int j, int idx) {
     double cell_x = discretization_->dx() * (i - 1);
     double cell_y = discretization_->dy() * (j - 1);
     // fills in from bottom left to top right
     for (int l = 0; l < n_y; l++) {
         for (int k = 0; k < n_x; k++) {
-            x_[idx] = cell_x + (0.5 + (k * discretization_->dx())) / n_x;
-            y_[idx] = cell_y + (0.5 + (l * discretization_->dy())) / n_y;
+            x_[idx] = cell_x + ((0.5 + k) * discretization_->dx()) / n_x;
+            y_[idx] = cell_y + ((0.5 + l) * discretization_->dy()) / n_y;
             idx++;
         }
     }
@@ -63,11 +67,10 @@ void FluidTracer::moveParticles(double dt) {
     mask_->resetMask();
 
     for (int i = 0; i < numParticles_; i++) {
-
         double vel_x = discretization_->u().interpolateAt(x_[i], y_[i]);
         double vel_y = discretization_->v().interpolateAt(x_[i], y_[i]);
         updateParticle(i, dt, vel_x, vel_y);
-
+        
         // Update mask
         int idx_x = val2CellX(x_[i]);
         int idx_y = val2CellY(y_[i]);

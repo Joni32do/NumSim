@@ -1,4 +1,5 @@
 #include "computation.h"
+#include "surface/fluid_tracer.h"
 
 void Computation::initialize(int argc, char *argv[])
 {
@@ -23,14 +24,14 @@ void Computation::initialize(int argc, char *argv[])
         discretization_ = std::make_shared<CentralDifferences>(settings_.nCells, meshWidth_);
     }
     
-    // create boundary
-
-    // Obstacle from Primitives: Can be done inside boundary, since I give it the settings file
+    // create boundary and tracer
     mask_ = std::make_shared<Mask>(settings_.nCells);
-    // std::array<double, 2> obstaclePosition_ = {0.4, 0.4}; //settings.obstaclePosition;
-    // std::array<double, 2> obstacleSize_ = {0.2, 0.2}; //settings.obstacleSize;
-    // mask_->makeRectangularObstacle(obstaclePosition_ , obstacleSize_);
-    
+
+    // std::vector<double> traceX = {0.1, 1.8, 0.1, 1.8};
+    // std::vector<double> traceY = {0.1, 1.8, 1.8, 0.1};
+    // fluidTracer_ = std::make_shared<FluidTracer>(traceX, traceY, discretization_, mask_);
+    fluidTracer_ = std::make_shared<FluidTracer>(100, discretization_, mask_);
+
     boundary_ = std::make_shared<Boundary>(mask_, discretization_, settings_);
 
     if (settings_.pressureSolver == "SOR")
@@ -65,6 +66,12 @@ void Computation::runSimulation()
         computeRightHandSide();
         computePressure();
         computeVelocities();
+
+        // update tracer
+        fluidTracer_->moveParticles(dt_);
+        mask_->printMask();
+        std::cout << "\033[2J\033[1;1H";
+        // usleep(100000);
 
         currentTime += dt_;
         outputWriterParaview_->writeFile(currentTime);

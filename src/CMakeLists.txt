@@ -24,6 +24,7 @@ add_executable(${PROJECT_NAME}
    
    boundary/mask.cpp
    boundary/boundary.cpp
+   surface/fluid_tracer.cpp
 
    solver/pressure_solver.cpp
    solver/gauss_seidel.cpp
