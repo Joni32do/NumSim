@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <memory>
+#include <cmath>
 
 #include "../discretization/discretization.h"
 #include "../boundary/boundary.h"
@@ -13,24 +14,23 @@ class FluidTracer {
                     std::shared_ptr<Discretization> discretization,
                     std::shared_ptr<Mask> mask);
 
+        // Mainly for testing purposes
+        FluidTracer(std::vector<double> x, std::vector<double> y,
+                    std::shared_ptr<Discretization> discretization,
+                    std::shared_ptr<Mask> mask);
+
         /**
-         * @brief Update the position of the particles according to the velocity field
+         * @brief Update the position of the particles according to the velocity field and sets mask accordingly
          * 
-         * Uses the ptr to the discretization to get the velocity field $u$ and $v$
-         * 
+         * get the velocity field $u$ and $v$
          * Checks for collision with border or obstacle and reflects the particle at this position
+         * Update the mask where there are new Air or Fluid cells
          * 
          * @param dt 
          */
-        void updatePosition(double dt);
+        void moveParticles(double dt);
 
-        /**
-         * @brief Update after the particles move there are new Air or Fluid cells
-         * 
-         * @requires that afterwards the mask borders are updated
-         * 
-         */
-        void updateMask();
+
 
 
         /**
@@ -55,6 +55,8 @@ class FluidTracer {
     private:
 
         void initializeFluidCell(int i, int j, int numParticlesPerCell);
+
+        void updateParticle(int i, double dt, double vel_x, double vel_y);
 
 
         int numParticles_;

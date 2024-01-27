@@ -95,7 +95,16 @@ void Boundary::setVelocityBoundaryValues(){
 }
 
 void Boundary::setVelocityBoundarySurfaceU(int i, int j){
-    // TODO:
+    switch ((*mask_)(i, j)) {
+        case Mask::FLUID_BORDER_LEFT:
+
+            
+            break;
+        
+        default:
+            break;
+    }
+    
 }
 
 void Boundary::setVelocityBoundarySurfaceV(int i, int j){

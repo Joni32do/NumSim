@@ -35,6 +35,17 @@ std::array<int, 2> Mask::size() const
   return size_;
 }
 
+void Mask::resetMask()
+{
+  for (int i = 0; i < size_[0]; i++) {
+    for (int j = 0; j < size_[1]; j++) {
+      if (!isObstacle(i, j)) {
+        data_[i + j * size_[0]] = AIR;
+      }
+    }
+  }
+}
+
 void Mask::updateMaskBoundaries()
 {
   for (int i = 0; i < size_[0]; i++)
@@ -164,7 +175,11 @@ void Mask::makeRectangularObstacle(std::array<double, 2> obstaclePosition_ , std
 void Mask::printMask() const{
     for (int j = size_[1] - 1; j >= 0; j--){
         for (int i = 0; i < size_[0]; i++){
+          if (data_[i + j * size_[0]] == AIR){
+            std::cout << "    ";
+          } else {
             std::cout << std::setw(3) << std::setfill('0') << data_[i + j * size_[0]] << " ";
+          }
         }
         std::cout << std::endl;
     }

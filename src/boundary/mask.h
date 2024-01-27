@@ -91,12 +91,17 @@ enum CellType{
      */
     std::array<int, 2> size() const;
 
+
     /**
-     * @brief update boundary of mask after the velocity step
+     * @brief sets all not obstacle cells to air
      * 
-     * TODO: this can be implemented more efficiently by only updating the cells which are next
-     * to a fluid cell, because only those can change their type
-     * Could use `isFluidBorder`
+     */
+    void resetMask();
+
+    /**
+     * @brief update boundary of mask after the `moveParticles` step
+     * 
+     * TODO: efficiency:  only update `isFluidBorder`
      */
     void updateMaskBoundaries();
 
