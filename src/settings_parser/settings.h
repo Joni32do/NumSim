@@ -24,10 +24,23 @@ struct Settings
   bool useDonorCell = false; //!< if the donor cell scheme schould be used
   double alpha = 0.5;        //!< factor for donor-cell scheme
 
-  std::array<double, 2> dirichletBcBottom; //!< prescribed values of u,v at bottom of domain
-  std::array<double, 2> dirichletBcTop;    //!< prescribed values of u,v at top of domain
-  std::array<double, 2> dirichletBcLeft;   //!< prescribed values of u,v at left of domain
-  std::array<double, 2> dirichletBcRight;  //!< prescribed values of u,v at right of domain
+  // Boundary Conditions Type
+  std::string BCTop = "NoSlip";
+  std::string BCRight = "NoSlip";
+  std::string BCBotom = "NoSlip";
+  std::string BCLeft = "NoSlip";
+
+  // NoSlip boundary conditions
+  std::array<double, 2> NoSlipVelTop;    //!< prescribed values of u,v at top of domain
+  std::array<double, 2> NoSlipVelRight;  //!< prescribed values of u,v at right of domain
+  std::array<double, 2> NoSlipVelBottom; //!< prescribed values of u,v at bottom of domain
+  std::array<double, 2> NoSlipVelLeft;   //!< prescribed values of u,v at left of domain
+
+  // Pressure boundary conditions
+  double PressureTop;     //!< prescribed pressure BC top of domain
+  double PressureRight;   //!< prescribed pressure BC right of domain
+  double PressureBottom;  //!< prescribed pressure BC bottom of domain
+  double PressureLeft;    //!< prescribed pressure BC left of domain
 
   std::string pressureSolver = "SOR";  //!< which pressure solver to use, "GaussSeidel" or "SOR"
   double omega = 1.0;                  //!< overrelaxation factor

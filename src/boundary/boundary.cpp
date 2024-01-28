@@ -154,16 +154,16 @@ void Boundary::setVelocityBoundaryObstacleU(int i, int j){
     switch ((*mask_)(i, j))
     {
         case Mask::DOMAIN_LEFT:
-            discretization_->u(i, j) = settings_.dirichletBcLeft[0];
+            discretization_->u(i, j) = settings_.NoSlipVelLeft[0];
             break;
         case Mask::DOMAIN_TOP:
-            discretization_->u(i, j) = 2 * settings_.dirichletBcTop[0] - discretization_->u(i, j - 1);
+            discretization_->u(i, j) = 2 * settings_.NoSlipVelTop[0] - discretization_->u(i, j - 1);
             break;
         case Mask::DOMAIN_RIGHT:
-            discretization_->u(i - 1, j) = settings_.dirichletBcRight[0]; // index shift for u in x direction
+            discretization_->u(i - 1, j) = settings_.NoSlipVelRight[0]; // index shift for u in x direction
             break;
         case Mask::DOMAIN_BOTTOM:
-            discretization_->u(i, j) = 2 * settings_.dirichletBcBottom[0] - discretization_->u(i, j + 1);
+            discretization_->u(i, j) = 2 * settings_.NoSlipVelBottom[0] - discretization_->u(i, j + 1);
             break;
     }
 
@@ -192,16 +192,16 @@ void Boundary::setVelocityBoundaryObstacleV(int i, int j){
     switch ((*mask_)(i, j))
     {
         case Mask::DOMAIN_LEFT:
-            discretization_->v(i, j) = 2 * settings_.dirichletBcLeft[1] - discretization_->v(i + 1, j);
+            discretization_->v(i, j) = 2 * settings_.NoSlipVelLeft[1] - discretization_->v(i + 1, j);
             break;
         case Mask::DOMAIN_TOP:
-            discretization_->v(i, j - 1) = settings_.dirichletBcTop[1]; // index shift for v in y direction
+            discretization_->v(i, j - 1) = settings_.NoSlipVelTop[1]; // index shift for v in y direction
             break;
         case Mask::DOMAIN_RIGHT:
-            discretization_->v(i, j) = 2 * settings_.dirichletBcRight[1] - discretization_->v(i - 1, j);
+            discretization_->v(i, j) = 2 * settings_.NoSlipVelRight[1] - discretization_->v(i - 1, j);
             break;
         case Mask::DOMAIN_BOTTOM:
-            discretization_->v(i, j) = settings_.dirichletBcBottom[1];
+            discretization_->v(i, j) = settings_.NoSlipVelBottom[1];
             break;
     }
     // // Vertical

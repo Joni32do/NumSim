@@ -42,10 +42,10 @@ void Settings::printSettings()
     std::cout << "Settings: " << std::endl
               << "  physicalSize: " << physicalSize[0] << " x " << physicalSize[1] << ", nCells: " << nCells[0] << " x " << nCells[1] << std::endl
               << "  endTime: " << endTime << " s, re: " << re << ", g: (" << g[0] << "," << g[1] << "), tau: " << tau << ", maximum dt: " << maximumDt << std::endl
-              << "  dirichletBC: bottom: (" << dirichletBcBottom[0] << "," << dirichletBcBottom[1] << ")"
-              << ", top: (" << dirichletBcTop[0] << "," << dirichletBcTop[1] << ")"
-              << ", left: (" << dirichletBcLeft[0] << "," << dirichletBcLeft[1] << ")"
-              << ", right: (" << dirichletBcRight[0] << "," << dirichletBcRight[1] << ")" << std::endl
+              << "  dirichletBC: bottom: (" << NoSlipVelBottom[0] << "," << NoSlipVelBottom[1] << ")"
+              << ", top: (" << NoSlipVelTop[0] << "," << NoSlipVelTop[1] << ")"
+              << ", left: (" << NoSlipVelLeft[0] << "," << NoSlipVelLeft[1] << ")"
+              << ", right: (" << NoSlipVelRight[0] << "," << NoSlipVelRight[1] << ")" << std::endl
               << "  useDonorCell: " << std::boolalpha << useDonorCell << ", alpha: " << alpha << std::endl
               << "  pressureSolver: " << pressureSolver << ", omega: " << omega << ", epsilon: " << epsilon << ", maximumNumberOfIterations: " << maximumNumberOfIterations << std::endl;
 }
@@ -111,23 +111,60 @@ void Settings::setParameter(std::string parameterName, std::string value)
     else if (parameterName == "gY")
         Settings::g[1] = atof(value.c_str());
 
-    // Dirichlet boundary conditions
-    else if (parameterName == "dirichletBottomX")
-        Settings::dirichletBcBottom[0] = atof(value.c_str());
-    else if (parameterName == "dirichletBottomY")
-        Settings::dirichletBcBottom[1] = atof(value.c_str());
-    else if (parameterName == "dirichletTopX")
-        Settings::dirichletBcTop[0] = atof(value.c_str());
-    else if (parameterName == "dirichletTopY")
-        Settings::dirichletBcTop[1] = atof(value.c_str());
-    else if (parameterName == "dirichletLeftX")
-        Settings::dirichletBcLeft[0] = atof(value.c_str());
-    else if (parameterName == "dirichletLeftY")
-        Settings::dirichletBcLeft[1] = atof(value.c_str());
-    else if (parameterName == "dirichletRightX")
-        Settings::dirichletBcRight[0] = atof(value.c_str());
-    else if (parameterName == "dirichletRightY")
-        Settings::dirichletBcRight[1] = atof(value.c_str());
+    // // Boundary conditions type
+    else if (parameterName == "BCTop"){
+        if (value == "NoSlip" || value == "Pressure")
+                Settings::pressureSolver = value;
+            else
+                throw std::invalid_argument("Supported values for BCTop are NoSlip and Pressure.");
+    }
+    else if (parameterName == "BCRight"){
+        if (value == "NoSlip" || value == "Pressure")
+                Settings::pressureSolver = value;
+            else
+                throw std::invalid_argument("Supported values for BCRight are NoSlip and Pressure.");
+    }
+    else if (parameterName == "BCBottom"){
+        if (value == "NoSlip" || value == "Pressure")
+                Settings::pressureSolver = value;
+            else
+                throw std::invalid_argument("Supported values for BCBottom are NoSlip and Pressure.");
+    }
+    else if (parameterName == "BCLeft"){
+        if (value == "NoSlip" || value == "Pressure")
+                Settings::pressureSolver = value;
+            else
+                throw std::invalid_argument("Supported values for BCLeft are NoSlip and Pressure.");
+    }
+
+    // NoSlip boundary conditions
+    else if (parameterName == "NoSlipVelTopX")
+        Settings::NoSlipVelTop[0] = atof(value.c_str());
+    else if (parameterName == "NoSlipVelTopY")
+        Settings::NoSlipVelTop[1] = atof(value.c_str());
+    else if (parameterName == "NoSlipVelRightX")
+        Settings::NoSlipVelRight[0] = atof(value.c_str());
+    else if (parameterName == "NoSlipVelRightY")
+        Settings::NoSlipVelRight[1] = atof(value.c_str());
+    else if (parameterName == "NoSlipVelBottomX")
+        Settings::NoSlipVelBottom[0] = atof(value.c_str());
+    else if (parameterName == "NoSlipVelBottomY")
+        Settings::NoSlipVelBottom[1] = atof(value.c_str());
+    else if (parameterName == "NoSlipVelLeftX")
+        Settings::NoSlipVelLeft[0] = atof(value.c_str());
+    else if (parameterName == "NoSlipVelLeftY")
+        Settings::NoSlipVelLeft[1] = atof(value.c_str());
+
+    // Pressure BoundaryConditions. 
+    else if (parameterName == "PressureTop")
+        Settings::PressureTop = atof(value.c_str());
+    else if (parameterName == "PressureRight")
+        Settings::PressureRight = atof(value.c_str());
+    else if (parameterName == "PressureBottom")
+        Settings::PressureBottom = atof(value.c_str());
+    else if (parameterName == "PressureLeft")
+        Settings::PressureLeft = atof(value.c_str());
+
 
     // Discretization parameters
     else if (parameterName == "nCellsX")

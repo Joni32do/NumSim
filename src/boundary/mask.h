@@ -61,11 +61,12 @@ enum CellType{
     OBSTACLE_CORNER_TOP_RIGHT = 122,
     OBSTACLE_CORNER_BOTTOM_RIGHT = 123,
 
-    DOMAIN_LEFT = 130,
-    DOMAIN_TOP = 131,
-    DOMAIN_RIGHT = 132,
-    DOMAIN_BOTTOM = 133,
+    DOMAIN_BOUNDARY = 130,
 
+    DOMAIN_LEFT = 131,
+    DOMAIN_TOP = 132,
+    DOMAIN_RIGHT = 133,
+    DOMAIN_BOTTOM = 134,
 };
     
 
@@ -189,6 +190,8 @@ enum CellType{
     void makeRectangularObstacle(std::array<double, 2> physicalSize_,
                                  std::array<double, 2> obstaclePosition_,
                                  std::array<double, 2> obstacleSize_);
+
+    void setDomainBoundary(std::string domainBoundary_left, std::string domainBoundary_right, std::string domainBoundary_top, std::string domainBoundary_bot);
 
 
 
