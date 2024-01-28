@@ -16,6 +16,7 @@ Mask::Mask(std::array<int, 2> size) : size_({size[0]+2, size[1]+2})
     data_[j * size_[0]] = DOMAIN_LEFT;
     data_[(size_[0] - 1) + j * size_[0]] = DOMAIN_RIGHT;
   }
+
 }
 
 int &Mask::operator()(int i, int j)
@@ -54,12 +55,12 @@ void Mask::updateMaskBoundaries()
     {
       int idx = i + j * size_[0];
 
-      if (Mask::isFluid(i, j))
+      if (isFluid(i, j))
       {
-        data_[idx] =  1 * Mask::isNotAir(i - 1, j)
-                    + 2 * Mask::isNotAir(i, j + 1)
-                    + 4 * Mask::isNotAir(i + 1, j)
-                    + 8 * Mask::isNotAir(i, j - 1);
+        data_[idx] =  1 * isNotAir(i - 1, j)
+                    + 2 * isNotAir(i, j + 1)
+                    + 4 * isNotAir(i + 1, j)
+                    + 8 * isNotAir(i, j - 1);
 
       }
     }

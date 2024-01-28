@@ -138,7 +138,6 @@ void Computation::computePreliminaryVelocities()
     for (int i = f_i_beg; i < f_i_end + 1; i++)
     {
         discretization_->f(i, f_j_beg - 1) = discretization_->u(i, f_j_beg - 1);
-        // std::cout << discretization_->u(i, f_j_beg) << std::endl;
         discretization_->f(i, f_j_end) = discretization_->u(i, f_j_end);
     }
 
@@ -147,7 +146,6 @@ void Computation::computePreliminaryVelocities()
     {
         for (int j = f_j_beg; j < f_j_end; j++)
         {
-
             double diffusion = 1 / settings_.re * (discretization_->computeD2uDx2(i, j) + discretization_->computeD2uDy2(i, j));
             double convection = -discretization_->computeDu2Dx(i, j) - discretization_->computeDuvDy(i, j);
             discretization_->f(i, j) = discretization_->u(i, j) + dt_ * (diffusion + convection + settings_.g[0]);

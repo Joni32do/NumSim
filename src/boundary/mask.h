@@ -117,6 +117,8 @@ enum CellType{
      */
     bool isFluid(int i, int j) const;
 
+    bool isInnerFluid(int i, int j) const;
+
     /**
      * @brief Cell at (i,j) is an obstacle or not
      * 
