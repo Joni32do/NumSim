@@ -40,7 +40,8 @@ void Settings::loadFromFile(std::string filename)
 void Settings::printSettings()
 {
     std::cout << "Settings: " << std::endl
-              << "  physicalSize: " << physicalSize[0] << " x " << physicalSize[1] << ", nCells: " << nCells[0] << " x " << nCells[1] << std::endl
+              << "  physicalSize: " << physicalSize[0] << " x " << physicalSize[1] << std::endl
+              << "  useBitmap: " << std::boolalpha << useBitmap << ", nCells: " << nCells[0] << " x " << nCells[1] << std::endl
               << "  endTime: " << endTime << " s, re: " << re << ", g: (" << g[0] << "," << g[1] << "), tau: " << tau << ", maximum dt: " << maximumDt << std::endl
               << "  dirichletBC: bottom: (" << dirichletBcBottom[0] << "," << dirichletBcBottom[1] << ")"
               << ", top: (" << dirichletBcTop[0] << "," << dirichletBcTop[1] << ")"
@@ -130,10 +131,44 @@ void Settings::setParameter(std::string parameterName, std::string value)
         Settings::dirichletBcRight[1] = atof(value.c_str());
 
     // Discretization parameters
-    else if (parameterName == "nCellsX")
-        Settings::nCells[0] = atoi(value.c_str());
-    else if (parameterName == "nCellsY")
-        Settings::nCells[1] = atoi(value.c_str());
+    else if (parameterName == "useBitmap"){
+        if (value == "true" || value == "True")
+            Settings::useBitmap = true;
+        else if (value == "false" || value == "False")
+            Settings::useBitmap = false;
+        else
+            throw std::invalid_argument("useBitmap must be a boolean (true or false).");
+    }
+    else if (parameterName == "imagePath"){
+        if (Settings::useBitmap == true){
+            Settings::imagePath == value;
+
+            std::vector<unsigned char> image; // The raw pixels
+            unsigned width, height;
+
+            // Decode the PNG file
+            unsigned error = lodepng::decode(image, width, height, value);
+            // If there's an error, display it
+            if (error) {
+                std::cerr << "Decoder error " << error << ": " << lodepng_error_text(error) << std::endl;
+                // return 1;
+            }
+            else
+                std::cout << "Successfully read PNG image\n";
+
+            // Set number of cells from image
+            Settings::nCells[0] = width;
+            Settings::nCells[1] = height;
+        }
+    }
+    else if (parameterName == "nCellsX"){
+        if (Settings::useBitmap == false)
+            Settings::nCells[0] = atoi(value.c_str());
+    }
+    else if (parameterName == "nCellsY"){
+        if (Settings::useBitmap == false)
+            Settings::nCells[1] = atoi(value.c_str());
+    }
     else if (parameterName == "useDonorCell")
     {
         if (value == "true" || value == "True")

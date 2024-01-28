@@ -18,6 +18,7 @@ add_executable(${PROJECT_NAME}
    discretization/staggered_grid.cpp
 
    settings_parser/settings.cpp
+   png_reader/lodepng.cpp
 
    storage/array2D.cpp
    storage/field_variable.cpp

@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include <functional>
+#include "../png_reader/lodepng.h"
 
 /**
  * @struct Settings
@@ -21,8 +22,10 @@ struct Settings
 
   std::array<double, 2> g{0., 0.}; //!< external forces
 
-  bool useDonorCell = false; //!< if the donor cell scheme schould be used
-  double alpha = 0.5;        //!< factor for donor-cell scheme
+  bool useBitmap = false;                        //!< if a PNG image will be provided describing the domain
+  std::string imagePath = "../input/domain.png"; //!< path for PNG image
+  bool useDonorCell = false;                     //!< if the donor cell scheme should be used
+  double alpha = 0.5;                            //!< factor for donor-cell scheme
 
   std::array<double, 2> dirichletBcBottom; //!< prescribed values of u,v at bottom of domain
   std::array<double, 2> dirichletBcTop;    //!< prescribed values of u,v at top of domain
