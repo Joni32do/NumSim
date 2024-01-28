@@ -31,8 +31,13 @@ class FluidTracer {
          */
         void moveParticles(double dt);
 
-
-
+        /**
+         * @brief can be used to create a source cell for particles
+         * 
+         * fills the cell homogenously with particles by cell
+         * 
+         */
+        void createParticles(double positionSourceX, double positionSourceY);
 
         /**
          * @brief Get the Number Of Particles object

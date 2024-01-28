@@ -8,6 +8,10 @@ FluidTracer::FluidTracer(std::vector<double> x, std::vector<double> y,
     discretization_ = discretization;
     mask_ = mask;
     numParticles_ = x_.size();
+
+    numParticlesPerCell_ = 1;
+    n_x = 1;
+    n_y = 1;
 }
 
 
@@ -51,9 +55,27 @@ void FluidTracer::initializeFluidCell(int i, int j, int idx) {
         for (int k = 0; k < n_x; k++) {
             x_[idx] = cell_x + ((0.5 + k) * discretization_->dx()) / n_x;
             y_[idx] = cell_y + ((0.5 + l) * discretization_->dy()) / n_y;
+            
             idx++;
+
         }
     }
+}
+
+
+void FluidTracer::createParticles(double positionSourceX, double positionSourceY){
+    int idx_x = val2CellX(positionSourceX);
+    int idx_y = val2CellY(positionSourceY);
+    double newNumParticles_ = numParticles_ + numParticlesPerCell_;
+    x_.resize(newNumParticles_);
+    y_.resize(newNumParticles_);
+
+    initializeFluidCell(idx_x, idx_y, numParticles_);
+    numParticles_ = newNumParticles_;
+    std::cout << "____________________________________________" << std::endl;
+    std::cout << "|         ----- CIRCLING  IN  -----        |" << std::endl;
+    std::cout << "____________________________________________" << std::endl;
+    std::cout << "Current number of Particles: " << numParticles_ << std::endl;
 }
 
 

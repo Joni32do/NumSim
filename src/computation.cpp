@@ -27,10 +27,10 @@ void Computation::initialize(int argc, char *argv[])
     // create boundary and tracer
     mask_ = std::make_shared<Mask>(settings_.nCells);
 
-    // std::vector<double> traceX = {0.1, 1.8, 0.1, 1.8};
-    // std::vector<double> traceY = {0.1, 1.8, 1.8, 0.1};
-    // fluidTracer_ = std::make_shared<FluidTracer>(traceX, traceY, discretization_, mask_);
-    fluidTracer_ = std::make_shared<FluidTracer>(100, discretization_, mask_);
+    std::vector<double> traceX = {1.8};
+    std::vector<double> traceY = {1.8};
+    fluidTracer_ = std::make_shared<FluidTracer>(traceX, traceY, discretization_, mask_);
+    // fluidTracer_ = std::make_shared<FluidTracer>(100, discretization_, mask_);
 
     boundary_ = std::make_shared<Boundary>(mask_, discretization_, settings_);
 
@@ -66,12 +66,14 @@ void Computation::runSimulation()
         computeRightHandSide();
         computePressure();
         computeVelocities();
-
+        // -------------------------------
         // update tracer
+        fluidTracer_->createParticles(1.8, 1.8);
         fluidTracer_->moveParticles(dt_);
         mask_->printMask();
         std::cout << "\033[2J\033[1;1H";
-        // usleep(100000);
+        usleep(10000);
+        // -------------------------------
 
         currentTime += dt_;
         outputWriterParaview_->writeFile(currentTime);

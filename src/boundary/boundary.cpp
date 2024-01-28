@@ -100,6 +100,7 @@ void Boundary::setVelocityBoundarySurfaceU(int i, int j){
     //     from left to right (increasing i)
     //     from bottom to top (increasing j)
     double dxByDy = discretization_->dx() / discretization_->dy();
+    double dyByDx = discretization_->dy() / discretization_->dx();
 
     switch ((*mask_)(i, j)) {
         case Mask::FLUID_BORDER_LEFT:
@@ -111,7 +112,32 @@ void Boundary::setVelocityBoundarySurfaceU(int i, int j){
             discretization_->u(i, j) = discretization_->u(i - 1, j)
                 - dxByDy * (discretization_->v(i, j) - discretization_->v(i, j - 1));
             break;
-        
+        case Mask::FLUID_BORDER_BOTTOM:
+            break;
+        case Mask::FLUID_CORNER_TOP_LEFT:
+            break;
+        case Mask::FLUID_CORNER_TOP_RIGHT:
+            discretization_->u(i, j) = discretization_->u(i - 1, j);
+            discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j)
+                - dyByDx * (discretization_->v(i, j) - discretization_->v(i - 1, j));
+            discretization_->u(i, j + 1) = discretization_->u(i, j);
+            break;
+        case Mask::FLUID_CORNER_BOTTOM_RIGHT:
+            break;
+        case Mask::FLUID_CORNER_BOTTOM_LEFT:
+            break;
+        case Mask::FLUID_COLUMN_HORIZONTAL:
+            break;
+        case Mask::FLUID_COLUMN_VERTICAL:
+            break;
+        case Mask::FLUID_SINGLE_LEFT:
+            break;
+        case Mask::FLUID_SINGLE_TOP:
+            break;
+        case Mask::FLUID_SINGLE_RIGHT:
+            break;
+        case Mask::FLUID_SINGLE_BOTTOM:
+            // Here the next time step can be calculated directly
         default:
             break;
     }
