@@ -129,13 +129,21 @@ int Mask::getNumberOfFluidCells() const
 // ************************
 
 
-void Mask::makeRectangularObstacle(std::array<double, 2> obstaclePosition_ , std::array<double, 2> obstacleSize_){
+void Mask::makeRectangularObstacle(std::array<double, 2> physicalSize_,
+                                   std::array<double, 2> obstaclePosition_,
+                                   std::array<double, 2> obstacleSize_){
   // only works for global size {1.0; 1.0}
   // should work with changing factor from `obstaclePosition_` to `obstaclePosition_[0]/globalSize_[0]`
-    int i_beg = static_cast<int>(std::floor(obstaclePosition_[0] * (size_[0] - 2))) + 1;
-    int i_end = static_cast<int>(std::ceil((obstaclePosition_[0] + obstacleSize_[0]) * (size_[0] - 2))) + 1;
-    int j_beg = static_cast<int>(std::floor(obstaclePosition_[1] * (size_[1] - 2))) + 1;
-    int j_end = static_cast<int>(std::ceil((obstaclePosition_[1] + obstacleSize_[1]) * (size_[1] - 2))) + 1;
+
+  double scaleX = obstaclePosition_[0]/physicalSize_[0];
+  double scaleY = obstaclePosition_[1]/physicalSize_[1];
+  int nCellsX = size_[0] - 2;
+  int nCellsY = size_[1] - 2;
+
+    int i_beg = static_cast<int>(std::floor(scaleX * nCellsX)) + 1;
+    int i_end = static_cast<int>(std::ceil((obstaclePosition_[0] + obstacleSize_[0])/physicalSize_[0] * nCellsX)) + 1;
+    int j_beg = static_cast<int>(std::floor(scaleY * nCellsY)) + 1;
+    int j_end = static_cast<int>(std::ceil((obstaclePosition_[1] + obstacleSize_[1])/physicalSize_[1] * nCellsY)) + 1;
 
     std::cout << i_beg << " from obstacle Position" << obstaclePosition_[0] << " and size " << size_[0] - 2 << std::endl; 
     std::cout << i_end << " from obstacle Size " << obstacleSize_[0] << " and size " << size_[0] - 2 << std::endl;

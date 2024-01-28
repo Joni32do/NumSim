@@ -72,10 +72,6 @@ void FluidTracer::createParticles(double positionSourceX, double positionSourceY
 
     initializeFluidCell(idx_x, idx_y, numParticles_);
     numParticles_ = newNumParticles_;
-    std::cout << "____________________________________________" << std::endl;
-    std::cout << "|         ----- CIRCLING  IN  -----        |" << std::endl;
-    std::cout << "____________________________________________" << std::endl;
-    std::cout << "Current number of Particles: " << numParticles_ << std::endl;
 }
 
 
@@ -100,6 +96,18 @@ void FluidTracer::moveParticles(double dt) {
     }
 
     mask_->updateMaskBoundaries();
+}
+
+int FluidTracer::val2CellX(double xVal){
+    return static_cast<int>(std::floor(xVal/discretization_->dx())) + 1;
+}
+
+int FluidTracer::val2CellY(double yVal){
+    return static_cast<int>(std::floor(yVal/discretization_->dy())) + 1;
+}
+
+std::array<double, 2> FluidTracer::getParticlePosition(int i) const {
+    return {x_[i], y_[i]};
 }
 
 
@@ -244,25 +252,155 @@ void FluidTracer::updateParticle(int i, double dt, double vel_x, double vel_y) {
         updateParticle(i, dt - dtBeforeCollision, new_vel_x, new_vel_y);
     } else {
 
-        // std::cout << "x=" << x_[i] << "+" << dt << "*" << vel_x << " -> ";
         x_[i] += step_x;
-        // std::cout << x_[i] << std::endl;
-
-        // std::cout << "  y=" << y_[i] << "+" << dt << "*" << vel_y << " -> ";
         y_[i] += step_y;
-        // std::cout << y_[i] << std::endl;
     }
 }
 
+// ONLY FOR TESTING PURPOSES
 
-int FluidTracer::val2CellX(double xVal){
-    return static_cast<int>(std::floor(xVal/discretization_->dx())) + 1;
-}
+// void FluidTracer::updateParticle(int i, double dt, double vel_x, double vel_y) {
 
-int FluidTracer::val2CellY(double yVal){
-    return static_cast<int>(std::floor(yVal/discretization_->dy())) + 1;
-}
+//     double step_x = dt * vel_x;
+//     double step_y = dt * vel_y;
 
-std::array<double, 2> FluidTracer::getParticlePosition(int i) const {
-    return {x_[i], y_[i]};
-}
+
+//     // Check for Collision with obstacle
+//     int idxNextCellX = val2CellX(x_[i] + step_x);
+//     int idxNextCellY = val2CellY(y_[i] + step_y);
+
+//     if (mask_->isObstacle(idxNextCellX, idxNextCellY)) {
+//         int idx_x = val2CellX(x_[i]);
+//         int idx_y = val2CellY(y_[i]);
+        
+//         // x - Border
+//         double leftBorder = discretization_->dx()*(idx_x - 1); // -1 because idx starts at 0 with outer cell -dx
+//         double rightBorder = discretization_->dx()*(idx_x);
+
+//         // y - Border
+//         double lowerBorder = discretization_->dy()*(idx_y - 1);
+//         double topBorder = discretization_->dy()*(idx_y);
+
+//         // distance and time to border
+//         double dist_x, dt_x, dist_y, dt_y;
+//         double dtBeforeCollision;
+
+//         double new_vel_x = vel_x;
+//         double new_vel_y = vel_y;
+
+
+//         // Note: ZERO_DIVISON is no problem, because then dt is pos_inf, which is always larger and therefore the other case is taken
+
+//         // Uses CFL condition --> accelerate?
+        
+//         // TODO: CORNER: double equality rounding errors?
+
+
+
+//         // Summary:
+//         // 1. `dt_x`: Calculate time till collision with x-Border (depending on direction of `vel_x` )
+//         // 2. `dt_y`: Calculate time till collision with y-Border (depending on direction of `vel_y` )
+//         // 3. Check which collision of the two possible happens first 
+//         //
+//         //     --> assign `dtBeforeCollision`, `new_vel_x` and `new_vel_y` accordingly
+
+
+//         if (vel_x >= 0) {
+//             dist_x = rightBorder - x_[i];
+//             dt_x = dist_x/vel_x;
+
+//             if (vel_y >= 0) {
+//                 // direction TOP_RIGHT
+//                 dist_y = topBorder - y_[i];
+//                 dt_y = dist_y/vel_y;
+                
+//                 if (dt_x >= dt_y) {
+//                     // collision TOP
+//                     if (mask_->isObstacle(idx_x, idx_y + 1)){
+//                         new_vel_y = -vel_y;
+//                     }
+//                     dtBeforeCollision = dt_y;
+//                 }
+//                 if (dt_x <= dt_y){
+//                     // collision RIGHT
+//                     if (mask_->isObstacle(idx_x, idx_y + 1)){
+//                         new_vel_x = -vel_x;
+//                     }
+//                     dtBeforeCollision = dt_x;
+//                 }
+//             } else if (vel_y < 0){
+//                 // direction BOTTOM_RIGHT
+//                 dist_y = lowerBorder - y_[i];
+//                 dt_y = dist_y/vel_y; // -- = +
+                
+//                 if (dt_x >= dt_y) {
+//                     // collision BOTTOM
+//                     if (mask_->isObstacle(idx_x, idx_y - 1)){
+//                         new_vel_y = -vel_y;
+//                     }
+//                     dtBeforeCollision = dt_y;
+//                 }
+//                 if (dt_x <= dt_y){
+//                     // collision RIGHT
+//                     if (mask_->isObstacle(idx_x, idx_y + 1)){
+//                         new_vel_x = -vel_x;
+//                     }
+//                     dtBeforeCollision = dt_x;
+//                 }
+//             } 
+//         } else if (vel_x < 0){
+//             dist_x = leftBorder - x_[i];
+//             dt_x = dist_x/vel_x; // -- = +
+
+//             if (vel_y >= 0) {
+//                 // direction TOP_LEFT
+//                 dist_y = topBorder - y_[i];
+//                 dt_y = dist_y/vel_y;
+                
+//                 if (dt_x >= dt_y) {
+//                     // collision TOP
+//                     if (mask_->isObstacle(idx_x, idx_y + 1)){
+//                         new_vel_y = -vel_y;
+//                     }
+//                     dtBeforeCollision = dt_y;
+//                 }
+//                 if (dt_x <= dt_y){
+//                     // collision LEFT
+//                     if (mask_->isObstacle(idx_x, idx_y - 1)){
+//                         new_vel_x = -vel_x;
+//                     }
+//                     dtBeforeCollision = dt_x;
+//                 }
+//             } else if (vel_y < 0){
+//                 // direction BOTTOM_LEFT
+//                 dist_y = lowerBorder - y_[i];
+//                 dt_y = dist_y/vel_y; // -- = +
+                
+//                 if (dt_x <= dt_y) {
+//                     // collision BOTTOM
+//                     if (mask_->isObstacle(idx_x, idx_y - 1)){
+//                         new_vel_y = -vel_y;
+//                     }
+//                     dtBeforeCollision = dt_x;
+//                 }
+//                 if (dt_x >= dt_y){
+//                     // collision LEFT
+//                     if (mask_->isObstacle(idx_x, idx_y - 1)){
+//                         new_vel_x = -vel_x;
+//                     }
+//                     dtBeforeCollision = dt_y;
+//                 }
+//             }
+//         }
+//         x_[i] += dtBeforeCollision * vel_x;
+//         y_[i] += dtBeforeCollision * vel_y;
+
+//         // dtBeforeCollision is always smaller
+//         // the maximum depth of recursion is 1
+//         updateParticle(i, dt - dtBeforeCollision, new_vel_x, new_vel_y);
+//     } else {
+
+//         x_[i] += step_x;
+//         y_[i] += step_y;
+//     }
+// }

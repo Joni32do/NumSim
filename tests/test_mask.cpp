@@ -96,10 +96,11 @@ TEST(Mask, makeSmallRectangularObstacleCenter){
     // std::array<double, 2> meshWidth = {1.0, 1.0};
     // std::array<double, 2> physicalSize = {1.0, 1.0};
 
+    std::array<double, 2> physicalSize = {1.0, 1.0};
     std::array<double, 2> obstaclePosition = {0.45, 0.45};
     std::array<double, 2> obstacleSize = {0.1, 0.1};
 
-    mask.makeRectangularObstacle(obstaclePosition, obstacleSize);
+    mask.makeRectangularObstacle(physicalSize, obstaclePosition, obstacleSize);
     
     EXPECT_EQ(mask(5,5), Mask::OBSTACLE_CORNER_BOTTOM_LEFT);
     EXPECT_EQ(mask(5,6), Mask::OBSTACLE_CORNER_TOP_LEFT);

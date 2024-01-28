@@ -65,6 +65,7 @@ enum CellType{
     DOMAIN_TOP = 131,
     DOMAIN_RIGHT = 132,
     DOMAIN_BOTTOM = 133,
+
 };
     
 
@@ -181,12 +182,13 @@ enum CellType{
      * assumes 
      *   * that the obstacle is within the boundary and sets the boundaries of the obstacle to its
      *     according value
-     *   * 
      * 
-     * @param obstaclePosition_ 
-     * @param obstacleSize_ 
+     * @param obstaclePosition_ position of lower left corner
+     * @param obstacleSize_ length and width of the rectangle
      */
-    void makeRectangularObstacle(std::array<double, 2> obstaclePosition_ , std::array<double, 2> obstacleSize_);
+    void makeRectangularObstacle(std::array<double, 2> physicalSize_,
+                                 std::array<double, 2> obstaclePosition_,
+                                 std::array<double, 2> obstacleSize_);
 
 
 
