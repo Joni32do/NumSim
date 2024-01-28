@@ -65,6 +65,7 @@ enum CellType{
     DOMAIN_TOP = 131,
     DOMAIN_RIGHT = 132,
     DOMAIN_BOTTOM = 133,
+
 };
     
 
@@ -91,12 +92,17 @@ enum CellType{
      */
     std::array<int, 2> size() const;
 
+
     /**
-     * @brief update boundary of mask after the velocity step
+     * @brief sets all not obstacle cells to air
      * 
-     * TODO: this can be implemented more efficiently by only updating the cells which are next
-     * to a fluid cell, because only those can change their type
-     * Could use `isFluidBorder`
+     */
+    void resetMask();
+
+    /**
+     * @brief update boundary of mask after the `moveParticles` step
+     * 
+     * TODO: efficiency:  only update `isFluidBorder`
      */
     void updateMaskBoundaries();
 
@@ -176,12 +182,13 @@ enum CellType{
      * assumes 
      *   * that the obstacle is within the boundary and sets the boundaries of the obstacle to its
      *     according value
-     *   * 
      * 
-     * @param obstaclePosition_ 
-     * @param obstacleSize_ 
+     * @param obstaclePosition_ position of lower left corner
+     * @param obstacleSize_ length and width of the rectangle
      */
-    void makeRectangularObstacle(std::array<double, 2> obstaclePosition_ , std::array<double, 2> obstacleSize_);
+    void makeRectangularObstacle(std::array<double, 2> physicalSize_,
+                                 std::array<double, 2> obstaclePosition_,
+                                 std::array<double, 2> obstacleSize_);
 
 
 

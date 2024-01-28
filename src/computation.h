@@ -12,6 +12,11 @@
 #include "output_writer/output_writer_text.h"
 #include "settings_parser/settings.h"
 
+#include "boundary/boundary.h"
+#include "boundary/mask.h"
+#include "surface/fluid_tracer.h"
+#include <unistd.h>
+
 #include <cmath>
 #include <algorithm>
 #include <iostream>
@@ -38,6 +43,8 @@ public:
      *
      */
     void runSimulation();
+
+
 
 private:
     /**
@@ -75,8 +82,10 @@ private:
 
     Settings settings_;
     std::shared_ptr<Discretization> discretization_;             //!< discretization instance
-    std::shared_ptr<Boundary> boundary_;                         //!< boundary instance
+
     std::shared_ptr<Mask> mask_;
+    std::shared_ptr<Boundary> boundary_;                         //!< boundary instance
+    std::shared_ptr<FluidTracer> fluidTracer_;
 
     std::unique_ptr<PressureSolver> pressureSolver_;             //!< pressureSolver instance
     std::unique_ptr<OutputWriterParaview> outputWriterParaview_; //!< outputWriterParaview instance
@@ -84,3 +93,5 @@ private:
     std::array<double, 2> meshWidth_;                            //!< mesh width of domain in x and y direction
     double dt_;                                                  //!< iteration time step
 };
+
+

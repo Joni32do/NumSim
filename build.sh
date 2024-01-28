@@ -16,7 +16,8 @@ else
 fi
 
 make install -j4
-./numsim ../input/settings.txt
+
+./numsim ../input/settings_debug.txt
 
 
 
@@ -35,6 +36,6 @@ cd ..
 # cd ..
 
 # run tests
-build/tests/run_tests
+# build/tests/run_tests
 
 # zip -r submission.zip src/ CMakeLists.txt
