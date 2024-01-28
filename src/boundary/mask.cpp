@@ -1,6 +1,6 @@
 #include "mask.h"
 
-Mask::Mask(std::array<int, 2> size) : size_({size[0] + 2, size[1] + 2})
+Mask::Mask(std::array<int, 2> size, Settings settings) : size_({size[0] + 2, size[1] + 2}), settings_(settings)
 {
   assert(size[0] > 0 && size[1] > 0);
   data_.resize(size_[0] * size_[1], FLUID);

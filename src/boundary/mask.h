@@ -8,6 +8,7 @@
 #include <iostream>
 #include <iomanip> 
 #include <fstream>
+#include "../settings_parser/settings.h"
 
 
 
@@ -18,7 +19,7 @@ class Mask{
      *
      * @param size size of array in x and y direction
      */
-    Mask(std::array<int, 2> size);
+    Mask(std::array<int, 2> size, Settings settings);
 
 
 
@@ -210,4 +211,5 @@ protected:
     const std::array<int, 2> size_; //!< size of array in x and y direction
     std::vector<int> data_;      //!< storage array values, in row-major order
     std::vector<int> boundary_list;  //!< stores the indices of the boundary cells
+    Settings settings_;
 };

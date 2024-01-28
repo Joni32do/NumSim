@@ -1,5 +1,4 @@
 #include "computation.h"
-#include "surface/fluid_tracer.h"
 
 void Computation::initialize(int argc, char *argv[])
 {
@@ -25,7 +24,7 @@ void Computation::initialize(int argc, char *argv[])
     }
     
     // create boundary and tracer
-    mask_ = std::make_shared<Mask>(settings_.nCells);
+    mask_ = std::make_shared<Mask>(settings_.nCells, settings_);
     mask_->makeRectangularObstacle(settings_.physicalSize, {0.5, 0.5}, {0.5, 0.5});
     mask_->printMask();
 
