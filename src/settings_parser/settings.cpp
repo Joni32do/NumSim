@@ -143,22 +143,34 @@ void Settings::setParameter(std::string parameterName, std::string value)
         if (Settings::useBitmap == true){
             Settings::imagePath == value;
 
-            std::vector<unsigned char> image; // The raw pixels
+            std::vector<unsigned char> img; // The raw pixels
             unsigned width, height;
 
             // Decode the PNG file
-            unsigned error = lodepng::decode(image, width, height, value);
+            unsigned error = lodepng::decode(img, width, height, value);
             // If there's an error, display it
             if (error) {
                 std::cerr << "Decoder error " << error << ": " << lodepng_error_text(error) << std::endl;
                 // return 1;
             }
-            else
-                std::cout << "Successfully read PNG image\n";
+            #ifndef NDEBUG
+                else{
+                    std::cout << "Successfully read PNG image\n";
+                    std::cout << "img size (vector size): " << img.size() << std::endl;
+                    unsigned r, g, b;
+                    for (int k=0; k<img.size()/4; ++k){
+                        r = static_cast<int>(img[4*k]);
+                        g = static_cast<int>(img[4*k+1]);
+                        b = static_cast<int>(img[4*k+2]);
+                        std::cout << k << "th  pixel: " << static_cast<int>(r) << ", " << static_cast<int>(g) << ", " << static_cast<int>(b) << std::endl;
+                    }
+                }
+            #endif
 
             // Set number of cells from image
             Settings::nCells[0] = width;
             Settings::nCells[1] = height;
+            Settings::image = img;
         }
     }
     else if (parameterName == "nCellsX"){

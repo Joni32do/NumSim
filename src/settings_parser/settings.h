@@ -24,6 +24,7 @@ struct Settings
 
   bool useBitmap = false;                        //!< if a PNG image will be provided describing the domain
   std::string imagePath = "../input/domain.png"; //!< path for PNG image
+  std::vector<unsigned char> image;              //!< (empty) vector for pixel contents
   bool useDonorCell = false;                     //!< if the donor cell scheme should be used
   double alpha = 0.5;                            //!< factor for donor-cell scheme
 

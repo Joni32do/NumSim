@@ -1,6 +1,6 @@
 #include "mask.h"
 
-Mask::Mask(std::array<int, 2> size) : size_({size[0]+2, size[1]+2})
+Mask::Mask(std::array<int, 2> size, bool useImage, std::vector<unsigned char> image) : size_({size[0]+2, size[1]+2})
 {
   assert(size[0] > 0 && size[1] > 0);
   data_.resize(size_[0] * size_[1], FLUID);
@@ -15,6 +15,38 @@ Mask::Mask(std::array<int, 2> size) : size_({size[0]+2, size[1]+2})
   {
     data_[j * size_[0]] = DOMAIN_LEFT;
     data_[(size_[0] - 1) + j * size_[0]] = DOMAIN_RIGHT;
+  }
+
+  if(useImage){
+    int domain_width = size_[0] - 2;
+    int domain_height = size_[1] - 2;
+
+    for (int j = 0; j < domain_height; ++j){
+      for(int i = 0; i < domain_width; ++i){
+        #ifndef NDEBUG
+          std::cout << "(data) index: " << (i+1) + (domain_height-j)*(domain_width+2) << ", (image) i=" << i << ", j=" << j;
+        #endif
+
+        if (static_cast<int>(image[4*(i + j*domain_width)]) + static_cast<int>(image[4*(i + j*domain_width)+1]) + static_cast<int>(image[4*(i + j*domain_width)+2]) == 0){
+          #ifndef NDEBUG
+            std::cout << ", pixel " << i + j*domain_width << " is obstacle\n";
+          #endif
+          data_[(i+1) + (domain_height-j)*(domain_width+2)] = OBSTACLE;
+        }
+
+        else if (static_cast<int>(image[4*(i + j*domain_width)]) + static_cast<int>(image[4*(i + j*domain_width)+1]) + static_cast<int>(image[4*(i + j*domain_width)+2]) == 765){
+          #ifndef NDEBUG
+            std::cout << ", pixel " << i + j*domain_width << " is air\n";
+          #endif
+          data_[(i+1) + (domain_height-j)*(domain_width+2)] = AIR;
+        }
+
+        #ifndef NDEBUG
+          else
+            std::cout << ", pixel " << i + j*domain_width << " is fluid\n";
+        #endif
+      }
+    }
   }
 }
 
@@ -192,39 +224,3 @@ void Mask::printMask() const{
         std::cout << std::endl;
     }
 }
-
-
-// void Mask::createBitmap() const{
-//     std::ofstream file("output.bmp", std::ios::binary);
-//     int width = size_[0];
-//     int height = size_[1];
-//     std::vector<int> pixels = data_;
-
-//     // Bitmap header
-//     unsigned char header[54] = {
-//         0x42, 0x4D, 0, 0, 0, 0, 0, 0, 0, 0, 54, 0, 0, 0, 40, 0,
-//         0, 0, static_cast<unsigned char>(width), static_cast<unsigned char>(width >> 8), static_cast<unsigned char>(width >> 16), static_cast<unsigned char>(width >> 24),
-//         static_cast<unsigned char>(height), static_cast<unsigned char>(height >> 8), static_cast<unsigned char>(height >> 16), static_cast<unsigned char>(height >> 24),
-//         1, 0, 24, 0
-//     };
-
-//     file.write(reinterpret_cast<char>(header), sizeof(header));
-
-//     // Bitmap data
-//     int rowSize = (3 width + 3) & ~3;  // Ensure each row is a multiple of 4 bytes
-//     unsigned char padding[3] = {0, 0, 0};
-
-//     for (int y = height - 1; y >= 0; --y) {
-//         for (int x = 0; x < width; ++x) {
-//             unsigned char pixel[3] = {
-//                 pixels[y * width + x],
-//                 pixels[y * width + x],
-//                 pixels[y * width + x]
-//             };
-//             file.write(reinterpret_cast<char>(pixel), sizeof(pixel));
-//         }
-//         file.write(reinterpret_cast<char>(padding), rowSize - 3 * width);
-//     }
-
-//     file.close();
-// }

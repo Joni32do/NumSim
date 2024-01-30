@@ -8,6 +8,7 @@
 #include <iostream>
 #include <iomanip> 
 #include <fstream>
+#include "../png_reader/lodepng.h"
 
 
 
@@ -17,8 +18,10 @@ class Mask{
      * @brief constructor.
      *
      * @param size size of array in x and y direction
+     * @param useImage whether to use user-provided image as mask
+     * @param image vector storing pixels of the PNG image
      */
-    Mask(std::array<int, 2> size);
+    Mask(std::array<int, 2> size, bool useImage = false, std::vector<unsigned char> image = {});
 
 
 
@@ -199,7 +202,6 @@ enum CellType{
 
     void printMask() const;
 
-    // void createBitmap() const;
 
 
 

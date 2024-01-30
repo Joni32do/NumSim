@@ -20,7 +20,7 @@ dirichletRightX  = 0
 dirichletRightY  = 0
 
 # Discretization parameters
-useBitmap = false                # if a PNG image will be provided as a description of the domain
+useBitmap = true                # if a PNG image will be provided as a description of the domain
 imagePath = ../input/domain.png  # path to PNG image, only relevant if useBitmap = true
 nCellsX = 20                     # number of cells in x and y direction, only relevant if useBitmap = false
 nCellsY = 20
