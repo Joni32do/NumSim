@@ -12,9 +12,9 @@ gY = 0.0
 
 # Boundary Conditions Type
 
-BCTop = Pressure
+BCTop = NoSlip
 BCRight = NoSlip
-BCBottom = Pressure
+BCBottom = NoSlip
 BCLeft = NoSlip
 
 

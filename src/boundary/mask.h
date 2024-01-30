@@ -50,31 +50,31 @@ enum CellType{
     FLUID_TYPE = 50,
     AIR = 64,
 
-    OBSTACLE = 100,
-    OBSTACLE_INSIDE = 101,
+    OBSTACLE = 99,
+    OBSTACLE_INSIDE = 100,
 
-    OBSTACLE_BORDER_LEFT = 110,
-    OBSTACLE_BORDER_TOP = 111,
-    OBSTACLE_BORDER_RIGHT = 112,
-    OBSTACLE_BORDER_BOTTOM = 113,
+    OBSTACLE_BORDER_LEFT = 101,
+    OBSTACLE_BORDER_TOP = 102,
+    OBSTACLE_CORNER_TOP_LEFT = 103,
+    OBSTACLE_BORDER_RIGHT = 104,
+    OBSTACLE_CORNER_TOP_RIGHT = 106,
+    OBSTACLE_BORDER_BOTTOM = 108,
+    OBSTACLE_CORNER_BOTTOM_LEFT = 109,
+    OBSTACLE_CORNER_BOTTOM_RIGHT = 112,
 
-    OBSTACLE_CORNER_BOTTOM_LEFT = 120,
-    OBSTACLE_CORNER_TOP_LEFT = 121,
-    OBSTACLE_CORNER_TOP_RIGHT = 122,
-    OBSTACLE_CORNER_BOTTOM_RIGHT = 123,
 
 
-    DOMAIN_BOUNDARY = 130,
+    DOMAIN_BOUNDARY = 200,
 
-    DOMAIN_LEFT_NOSLIP = 131,
-    DOMAIN_TOP_NOSLIP = 132,
-    DOMAIN_RIGHT_NOSLIP = 133,
-    DOMAIN_BOTTOM_NOSLIP = 134,
+    DOMAIN_LEFT_NOSLIP = 201,
+    DOMAIN_TOP_NOSLIP = 202,
+    DOMAIN_RIGHT_NOSLIP = 203,
+    DOMAIN_BOTTOM_NOSLIP = 204,
 
-    DOMAIN_LEFT_PRESSURE = 135,
-    DOMAIN_TOP_PRESSURE = 136,
-    DOMAIN_RIGHT_PRESSURE = 137,
-    DOMAIN_BOTTOM_PRESSURE = 138,
+    DOMAIN_LEFT_PRESSURE = 205,
+    DOMAIN_TOP_PRESSURE = 206,
+    DOMAIN_RIGHT_PRESSURE = 207,
+    DOMAIN_BOTTOM_PRESSURE = 208,
 };
     
 
@@ -197,7 +197,8 @@ enum CellType{
      */
     void makeRectangularObstacle();
 
-    void setDomainBoundary();
+    void setDomainBC();
+    void setObstacleBC();
 
 
 
@@ -217,4 +218,5 @@ protected:
     std::vector<int> data_;      //!< storage array values, in row-major order
     std::vector<int> boundary_list;  //!< stores the indices of the boundary cells
     Settings settings_;
+    int forbiddenObstacleFluidCombinations[7] = {105,107,110,111,113,114,115};
 };

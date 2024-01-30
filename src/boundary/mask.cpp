@@ -6,18 +6,12 @@ Mask::Mask(Settings settings) : settings_(settings)
   size_ = {settings_.nCells[0] + 2, settings_.nCells[1] + 2};
   data_.resize(size_[0] * size_[1], FLUID);
 
-  printMask();
   if (settings_.createRectangularObject)
   {
     Mask::makeRectangularObstacle();
   }
-  std::cout << "\n\n\n";
-
-  printMask();
-
-  setDomainBoundary();
-  
-  std::cout << "\n\n\n";
+  setDomainBC();
+  setObstacleBC();
 
   printMask();
 }
@@ -158,7 +152,7 @@ void Mask::makeRectangularObstacle()
   }
 };
 
-void Mask::setDomainBoundary()
+void Mask::setDomainBC()
 {
   // Set domain boundaries
   
@@ -206,8 +200,23 @@ void Mask::setDomainBoundary()
   data_[0+size_[0]*(size_[1]-1)] = OBSTACLE_INSIDE;
   data_[size_[0]-1+size_[0]*(size_[1]-1)] = OBSTACLE_INSIDE;
 
-
 }
+
+void Mask::setObstacleBC(){
+    for (int i = 0; i < size_[0]; i++){
+      for(int j=0; j< size_[1]; j ++){
+        if ((*this)(i,j) == OBSTACLE){
+          int BC = 1*Mask::isFluid(i-1,j)+2*Mask::isFluid(i,j+1)+4*Mask::isFluid(i+1,j)+8*Mask::isFluid(i,j-1)+100;
+          bool BCinForbiddenCombinations = std::find(std::begin(forbiddenObstacleFluidCombinations), std::end(forbiddenObstacleFluidCombinations), BC) != std::end(forbiddenObstacleFluidCombinations);
+          if (BCinForbiddenCombinations)
+            throw std::runtime_error("Obstacel is only one cell wide at i: " + std::to_string(i) + "j: " + std::to_string(j));
+          else
+            (*this)(i,j) = BC;
+        }
+      }
+    }
+}
+
 
 // ******************************
 //  P R I N T I N G
