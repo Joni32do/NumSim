@@ -60,16 +60,16 @@ void Boundary::setPressureBoundarySurface(int i, int j){
 
 void Boundary::setPressureBoundaryObstacle(int i, int j){
     switch((*mask_)(i, j)){
-        case Mask::DOMAIN_LEFT:
+        case Mask::DOMAIN_LEFT_NOSLIP:
             discretization_->p(i, j) = discretization_->p(i + 1, j);
             break;
-        case Mask::DOMAIN_TOP:
+        case Mask::DOMAIN_TOP_NOSLIP:
             discretization_->p(i, j) = discretization_->p(i, j - 1);
             break;
-        case Mask::DOMAIN_RIGHT:
+        case Mask::DOMAIN_RIGHT_NOSLIP:
             discretization_->p(i, j) = discretization_->p(i - 1, j);
             break;
-        case Mask::DOMAIN_BOTTOM:
+        case Mask::DOMAIN_BOTTOM_NOSLIP:
             discretization_->p(i, j) = discretization_->p(i, j + 1);
             break;
     }
@@ -153,16 +153,16 @@ void Boundary::setVelocityBoundarySurfaceV(int i, int j){
 void Boundary::setVelocityBoundaryObstacleU(int i, int j){
     switch ((*mask_)(i, j))
     {
-        case Mask::DOMAIN_LEFT:
+        case Mask::DOMAIN_LEFT_NOSLIP:
             discretization_->u(i, j) = settings_.NoSlipVelLeft[0];
             break;
-        case Mask::DOMAIN_TOP:
+        case Mask::DOMAIN_TOP_NOSLIP:
             discretization_->u(i, j) = 2 * settings_.NoSlipVelTop[0] - discretization_->u(i, j - 1);
             break;
-        case Mask::DOMAIN_RIGHT:
+        case Mask::DOMAIN_RIGHT_NOSLIP:
             discretization_->u(i - 1, j) = settings_.NoSlipVelRight[0]; // index shift for u in x direction
             break;
-        case Mask::DOMAIN_BOTTOM:
+        case Mask::DOMAIN_BOTTOM_NOSLIP:
             discretization_->u(i, j) = 2 * settings_.NoSlipVelBottom[0] - discretization_->u(i, j + 1);
             break;
     }
@@ -191,16 +191,16 @@ void Boundary::setVelocityBoundaryObstacleV(int i, int j){
 
     switch ((*mask_)(i, j))
     {
-        case Mask::DOMAIN_LEFT:
+        case Mask::DOMAIN_LEFT_NOSLIP:
             discretization_->v(i, j) = 2 * settings_.NoSlipVelLeft[1] - discretization_->v(i + 1, j);
             break;
-        case Mask::DOMAIN_TOP:
+        case Mask::DOMAIN_TOP_NOSLIP:
             discretization_->v(i, j - 1) = settings_.NoSlipVelTop[1]; // index shift for v in y direction
             break;
-        case Mask::DOMAIN_RIGHT:
+        case Mask::DOMAIN_RIGHT_NOSLIP:
             discretization_->v(i, j) = 2 * settings_.NoSlipVelRight[1] - discretization_->v(i - 1, j);
             break;
-        case Mask::DOMAIN_BOTTOM:
+        case Mask::DOMAIN_BOTTOM_NOSLIP:
             discretization_->v(i, j) = settings_.NoSlipVelBottom[1];
             break;
     }

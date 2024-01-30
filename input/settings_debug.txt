@@ -4,16 +4,17 @@
 # Problem description
 physicalSizeX = 2.0   # physical size of the domain
 physicalSizeY = 2.0
-endTime = 10.0        # duration of the simulation
+endTime = 1.0        # duration of the simulation
 re = 1000             # Reynolds number
 gX = 0.0              # external forces, set to (gX,gY) = (0,-9.81) to account for gravity
 gY = 0.0
 
 
 # Boundary Conditions Type
-BCTop = NoSlip
+
+BCTop = Pressure
 BCRight = NoSlip
-BCBottom = NoSlip
+BCBottom = Pressure
 BCLeft = NoSlip
 
 
@@ -29,17 +30,26 @@ NoSlipVelLeftX   = 0
 NoSlipVelLeftY   = 0
 
 
-# Pressure BoundaryConditions. 
+# Pressure BoundaryConditions 
 
 PressureTop    = 0
 PressureRight  = 10.0
 PressureBottom = 0
 PressureLeft   = 100.0
 
+# Create Rectangular object in domain 
+
+createRectangularObject = true
+
+obstaclePositionX = 0.5
+obstaclePositionY = 0.5
+obstacleDimensionX = 0.5
+obstacleDimensionY = 0.5
+
 
 # Discretization parameters
-nCellsX = 20          # number of cells in x and y direction
-nCellsY = 20
+nCellsX = 10          # number of cells in x and y direction
+nCellsY = 10
 useDonorCell = true   # if donor cell discretization should be used, possible values: true false
 alpha = 0.5           # factor for donor-cell scheme, 0 is equivalent to central differences
 tau = 0.5             # safety factor for time step width

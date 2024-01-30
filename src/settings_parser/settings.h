@@ -27,7 +27,7 @@ struct Settings
   // Boundary Conditions Type
   std::string BCTop = "NoSlip";
   std::string BCRight = "NoSlip";
-  std::string BCBotom = "NoSlip";
+  std::string BCBottom = "NoSlip";
   std::string BCLeft = "NoSlip";
 
   // NoSlip boundary conditions
@@ -37,10 +37,16 @@ struct Settings
   std::array<double, 2> NoSlipVelLeft;   //!< prescribed values of u,v at left of domain
 
   // Pressure boundary conditions
-  double PressureTop;     //!< prescribed pressure BC top of domain
-  double PressureRight;   //!< prescribed pressure BC right of domain
-  double PressureBottom;  //!< prescribed pressure BC bottom of domain
-  double PressureLeft;    //!< prescribed pressure BC left of domain
+  double PressureTop;    //!< prescribed pressure BC top of domain
+  double PressureRight;  //!< prescribed pressure BC right of domain
+  double PressureBottom; //!< prescribed pressure BC bottom of domain
+  double PressureLeft;   //!< prescribed pressure BC left of domain
+
+  // Create rectangular obstacle in domain
+  bool createRectangularObject = false; //!< wheter a rectangular object in domain should be created
+
+  std::array<double, 2> obstaclePosition; //!< x and y position of rectangular object
+  std::array<double, 2> obstacleDimension; //!< x and y dimension of rectangular object
 
   std::string pressureSolver = "SOR";  //!< which pressure solver to use, "GaussSeidel" or "SOR"
   double omega = 1.0;                  //!< overrelaxation factor

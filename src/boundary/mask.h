@@ -19,7 +19,7 @@ class Mask{
      *
      * @param size size of array in x and y direction
      */
-    Mask(std::array<int, 2> size, Settings settings);
+    Mask(Settings settings);
 
 
 
@@ -51,6 +51,7 @@ enum CellType{
     AIR = 64,
 
     OBSTACLE = 100,
+    OBSTACLE_INSIDE = 101,
 
     OBSTACLE_BORDER_LEFT = 110,
     OBSTACLE_BORDER_TOP = 111,
@@ -62,12 +63,18 @@ enum CellType{
     OBSTACLE_CORNER_TOP_RIGHT = 122,
     OBSTACLE_CORNER_BOTTOM_RIGHT = 123,
 
+
     DOMAIN_BOUNDARY = 130,
 
-    DOMAIN_LEFT = 131,
-    DOMAIN_TOP = 132,
-    DOMAIN_RIGHT = 133,
-    DOMAIN_BOTTOM = 134,
+    DOMAIN_LEFT_NOSLIP = 131,
+    DOMAIN_TOP_NOSLIP = 132,
+    DOMAIN_RIGHT_NOSLIP = 133,
+    DOMAIN_BOTTOM_NOSLIP = 134,
+
+    DOMAIN_LEFT_PRESSURE = 135,
+    DOMAIN_TOP_PRESSURE = 136,
+    DOMAIN_RIGHT_PRESSURE = 137,
+    DOMAIN_BOTTOM_PRESSURE = 138,
 };
     
 
@@ -188,11 +195,9 @@ enum CellType{
      * @param obstaclePosition_ position of lower left corner
      * @param obstacleSize_ length and width of the rectangle
      */
-    void makeRectangularObstacle(std::array<double, 2> physicalSize_,
-                                 std::array<double, 2> obstaclePosition_,
-                                 std::array<double, 2> obstacleSize_);
+    void makeRectangularObstacle();
 
-    void setDomainBoundary(std::string domainBoundary_left, std::string domainBoundary_right, std::string domainBoundary_top, std::string domainBoundary_bot);
+    void setDomainBoundary();
 
 
 
@@ -208,7 +213,7 @@ enum CellType{
 
 
 protected:
-    const std::array<int, 2> size_; //!< size of array in x and y direction
+    std::array<int, 2> size_; //!< size of array in x and y direction
     std::vector<int> data_;      //!< storage array values, in row-major order
     std::vector<int> boundary_list;  //!< stores the indices of the boundary cells
     Settings settings_;

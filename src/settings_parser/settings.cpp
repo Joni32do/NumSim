@@ -114,25 +114,25 @@ void Settings::setParameter(std::string parameterName, std::string value)
     // // Boundary conditions type
     else if (parameterName == "BCTop"){
         if (value == "NoSlip" || value == "Pressure")
-                Settings::pressureSolver = value;
+                Settings::BCTop = value;
             else
                 throw std::invalid_argument("Supported values for BCTop are NoSlip and Pressure.");
     }
     else if (parameterName == "BCRight"){
         if (value == "NoSlip" || value == "Pressure")
-                Settings::pressureSolver = value;
+                Settings::BCRight = value;
             else
                 throw std::invalid_argument("Supported values for BCRight are NoSlip and Pressure.");
     }
     else if (parameterName == "BCBottom"){
         if (value == "NoSlip" || value == "Pressure")
-                Settings::pressureSolver = value;
+                Settings::BCBottom = value;
             else
                 throw std::invalid_argument("Supported values for BCBottom are NoSlip and Pressure.");
     }
     else if (parameterName == "BCLeft"){
         if (value == "NoSlip" || value == "Pressure")
-                Settings::pressureSolver = value;
+                Settings::BCLeft = value;
             else
                 throw std::invalid_argument("Supported values for BCLeft are NoSlip and Pressure.");
     }
@@ -165,6 +165,26 @@ void Settings::setParameter(std::string parameterName, std::string value)
     else if (parameterName == "PressureLeft")
         Settings::PressureLeft = atof(value.c_str());
 
+    
+    // Rectangular object in domain
+    else if (parameterName == "createRectangularObject")
+    {
+        if (value == "true" || value == "True")
+            Settings::createRectangularObject = true;
+        else if (value == "false" || value == "False")
+            Settings::createRectangularObject = false;
+        else
+            throw std::invalid_argument("createRectangularObject must be a boolean (true or false).");
+    }
+    else if (parameterName == "obstaclePositionX"){
+        Settings::obstaclePosition[0] = atof(value.c_str());
+    }
+    else if (parameterName == "obstaclePositionY")
+        Settings::obstaclePosition[1] = atof(value.c_str());
+    else if (parameterName == "obstacleDimensionX")
+        Settings::obstacleDimension[0] = atof(value.c_str());    
+    else if (parameterName == "obstacleDimensionY")
+        Settings::obstacleDimension[1] = atof(value.c_str());
 
     // Discretization parameters
     else if (parameterName == "nCellsX")

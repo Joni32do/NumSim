@@ -1,21 +1,25 @@
 #include "mask.h"
 
-Mask::Mask(std::array<int, 2> size, Settings settings) : size_({size[0] + 2, size[1] + 2}), settings_(settings)
+Mask::Mask(Settings settings) : settings_(settings)
 {
-  assert(size[0] > 0 && size[1] > 0);
+  assert(settings_.nCells[0] > 0 && settings_.nCells[1] > 0);
+  size_ = {settings_.nCells[0] + 2, settings_.nCells[1] + 2};
   data_.resize(size_[0] * size_[1], FLUID);
 
-  // Set domain boundaries to obstacle
-  for (int i = 0; i < size_[0]; i++)
+  printMask();
+  if (settings_.createRectangularObject)
   {
-    data_[i] = DOMAIN_BOUNDARY;
-    data_[i + (size_[1] - 1) * size_[0]] = DOMAIN_BOUNDARY;
+    Mask::makeRectangularObstacle();
   }
-  for (int j = 0; j < size_[1]; j++)
-  {
-    data_[j * size_[0]] = DOMAIN_BOUNDARY;
-    data_[(size_[0] - 1) + j * size_[0]] = DOMAIN_BOUNDARY;
-  }
+  std::cout << "\n\n\n";
+
+  printMask();
+
+  setDomainBoundary();
+  
+  std::cout << "\n\n\n";
+
+  printMask();
 }
 
 int &Mask::operator()(int i, int j)
@@ -129,56 +133,80 @@ int Mask::getNumberOfFluidCells() const
 // P R I M I T I V E S
 // ************************
 
-void Mask::makeRectangularObstacle(std::array<double, 2> physicalSize_,
-                                   std::array<double, 2> obstaclePosition_,
-                                   std::array<double, 2> obstacleSize_)
+void Mask::makeRectangularObstacle()
 {
-  // only works for global size {1.0; 1.0}
-  // should work with changing factor from `obstaclePosition_` to `obstaclePosition_[0]/globalSize_[0]`
 
-  double scaleX = obstaclePosition_[0] / physicalSize_[0];
-  double scaleY = obstaclePosition_[1] / physicalSize_[1];
+  double scaleX = settings_.obstaclePosition[0] / settings_.physicalSize[0];
+  double scaleY = settings_.obstaclePosition[1] / settings_.physicalSize[1];
   int nCellsX = size_[0] - 2;
   int nCellsY = size_[1] - 2;
 
   int i_beg = static_cast<int>(std::floor(scaleX * nCellsX)) + 1;
-  int i_end = static_cast<int>(std::ceil((obstaclePosition_[0] + obstacleSize_[0]) / physicalSize_[0] * nCellsX)) + 1;
+  int i_end = static_cast<int>(std::ceil((settings_.obstaclePosition[0] + settings_.obstacleDimension[0]) / settings_.physicalSize[0] * nCellsX)) + 1;
   int j_beg = static_cast<int>(std::floor(scaleY * nCellsY)) + 1;
-  int j_end = static_cast<int>(std::ceil((obstaclePosition_[1] + obstacleSize_[1]) / physicalSize_[1] * nCellsY)) + 1;
+  int j_end = static_cast<int>(std::ceil((settings_.obstaclePosition[1] + settings_.obstacleDimension[1]) / settings_.physicalSize[1] * nCellsY)) + 1;
 
-  std::cout << i_beg << " from obstacle Position" << obstaclePosition_[0] << " and size " << size_[0] - 2 << std::endl;
-  std::cout << i_end << " from obstacle Size " << obstacleSize_[0] << " and size " << size_[0] - 2 << std::endl;
-  // interior obstacle
-  for (int i = i_beg + 1; i < i_end - 1; i++)
+  std::cout << i_beg << " from obstacle Position" << settings_.obstaclePosition[0] << " and size " << size_[0] - 2 << std::endl;
+  std::cout << i_end << " from obstacle Size " << settings_.obstacleDimension[0] << " and size " << size_[0] - 2 << std::endl;
+  
+  for (int i = i_beg; i < i_end; i++)
   {
-    for (int j = j_beg + 1; j < j_end - 1; j++)
+    for (int j = j_beg; j < j_end; j++)
     {
       data_[i + j * size_[0]] = OBSTACLE;
     }
   }
-  // boundary obstacle
-  data_[i_beg + j_beg * size_[0]] = OBSTACLE;             // OBSTACLE_CORNER_BOTTOM_LEFT;
-  data_[i_beg + (j_end - 1) * size_[0]] = OBSTACLE;       // OBSTACLE_CORNER_TOP_LEFT;
-  data_[(i_end - 1) + j_beg * size_[0]] = OBSTACLE;       // OBSTACLE_CORNER_BOTTOM_RIGHT;
-  data_[(i_end - 1) + (j_end - 1) * size_[0]] = OBSTACLE; // OBSTACLE_CORNER_TOP_RIGHT;
-
-  for (int i = i_beg + 1; i < i_end - 1; i++)
-  {
-    data_[i + j_beg * size_[0]] = OBSTACLE;       // OBSTACLE_BORDER_BOTTOM;
-    data_[i + (j_end - 1) * size_[0]] = OBSTACLE; // OBSTACLE_BORDER_TOP;
-  }
-  for (int j = j_beg + 1; j < j_end - 1; j++)
-  {
-    data_[i_beg + j * size_[0]] = OBSTACLE;       // OBSTACLE_BORDER_LEFT;
-    data_[(i_end - 1) + j * size_[0]] = OBSTACLE; // OBSTACLE_BORDER_RIGHT;
-  }
-
-  // TODO: think of edges
 };
 
-void Mask::setDomainBoundary(std::string domainBoundary_left, std::string domainBoundary_right, std::string domainBoundary_top, std::string domainBoundary_bot)
+void Mask::setDomainBoundary()
 {
-  int i = 0;
+  // Set domain boundaries
+  
+  for (int i = 0; i < size_[0]; i++)
+  {
+    // Bottom Domain Boundary
+    if (data_[i+size_[0]] == OBSTACLE)
+      data_[i] = OBSTACLE_INSIDE;
+    else if (settings_.BCBottom == "NoSlip")
+      data_[i] = DOMAIN_BOTTOM_NOSLIP;
+    else if (settings_.BCBottom == "Pressure")
+      data_[i] = DOMAIN_BOTTOM_PRESSURE;
+
+
+    // Top Domain Boundary
+    if (data_[i + (size_[1] - 2) * size_[0]] == OBSTACLE)
+      data_[i + (size_[1] - 1) * size_[0]] = OBSTACLE_INSIDE;
+    else if (settings_.BCTop == "NoSlip")
+      data_[i + (size_[1] - 1) * size_[0]] = DOMAIN_TOP_NOSLIP;
+    else if (settings_.BCTop == "Pressure")
+      data_[i + (size_[1] - 1) * size_[0]] = DOMAIN_TOP_PRESSURE;
+  }    
+
+  for (int j = 0; j < size_[1]; j++)
+  { 
+    // Left Domain Boundary
+    if (data_[j * size_[0]+1] == OBSTACLE) 
+      data_[j * size_[0]] = OBSTACLE_INSIDE;
+    else if (settings_.BCLeft == "NoSlip")
+      data_[j * size_[0]] = DOMAIN_LEFT_NOSLIP;
+    else if (settings_.BCLeft == "Pressure")
+      data_[j * size_[0]] = DOMAIN_LEFT_PRESSURE;
+
+    // Right Domain Boundary
+    if (data_[(size_[0] - 2) + j * size_[0]] == OBSTACLE)
+      data_[(size_[0] - 1) + j * size_[0]] = OBSTACLE_INSIDE;
+    else if (settings_.BCRight == "NoSlip")
+      data_[(size_[0] - 1) + j * size_[0]] = DOMAIN_RIGHT_NOSLIP;
+    else if (settings_.BCRight == "Pressure")
+      data_[(size_[0] - 1) + j * size_[0]] = DOMAIN_RIGHT_PRESSURE;
+  }
+
+  data_[0] = OBSTACLE_INSIDE;
+  data_[size_[0]-1] = OBSTACLE_INSIDE;
+  data_[0+size_[0]*(size_[1]-1)] = OBSTACLE_INSIDE;
+  data_[size_[0]-1+size_[0]*(size_[1]-1)] = OBSTACLE_INSIDE;
+
+
 }
 
 // ******************************
