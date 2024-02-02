@@ -1,7 +1,5 @@
 #include "fluid_tracer.h"
 
-#include <unistd.h>
-
 FluidTracer::FluidTracer(std::vector<double> x, std::vector<double> y,
                         std::shared_ptr<Discretization> discretization,
                         std::shared_ptr<Mask> mask) {
@@ -292,9 +290,9 @@ std::array<double, 2> FluidTracer::moveParticles(double dt, std::array<double, 2
         vel = updateParticle(i, idx1, dt, vel, 0);
         // Update mask
         std::array<int, 2> idx = cellOfParticle(i);
-        if (!mask_->isObstacle(idx[0], idx[1])){
-            (*mask_)(idx[0], idx[1]) = Mask::FLUID;
-        }
+        (*mask_)(idx[0], idx[1]) = Mask::FLUID;
+        // if (!mask_->isObstacle(idx[0], idx[1])){
+        // }
     }
 
     mask_->updateMaskBoundaries();
@@ -425,21 +423,8 @@ std::array<double, 2> FluidTracer::updateParticle(int i, std::array<int, 2> idx,
                 }
             } else if (vel[1] < 0){
                 // direction BOTTOM_LEFT
-
-
                 dist_y = lowerBorder - y_[i];
                 dt_y = dist_y/vel[1]; // -- = +
-
-
-                // What is wrong here?
-                std::cout << "Index: " << idx[0] << " " << idx[1] << std::endl;
-                std::cout << "Distances: " << dist_x << " " << dist_y << std::endl;
-                std::cout << "x" << x_[0] << "y" << y_[0];
-                std::cout << "Veloc: " << vel[0] << " " << vel[1] << std::endl;
-                std::cout << std::setprecision(10) << "dt " << dt << " " << dt_x << " " << dt_y << std::endl;
-                std::cout << newIdx[0]-idx[0] << " " << newIdx[1]-idx[1] << " dtBC " <<  dtBeforeCollision << std::endl;
-                usleep(400000);
-
 
                 if (dt_y < dt_x) {
                     // collision BOTTOM
@@ -448,7 +433,7 @@ std::array<double, 2> FluidTracer::updateParticle(int i, std::array<int, 2> idx,
                     } else {
                         newIdx[1] -= 1;
                     }
-                    dtBeforeCollision = dt_x;
+                    dtBeforeCollision = dt_y;
                 } else {
                     // collision LEFT
                     if (mask_->isObstacle(idx[0] - 1, idx[1])){ //TODO: change
@@ -456,7 +441,7 @@ std::array<double, 2> FluidTracer::updateParticle(int i, std::array<int, 2> idx,
                     } else {
                         newIdx[0] -= 1;
                     }
-                    dtBeforeCollision = dt_y;
+                    dtBeforeCollision = dt_x;
                 }
             }
         }
@@ -478,16 +463,7 @@ std::array<double, 2> FluidTracer::updateParticle(int i, std::array<int, 2> idx,
 
         if (newDt < eps){
             return newVel;
-        }
-
-        // std::cout << "Index: " << idx[0] << " " << idx[1] << std::endl;
-        // std::cout << "Distances: " << dist_x << " " << dist_y << std::endl;
-        // std::cout << "x" << x_[0] << "y" << y_[0];
-        // std::cout << "Veloc: " << vel[0] << " " << vel[1] << std::endl;
-        std::cout << newIdx[0]-idx[0] << " " << newIdx[1]-idx[1] << " dtBC " <<  dtBeforeCollision << std::endl;
-        usleep(400000);
-        // std::cout << "time " << dt << " " << newDt << std::endl;
-        
+        }    
         return updateParticle(i, newIdx, newDt, newVel, depth + 1);
     }
 }
