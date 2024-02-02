@@ -23,8 +23,7 @@ class Boundary
         void setVelocityBoundaryObstacleU(int i, int j);
         void setVelocityBoundaryObstacleV(int i, int j);
 
-        void setVelocityBoundarySurfaceU(int i, int j);
-        void setVelocityBoundarySurfaceV(int i, int j);
+        void setVelocityBoundarySurface(int i, int j);
 
         std::shared_ptr<Discretization> discretization_;
         std::shared_ptr<Mask> mask_;

@@ -25,7 +25,7 @@ class Mask{
 //TODO: it is weird but if we would use `char` instead of int, we would use less memory
 
 enum CellType{
-    DROPLET = 0,
+    FLUID_DROPLET = 0,
     FLUID = 15,
 
     FLUID_SINGLE_LEFT = 1,

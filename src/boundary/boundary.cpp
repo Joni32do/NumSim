@@ -48,49 +48,69 @@ void Boundary::setPressureBoundarySurface(int i, int j){
     double dy = discretization_->dy();
     switch((*mask_)(i, j)){
         case Mask::FLUID_BORDER_LEFT:
-            discretization_->p(i, j) = 2/settings_.re * ( discretization_->u(i, j) - discretization_->u(i - 1, j))/dx;
+            discretization_->p(i, j) = 2/settings_.re*(discretization_->u(i, j) - discretization_->u(i - 1, j))/dx;
             break;
         case Mask::FLUID_BORDER_TOP:
-            discretization_->p(i, j) = 2/settings_.re * ( discretization_->v(i, j) - discretization_->v(i, j - 1))/dy;
+            discretization_->p(i, j) = 2/settings_.re*(discretization_->v(i, j) - discretization_->v(i, j - 1))/dy;
             break;
         case Mask::FLUID_BORDER_RIGHT:
-            discretization_->p(i, j) = 2/settings_.re * ( discretization_->u(i, j) - discretization_->u(i - 1, j))/dx;
+            discretization_->p(i, j) = 2/settings_.re*(discretization_->u(i, j) - discretization_->u(i - 1, j))/dx;
             break;
         case Mask::FLUID_BORDER_BOTTOM:
-            discretization_->p(i, j) = 2/settings_.re * ( discretization_->v(i, j) - discretization_->v(i, j - 1))/dy;
+            discretization_->p(i, j) = 2/settings_.re*(discretization_->v(i, j) - discretization_->v(i, j - 1))/dy;
             break;
         case Mask::FLUID_CORNER_TOP_LEFT:
             discretization_->p(i, j) = -1/(2 * settings_.re) * (
-                1/dy * (discretization_->u(i, j) + discretization_->u(i - 1, j) 
-                       +discretization_->u(i, j - 1) - discretization_->u(i - 1, j - 1))
-              + 1/dx * (discretization_->v(i, j) + discretization_->v(i, j - 1) 
-                          +discretization_->v(i - 1, j) - discretization_->v(i - 1, j - 1))
+                1/(2*dy) * (discretization_->u(i, j) + discretization_->u(i - 1, j) 
+                    +discretization_->u(i, j - 1) - discretization_->u(i - 1, j - 1))
+              + 1/(2*dx) * (discretization_->v(i, j) + discretization_->v(i, j - 1) 
+                    +discretization_->v(i - 1, j) - discretization_->v(i - 1, j - 1))
             );
-            // Since I'm unsure about this result and its similar for the other cases I'll leave it like this
             break;
         case Mask::FLUID_CORNER_TOP_RIGHT:
-            // discretization_->p(i, j) = 1/(2 * settings_.re) * (
-            //     1/dy * (discretization_->u(i, j) + discretization_->u(i - 1, j) 
-            //            +discretization_->u(i, j - 1) - discretization_->u(i - 1, j - 1))
-            //   + 1/dx * (discretization_->v(i, j) + discretization_->v(i, j - 1) 
-            //               +discretization_->v(i - 1, j) - discretization_->v(i - 1, j - 1))
-            // );
+            discretization_->p(i, j) = 1/(2 * settings_.re) * (
+                1/(2*dy) * (discretization_->u(i, j) + discretization_->u(i - 1, j) 
+                    +discretization_->u(i, j - 1) - discretization_->u(i - 1, j - 1))
+              + 1/(2*dx) * (discretization_->v(i, j) + discretization_->v(i, j - 1) 
+                    +discretization_->v(i - 1, j) - discretization_->v(i - 1, j - 1))
+            );
             break;
         case Mask::FLUID_CORNER_BOTTOM_RIGHT:
-            // discretization_->p(i, j) =-1/(2 * settings_.re) * (
-            //     1/dy * (discretization_->u(i, j) + discretization_->u(i - 1, j) 
-            //            +discretization_->u(i, j - 1) - discretization_->u(i - 1, j - 1))
-            //   + 1/dx * (discretization_->v(i, j) + discretization_->v(i, j - 1) 
-            //               +discretization_->v(i - 1, j) - discretization_->v(i - 1, j - 1))
-            // );
+            discretization_->p(i, j) =-1/(2 * settings_.re) * (
+                1/(2*dy) * (discretization_->u(i, j) + discretization_->u(i - 1, j) 
+                    +discretization_->u(i, j - 1) - discretization_->u(i - 1, j - 1))
+              + 1/(2*dx) * (discretization_->v(i, j) + discretization_->v(i, j - 1) 
+                    +discretization_->v(i - 1, j) - discretization_->v(i - 1, j - 1))
+            );
             break;
         case Mask::FLUID_CORNER_BOTTOM_LEFT:
-            // discretization_->p(i, j) = 1/(2 * settings_.re) * (
-            //     1/dy * (discretization_->u(i, j) + discretization_->u(i - 1, j) 
-            //            +discretization_->u(i, j - 1) - discretization_->u(i - 1, j - 1))
-            //   + 1/dx * (discretization_->v(i, j) + discretization_->v(i, j - 1) 
-            //               +discretization_->v(i - 1, j) - discretization_->v(i - 1, j - 1))
-            // );
+            discretization_->p(i, j) = 1/(2 * settings_.re) * (
+                1/(2*dy) * (discretization_->u(i, j) + discretization_->u(i - 1, j) 
+                    +discretization_->u(i, j - 1) - discretization_->u(i - 1, j - 1))
+              + 1/(2*dy) * (discretization_->v(i, j) + discretization_->v(i, j - 1) 
+                    +discretization_->v(i - 1, j) - discretization_->v(i - 1, j - 1))
+            );
+            break;
+        case Mask::FLUID_COLUMN_VERTICAL:
+            discretization_->p(i, j) = 2/settings_.re * (discretization_->u(i, j) - discretization_->u(i - 1, j))/dx;
+            break;
+        case Mask::FLUID_COLUMN_HORIZONTAL:
+            discretization_->p(i, j) = 2/settings_.re * (discretization_->v(i, j) - discretization_->v(i, j - 1))/dy;
+            break;
+        case Mask::FLUID_SINGLE_LEFT:
+            discretization_->p(i, j) = 0;
+            break;
+        case Mask::FLUID_SINGLE_TOP:
+            discretization_->p(i, j) = 0;
+            break;
+        case Mask::FLUID_SINGLE_RIGHT:
+            discretization_->p(i, j) = 0;
+            break;
+        case Mask::FLUID_SINGLE_BOTTOM:
+            discretization_->p(i, j) = 0;
+            break;
+        case Mask::FLUID_DROPLET:
+            discretization_->p(i, j) = 0;
             break;
     }
 }
@@ -132,7 +152,7 @@ void Boundary::setVelocityBoundaryValues(){
     
 }
 
-void Boundary::setVelocityBoundarySurfaceU(int i, int j){
+void Boundary::setVelocityBoundarySurface(int i, int j){
     // important that this is solved 
     //     from left to right (increasing i)
     //     from bottom to top (increasing j)
@@ -149,6 +169,7 @@ void Boundary::setVelocityBoundarySurfaceU(int i, int j){
             discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1)
                 + dxByDy * (discretization_->u(i - 1, j) - discretization_->u(i - 1, j - 1));
             break;
+
         case Mask::FLUID_BORDER_TOP:
             // v
             discretization_->v(i, j) = discretization_->v(i, j - 1)

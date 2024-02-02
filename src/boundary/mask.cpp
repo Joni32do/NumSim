@@ -79,10 +79,13 @@ bool Mask::isFluid(int i, int j) const
       }
     }
 
-bool Mask::isObstacle(int i, int j) const
-    {
+bool Mask::isObstacle(int i, int j) const {
+      if (i < 0 || i >= size_[0] || j < 0 || j >= size_[1]){
+        return true;
+      } else {
         return (data_[i + j * size_[0]] >= OBSTACLE);
-    }
+      }
+}
 
 bool Mask::isFluidBorder(int i, int j) const
     {

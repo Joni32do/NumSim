@@ -370,6 +370,37 @@ TEST(FluidTracer, moveDistributedParticlesInLargeGrid){
 }
 
 
+TEST(FluidTracer, DVDLogoBounceOff){
+    std::array<int,2> n_cells = {20, 20};
+
+
+    std::array<double,2> meshWidth = {1.0/n_cells[0], 1.0/n_cells[1]};
+
+    std::shared_ptr<Discretization> discretization = std::make_shared<CentralDifferences>(n_cells, meshWidth);
+    std::shared_ptr<Mask> mask = std::make_shared<Mask>(n_cells);
+    mask->makeRectangularObstacle({1.0, 1.0}, {0.6, 0.2}, {0.1, 0.1});
+
+    // Initial values
+    // std::array<double, 2> vel = {-0.5*meshWidth[0], -0.5 * meshWidth[1]};
+    std::array<double, 2> vel = {-0.215*meshWidth[0], 0.13 * meshWidth[1]};
+    double dt = 1;
+    std::vector<double> x = {0.225};
+    std::vector<double> y = {0.51};
+
+    FluidTracer fluidTracer(x, y, discretization, mask);
+
+
+    for (int k = 0; k < 1000; k++){
+
+        
+        mask->printMask();
+        std::cout << k << " ";
+        vel = fluidTracer.moveParticles(dt, vel);
+        std::cout << "\033[2J\033[1;1H";
+        usleep(20000);
+    }
+}
+
 
 
 // -----------------------------------------------------------------

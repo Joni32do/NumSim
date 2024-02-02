@@ -55,8 +55,16 @@ class FluidTracer {
          */
         std::array<double, 2> getParticlePosition(int i) const;
 
+        std::array<int, 2> cellOfParticle(int i);
         int val2CellX(double xVal);
         int val2CellY(double yVal);
+
+
+
+        // Only test
+        std::array<double, 2> updateParticle(int i, std::array<int, 2> idx, double dt, std::array<double,2> vel, int depth);
+        std::array<double, 2> moveParticles(double dt, std::array<double, 2> vel);
+
 
     private:
         /**
@@ -68,7 +76,7 @@ class FluidTracer {
          */
         void initializeFluidCell(int i, int j, int idx);
 
-        void updateParticle(int i, double dt, double vel_x, double vel_y);
+        void updateParticle(int i, double dt, double vel_x, double vel_y, int depth);
 
 
         int numParticles_;
@@ -81,4 +89,7 @@ class FluidTracer {
         std::shared_ptr<Mask> mask_;
         std::vector<double> x_;
         std::vector<double> y_;
+
+
+
 };

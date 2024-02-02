@@ -12,3 +12,15 @@ TEST(Boundary, BoundaryCellsWithoutObstacle) {
 
     EXPECT_EQ(boundary.getNumberOfBoundaryCells(), 18);
 };
+
+
+TEST(Boundary, BV_FLUID_BORDER_LEFT){
+    std::array<int,2> n_cells = {4,3};
+    std::array<double,2> meshWidth = {1.0, 1.0};
+    std::shared_ptr<Mask> mask = std::make_shared<Mask>(n_cells);
+    std::shared_ptr<Discretization> discretization = std::make_shared<CentralDifferences>(n_cells, meshWidth);
+    Settings settings;
+    Boundary boundary(mask, discretization, settings);
+
+    (*mask)(1, 1) = Mask::FLUID_BORDER_LEFT;
+}
