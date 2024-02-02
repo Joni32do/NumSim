@@ -186,6 +186,19 @@ void Settings::setParameter(std::string parameterName, std::string value)
     else if (parameterName == "obstacleDimensionY")
         Settings::obstacleDimension[1] = atof(value.c_str());
 
+    // Domain from Bitmap
+    else if (parameterName == "createDomainfromBitmap")
+    {
+        if (value == "true" || value == "True")
+            Settings::createDomainfromBitmap = true;
+        else if (value == "false" || value == "False")
+            Settings::createDomainfromBitmap = false;
+        else
+            throw std::invalid_argument("createDomainfromBitmap must be a boolean (true or false).");
+    }
+    else if (parameterName == "pathToBitmap")
+        Settings::pathToBitmap = value;
+    
     // Discretization parameters
     else if (parameterName == "nCellsX")
         Settings::nCells[0] = atoi(value.c_str());

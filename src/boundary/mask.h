@@ -6,6 +6,7 @@
 #include <cmath>
 
 #include <iostream>
+#include <png.h>
 #include <iomanip> 
 #include <fstream>
 #include "../settings_parser/settings.h"
@@ -196,6 +197,7 @@ enum CellType{
      * @param obstacleSize_ length and width of the rectangle
      */
     void makeRectangularObstacle();
+    void createMaskFromPNGBitMap();
 
     void setDomainBC();
     void setObstacleBC();

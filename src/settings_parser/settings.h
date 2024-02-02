@@ -45,6 +45,10 @@ struct Settings
   // Create rectangular obstacle in domain
   bool createRectangularObject = false; //!< wheter a rectangular object in domain should be created
 
+  // Create domain from PNGBitmap
+  bool createDomainfromBitmap = false; //!< wheter domain should be created from bitmap 
+  std::string pathToBitmap; //!< path to bitmap 
+
   std::array<double, 2> obstaclePosition; //!< x and y position of rectangular object
   std::array<double, 2> obstacleDimension; //!< x and y dimension of rectangular object
 
