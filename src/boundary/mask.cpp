@@ -15,9 +15,10 @@ Mask::Mask(Settings settings) : settings_(settings)
     makeRectangularObstacle();
   
   setDomainBC();
-  printMask();
   setObstacleBC();
+  printMask();
 }
+
 
 int &Mask::operator()(int i, int j)
 {
@@ -110,6 +111,14 @@ bool Mask::isNotAir(int i, int j) const
   }
 }
 
+bool Mask::isDomainBoundary(int i, int j) const{
+  return (*this)(i,j)>200;
+}
+
+bool Mask::isObstacleBoundary(int i, int j) const{
+  return ((*this)(i,j)>100 && (*this)(i,j)<200);
+}
+
 int Mask::getNumberOfFluidCells() const
 {
   int numFluidCells = 0;
@@ -157,6 +166,7 @@ void Mask::makeRectangularObstacle()
 
 void Mask::createMaskFromPNGBitMap()
 {
+  std::cout << "Creating Domain from PNGBitMap\n";
   const char *file_path = settings_.pathToBitmap.c_str();
   FILE *fp = fopen(file_path, "rb");
   if (!fp)
@@ -182,7 +192,7 @@ void Mask::createMaskFromPNGBitMap()
   png_byte color_type = png_get_color_type(png, info);
   png_byte bit_depth = png_get_bit_depth(png, info);
 
-  std::cout << "Width: " << width << ", Height: " << height << std::endl;
+  std::cout << "Bitmap width: " << width << ", Bitmap height: " << height << std::endl;
 
   size_ = {width + 2, height + 2};
   data_.resize(size_[0] * size_[1], FLUID);
@@ -302,11 +312,11 @@ void Mask::setObstacleBC()
         int BC = 1 * Mask::isFluid(i - 1, j) + 2 * Mask::isFluid(i, j + 1) + 4 * Mask::isFluid(i + 1, j) + 8 * Mask::isFluid(i, j - 1) + 100;
         bool BCinForbiddenCombinations = std::find(std::begin(forbiddenObstacleFluidCombinations), std::end(forbiddenObstacleFluidCombinations), BC) != std::end(forbiddenObstacleFluidCombinations);
         if (Mask::isAir(i - 1, j) && Mask::isAir(i + 1, j))
-          throw std::runtime_error("Obstacel is only one cell wide at i: " + std::to_string(i) + "j: " + std::to_string(j));
+          throw std::runtime_error("Obstacel is only one cell wide at i: " + std::to_string(i) + " ,j: " + std::to_string(j));
         else if (Mask::isAir(i, j + 1) && Mask::isAir(i, j - 1))
-          throw std::runtime_error("Obstacel is only one cell wide at i: " + std::to_string(i) + "j: " + std::to_string(j));
+          throw std::runtime_error("Obstacel is only one cell wide at i: " + std::to_string(i) + " ,j: " + std::to_string(j));
         else if (BCinForbiddenCombinations)
-          throw std::runtime_error("Obstacel is only one cell wide at i: " + std::to_string(i) + "j: " + std::to_string(j));
+          throw std::runtime_error("Obstacel is only one cell wide at i: " + std::to_string(i) + " ,j: " + std::to_string(j));
         else
           (*this)(i, j) = BC;
       }

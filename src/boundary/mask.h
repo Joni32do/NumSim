@@ -199,6 +199,9 @@ enum CellType{
     void makeRectangularObstacle();
     void createMaskFromPNGBitMap();
 
+    bool isDomainBoundary(int i, int j) const;
+    bool isObstacleBoundary(int i, int j) const;
+
     void setDomainBC();
     void setObstacleBC();
 

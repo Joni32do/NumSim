@@ -4,78 +4,253 @@ Boundary::Boundary(std::shared_ptr<Mask> mask,
                    std::shared_ptr<Discretization> discretization,
                    Settings settings) : mask_(mask), discretization_(discretization), settings_(settings)
 {
+    createBoundaryCellsLists();
+    // for (int i = 0; i < mask_->size()[0]; i++)
+    // {
+    //     for (int j = 0; j < mask_->size()[1]; j++)
+    //     {
+    //         if (mask_->isBorder(i, j))
+    //         {
+    //             boundaryCells_.push_back(i + j * mask_->size()[0]);
+    //         }
+    //     }
+    // }
+    // #ifndef NDEBUG
+    //     mask_->printMask();
+    // #endif
+}
 
+void Boundary::createBoundaryCellsLists()
+{
     for (int i = 0; i < mask_->size()[0]; i++)
     {
         for (int j = 0; j < mask_->size()[1]; j++)
         {
-            if (mask_->isBorder(i, j))
-            {
-                boundaryCells_.push_back(i + j * mask_->size()[0]);
-            }
+            if (mask_->isDomainBoundary(i, j))
+                DomainBoundaryCells_.push_back(i + j * mask_->size()[0]);
+            if (mask_->isObstacleBoundary(i, j))
+                ObstacleBoundaryCells_.push_back(i + j * mask_->size()[0]);
         }
     }
-    #ifndef NDEBUG
-        mask_->printMask();
-    #endif
 }
 
-int Boundary::getNumberOfBoundaryCells() const {
-    return boundaryCells_.size();
+void Boundary::setPressureBoundaryValues()
+{
+    setPressureDomainBC();
+    setPressureObstacleBC();
 }
 
-void Boundary::setPressureBoundaryValues(){
-    for (int idx : boundaryCells_)
+void Boundary::setPressureDomainBC()
+{
+    for (int idx : DomainBoundaryCells_)
     {
         int i = idx % mask_->size()[0];
         int j = idx / mask_->size()[0];
-
-        if (mask_->isFluid(i, j))
+        switch ((*mask_)(i, j))
         {
-            setPressureBoundarySurface(i, j);
-        }
-        else if (mask_->isObstacle(i, j))
-        {
-            setPressureBoundaryObstacle(i, j);
-        }
-    }
-}
-
-// its important that first the velocities are updated
-void Boundary::setPressureBoundarySurface(int i, int j){
-    // u and v must be updated before p
-    switch((*mask_)(i, j)){
-        case Mask::FLUID_BORDER_LEFT:
-            break;
-        case Mask::FLUID_BORDER_TOP:
-            break;
-        case Mask::FLUID_BORDER_RIGHT:
-            discretization_->p(i, j) = 2/settings_.re * ( discretization_->u(i, j) - discretization_->u(i - 1, j))/discretization_->dx();
-            break;
-        case Mask::FLUID_BORDER_BOTTOM:
-            discretization_->p(i, j) = 2/settings_.re * ( discretization_->v(i, j) - discretization_->v(i, j - 1))/discretization_->dy();
-            break;
-    }
-}
-
-void Boundary::setPressureBoundaryObstacle(int i, int j){
-    switch((*mask_)(i, j)){
         case Mask::DOMAIN_LEFT_NOSLIP:
             discretization_->p(i, j) = discretization_->p(i + 1, j);
-            break;
         case Mask::DOMAIN_TOP_NOSLIP:
             discretization_->p(i, j) = discretization_->p(i, j - 1);
-            break;
         case Mask::DOMAIN_RIGHT_NOSLIP:
             discretization_->p(i, j) = discretization_->p(i - 1, j);
-            break;
         case Mask::DOMAIN_BOTTOM_NOSLIP:
             discretization_->p(i, j) = discretization_->p(i, j + 1);
+        case Mask::DOMAIN_LEFT_PRESSURE:
             break;
+        case Mask::DOMAIN_TOP_PRESSURE:
+            break;
+        case Mask::DOMAIN_RIGHT_PRESSURE:
+            break;
+        case Mask::DOMAIN_BOTTOM_PRESSURE:
+            break;
+        }
     }
 }
 
-void Boundary::setVelocityBoundaryValues(){
+void Boundary::setPressureObstacleBC()
+{
+    for (int idx : ObstacleBoundaryCells_)
+    {
+        int i = idx % mask_->size()[0];
+        int j = idx / mask_->size()[0];
+        switch ((*mask_)(i, j))
+        {
+        case Mask::OBSTACLE_BORDER_LEFT:
+            discretization_->p(i, j) = discretization_->p(i - 1, j);
+        case Mask::OBSTACLE_BORDER_TOP:
+            discretization_->p(i, j) = discretization_->p(i, j + 1);
+        case Mask::OBSTACLE_CORNER_TOP_LEFT:
+            discretization_->p(i, j) = 0.5 * (discretization_->p(i - 1, j) + discretization_->p(i, j + 1));
+        case Mask::OBSTACLE_BORDER_RIGHT:
+            discretization_->p(i, j) = discretization_->p(i + 1, j);;
+        case Mask::OBSTACLE_CORNER_TOP_RIGHT:
+            discretization_->p(i, j) = 0.5 * (discretization_->p(i + 1, j) + discretization_->p(i, j + 1));
+        case Mask::OBSTACLE_BORDER_BOTTOM:
+            discretization_->p(i, j) = discretization_->p(i, j - 1);
+        case Mask::OBSTACLE_CORNER_BOTTOM_RIGHT:
+            discretization_->p(i, j) = 0.5 * (discretization_->p(i + 1, j) + discretization_->p(i, j - 1));
+        case Mask::OBSTACLE_CORNER_BOTTOM_LEFT:
+            discretization_->p(i, j) = 0.5 * (discretization_->p(i - 1, j) + discretization_->p(i, j - 1));
+        }
+    }
+}
+
+
+
+void Boundary::setVelocityDomainBC(){
+    for (int idx : DomainBoundaryCells_)
+    {
+        int i = idx % mask_->size()[0];
+        int j = idx / mask_->size()[0];
+        switch ((*mask_)(i, j))
+        {
+        case Mask::DOMAIN_LEFT_NOSLIP:
+            discretization_->u(i, j) = settings_.NoSlipVelLeft[0];
+            discretization_->f(i, j) = discretization_->u(i, j);
+            discretization_->v(i, j) = 2 * settings_.NoSlipVelLeft[1] - discretization_->v(i+1, j);
+        case Mask::DOMAIN_TOP_NOSLIP:
+            discretization_->u(i, j) = 2 * settings_.NoSlipVelTop[0] - discretization_->u(i, j - 1);
+            discretization_->v(i, j-1) = settings_.NoSlipVelTop[1];
+            discretization_->g(i, j-1) = discretization_->v(i, j-1);
+        case Mask::DOMAIN_RIGHT_NOSLIP:
+            discretization_->u(i-1, j) = settings_.NoSlipVelRight[0];
+            discretization_->f(i-1, j) = discretization_->u(i-1, j);
+            discretization_->v(i, j) = 2 * settings_.NoSlipVelRight[1] - discretization_->v(i-1, j);
+        case Mask::DOMAIN_BOTTOM_NOSLIP:
+            discretization_->u(i, j) = 2 * settings_.NoSlipVelBottom[0] - discretization_->u(i, j + 1);
+            discretization_->v(i, j) = settings_.NoSlipVelBottom[1];
+            discretization_->g(i, j) = discretization_->v(i, j);
+        case Mask::DOMAIN_LEFT_PRESSURE:
+            break;
+        case Mask::DOMAIN_TOP_PRESSURE:
+            break;
+        case Mask::DOMAIN_RIGHT_PRESSURE:
+            break;
+        case Mask::DOMAIN_BOTTOM_PRESSURE:
+            break;
+        }
+    }
+}
+
+
+void Boundary::setVelocityObstacleBC(){
+    for (int idx : ObstacleBoundaryCells_)
+    {
+        int i = idx % mask_->size()[0];
+        int j = idx / mask_->size()[0];
+        switch ((*mask_)(i, j))
+        {
+        case Mask::OBSTACLE_BORDER_LEFT:
+            discretization_->v(i,j) = -discretization_->v(i-1,j);
+            discretization_->u(i-1,j) = 0.0;
+            discretization_->f(i-1,j) = discretization_->u(i-1,j);
+        case Mask::OBSTACLE_BORDER_TOP:
+            discretization_->u(i,j) = -discretization_->u(i,j+1);
+            discretization_->v(i,j) = 0.0;
+            discretization_->g(i,j) = discretization_->v(i,j);
+        case Mask::OBSTACLE_CORNER_TOP_LEFT:
+            discretization_->u(i-1,j) = 0.0;
+            discretization_->f(i-1,j) = discretization_->u(i-1,j);
+            discretization_->v(i,j) = 0.0;
+            discretization_->g(i,j) = discretization_->v(i,j);
+            discretization_->u(i,j) = -discretization_->u(i,j+1);
+            discretization_->v(i,j-1) = -discretization_->v(i-1,j-1);
+        case Mask::OBSTACLE_BORDER_RIGHT:
+            discretization_->v(i,j) = -discretization_->v(i+1,j);
+            discretization_->u(i,j) = 0.0;
+            discretization_->f(i,j) = discretization_->u(i,j);
+        case Mask::OBSTACLE_CORNER_TOP_RIGHT:
+            discretization_->u(i,j) = 0.0;
+            discretization_->f(i,j) = discretization_->u(i,j);
+            discretization_->v(i,j) = 0.0;
+            discretization_->g(i,j) = discretization_->v(i,j);
+            discretization_->u(i-1,j) = -discretization_->u(i-1,j+1);
+            discretization_->v(i,j-1) = -discretization_->v(i-1,j-1);
+        case Mask::OBSTACLE_BORDER_BOTTOM:
+            discretization_->u(i,j) = -discretization_->u(i,j-1);
+            discretization_->v(i,j-1) = 0.0;
+            discretization_->g(i,j-1) = 0.0;
+        case Mask::OBSTACLE_CORNER_BOTTOM_RIGHT:
+            discretization_->u(i,j) = 0.0;
+            discretization_->f(i,j) = discretization_->u(i,j);
+            discretization_->v(i,j-1) = 0.0;
+            discretization_->g(i,j-1) = discretization_->v(i,j-1);
+            discretization_->u(i-1,j) = -discretization_->u(i-1,j-1);
+            discretization_->v(i,j) = -discretization_->v(i+1,j);
+        case Mask::OBSTACLE_CORNER_BOTTOM_LEFT:
+            discretization_->u(i-1,j) = 0.0;
+            discretization_->f(i-1,j) = discretization_->u(i,j);
+            discretization_->v(i,j-1) = 0.0;
+            discretization_->g(i,j-1) = discretization_->v(i,j-1);
+            discretization_->u(i,j) = -discretization_->u(i,j-1);
+            discretization_->v(i,j) = -discretization_->v(i-1,j);
+        }
+    }
+}
+
+
+// int Boundary::getNumberOfBoundaryCells() const {
+//     return boundaryCells_.size();
+// }
+
+// void Boundary::setPressureBoundaryValues(){
+//     for (int idx : boundaryCells_)
+//     {
+//         int i = idx % mask_->size()[0];
+//         int j = idx / mask_->size()[0];
+
+//         if (mask_->isFluid(i, j))
+//         {
+//             setPressureBoundarySurface(i, j);
+//         }
+//         else if (mask_->isObstacle(i, j))
+//         {
+//             setPressureBoundaryObstacle(i, j);
+//         }
+//     }
+// }
+
+// its important that first the velocities are updated
+void Boundary::setPressureBoundarySurface(int i, int j)
+{
+    // u and v must be updated before p
+    switch ((*mask_)(i, j))
+    {
+    case Mask::FLUID_BORDER_LEFT:
+        break;
+    case Mask::FLUID_BORDER_TOP:
+        break;
+    case Mask::FLUID_BORDER_RIGHT:
+        discretization_->p(i, j) = 2 / settings_.re * (discretization_->u(i, j) - discretization_->u(i - 1, j)) / discretization_->dx();
+        break;
+    case Mask::FLUID_BORDER_BOTTOM:
+        discretization_->p(i, j) = 2 / settings_.re * (discretization_->v(i, j) - discretization_->v(i, j - 1)) / discretization_->dy();
+        break;
+    }
+}
+
+void Boundary::setPressureBoundaryObstacle(int i, int j)
+{
+    switch ((*mask_)(i, j))
+    {
+    case Mask::DOMAIN_LEFT_NOSLIP:
+        discretization_->p(i, j) = discretization_->p(i + 1, j);
+        break;
+    case Mask::DOMAIN_TOP_NOSLIP:
+        discretization_->p(i, j) = discretization_->p(i, j - 1);
+        break;
+    case Mask::DOMAIN_RIGHT_NOSLIP:
+        discretization_->p(i, j) = discretization_->p(i - 1, j);
+        break;
+    case Mask::DOMAIN_BOTTOM_NOSLIP:
+        discretization_->p(i, j) = discretization_->p(i, j + 1);
+        break;
+    }
+}
+
+void Boundary::setVelocityBoundaryValues()
+{
     for (int idx : boundaryCells_)
     {
         int i = idx % mask_->size()[0];
@@ -92,79 +267,81 @@ void Boundary::setVelocityBoundaryValues(){
             setVelocityBoundaryObstacleV(i, j);
         }
     }
-    
 }
 
-void Boundary::setVelocityBoundarySurfaceU(int i, int j){
-    // important that this is solved 
+
+
+
+
+void Boundary::setVelocityBoundarySurfaceU(int i, int j)
+{
+    // important that this is solved
     //     from left to right (increasing i)
     //     from bottom to top (increasing j)
     double dxByDy = discretization_->dx() / discretization_->dy();
     double dyByDx = discretization_->dy() / discretization_->dx();
 
-    switch ((*mask_)(i, j)) {
-        case Mask::FLUID_BORDER_LEFT:
-            discretization_->u(i, j);
-            break;
-        case Mask::FLUID_BORDER_TOP:
-            break;
-        case Mask::FLUID_BORDER_RIGHT:
-            discretization_->u(i, j) = discretization_->u(i - 1, j)
-                - dxByDy * (discretization_->v(i, j) - discretization_->v(i, j - 1));
-            break;
-        case Mask::FLUID_BORDER_BOTTOM:
-            break;
-        case Mask::FLUID_CORNER_TOP_LEFT:
-            break;
-        case Mask::FLUID_CORNER_TOP_RIGHT:
-            discretization_->u(i, j) = discretization_->u(i - 1, j);
-            discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j)
-                - dyByDx * (discretization_->v(i, j) - discretization_->v(i - 1, j));
-            discretization_->u(i, j + 1) = discretization_->u(i, j);
-            break;
-        case Mask::FLUID_CORNER_BOTTOM_RIGHT:
-            break;
-        case Mask::FLUID_CORNER_BOTTOM_LEFT:
-            break;
-        case Mask::FLUID_COLUMN_HORIZONTAL:
-            break;
-        case Mask::FLUID_COLUMN_VERTICAL:
-            break;
-        case Mask::FLUID_SINGLE_LEFT:
-            break;
-        case Mask::FLUID_SINGLE_TOP:
-            break;
-        case Mask::FLUID_SINGLE_RIGHT:
-            break;
-        case Mask::FLUID_SINGLE_BOTTOM:
-            // Here the next time step can be calculated directly
-        default:
-            break;
+    switch ((*mask_)(i, j))
+    {
+    case Mask::FLUID_BORDER_LEFT:
+        discretization_->u(i, j);
+        break;
+    case Mask::FLUID_BORDER_TOP:
+        break;
+    case Mask::FLUID_BORDER_RIGHT:
+        discretization_->u(i, j) = discretization_->u(i - 1, j) - dxByDy * (discretization_->v(i, j) - discretization_->v(i, j - 1));
+        break;
+    case Mask::FLUID_BORDER_BOTTOM:
+        break;
+    case Mask::FLUID_CORNER_TOP_LEFT:
+        break;
+    case Mask::FLUID_CORNER_TOP_RIGHT:
+        discretization_->u(i, j) = discretization_->u(i - 1, j);
+        discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j) - dyByDx * (discretization_->v(i, j) - discretization_->v(i - 1, j));
+        discretization_->u(i, j + 1) = discretization_->u(i, j);
+        break;
+    case Mask::FLUID_CORNER_BOTTOM_RIGHT:
+        break;
+    case Mask::FLUID_CORNER_BOTTOM_LEFT:
+        break;
+    case Mask::FLUID_COLUMN_HORIZONTAL:
+        break;
+    case Mask::FLUID_COLUMN_VERTICAL:
+        break;
+    case Mask::FLUID_SINGLE_LEFT:
+        break;
+    case Mask::FLUID_SINGLE_TOP:
+        break;
+    case Mask::FLUID_SINGLE_RIGHT:
+        break;
+    case Mask::FLUID_SINGLE_BOTTOM:
+        // Here the next time step can be calculated directly
+    default:
+        break;
     }
-    
 }
 
-void Boundary::setVelocityBoundarySurfaceV(int i, int j){
+void Boundary::setVelocityBoundarySurfaceV(int i, int j)
+{
     // TODO:
 }
 
-
-
-void Boundary::setVelocityBoundaryObstacleU(int i, int j){
+void Boundary::setVelocityBoundaryObstacleU(int i, int j)
+{
     switch ((*mask_)(i, j))
     {
-        case Mask::DOMAIN_LEFT_NOSLIP:
-            discretization_->u(i, j) = settings_.NoSlipVelLeft[0];
-            break;
-        case Mask::DOMAIN_TOP_NOSLIP:
-            discretization_->u(i, j) = 2 * settings_.NoSlipVelTop[0] - discretization_->u(i, j - 1);
-            break;
-        case Mask::DOMAIN_RIGHT_NOSLIP:
-            discretization_->u(i - 1, j) = settings_.NoSlipVelRight[0]; // index shift for u in x direction
-            break;
-        case Mask::DOMAIN_BOTTOM_NOSLIP:
-            discretization_->u(i, j) = 2 * settings_.NoSlipVelBottom[0] - discretization_->u(i, j + 1);
-            break;
+    case Mask::DOMAIN_LEFT_NOSLIP:
+        discretization_->u(i, j) = settings_.NoSlipVelLeft[0];
+        break;
+    case Mask::DOMAIN_TOP_NOSLIP:
+        discretization_->u(i, j) = 2 * settings_.NoSlipVelTop[0] - discretization_->u(i, j - 1);
+        break;
+    case Mask::DOMAIN_RIGHT_NOSLIP:
+        discretization_->u(i - 1, j) = settings_.NoSlipVelRight[0]; // index shift for u in x direction
+        break;
+    case Mask::DOMAIN_BOTTOM_NOSLIP:
+        discretization_->u(i, j) = 2 * settings_.NoSlipVelBottom[0] - discretization_->u(i, j + 1);
+        break;
     }
 
     // int i_beg = discretization_->uIBegin();
@@ -184,25 +361,25 @@ void Boundary::setVelocityBoundaryObstacleU(int i, int j){
     //     discretization_->u(i, j_beg) = 2 * settings_.dirichletBcBottom[0] - discretization_->u(i, j_beg + 1);
     //     discretization_->u(i, j_end - 1) = 2 * settings_.dirichletBcTop[0] - discretization_->u(i, j_end - 2);
     // }
-
 }
 
-void Boundary::setVelocityBoundaryObstacleV(int i, int j){
+void Boundary::setVelocityBoundaryObstacleV(int i, int j)
+{
 
     switch ((*mask_)(i, j))
     {
-        case Mask::DOMAIN_LEFT_NOSLIP:
-            discretization_->v(i, j) = 2 * settings_.NoSlipVelLeft[1] - discretization_->v(i + 1, j);
-            break;
-        case Mask::DOMAIN_TOP_NOSLIP:
-            discretization_->v(i, j - 1) = settings_.NoSlipVelTop[1]; // index shift for v in y direction
-            break;
-        case Mask::DOMAIN_RIGHT_NOSLIP:
-            discretization_->v(i, j) = 2 * settings_.NoSlipVelRight[1] - discretization_->v(i - 1, j);
-            break;
-        case Mask::DOMAIN_BOTTOM_NOSLIP:
-            discretization_->v(i, j) = settings_.NoSlipVelBottom[1];
-            break;
+    case Mask::DOMAIN_LEFT_NOSLIP:
+        discretization_->v(i, j) = 2 * settings_.NoSlipVelLeft[1] - discretization_->v(i + 1, j);
+        break;
+    case Mask::DOMAIN_TOP_NOSLIP:
+        discretization_->v(i, j - 1) = settings_.NoSlipVelTop[1]; // index shift for v in y direction
+        break;
+    case Mask::DOMAIN_RIGHT_NOSLIP:
+        discretization_->v(i, j) = 2 * settings_.NoSlipVelRight[1] - discretization_->v(i - 1, j);
+        break;
+    case Mask::DOMAIN_BOTTOM_NOSLIP:
+        discretization_->v(i, j) = settings_.NoSlipVelBottom[1];
+        break;
     }
     // // Vertical
     // for (int j = j_beg; j < j_end; j++)
@@ -217,22 +394,6 @@ void Boundary::setVelocityBoundaryObstacleV(int i, int j){
     //     discretization_->v(i, j_end - 1) = settings_.dirichletBcTop[1];
     // }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // void Boundary::updateBoundaryPressureDomain(){
 //     //  for (int i = i_beg; i < i_end; i++){

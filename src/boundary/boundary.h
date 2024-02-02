@@ -12,6 +12,7 @@ class Boundary
         Boundary(std::shared_ptr<Mask> mask, std::shared_ptr<Discretization> discretization, Settings settings);
         void setPressureBoundaryValues();
         void setVelocityBoundaryValues();
+        void createBoundaryCellsLists();
 
         int getNumberOfBoundaryCells() const;
 
@@ -32,4 +33,12 @@ class Boundary
 
         std::vector<int> boundaryCells_;
 
+        std::vector<int> DomainBoundaryCells_;
+        std::vector<int> ObstacleBoundaryCells_;
+
+        void setPressureDomainBC();
+        void setPressureObstacleBC();
+
+        void setVelocityDomainBC();
+        void setVelocityObstacleBC();
 };

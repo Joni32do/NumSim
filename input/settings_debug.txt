@@ -49,7 +49,7 @@ obstacleDimensionY = 0.5
 # Create domain from PNGBitmap
 
 createDomainfromBitmap = true
-pathToBitmap = /home/lukas/Documents/SimTech/Semester2/NumSim/Submission4/Bitmaps/test.png
+pathToBitmap = /home/lukas/Documents/SimTech/Semester2/NumSim/Submission4/Bitmaps/legal_water.png
 
 # Discretization parameters
 nCellsX = 10          # number of cells in x and y direction
