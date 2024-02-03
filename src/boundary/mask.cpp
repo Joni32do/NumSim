@@ -16,7 +16,6 @@ Mask::Mask(Settings settings) : settings_(settings)
   
   setDomainBC();
   setObstacleBC();
-  printMask();
 }
 
 

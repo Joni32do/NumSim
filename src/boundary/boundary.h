@@ -13,32 +13,21 @@ class Boundary
         void setPressureBoundaryValues();
         void setVelocityBoundaryValues();
         void createBoundaryCellsLists();
+        std::shared_ptr<Mask> mask_;
 
-        int getNumberOfBoundaryCells() const;
 
     private:
-        void setPressureBoundaryObstacle(int i, int j);
-        void setPressureBoundarySurface(int i, int j);
+        void setPressureDomainBC();
+        void setPressureObstacleBC();
 
-        // Helpers to set Boundary values
-        void setVelocityBoundaryObstacleU(int i, int j);
-        void setVelocityBoundaryObstacleV(int i, int j);
-
-        void setVelocityBoundarySurfaceU(int i, int j);
-        void setVelocityBoundarySurfaceV(int i, int j);
+        void setVelocityDomainBC();
+        void setVelocityObstacleBC();
 
         std::shared_ptr<Discretization> discretization_;
-        std::shared_ptr<Mask> mask_;
         Settings settings_;
 
         std::vector<int> boundaryCells_;
 
         std::vector<int> DomainBoundaryCells_;
         std::vector<int> ObstacleBoundaryCells_;
-
-        void setPressureDomainBC();
-        void setPressureObstacleBC();
-
-        void setVelocityDomainBC();
-        void setVelocityObstacleBC();
 };
