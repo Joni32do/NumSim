@@ -28,7 +28,11 @@ add_executable(run_tests
     ../src/boundary/boundary.cpp
     ../src/surface/fluid_tracer.cpp
 )
-target_link_libraries(run_tests gtest gtest_main)
+
+
+find_package(PNG REQUIRED)
+
+target_link_libraries(run_tests gtest gtest_main ${PNG_LIBRARIES})
 
 # Set the version of the C++ standard to use, we use C++17, published in 2014
 set(CMAKE_CXX_STANDARD 17)

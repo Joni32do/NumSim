@@ -13,16 +13,20 @@ void Boundary::createBoundaryCellsLists()
     {
         for (int j = 0; j < mask_->size()[1]; j++)
         {
+            int idx = i + j * mask_->size()[0];
             if (mask_->isDomainBoundary(i, j))
-                DomainBoundaryCells_.push_back(i + j * mask_->size()[0]);
+                DomainBoundaryCells_.push_back(idx);
             if (mask_->isObstacleBoundary(i, j))
-                ObstacleBoundaryCells_.push_back(i + j * mask_->size()[0]);
+                ObstacleBoundaryCells_.push_back(idx);
+            if (mask_->isFluidBoundary(i, j))
+                FluidBoundaryCells_.push_back(idx);
         }
     }
 }
 
 void Boundary::setPressureBoundaryValues()
 {
+    setPressureSurfaceBC();
     setPressureDomainBC();
     setPressureObstacleBC();
 }
@@ -100,8 +104,92 @@ void Boundary::setPressureObstacleBC()
     }
 }
 
+void Boundary::setPressureSurfaceBC()
+{
+    double dx = discretization_->dx();
+    double dy = discretization_->dy();
+
+    for (int idx : FluidBoundaryCells_)
+    {
+        int i = idx % mask_->size()[0];
+        int j = idx / mask_->size()[0];
+        
+
+    // u and v must be updated before p
+    switch((*mask_)(i, j)){
+        case Mask::FLUID_BORDER_LEFT:
+            discretization_->p(i, j) = 2/settings_.re*(discretization_->u(i, j) - discretization_->u(i - 1, j))/dx;
+            break;
+        case Mask::FLUID_BORDER_TOP:
+            discretization_->p(i, j) = 2/settings_.re*(discretization_->v(i, j) - discretization_->v(i, j - 1))/dy;
+            break;
+        case Mask::FLUID_BORDER_RIGHT:
+            discretization_->p(i, j) = 2/settings_.re*(discretization_->u(i, j) - discretization_->u(i - 1, j))/dx;
+            break;
+        case Mask::FLUID_BORDER_BOTTOM:
+            discretization_->p(i, j) = 2/settings_.re*(discretization_->v(i, j) - discretization_->v(i, j - 1))/dy;
+            break;
+        case Mask::FLUID_CORNER_TOP_LEFT:
+            discretization_->p(i, j) = -1/(2 * settings_.re) * (
+                1/(2*dy) * (discretization_->u(i, j) + discretization_->u(i - 1, j) 
+                    +discretization_->u(i, j - 1) - discretization_->u(i - 1, j - 1))
+              + 1/(2*dx) * (discretization_->v(i, j) + discretization_->v(i, j - 1) 
+                    +discretization_->v(i - 1, j) - discretization_->v(i - 1, j - 1))
+            );
+            break;
+        case Mask::FLUID_CORNER_TOP_RIGHT:
+            discretization_->p(i, j) = 1/(2 * settings_.re) * (
+                1/(2*dy) * (discretization_->u(i, j) + discretization_->u(i - 1, j) 
+                    +discretization_->u(i, j - 1) - discretization_->u(i - 1, j - 1))
+              + 1/(2*dx) * (discretization_->v(i, j) + discretization_->v(i, j - 1) 
+                    +discretization_->v(i - 1, j) - discretization_->v(i - 1, j - 1))
+            );
+            break;
+        case Mask::FLUID_CORNER_BOTTOM_RIGHT:
+            discretization_->p(i, j) =-1/(2 * settings_.re) * (
+                1/(2*dy) * (discretization_->u(i, j) + discretization_->u(i - 1, j) 
+                    +discretization_->u(i, j - 1) - discretization_->u(i - 1, j - 1))
+              + 1/(2*dx) * (discretization_->v(i, j) + discretization_->v(i, j - 1) 
+                    +discretization_->v(i - 1, j) - discretization_->v(i - 1, j - 1))
+            );
+            break;
+        case Mask::FLUID_CORNER_BOTTOM_LEFT:
+            discretization_->p(i, j) = 1/(2 * settings_.re) * (
+                1/(2*dy) * (discretization_->u(i, j) + discretization_->u(i - 1, j) 
+                    +discretization_->u(i, j - 1) - discretization_->u(i - 1, j - 1))
+              + 1/(2*dy) * (discretization_->v(i, j) + discretization_->v(i, j - 1) 
+                    +discretization_->v(i - 1, j) - discretization_->v(i - 1, j - 1))
+            );
+            break;
+        case Mask::FLUID_COLUMN_VERTICAL:
+            discretization_->p(i, j) = 2/settings_.re * (discretization_->u(i, j) - discretization_->u(i - 1, j))/dx;
+            break;
+        case Mask::FLUID_COLUMN_HORIZONTAL:
+            discretization_->p(i, j) = 2/settings_.re * (discretization_->v(i, j) - discretization_->v(i, j - 1))/dy;
+            break;
+        case Mask::FLUID_SINGLE_LEFT:
+            discretization_->p(i, j) = 0;
+            break;
+        case Mask::FLUID_SINGLE_TOP:
+            discretization_->p(i, j) = 0;
+            break;
+        case Mask::FLUID_SINGLE_RIGHT:
+            discretization_->p(i, j) = 0;
+            break;
+        case Mask::FLUID_SINGLE_BOTTOM:
+            discretization_->p(i, j) = 0;
+            break;
+        case Mask::FLUID_DROPLET:
+            discretization_->p(i, j) = 0;
+            break;
+
+        }
+    }
+}
+
 void Boundary::setVelocityBoundaryValues()
 {
+    setVelocitySurfaceBC();
     setVelocityDomainBC();
     setVelocityObstacleBC();
 }
@@ -223,5 +311,277 @@ void Boundary::setVelocityObstacleBC()
             discretization_->v(i, j) = -discretization_->v(i - 1, j);
             break;
         }
+    }
+}
+
+void Boundary::setVelocitySurfaceBC(){
+
+    double dxByDy = discretization_->dx() / discretization_->dy();
+    double dyByDx = discretization_->dy() / discretization_->dx();
+    // Should the dt update step happen here? Then per loop only one execution is allowed
+    double dt = 1;
+    
+    for (int idx : FluidBoundaryCells_)
+    {
+        int i = idx % mask_->size()[0];
+        int j = idx / mask_->size()[0];
+        
+    // should be solved in the following order:
+    //     from left to right (increasing i)
+    //     from bottom to top (increasing j)
+    
+
+    switch ((*mask_)(i, j)) {
+        case Mask::FLUID_BORDER_LEFT:
+            // u
+            discretization_->u(i - 1, j) = discretization_->u(i, j) 
+                + dxByDy * (discretization_->v(i, j) - discretization_->v(i, j - 1));
+
+            // v
+            discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1)
+                + dxByDy * (discretization_->u(i - 1, j) - discretization_->u(i - 1, j - 1));
+            break;
+
+        case Mask::FLUID_BORDER_TOP:
+            // v
+            discretization_->v(i, j) = discretization_->v(i, j - 1)
+                + dyByDx * (discretization_->u(i, j) - discretization_->u(i - 1, j));
+
+            // u
+            discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j)
+                - dyByDx * (discretization_->v(i, j) - discretization_->v(i - 1, j));
+            break;
+        case Mask::FLUID_BORDER_RIGHT:
+            // u
+            discretization_->u(i, j) = discretization_->u(i - 1, j)
+                - dxByDy * (discretization_->v(i, j) - discretization_->v(i, j - 1));
+
+            // v
+            discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1)
+                + dxByDy * (discretization_->u(i, j) - discretization_->u(i, j - 1));
+            break;
+        case Mask::FLUID_BORDER_BOTTOM:
+            // v
+            discretization_->v(i, j - 1) = discretization_->v(i, j)
+                + dyByDx * (discretization_->u(i, j) - discretization_->u(i - 1, j));
+            
+            // u
+            discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j)
+                + dyByDx * (discretization_->v(i, j - 1) - discretization_->v(i - 1, j - 1));
+            break;
+        case Mask::FLUID_CORNER_TOP_LEFT:
+            // u
+            discretization_->u(i - 1, j) = discretization_->u(i, j);
+            // v
+            discretization_->v(i, j) = discretization_->v(i, j - 1);
+            discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1)
+                + dxByDy * (discretization_->u(i - 1, j) - discretization_->u(i - 1, j - 1));
+            if (mask_->isAir(i - 1, j + 1))
+                discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j); // chain, u(i, j) is equvivalent
+                discretization_->v(i - 1, j) = discretization_->v(i, j);
+            break;
+        case Mask::FLUID_CORNER_TOP_RIGHT:
+            // u
+            discretization_->u(i, j) = discretization_->u(i - 1, j);
+            discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j)
+                - dyByDx * (discretization_->v(i, j) - discretization_->v(i - 1, j));
+            // v
+            discretization_->v(i, j) = discretization_->v(i, j - 1);
+            discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1)
+                - dxByDy * (discretization_->u(i, j) - discretization_->u(i, j - 1));
+            if (mask_->isAir(i + 1, j + 1)){
+                discretization_->u(i, j + 1) = discretization_->u(i, j);
+                discretization_->v(i + 1, j) = discretization_->v(i, j);
+            } break;
+        case Mask::FLUID_CORNER_BOTTOM_RIGHT:
+            // u
+            discretization_->u(i, j) = discretization_->u(i - 1, j);
+            discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j)
+                + dyByDx * (discretization_->v(i, j - 1) - discretization_->v(i - 1, j - 1));
+            // v
+            discretization_->v(i, j - 1) = discretization_->v(i, j);
+            if (mask_->isAir(i + 1, j - 1)){
+                discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1);
+                discretization_->u(i, j - 1) = discretization_->u(i, j);
+            } break;
+        case Mask::FLUID_CORNER_BOTTOM_LEFT:
+            // u
+            discretization_->u(i - 1, j) = discretization_->u(i, j);
+            // v
+            discretization_->v(i, j - 1) = discretization_->v(i, j);
+            if (mask_->isAir(i - 1, j - 1))
+            {
+                discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j);
+                discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1);
+                
+            } break;
+        case Mask::FLUID_COLUMN_HORIZONTAL:
+            // v
+            discretization_->v(i, j) = discretization_->v(i, j) + dt * settings_.g[1];
+            discretization_->v(i, j - 1) = discretization_->v(i, j - 1) + dt * settings_.g[1];
+            // u
+            if (mask_->isAir(i - 1, j + 1)){
+                discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j) 
+                    - dyByDx * (discretization_->v(i, j) - discretization_->v(i - 1, j));
+            }
+            if (mask_->isAir(i - 1, j - 1)){
+                discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j) 
+                    + dyByDx * (discretization_->v(i, j - 1) - discretization_->v(i - 1, j - 1));
+            }
+            break;
+        case Mask::FLUID_COLUMN_VERTICAL:
+            // u
+            discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];
+            discretization_->u(i - 1, j) = discretization_->u(i - 1, j) + dt * settings_.g[0];
+
+            if (mask_->isAir(i - 1, j - 1)){
+                discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1) 
+                    + dxByDy * (discretization_->u(i - 1, j) - discretization_->u(i - 1, j - 1));
+            }
+            if (mask_->isAir(i + 1, j - 1)){
+                discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1) 
+                    - dxByDy * (discretization_->u(i, j) - discretization_->u(i, j - 1));
+            }
+            break;
+        case Mask::FLUID_SINGLE_LEFT:
+            // v
+            discretization_->v(i, j) = discretization_->v(i, j) + dt * settings_.g[1];
+            discretization_->v(i, j - 1) = discretization_->v(i, j - 1) + dt * settings_.g[1];
+            // u
+            discretization_->u(i - 1, j) = discretization_->u(i, j)
+                + dxByDy * (discretization_->v(i, j) - discretization_->v(i, j - 1));
+            // others
+            if (mask_->isAir(i - 1, j + 1)){
+                discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j);
+                discretization_->v(i - 1, j) = discretization_->v(i, j);
+            }
+            if (mask_->isAir(i - 1, j - 1)){
+                discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j);
+                discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1);
+            }
+            break;
+        case Mask::FLUID_SINGLE_TOP:
+            // u
+            discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];
+            discretization_->u(i - 1, j) = discretization_->u(i - 1, j) + dt * settings_.g[0];
+            // v
+            discretization_->v(i, j) = discretization_->v(i, j - 1)
+                - dyByDx * (discretization_->u(i, j) - discretization_->u(i - 1, j));
+            // others
+            if (mask_->isAir(i - 1, j + 1)){
+                discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j);
+                discretization_->v(i - 1, j) = discretization_->v(i, j);
+            }
+            if (mask_->isAir(i + 1, j + 1)){
+                discretization_->u(i, j + 1) = discretization_->u(i, j);
+                discretization_->v(i + 1, j) = discretization_->v(i, j);
+            }
+
+            // Tangential stress condition
+            if (mask_->isAir(i - 1, j - 1)){
+                discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1)
+                    + dxByDy * (discretization_->u(i - 1, j) - discretization_->u(i - 1, j - 1));
+            }
+            if (mask_->isAir(i + 1, j - 1)){
+                discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1)
+                    - dxByDy * (discretization_->u(i, j) - discretization_->u(i, j - 1));
+            }
+            break;
+        case Mask::FLUID_SINGLE_RIGHT:
+            // v
+            discretization_->v(i, j) = discretization_->v(i, j) + dt * settings_.g[1];
+            discretization_->v(i, j - 1) = discretization_->v(i, j - 1) + dt * settings_.g[1];
+
+            // u
+            discretization_->u(i, j) = discretization_->u(i - 1, j)
+                - dxByDy * (discretization_->v(i, j) - discretization_->v(i, j - 1));
+            // others
+            if (mask_->isAir(i + 1, j + 1)){
+                discretization_->u(i, j + 1) = discretization_->u(i, j);
+                discretization_->v(i + 1, j) = discretization_->v(i, j);
+            }
+            if (mask_->isAir(i + 1, j - 1)){
+                discretization_->u(i + 1, j - 1) = discretization_->u(i, j);
+                discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1);
+            }
+
+            // Tangential stress condition
+            if (mask_->isAir(i - 1, j - 1)){
+                discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j)
+                    + dyByDx * (discretization_->v(i, j - 1) - discretization_->v(i - 1, j - 1));
+            }
+            if (mask_->isAir(i - 1, j + 1)){
+                discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j)
+                    - dyByDx * (discretization_->v(i, j) - discretization_->v(i - 1, j));
+            }
+
+            break;
+        case Mask::FLUID_SINGLE_BOTTOM:
+            // u
+            discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];
+            discretization_->u(i - 1, j) = discretization_->u(i - 1, j) + dt * settings_.g[0];
+            // v
+            discretization_->v(i, j - 1) = discretization_->v(i, j)
+                + dyByDx * (discretization_->u(i, j) - discretization_->u(i - 1, j));
+            // others
+            if (mask_->isAir(i - 1, j - 1)){
+                discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j);
+                discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1);
+            }
+            if (mask_->isAir(i + 1, j - 1)){
+                discretization_->u(i, j - 1) = discretization_->u(i, j);
+                discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1);
+            }
+        case Mask::FLUID_DROPLET:
+            // u
+            discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];
+            discretization_->u(i - 1, j) = discretization_->u(i - 1, j) + dt * settings_.g[0];
+            // v
+            discretization_->v(i, j) = discretization_->v(i, j) + dt * settings_.g[1];
+            discretization_->v(i, j - 1) = discretization_->v(i, j - 1) + dt * settings_.g[1];
+
+            // others
+            if (mask_->isAir(i - 1, j - 1)){
+                discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j);
+                discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1);
+            }
+            if (mask_->isAir(i - 1, j + 1)){
+                discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j);
+                discretization_->v(i - 1, j) = discretization_->v(i, j);
+            }
+            if (mask_->isAir(i + 1, j + 1)){
+                discretization_->u(i, j + 1) = discretization_->u(i, j);
+                discretization_->v(i + 1, j) = discretization_->v(i, j);
+            }
+            if (mask_->isAir(i + 1, j - 1)){
+                discretization_->u(i, j - 1) = discretization_->u(i, j);
+                discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1);
+            }
+            break;
+        default:
+            break;
+    }
+    
+
+    }
+}
+
+
+
+
+
+bool Boundary::doCalculateF(int i, int j) const {
+    if (mask_->isFluid(i, j) && mask_->isFluid(i + 1, j)){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool Boundary::doCalculateG(int i, int j) const {
+    if (mask_->isFluid(i, j) && mask_->isFluid(i, j + 1)){
+        return true;
+    } else {
+        return false;
     }
 }

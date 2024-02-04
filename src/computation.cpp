@@ -1,6 +1,8 @@
 #include "computation.h"
 #include "surface/fluid_tracer.h"
 
+#include <unistd.h>
+
 void Computation::initialize(int argc, char *argv[])
 {
 
@@ -31,8 +33,14 @@ void Computation::initialize(int argc, char *argv[])
         discretization_ = std::make_shared<CentralDifferences>(n_Cells, meshWidth_);
     }
 
-    std::vector<double> traceX = {1.8};
-    std::vector<double> traceY = {1.8};
+    // create boundary and tracer
+    mask_ = std::make_shared<Mask>(settings_);
+    // TODO: read particles per cell from settings file
+    fluidTracer_ = std::make_shared<FluidTracer>(100, discretization_, mask_);
+
+    // std::vector<double> traceX = {1.8};
+    // std::vector<double> traceY = {1.8};
+
 
     boundary_ = std::make_shared<Boundary>(mask_, discretization_, settings_);
 
@@ -59,14 +67,31 @@ void Computation::initialize(int argc, char *argv[])
 void Computation::runSimulation()
 {
     double currentTime = 0.;
+
+    applyBoundaryValues();
     do
     {
-        applyBoundaryValues();
+        
+        // fluidTracer_->createParticles(0.1, 1.4);
+        fluidTracer_->createAndKillParticles(dt_);
+
+        std::cout << "Particles: " << fluidTracer_->getNumberOfParticles() << std::endl;
+        mask_->printMask();
+        usleep(100000);
+        std::cout << "\033[2J\033[1;1H";
+
+
         computeTimeStepWidth(currentTime);
         computePreliminaryVelocities();
         computeRightHandSide();
         computePressure();
         computeVelocities();
+        
+        applyBoundaryValues();
+        // fluidTracer_->moveParticles(dt_);
+        // applyBoundaryValues();
+
+
 
         currentTime += dt_;
         outputWriterParaview_->writeFile(currentTime);
@@ -114,7 +139,7 @@ void Computation::computePreliminaryVelocities()
     {
         for (int j = discretization_->fJBegin(); j < discretization_->fJEnd(); j++)
         {
-            if ((*mask_)(i, j) == Mask::FLUID && (*mask_)(i + 1, j) == Mask::FLUID)
+            if (boundary_->doCalculateF(i, j))
             {
                 double diffusion = 1 / settings_.re * (discretization_->computeD2uDx2(i, j) + discretization_->computeD2uDy2(i, j));
                 double convection = -discretization_->computeDu2Dx(i, j) - discretization_->computeDuvDy(i, j);
@@ -128,7 +153,7 @@ void Computation::computePreliminaryVelocities()
     {
         for (int j = discretization_->gJBegin(); j < discretization_->gJEnd(); j++)
         {
-            if ((*mask_)(i, j) == Mask::FLUID && (*mask_)(i, j + 1) == Mask::FLUID)
+            if (boundary_->doCalculateG(i, j))
             {
                 double diffusion = 1 / settings_.re * (discretization_->computeD2vDx2(i, j) + discretization_->computeD2vDy2(i, j));
                 double convection = -discretization_->computeDv2Dy(i, j) - discretization_->computeDuvDx(i, j);
@@ -141,13 +166,11 @@ void Computation::computePreliminaryVelocities()
 void Computation::computeRightHandSide()
 {
 
-    // Interior
-    
     for (int i = discretization_->rhsIBegin(); i < discretization_->rhsIEnd(); i++)
     {
         for (int j = discretization_->rhsJBegin(); j < discretization_->rhsJEnd(); j++)
         {
-            if ((*mask_)(i, j) == 15)
+            if (mask_->isInnerFluid(i, j))
             {
                 double dF = (1 / discretization_->dx()) * (discretization_->f(i, j) - discretization_->f(i - 1, j));
                 double dG = (1 / discretization_->dy()) * (discretization_->g(i, j) - discretization_->g(i, j - 1));
@@ -169,7 +192,7 @@ void Computation::computeVelocities()
     {
         for (int j = discretization_->uJBegin() + 1; j < discretization_->uJEnd() - 1; j++)
         {
-            if ((*mask_)(i, j) == 15 && (*mask_)(i + 1, j) == 15)
+            if (boundary_->doCalculateF(i, j))
                 discretization_->u(i, j) = discretization_->f(i, j) - dt_ * discretization_->computeDpDx(i, j);
         }
     }
@@ -178,7 +201,7 @@ void Computation::computeVelocities()
     {
         for (int j = discretization_->vJBegin() + 1; j < discretization_->vJEnd() - 1; j++)
         {
-            if ((*mask_)(i, j) == 15 && (*mask_)(i, j + 1) == 15){
+            if (boundary_->doCalculateG(i, j)){
                 discretization_->v(i, j) = discretization_->g(i, j) - dt_ * discretization_->computeDpDy(i, j);
             }
         }

@@ -22,11 +22,10 @@ FluidTracer::FluidTracer(int numParticlesPerCell,
     discretization_ = discretization;
     mask_ = mask;
 
-
     seedRelationDyDx_ = discretization_->dy()/ discretization_->dx();
     n_x = static_cast<int>(std::ceil(std::sqrt(numParticlesPerCell/seedRelationDyDx_)));
     n_y = static_cast<int>(std::ceil(n_x * seedRelationDyDx_));
-
+    
     numParticlesPerCell_ = n_x * n_y;
     numParticles_ = numParticlesPerCell_ * mask_->getNumberOfFluidCells();
     
@@ -57,7 +56,6 @@ void FluidTracer::initializeFluidCell(int i, int j, int idx) {
             y_[idx] = cell_y + ((0.5 + l) * discretization_->dy()) / n_y;
             
             idx++;
-
         }
     }
 }
@@ -79,23 +77,8 @@ int FluidTracer::getNumberOfParticles() const {
     return numParticles_;
 }
 
-
-void FluidTracer::moveParticles(double dt) {
-    // Cells without particle are air or obstacle
-    mask_->resetMask();
-
-    for (int i = 0; i < numParticles_; i++) {
-        double vel_x = discretization_->u().interpolateAt(x_[i], y_[i]);
-        double vel_y = discretization_->v().interpolateAt(x_[i], y_[i]);
-        updateParticle(i, dt, vel_x, vel_y);
-        
-        // Update mask
-        int idx_x = val2CellX(x_[i]);
-        int idx_y = val2CellY(y_[i]);
-        (*mask_)(idx_x, idx_y) = Mask::FLUID;
-    }
-
-    mask_->updateMaskBoundaries();
+std::array<int, 2> FluidTracer::cellOfParticle(int i){
+    return {val2CellX(x_[i]), val2CellY(y_[i])};
 }
 
 int FluidTracer::val2CellX(double xVal){
@@ -111,296 +94,384 @@ std::array<double, 2> FluidTracer::getParticlePosition(int i) const {
 }
 
 
-void FluidTracer::updateParticle(int i, double dt, double vel_x, double vel_y) {
+void FluidTracer::moveParticles(double dt) {
+    // Cells without particle are air or obstacle
+    mask_->resetMask();
 
-    double step_x = dt * vel_x;
-    double step_y = dt * vel_y;
-
-
-    // Check for Collision with obstacle
-    int idxNextCellX = val2CellX(x_[i] + step_x);
-    int idxNextCellY = val2CellY(y_[i] + step_y);
-
-    if (mask_->isObstacle(idxNextCellX, idxNextCellY)) {
-        int idx_x = val2CellX(x_[i]);
-        int idx_y = val2CellY(y_[i]);
+    for (int i = 0; i < numParticles_; i++) {
         
-        // x - Border
-        double leftBorder = discretization_->dx()*(idx_x - 1); // -1 because idx starts at 0 with outer cell -dx
-        double rightBorder = discretization_->dx()*(idx_x);
+        std::array<double, 2> vel = {discretization_->u().interpolateAt(x_[i], y_[i]),
+                                     discretization_->v().interpolateAt(x_[i], y_[i])};
+        std::array<int, 2> idx = cellOfParticle(i);
+        std::array<int, 2> newIdx = updateParticle(i, idx, dt, vel);
 
-        // y - Border
-        double lowerBorder = discretization_->dy()*(idx_y - 1);
-        double topBorder = discretization_->dy()*(idx_y);
+        // Safety feature -> can be removed for speed up
+        if (!mask_->isObstacle(newIdx[0], newIdx[1])){
+            (*mask_)(newIdx[0], newIdx[1]) = Mask::FLUID;
+        }
+    }
+    mask_->setFluidBC();
+}
 
+
+
+
+std::array<int, 2> FluidTracer::updateParticle(int i, std::array<int, 2> idx, double dt, std::array<double,2> vel) {
+    
+    double newPos_x = x_[i] + dt * vel[0];
+    double newPos_y = y_[i] + dt * vel[1];
+
+    // x - Border
+    double leftBorder = discretization_->dx()*(idx[0] - 1); // -1 because idx starts at 0 with outer cell -dx
+    double rightBorder = discretization_->dx()*idx[0];
+    bool inCellX = leftBorder < newPos_x && newPos_x < rightBorder;
+
+    // y - Border
+    double lowerBorder = discretization_->dy()*(idx[1] - 1);
+    double topBorder = discretization_->dy()*idx[1];
+    bool inCellY = lowerBorder < newPos_y && newPos_y < topBorder;
+
+    if (inCellX && inCellY) {
+        x_[i] = newPos_x;
+        y_[i] = newPos_y;
+        return idx;
+    
+    } else {
         // distance and time to border
         double dist_x, dt_x, dist_y, dt_y;
         double dtBeforeCollision;
 
-        double new_vel_x = vel_x;
-        double new_vel_y = vel_y;
+        std::array<int, 2> newIdx = idx;
+        std::array<double, 2> newVel = vel;
 
+        // if any collision    
+        double eps = 1e-10;
 
-        // Note: ZERO_DIVISON is no problem, because then dt is pos_inf, which is always larger and therefore the other case is taken
+        if (dt < eps){
+            return newIdx;
+        }
 
-        // Uses CFL condition --> accelerate?
-        
-        // TODO: CORNER: double equality rounding errors?
-
-
-
-        // Summary:
-        // 1. `dt_x`: Calculate time till collision with x-Border (depending on direction of `vel_x` )
-        // 2. `dt_y`: Calculate time till collision with y-Border (depending on direction of `vel_y` )
-        // 3. Check which collision of the two possible happens first 
-        //
-        //     --> assign `dtBeforeCollision`, `new_vel_x` and `new_vel_y` accordingly
-
-
-        if (vel_x >= 0) {
+        // Checks DIRECTION then COLLISION
+        // U:
+        if (vel[0] >= 0) {
             dist_x = rightBorder - x_[i];
-            dt_x = dist_x/vel_x;
+            dt_x = dist_x/vel[0];
 
-            if (vel_y >= 0) {
+            if (vel[1] >= 0) {
                 // direction TOP_RIGHT
                 dist_y = topBorder - y_[i];
-                dt_y = dist_y/vel_y;
-                
-                if (dt_x >= dt_y) {
+                dt_y = dist_y/vel[1];
+
+                if (dt_y < dt_x) {
                     // collision TOP
-                    if (mask_->isObstacle(idx_x, idx_y + 1)){
-                        new_vel_y = -vel_y;
+                    if (mask_->isObstacle(idx[0], idx[1] + 1)){
+                        newVel[1] = -vel[1];
+                    } else {
+                        newIdx[1] += 1;
                     }
                     dtBeforeCollision = dt_y;
-                }
-                if (dt_x <= dt_y){
+                } else {
                     // collision RIGHT
-                    if (mask_->isObstacle(idx_x, idx_y + 1)){
-                        new_vel_x = -vel_x;
+                    if (mask_->isObstacle(idx[0] + 1, idx[1])){ //TODO: change 
+                        newVel[0] = -vel[0];
+                    } else {
+                        newIdx[0] += 1;
                     }
                     dtBeforeCollision = dt_x;
                 }
-            } else if (vel_y < 0){
+            } else if (vel[1] < 0){
                 // direction BOTTOM_RIGHT
                 dist_y = lowerBorder - y_[i];
-                dt_y = dist_y/vel_y; // -- = +
+                dt_y = dist_y/vel[1]; // -- = +
                 
-                if (dt_x >= dt_y) {
+                if (dt_y < dt_x) {
                     // collision BOTTOM
-                    if (mask_->isObstacle(idx_x, idx_y - 1)){
-                        new_vel_y = -vel_y;
+                    if (mask_->isObstacle(idx[0], idx[1] - 1)){
+                        newVel[1] = -vel[1];
+                    } else {
+                        newIdx[1] -= 1;
                     }
                     dtBeforeCollision = dt_y;
-                }
-                if (dt_x <= dt_y){
+                } else  {
                     // collision RIGHT
-                    if (mask_->isObstacle(idx_x, idx_y + 1)){
-                        new_vel_x = -vel_x;
+                    if (mask_->isObstacle(idx[0] + 1, idx[1])){   // TODO: change
+                        newVel[0] = -vel[0];
+                    } else {
+                        newIdx[0] += 1;
                     }
                     dtBeforeCollision = dt_x;
                 }
             } 
-        } else if (vel_x < 0){
+        // U
+        } else if (vel[0] < 0){
             dist_x = leftBorder - x_[i];
-            dt_x = dist_x/vel_x; // -- = +
+            dt_x = dist_x/vel[0]; // -- = +
 
-            if (vel_y >= 0) {
+            if (vel[1] >= 0) {
                 // direction TOP_LEFT
                 dist_y = topBorder - y_[i];
-                dt_y = dist_y/vel_y;
-                
-                if (dt_x >= dt_y) {
+                dt_y = dist_y/vel[1];
+
+                if (dt_y < dt_x) {
                     // collision TOP
-                    if (mask_->isObstacle(idx_x, idx_y + 1)){
-                        new_vel_y = -vel_y;
+                    if (mask_->isObstacle(idx[0], idx[1] + 1)){
+                        newVel[1] = -vel[1];
+                    } else {
+                        newIdx[1] += 1;
                     }
                     dtBeforeCollision = dt_y;
-                }
-                if (dt_x <= dt_y){
+                } else {
                     // collision LEFT
-                    if (mask_->isObstacle(idx_x, idx_y - 1)){
-                        new_vel_x = -vel_x;
+                    if (mask_->isObstacle(idx[0] - 1, idx[1])){ // TODO: change
+                        newVel[0] = -vel[0];
+                    } else {
+                        newIdx[0] -= 1;
                     }
                     dtBeforeCollision = dt_x;
                 }
-            } else if (vel_y < 0){
+            } else if (vel[1] < 0){
                 // direction BOTTOM_LEFT
                 dist_y = lowerBorder - y_[i];
-                dt_y = dist_y/vel_y; // -- = +
-                
-                if (dt_x <= dt_y) {
+                dt_y = dist_y/vel[1]; // -- = +
+
+                if (dt_y < dt_x) {
                     // collision BOTTOM
-                    if (mask_->isObstacle(idx_x, idx_y - 1)){
-                        new_vel_y = -vel_y;
-                    }
-                    dtBeforeCollision = dt_x;
-                }
-                if (dt_x >= dt_y){
-                    // collision LEFT
-                    if (mask_->isObstacle(idx_x, idx_y - 1)){
-                        new_vel_x = -vel_x;
+                    if (mask_->isObstacle(idx[0], idx[1] - 1)){
+                        newVel[1] = -vel[1];
+                    } else {
+                        newIdx[1] -= 1;
                     }
                     dtBeforeCollision = dt_y;
+                } else {
+                    // collision LEFT
+                    if (mask_->isObstacle(idx[0] - 1, idx[1])){ //TODO: change
+                        newVel[0] = -vel[0];
+                    } else {
+                        newIdx[0] -= 1;
+                    }
+                    dtBeforeCollision = dt_x;
                 }
             }
         }
-        x_[i] += dtBeforeCollision * vel_x;
-        y_[i] += dtBeforeCollision * vel_y;
+        // Bugfix for Floating Point Error
+        if (dt_x < eps || dt_y < eps){
+            dtBeforeCollision = eps;
+        }
+        
+        // Happens if it was outside of cell but flies into the cell
+        if (dt < dtBeforeCollision) {
+            x_[i] += dt * vel[0];
+            y_[i] += dt * vel[1];
+            return newIdx;
+        }
 
-        // dtBeforeCollision is always smaller
-        // the maximum depth of recursion is 1
-        updateParticle(i, dt - dtBeforeCollision, new_vel_x, new_vel_y);
-    } else {
+        x_[i] += dtBeforeCollision * vel[0];
+        y_[i] += dtBeforeCollision * vel[1];
+        double newDt = dt - dtBeforeCollision;
 
-        x_[i] += step_x;
-        y_[i] += step_y;
+        if (newDt < eps){
+            return newIdx;
+        }    
+        return updateParticle(i, newIdx, newDt, newVel);
     }
 }
 
+
+
+
+
+
+//////////////////////////////////////////////////////
+
 // ONLY FOR TESTING PURPOSES
 
-// void FluidTracer::updateParticle(int i, double dt, double vel_x, double vel_y) {
+std::array<double, 2> FluidTracer::moveParticles(double dt, std::array<double, 2> vel) {
+    // Cells without particle are air or obstacle
+    mask_->resetMask();
 
-//     double step_x = dt * vel_x;
-//     double step_y = dt * vel_y;
+    for (int i = 0; i < numParticles_; i++) {
+        std::array<int, 2> idx1 = cellOfParticle(i);
+        std::cout << " x: " << std::fixed << std::setprecision(3) << x_[0] 
+                  << " y: " << std::fixed << std::setprecision(3) << y_[0] << std::endl;
+        std::cout << "v_x: " << vel[0] << " v_y: " << vel[1] << std::endl;
+        vel = updateParticle(i, idx1, dt, vel, 0);
+
+        // Update mask
+        std::array<int, 2> idx = cellOfParticle(i);
+        if (!mask_->isObstacle(idx[0], idx[1])){
+            (*mask_)(idx[0], idx[1]) = Mask::FLUID;
+        }
+    }
+
+    mask_->setFluidBC();
+    return vel;
+}
 
 
-//     // Check for Collision with obstacle
-//     int idxNextCellX = val2CellX(x_[i] + step_x);
-//     int idxNextCellY = val2CellY(y_[i] + step_y);
 
-//     if (mask_->isObstacle(idxNextCellX, idxNextCellY)) {
-//         int idx_x = val2CellX(x_[i]);
-//         int idx_y = val2CellY(y_[i]);
+
+std::array<double, 2> FluidTracer::updateParticle(int i, std::array<int, 2> idx, double dt, std::array<double,2> vel, int depth) {
+    // std::cout << "depth: " << depth << "time " << dt << std::endl;
+    if (depth > 2){
+        std::cout << "----------------------------------" << std::endl;
+        return vel;
+    }
+    double newPos_x = x_[i] + dt * vel[0];
+    double newPos_y = y_[i] + dt * vel[1];
+
+    // x - Border
+    double leftBorder = discretization_->dx()*(idx[0] - 1); // -1 because idx starts at 0 with outer cell -dx
+    double rightBorder = discretization_->dx()*idx[0];
+    bool inCellX = leftBorder < newPos_x && newPos_x < rightBorder;
+
+    // y - Border
+    double lowerBorder = discretization_->dy()*(idx[1] - 1);
+    double topBorder = discretization_->dy()*idx[1];
+    bool inCellY = lowerBorder < newPos_y && newPos_y < topBorder;
+
+    if (inCellX && inCellY) {
+        x_[i] = newPos_x;
+        y_[i] = newPos_y;
+        return vel;
+    
+    } else {
+        // distance and time to border
+        double dist_x, dt_x, dist_y, dt_y;
+        double dtBeforeCollision;
+
+        std::array<int, 2> newIdx = idx;
+        std::array<double, 2> newVel = vel;
+
+        // if any collision    
+        double eps = 1e-10;
+
+        if (dt < eps){
+            return vel;
+        }
+
+        // Note: ZERO_VELOCITY is no problem, because then dt is pos_inf, which is always larger
+
+        // Checks DIRECTION then COLLISION
+        // U:
+        if (vel[0] >= 0) {
+            dist_x = rightBorder - x_[i];
+            dt_x = dist_x/vel[0];
+
+            if (vel[1] >= 0) {
+                // direction TOP_RIGHT
+                dist_y = topBorder - y_[i];
+                dt_y = dist_y/vel[1];
+
+                if (dt_y < dt_x) {
+                    // collision TOP
+                    if (mask_->isObstacle(idx[0], idx[1] + 1)){
+                        newVel[1] = -vel[1];
+                    } else {
+                        newIdx[1] += 1;
+                    }
+                    dtBeforeCollision = dt_y;
+                } else {
+                    // collision RIGHT
+                    if (mask_->isObstacle(idx[0] + 1, idx[1])){ //TODO: change 
+                        newVel[0] = -vel[0];
+                    } else {
+                        newIdx[0] += 1;
+                    }
+                    dtBeforeCollision = dt_x;
+                }
+            } else if (vel[1] < 0){
+                // direction BOTTOM_RIGHT
+                dist_y = lowerBorder - y_[i];
+                dt_y = dist_y/vel[1]; // -- = +
+                
+                if (dt_y < dt_x) {
+                    // collision BOTTOM
+                    if (mask_->isObstacle(idx[0], idx[1] - 1)){
+                        newVel[1] = -vel[1];
+                    } else {
+                        newIdx[1] -= 1;
+                    }
+                    dtBeforeCollision = dt_y;
+                } else  {
+                    // collision RIGHT
+                    if (mask_->isObstacle(idx[0] + 1, idx[1])){   // TODO: change
+                        newVel[0] = -vel[0];
+                    } else {
+                        newIdx[0] += 1;
+                    }
+                    dtBeforeCollision = dt_x;
+                }
+            } 
+        // U
+        } else if (vel[0] < 0){
+            dist_x = leftBorder - x_[i];
+            dt_x = dist_x/vel[0]; // -- = +
+
+            if (vel[1] >= 0) {
+                // direction TOP_LEFT
+                dist_y = topBorder - y_[i];
+                dt_y = dist_y/vel[1];
+
+                if (dt_y < dt_x) {
+                    // collision TOP
+                    if (mask_->isObstacle(idx[0], idx[1] + 1)){
+                        newVel[1] = -vel[1];
+                    } else {
+                        newIdx[1] += 1;
+                    }
+                    dtBeforeCollision = dt_y;
+                } else {
+                    // collision LEFT
+                    if (mask_->isObstacle(idx[0] - 1, idx[1])){ // TODO: change
+                        newVel[0] = -vel[0];
+                    } else {
+                        newIdx[0] -= 1;
+                    }
+                    dtBeforeCollision = dt_x;
+                }
+            } else if (vel[1] < 0){
+                // direction BOTTOM_LEFT
+                dist_y = lowerBorder - y_[i];
+                dt_y = dist_y/vel[1]; // -- = +
+
+                if (dt_y < dt_x) {
+                    // collision BOTTOM
+                    if (mask_->isObstacle(idx[0], idx[1] - 1)){
+                        newVel[1] = -vel[1];
+                    } else {
+                        newIdx[1] -= 1;
+                    }
+                    dtBeforeCollision = dt_y;
+                } else {
+                    // collision LEFT
+                    if (mask_->isObstacle(idx[0] - 1, idx[1])){ //TODO: change
+                        newVel[0] = -vel[0];
+                    } else {
+                        newIdx[0] -= 1;
+                    }
+                    dtBeforeCollision = dt_x;
+                }
+            }
+        }
+        // Bugfix for Floating Point Error
+        if (dt_x < eps || dt_y < eps){
+            dtBeforeCollision = eps;
+        }
         
-//         // x - Border
-//         double leftBorder = discretization_->dx()*(idx_x - 1); // -1 because idx starts at 0 with outer cell -dx
-//         double rightBorder = discretization_->dx()*(idx_x);
+        // Happens if it was outside of cell but flies into the cell
+        if (dt < dtBeforeCollision) {
+            x_[i] += dt * vel[0];
+            y_[i] += dt * vel[1];
+            return vel;
+        }
 
-//         // y - Border
-//         double lowerBorder = discretization_->dy()*(idx_y - 1);
-//         double topBorder = discretization_->dy()*(idx_y);
+        x_[i] += dtBeforeCollision * vel[0];
+        y_[i] += dtBeforeCollision * vel[1];
+        double newDt = dt - dtBeforeCollision;
 
-//         // distance and time to border
-//         double dist_x, dt_x, dist_y, dt_y;
-//         double dtBeforeCollision;
-
-//         double new_vel_x = vel_x;
-//         double new_vel_y = vel_y;
-
-
-//         // Note: ZERO_DIVISON is no problem, because then dt is pos_inf, which is always larger and therefore the other case is taken
-
-//         // Uses CFL condition --> accelerate?
-        
-//         // TODO: CORNER: double equality rounding errors?
-
-
-
-//         // Summary:
-//         // 1. `dt_x`: Calculate time till collision with x-Border (depending on direction of `vel_x` )
-//         // 2. `dt_y`: Calculate time till collision with y-Border (depending on direction of `vel_y` )
-//         // 3. Check which collision of the two possible happens first 
-//         //
-//         //     --> assign `dtBeforeCollision`, `new_vel_x` and `new_vel_y` accordingly
-
-
-//         if (vel_x >= 0) {
-//             dist_x = rightBorder - x_[i];
-//             dt_x = dist_x/vel_x;
-
-//             if (vel_y >= 0) {
-//                 // direction TOP_RIGHT
-//                 dist_y = topBorder - y_[i];
-//                 dt_y = dist_y/vel_y;
-                
-//                 if (dt_x >= dt_y) {
-//                     // collision TOP
-//                     if (mask_->isObstacle(idx_x, idx_y + 1)){
-//                         new_vel_y = -vel_y;
-//                     }
-//                     dtBeforeCollision = dt_y;
-//                 }
-//                 if (dt_x <= dt_y){
-//                     // collision RIGHT
-//                     if (mask_->isObstacle(idx_x, idx_y + 1)){
-//                         new_vel_x = -vel_x;
-//                     }
-//                     dtBeforeCollision = dt_x;
-//                 }
-//             } else if (vel_y < 0){
-//                 // direction BOTTOM_RIGHT
-//                 dist_y = lowerBorder - y_[i];
-//                 dt_y = dist_y/vel_y; // -- = +
-                
-//                 if (dt_x >= dt_y) {
-//                     // collision BOTTOM
-//                     if (mask_->isObstacle(idx_x, idx_y - 1)){
-//                         new_vel_y = -vel_y;
-//                     }
-//                     dtBeforeCollision = dt_y;
-//                 }
-//                 if (dt_x <= dt_y){
-//                     // collision RIGHT
-//                     if (mask_->isObstacle(idx_x, idx_y + 1)){
-//                         new_vel_x = -vel_x;
-//                     }
-//                     dtBeforeCollision = dt_x;
-//                 }
-//             } 
-//         } else if (vel_x < 0){
-//             dist_x = leftBorder - x_[i];
-//             dt_x = dist_x/vel_x; // -- = +
-
-//             if (vel_y >= 0) {
-//                 // direction TOP_LEFT
-//                 dist_y = topBorder - y_[i];
-//                 dt_y = dist_y/vel_y;
-                
-//                 if (dt_x >= dt_y) {
-//                     // collision TOP
-//                     if (mask_->isObstacle(idx_x, idx_y + 1)){
-//                         new_vel_y = -vel_y;
-//                     }
-//                     dtBeforeCollision = dt_y;
-//                 }
-//                 if (dt_x <= dt_y){
-//                     // collision LEFT
-//                     if (mask_->isObstacle(idx_x, idx_y - 1)){
-//                         new_vel_x = -vel_x;
-//                     }
-//                     dtBeforeCollision = dt_x;
-//                 }
-//             } else if (vel_y < 0){
-//                 // direction BOTTOM_LEFT
-//                 dist_y = lowerBorder - y_[i];
-//                 dt_y = dist_y/vel_y; // -- = +
-                
-//                 if (dt_x <= dt_y) {
-//                     // collision BOTTOM
-//                     if (mask_->isObstacle(idx_x, idx_y - 1)){
-//                         new_vel_y = -vel_y;
-//                     }
-//                     dtBeforeCollision = dt_x;
-//                 }
-//                 if (dt_x >= dt_y){
-//                     // collision LEFT
-//                     if (mask_->isObstacle(idx_x, idx_y - 1)){
-//                         new_vel_x = -vel_x;
-//                     }
-//                     dtBeforeCollision = dt_y;
-//                 }
-//             }
-//         }
-//         x_[i] += dtBeforeCollision * vel_x;
-//         y_[i] += dtBeforeCollision * vel_y;
-
-//         // dtBeforeCollision is always smaller
-//         // the maximum depth of recursion is 1
-//         updateParticle(i, dt - dtBeforeCollision, new_vel_x, new_vel_y);
-//     } else {
-
-//         x_[i] += step_x;
-//         y_[i] += step_y;
-//     }
-// }
+        if (newDt < eps){
+            return newVel;
+        }    
+        return updateParticle(i, newIdx, newDt, newVel, depth + 1);
+    }
+}

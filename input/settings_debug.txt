@@ -13,9 +13,9 @@ gY = 0.0
 # Boundary Conditions Type
 
 BCTop = NoSlip
-BCRight = Pressure
+BCRight = NoSlip
 BCBottom = NoSlip
-BCLeft = Pressure
+BCLeft = NoSlip
 
 
 # NoSlip boundary conditions
@@ -39,21 +39,22 @@ PressureLeft   = 100.0
 
 # Create Rectangular object in domain 
 
-createRectangularObject = false
+createRectangularObject = true
 
-obstaclePositionX = 0.5
-obstaclePositionY = 0.5
+obstaclePositionX = 0.75
+obstaclePositionY = 0.75
 obstacleDimensionX = 0.5
 obstacleDimensionY = 0.5
 
 # Create domain from PNGBitmap
 
-createDomainfromBitmap = true
-pathToBitmap = /home/lukas/Documents/SimTech/Semester2/NumSim/Submission4/Bitmaps/aerodynamic_obstacle.png
+createDomainfromBitmap = false
+pathToBitmap = /home/lukas/Documents/SimTech/Semester2/NumSim/Submission4/Bitmaps/legal_water.png
 
 # Discretization parameters
-nCellsX = 3          # number of cells in x and y direction
-nCellsY = 3
+nCellsX = 20          # number of cells in x and y direction
+nCellsY = 20
+
 useDonorCell = true   # if donor cell discretization should be used, possible values: true false
 alpha = 0.5           # factor for donor-cell scheme, 0 is equivalent to central differences
 tau = 0.5             # safety factor for time step width
