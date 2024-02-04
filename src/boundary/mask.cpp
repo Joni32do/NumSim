@@ -18,7 +18,6 @@ Mask::Mask( Settings settings) : settings_(settings)
   setFluidBC();
   setDomainBC();
   setObstacleBC();
-  printMask();
 }
 
 int &Mask::operator()(int i, int j) {

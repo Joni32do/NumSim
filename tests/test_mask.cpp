@@ -98,12 +98,14 @@ TEST(Mask, makeSmallRectangularObstacleCenter){
     // A - Air
     Settings settings;
     settings.nCells = {10, 10};
+    settings.physicalSize = {1.0, 1.0};
     settings.obstaclePosition = {0.45, 0.45};
     settings.obstacleDimension = {0.1, 0.1};
-    settings.physicalSize = {1.0, 1.0};
 
     Mask mask(settings);
     mask.makeRectangularObstacle();
+    mask.setObstacleBC();
+    mask.printMask();
     
     EXPECT_EQ(mask(5,5), Mask::OBSTACLE_CORNER_BOTTOM_LEFT);
     EXPECT_EQ(mask(5,6), Mask::OBSTACLE_CORNER_TOP_LEFT);

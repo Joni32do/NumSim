@@ -17,7 +17,7 @@ fi
 
 make install -j4
 
-./numsim ../input/settings_debug.txt
+# ./numsim ../input/settings_debug.txt
 
 
 
