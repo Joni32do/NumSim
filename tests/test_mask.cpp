@@ -64,7 +64,7 @@ TEST(Mask, updateMaskBoundaries){
     mask(3,3) = Mask::AIR;
     
 
-    mask.updateMaskBoundaries();
+    mask.setFluidBC();
     EXPECT_EQ(mask(3,2), Mask::FLUID_BORDER_TOP);
     EXPECT_EQ(mask(4,2), Mask::FLUID);
     EXPECT_EQ(mask(4,3), Mask::FLUID_BORDER_LEFT);

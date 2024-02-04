@@ -27,8 +27,8 @@ void Computation::initialize(int argc, char *argv[])
     // create boundary and tracer
     mask_ = std::make_shared<Mask>(settings_);
 
-    std::vector<double> traceX = {1.8};
-    std::vector<double> traceY = {1.8};
+    // std::vector<double> traceX = {1.8};
+    // std::vector<double> traceY = {1.8};
 
     boundary_ = std::make_shared<Boundary>(mask_, discretization_, settings_);
 

@@ -16,6 +16,7 @@ Mask::Mask( Settings settings) : settings_(settings)
   
   setDomainBC();
   setObstacleBC();
+  setFluidBC();
   printMask();
 }
 
@@ -47,27 +48,22 @@ void Mask::resetMask()
   }
 }
 
-void Mask::updateMaskBoundaries()
+void Mask::setFluidBC()
 {
-  for (int i = 0; i < size_[0]; i++)
-  {
-    for (int j = 0; j < size_[1]; j++)
-    {
+  for (int i = 0; i < size_[0]; i++) {
+    for (int j = 0; j < size_[1]; j++) {
       int idx = i + j * size_[0];
 
       if (Mask::isFluid(i, j))
       {
-        data_[idx] =  1 * Mask::isNotAir(i - 1, j)
-                    + 2 * Mask::isNotAir(i, j + 1)
-                    + 4 * Mask::isNotAir(i + 1, j)
-                    + 8 * Mask::isNotAir(i, j - 1);
-
+        data_[idx] =  1 * !Mask::isAir(i - 1, j)
+                    + 2 * !Mask::isAir(i, j + 1)
+                    + 4 * !Mask::isAir(i + 1, j)
+                    + 8 * !Mask::isAir(i, j - 1);
       }
     }
   }
 }
-
-
 
 
 bool Mask::isFluid(int i, int j) const
@@ -84,40 +80,18 @@ bool Mask::isObstacle(int i, int j) const
         return (data_[i + j * size_[0]] >= OBSTACLE);
     }
 
-bool Mask::isFluidBorder(int i, int j) const
-    {
-        return data_[i + j * size_[0]] < FLUID;
-    }
-
-bool Mask::isBorder(int i, int j) const
-    {
-        return isFluidBorder(i, j) || isObstacle(i, j);
-    }
 
 bool Mask::isAir(int i, int j) const
     {
         return (data_[i + j * size_[0]] == AIR);
     }
 
-bool Mask::isNotAir(int i, int j) const
-    {
-      if (i < 0 || i >= size_[0] || j < 0 || j >= size_[1])
-      {
-        return true;
-      } else {
-        return (data_[i + j * size_[0]] != AIR);
-      }
-    }
 
-int Mask::getNumberOfFluidCells() const
-{
+int Mask::getNumberOfFluidCells() const {
   int numFluidCells = 0;
-  for (int i = 0; i < size_[0]; i++)
-  {
-    for (int j = 0; j < size_[1]; j++)
-    {
-      if (isFluid(i, j))
-      {
+  for (int i = 0; i < size_[0]; i++) {
+    for (int j = 0; j < size_[1]; j++) {
+      if (isFluid(i, j)) {
         numFluidCells++;
       }
     }
@@ -126,12 +100,18 @@ int Mask::getNumberOfFluidCells() const
 }
 
 bool Mask::isDomainBoundary(int i, int j) const{
-  return (*this)(i,j)>200;
+  return (*this)(i,j)>Mask::DOMAIN_BOUNDARY;
 }
 
 bool Mask::isObstacleBoundary(int i, int j) const{
-  return ((*this)(i,j)>100 && (*this)(i,j)<200);
+  return ((*this)(i,j)>Mask::OBSTACLE_INSIDE && 
+          (*this)(i,j)<Mask::DOMAIN_BOUNDARY);
 }
+
+bool Mask::isFluidBoundary(int i, int j) const{
+  return (*this)(i,j)<Mask::FLUID;
+}
+
 
 void Mask::makeRectangularObstacle()
 {
@@ -303,8 +283,15 @@ void Mask::setObstacleBC()
     {
       if ((*this)(i, j) == OBSTACLE)
       {
-        int BC = 1 * Mask::isFluid(i - 1, j) + 2 * Mask::isFluid(i, j + 1) + 4 * Mask::isFluid(i + 1, j) + 8 * Mask::isFluid(i, j - 1) + 100;
+        int BC = 1 * Mask::isFluid(i - 1, j) 
+               + 2 * Mask::isFluid(i, j + 1) 
+               + 4 * Mask::isFluid(i + 1, j) 
+               + 8 * Mask::isFluid(i, j - 1) 
+               + 100;
+        
         bool BCinForbiddenCombinations = std::find(std::begin(forbiddenObstacleFluidCombinations), std::end(forbiddenObstacleFluidCombinations), BC) != std::end(forbiddenObstacleFluidCombinations);
+
+        // Check that obstacle is not only one cell wide
         if (Mask::isAir(i - 1, j) && Mask::isAir(i + 1, j))
           throw std::runtime_error("Obstacel is only one cell wide at i: " + std::to_string(i) + " ,j: " + std::to_string(j));
         else if (Mask::isAir(i, j + 1) && Mask::isAir(i, j - 1))

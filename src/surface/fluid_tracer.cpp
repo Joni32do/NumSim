@@ -95,7 +95,7 @@ void FluidTracer::moveParticles(double dt) {
         (*mask_)(idx_x, idx_y) = Mask::FLUID;
     }
 
-    mask_->updateMaskBoundaries();
+    mask_->setFluidBC();
 }
 
 int FluidTracer::val2CellX(double xVal){

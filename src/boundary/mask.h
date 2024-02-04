@@ -25,8 +25,7 @@ public:
 
     enum CellType
     {
-        DROPLET = 0,
-        FLUID = 15,
+        FLUID_DROPLET = 0,
 
         FLUID_SINGLE_LEFT = 1,
         FLUID_SINGLE_TOP = 2,
@@ -46,6 +45,7 @@ public:
         FLUID_BORDER_RIGHT = 11,
         FLUID_BORDER_BOTTOM = 7,
 
+        FLUID = 15,
         FLUID_TYPE = 50,
         AIR = 64,
 
@@ -108,7 +108,7 @@ public:
      *
      * TODO: efficiency:  only update `isFluidBorder`
      */
-    void updateMaskBoundaries();
+    void setFluidBC();
 
     /**
      * @brief Cell at (i,j) is fluid or not
@@ -128,21 +128,6 @@ public:
      */
     bool isObstacle(int i, int j) const;
 
-    /**
-     * @brief Cell at (i,j) is a fluid border cell or not
-     *
-     * @param i index in x direction
-     * @param j index in y direction
-     */
-    bool isFluidBorder(int i, int j) const;
-
-    /**
-     * @brief Cell at (i,j) is border cell (fluid or obstacle) or not
-     *
-     * @param i index in x direction
-     * @param j index in y direction
-     */
-    bool isBorder(int i, int j) const;
 
     /**
      * @brief Cell at (i,j) is a air cell or not
@@ -154,15 +139,6 @@ public:
      */
     bool isAir(int i, int j) const;
 
-    /**
-     * @brief Cell at (i,j) is not a air cell or not
-     *
-     * @param i index in x direction
-     * @param j index in y direction
-     *
-     * If i and j are out of bond returns true
-     */
-    bool isNotAir(int i, int j) const;
 
     /**
      * @brief number of fluid cells
@@ -196,6 +172,7 @@ public:
 
     bool isDomainBoundary(int i, int j) const;
     bool isObstacleBoundary(int i, int j) const;
+    bool isFluidBoundary(int i, int j) const;
 
     void setDomainBC();
     void setObstacleBC();
