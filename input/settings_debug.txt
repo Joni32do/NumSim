@@ -13,14 +13,14 @@ gY = 0.0
 # Boundary Conditions Type
 
 BCTop = NoSlip
-BCRight = NoSlip
+BCRight = Pressure
 BCBottom = NoSlip
-BCLeft = NoSlip
+BCLeft = Pressure
 
 
 # NoSlip boundary conditions
 
-NoSlipVelTopX    = 1
+NoSlipVelTopX    = 0
 NoSlipVelTopY    = 0
 NoSlipVelRightX  = 0
 NoSlipVelRightY  = 0
@@ -39,7 +39,7 @@ PressureLeft   = 100.0
 
 # Create Rectangular object in domain 
 
-createRectangularObject = true
+createRectangularObject = false
 
 obstaclePositionX = 0.75
 obstaclePositionY = 0.75
@@ -48,8 +48,8 @@ obstacleDimensionY = 0.5
 
 # Create domain from PNGBitmap
 
-createDomainfromBitmap = false
-pathToBitmap = /home/lukas/Documents/SimTech/Semester2/NumSim/Submission4/Bitmaps/legal_water.png
+createDomainfromBitmap = true
+pathToBitmap = /home/lukas/Documents/SimTech/Semester2/NumSim/Submission4/Bitmaps/aerodynamic_obstacle.png
 
 # Discretization parameters
 nCellsX = 20          # number of cells in x and y direction

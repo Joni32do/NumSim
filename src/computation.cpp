@@ -33,8 +33,7 @@ void Computation::initialize(int argc, char *argv[])
         discretization_ = std::make_shared<CentralDifferences>(n_Cells, meshWidth_);
     }
 
-    // create boundary and tracer
-    mask_ = std::make_shared<Mask>(settings_);
+    // create boundary and trace
     // TODO: read particles per cell from settings file
     fluidTracer_ = std::make_shared<FluidTracer>(100, discretization_, mask_);
 
@@ -73,12 +72,12 @@ void Computation::runSimulation()
     {
         
         // fluidTracer_->createParticles(0.1, 1.4);
-        fluidTracer_->createAndKillParticles(dt_);
+        //fluidTracer_->createAndKillParticles(dt_);
 
-        std::cout << "Particles: " << fluidTracer_->getNumberOfParticles() << std::endl;
-        mask_->printMask();
-        usleep(100000);
-        std::cout << "\033[2J\033[1;1H";
+        // std::cout << "Particles: " << fluidTracer_->getNumberOfParticles() << std::endl;
+        // //mask_->printMask();
+        // usleep(100000);
+        // std::cout << "\033[2J\033[1;1H";
 
 
         computeTimeStepWidth(currentTime);
