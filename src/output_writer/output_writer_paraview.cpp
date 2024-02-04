@@ -70,7 +70,6 @@ void OutputWriterParaview::writeFile(double currentTime)
   int FLUID = 1;
 
   int index = 0;
-
   for (int j = 0; j < n_cells_y; j++)
   {
     for (int i = 0; i < n_cells_x; i++, index++)
@@ -78,64 +77,68 @@ void OutputWriterParaview::writeFile(double currentTime)
       const double x = i * dx;
       const double y = j * dy;
 
+
       // vertex
-      if (std::fmod(x, discretization_->meshWidth()[0]) == 0 && std::fmod(y, discretization_->meshWidth()[1]) == 0)
+      if ((i%2) == 0 && (j%2) == 0)
       {
+        std::cout << i << " " << j << " as vertex\n";
         int i_bottom_left = i / 2;
         int j_bootom_left = j / 2;
         if (mask_->isObstacle(i_bottom_left, j_bootom_left) || mask_->isObstacle(i_bottom_left + 1, j_bootom_left) || mask_->isObstacle(i_bottom_left, j_bootom_left + 1) || mask_->isObstacle(i_bottom_left + 1, j_bootom_left + 1)){
           arrayMask->SetValue(index, OBSTACLE);
-          std::cout << i << " " << j << " set obstacle in 1\n";
+          // std::cout << i << " " << j << " set obstacle in 1\n";
         }
         else{
           arrayMask->SetValue(index, FLUID);
-          std::cout << i << " " << j << " set Fluid in 1\n";
+          // std::cout << i << " " << j << " set Fluid in 1\n";
         }
       }
       // middle
-      else if (std::fmod(x, discretization_->meshWidth()[0]) != 0 && std::fmod(y, discretization_->meshWidth()[1]) != 0)
+      else if ( (i%2) != 0 && (j%2) != 0)
       {
+        std::cout << i << " " << j << " as middle\n";
         int i_new = ((i - 1) / 2)+1;
         int j_new = ((j - 1) / 2)+1;
         if (mask_->isObstacle(i_new, j_new)){
           arrayMask->SetValue(index, OBSTACLE);
-          std::cout << i << " " << j << " set obstacle in 2\n";
+          // std::cout << i << " " << j << " set obstacle in 2\n";
         }
         else{
           arrayMask->SetValue(index, FLUID);
-          std::cout << i << " " << j << " set Fluid in 2\n";
+          // std::cout << i << " " << j << " set Fluid in 2\n";
         }
       }
       // horizontal
-      else if (std::fmod(x, discretization_->meshWidth()[0]) != 0 && std::fmod(y, discretization_->meshWidth()[1]) == 0)
+      else if ((i%2) != 0 && (j%2) == 0)
       {
+        std::cout << i << " " << j << " as horizontal\n";
         int i_bottom = ((i - 1) / 2)+1;
         int j_bottom = j / 2;
         if (mask_->isObstacle(i_bottom, j_bottom) || mask_->isObstacle(i_bottom, j_bottom + 1)){
           arrayMask->SetValue(index, OBSTACLE);
-          std::cout << i << " " << j << " set obstacle in 3\n";
+          // std::cout << i << " " << j << " set obstacle in 3\n";
         }
         else{
           arrayMask->SetValue(index, FLUID);
-          std::cout << i << " " << j << " set Fluid in 3\n";
         }
       }
       // vertical 
-      else if (std::fmod(x, discretization_->meshWidth()[0]) == 0 && std::fmod(y, discretization_->meshWidth()[1]) != 0)
+      else if ((i%2) == 0 && (j%2) != 0)
       {
+        std::cout << i << " " << j << " as vertical\n";
         int i_left = i / 2;
         int j_left = ((j - 1) / 2)+1;
         if (mask_->isObstacle(i_left, j_left) || mask_->isObstacle(i_left + 1, j_left)){
           arrayMask->SetValue(index, OBSTACLE);
-          std::cout << i << " " << j << " set obstacle in 4\n";
+          // std::cout << i << " " << j << " set obstacle in 4\n";
         }
         else{
           arrayMask->SetValue(index, FLUID);
-          std::cout << i << " " << j << " set Fluid in 4\n";
+          // std::cout << i << " " << j << " set Fluid in 4\n";
         }
       }
       else
-        std::cout << "YOU stupid\n";
+        std::cout << i << " " << j << " Nothing done\n";
     }
   }
 
