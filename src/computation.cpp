@@ -26,6 +26,8 @@ void Computation::initialize(int argc, char *argv[])
 
     // create boundary and tracer
     mask_ = std::make_shared<Mask>(settings_);
+    // TODO: read particles per cell from settings file
+    fluidTracer_ = std::make_shared<FluidTracer>(100, discretization_, mask_);
 
     // std::vector<double> traceX = {1.8};
     // std::vector<double> traceY = {1.8};
