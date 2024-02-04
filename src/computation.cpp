@@ -14,16 +14,23 @@ void Computation::initialize(int argc, char *argv[])
     settings_.printSettings();
 #endif
 
-    std::array<double, 2> meshWidth_ = {settings_.physicalSize[0] / settings_.nCells[0],
-                                        settings_.physicalSize[1] / settings_.nCells[1]};
+    // create boundary and tracer
+    mask_ = std::make_shared<Mask>(settings_);
+
+    std::array<int,2> n_Cells = {mask_->size()[0]-2, mask_->size()[1]-2};
+
+    std::cout << n_Cells[0] << " " << n_Cells[1] << "\n";
+
+    std::array<double, 2> meshWidth_ = {(n_Cells[0]/10.0) / n_Cells[0],
+                                        (n_Cells[1]/10.0) / n_Cells[1]};
 
     if (settings_.useDonorCell)
     {
-        discretization_ = std::make_shared<DonorCell>(settings_.nCells, meshWidth_, settings_.alpha);
+        discretization_ = std::make_shared<DonorCell>(n_Cells, meshWidth_, settings_.alpha);
     }
     else
     {
-        discretization_ = std::make_shared<CentralDifferences>(settings_.nCells, meshWidth_);
+        discretization_ = std::make_shared<CentralDifferences>(n_Cells, meshWidth_);
     }
 
     // create boundary and tracer
@@ -33,6 +40,7 @@ void Computation::initialize(int argc, char *argv[])
 
     // std::vector<double> traceX = {1.8};
     // std::vector<double> traceY = {1.8};
+
 
     boundary_ = std::make_shared<Boundary>(mask_, discretization_, settings_);
 
@@ -52,7 +60,7 @@ void Computation::initialize(int argc, char *argv[])
                                                         boundary_);
     }
 
-    outputWriterParaview_ = std::make_unique<OutputWriterParaview>(discretization_);
+    outputWriterParaview_ = std::make_unique<OutputWriterParaview>(discretization_, mask_);
     outputWriterText_ = std::make_unique<OutputWriterText>(discretization_);
 }
 

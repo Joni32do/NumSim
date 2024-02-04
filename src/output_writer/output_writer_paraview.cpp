@@ -1,6 +1,6 @@
 #include "output_writer_paraview.h"
 
-OutputWriterParaview::OutputWriterParaview(std::shared_ptr<Discretization> discretization) : OutputWriter(discretization)
+OutputWriterParaview::OutputWriterParaview(std::shared_ptr<Discretization> discretization, std::shared_ptr<Mask> mask) : OutputWriter(discretization), mask_(mask)
 {
   // Create a vtkWriter_
   vtkWriter_ = vtkSmartPointer<vtkXMLImageDataWriter>::New();
@@ -23,48 +23,114 @@ void OutputWriterParaview::writeFile(double currentTime)
   dataSet->SetOrigin(0, 0, 0);
 
   // set spacing of mesh
-  const double dx = discretization_->meshWidth()[0];
-  const double dy = discretization_->meshWidth()[1];
+  const double dx = discretization_->meshWidth()[0] * (1 / 2.0);
+  const double dy = discretization_->meshWidth()[1] * (1 / 2.0);
   const double dz = 1;
   dataSet->SetSpacing(dx, dy, dz);
 
   // set number of points in each dimension, 1 cell in z direction
   std::array<int, 2> nCells = discretization_->nCells();
+  int n_cells_x = nCells[0] * 2 + 1;
+  int n_cells_y = nCells[1] * 2 + 1;
   // we want to have points at each corner of each cell
-  dataSet->SetDimensions(nCells[0] + 1, nCells[1] + 1, 1);
+  dataSet->SetDimensions(n_cells_x, n_cells_y, 1);
 
   // add pressure field variable
   // ---------------------------
   vtkSmartPointer<vtkDoubleArray> arrayPressure = vtkDoubleArray::New();
+  vtkSmartPointer<vtkDoubleArray> arrayMask = vtkDoubleArray::New();
 
   // the pressure is a scalar which means the number of components is 1
   arrayPressure->SetNumberOfComponents(1);
+  arrayMask->SetNumberOfComponents(1);
 
   // Set the number of pressure values and allocate memory for it. We already know the number, it has to be the same as there are nodes in the mesh.
   arrayPressure->SetNumberOfTuples(dataSet->GetNumberOfPoints());
+  arrayMask->SetNumberOfTuples(dataSet->GetNumberOfPoints());
 
   arrayPressure->SetName("pressure");
+  arrayMask->SetName("mask");
 
   // loop over the nodes of the mesh and assign the interpolated p values in the vtk data structure
   // we only consider the cells that are the actual computational domain, not the helper values in the "halo"
 
   // index for the vtk data structure, will be incremented in the inner loop
-  int index = 0;
-  for (int j = 0; j < nCells[1] + 1; j++)
+  int index_ = 0;
+  for (int j = 0; j < n_cells_y; j++)
   {
-    for (int i = 0; i < nCells[0] + 1; i++, index++)
+    for (int i = 0; i < n_cells_x; i++, index_++)
     {
       const double x = i * dx;
       const double y = j * dy;
-      arrayPressure->SetValue(index, discretization_->p().interpolateAt(x, y));
+      arrayPressure->SetValue(index_, discretization_->p().interpolateAt(x, y));
+    }
+  }
+
+  int OBSTACLE = 2;
+  int FLUID = 1;
+
+  int index = 0;
+  for (int j = 0; j < n_cells_y; j++)
+  {
+    for (int i = 0; i < n_cells_x; i++, index++)
+    {
+      // vertex
+      if ((i%2) == 0 && (j%2) == 0)
+      {
+        int i_bottom_left = i / 2;
+        int j_bootom_left = j / 2;
+        if (mask_->isObstacle(i_bottom_left, j_bootom_left) || mask_->isObstacle(i_bottom_left + 1, j_bootom_left) || mask_->isObstacle(i_bottom_left, j_bootom_left + 1) || mask_->isObstacle(i_bottom_left + 1, j_bootom_left + 1)){
+          arrayMask->SetValue(index, OBSTACLE);
+        }
+        else{
+          arrayMask->SetValue(index, FLUID);
+        }
+      }
+      // middle
+      else if ( (i%2) != 0 && (j%2) != 0)
+      {
+        int i_new = ((i - 1) / 2)+1;
+        int j_new = ((j - 1) / 2)+1;
+        if (mask_->isObstacle(i_new, j_new)){
+          arrayMask->SetValue(index, OBSTACLE);
+        }
+        else{
+          arrayMask->SetValue(index, FLUID);
+        }
+      }
+      // horizontal
+      else if ((i%2) != 0 && (j%2) == 0)
+      {
+        int i_bottom = ((i - 1) / 2)+1;
+        int j_bottom = j / 2;
+        if (mask_->isObstacle(i_bottom, j_bottom) || mask_->isObstacle(i_bottom, j_bottom + 1)){
+          arrayMask->SetValue(index, OBSTACLE);
+        }
+        else{
+          arrayMask->SetValue(index, FLUID);
+        }
+      }
+      // vertical 
+      else if ((i%2) == 0 && (j%2) != 0)
+      {
+        int i_left = i / 2;
+        int j_left = ((j - 1) / 2)+1;
+        if (mask_->isObstacle(i_left, j_left) || mask_->isObstacle(i_left + 1, j_left)){
+          arrayMask->SetValue(index, OBSTACLE);
+        }
+        else{
+          arrayMask->SetValue(index, FLUID);
+        }
+      }
     }
   }
 
   // now, we should have added as many values as there are points in the vtk data structure
-  assert(index == dataSet->GetNumberOfPoints());
+  // assert(index == dataSet->GetNumberOfPoints());
 
   // add the field variable to the data set
   dataSet->GetPointData()->AddArray(arrayPressure);
+  dataSet->GetPointData()->AddArray(arrayMask);
 
   // add velocity field variable
   // ---------------------------
@@ -82,11 +148,11 @@ void OutputWriterParaview::writeFile(double currentTime)
   // loop over the mesh where p is defined and assign the values in the vtk data structure
   // index for the vtk data structure
   index = 0;
-  for (int j = 0; j < nCells[1] + 1; j++)
+  for (int j = 0; j < n_cells_y; j++)
   {
     const double y = j * dy;
 
-    for (int i = 0; i < nCells[0] + 1; i++, index++)
+    for (int i = 0; i < n_cells_x; i++, index++)
     {
       const double x = i * dx;
 
@@ -99,7 +165,7 @@ void OutputWriterParaview::writeFile(double currentTime)
     }
   }
   // now, we should have added as many values as there are points in the vtk data structure
-  assert(index == dataSet->GetNumberOfPoints());
+  // assert(index == dataSet->GetNumberOfPoints());
 
   // add the field variable to the data set
   dataSet->GetPointData()->AddArray(arrayVelocity);

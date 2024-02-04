@@ -1,6 +1,5 @@
 {
   "editor.formatOnSave": true,
-
   "files.associations": {
     "*.json": "jsonc",
     "cctype": "cpp",
@@ -74,5 +73,6 @@
     "variant": "cpp",
     "any": "cpp",
     "*.ipp": "cpp"
+    "*.txx": "cpp"
   }
 }
