@@ -4,7 +4,7 @@
 # Problem description
 physicalSizeX = 2.0   # physical size of the domain
 physicalSizeY = 2.0
-endTime = 0.03        # duration of the simulation
+endTime = 10.0        # duration of the simulation
 re = 1000             # Reynolds number
 gX = 0.0              # external forces, set to (gX,gY) = (0,-9.81) to account for gravity
 gY = 0.0
@@ -13,9 +13,9 @@ gY = 0.0
 # Boundary Conditions Type
 
 BCTop = NoSlip
-BCRight = NoSlip
+BCRight = Pressure
 BCBottom = NoSlip
-BCLeft = NoSlip
+BCLeft = Pressure
 
 
 # NoSlip boundary conditions
@@ -48,7 +48,7 @@ obstacleDimensionY = 0.5
 
 # Create domain from PNGBitmap
 
-createDomainfromBitmap = false
+createDomainfromBitmap = true
 pathToBitmap = /home/lukas/Documents/SimTech/Semester2/NumSim/Submission4/Bitmaps/aerodynamic_obstacle.png
 
 # Discretization parameters
