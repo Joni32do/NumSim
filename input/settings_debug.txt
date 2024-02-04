@@ -39,12 +39,12 @@ PressureLeft   = 100.0
 
 # Create Rectangular object in domain 
 
-createRectangularObject = true
+createRectangularObject = false
 
-obstaclePositionX = 0.5
-obstaclePositionY = 0.5
-obstacleDimensionX = 0.5
-obstacleDimensionY = 0.5
+obstaclePositionX = 0.8
+obstaclePositionY = 0.8
+obstacleDimensionX = 0.4
+obstacleDimensionY = 0.4
 
 # Create domain from PNGBitmap
 

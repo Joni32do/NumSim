@@ -110,7 +110,7 @@ void Computation::computePreliminaryVelocities()
     {
         for (int j = discretization_->fJBegin(); j < discretization_->fJEnd(); j++)
         {
-            if ((*mask_)(i, j) == 15 && (*mask_)(i + 1, j) == 15)
+            if ((*mask_)(i, j) == Mask::FLUID && (*mask_)(i + 1, j) == Mask::FLUID)
             {
                 double diffusion = 1 / settings_.re * (discretization_->computeD2uDx2(i, j) + discretization_->computeD2uDy2(i, j));
                 double convection = -discretization_->computeDu2Dx(i, j) - discretization_->computeDuvDy(i, j);
@@ -124,7 +124,7 @@ void Computation::computePreliminaryVelocities()
     {
         for (int j = discretization_->gJBegin(); j < discretization_->gJEnd(); j++)
         {
-            if ((*mask_)(i, j) == 15 && (*mask_)(i, j + 1) == 15)
+            if ((*mask_)(i, j) == Mask::FLUID && (*mask_)(i, j + 1) == Mask::FLUID)
             {
                 double diffusion = 1 / settings_.re * (discretization_->computeD2vDx2(i, j) + discretization_->computeD2vDy2(i, j));
                 double convection = -discretization_->computeDv2Dy(i, j) - discretization_->computeDuvDx(i, j);
