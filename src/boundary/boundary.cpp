@@ -108,7 +108,7 @@ void Boundary::setPressureSurfaceBC()
 {
     double dx = discretization_->dx();
     double dy = discretization_->dy();
-    
+
     for (int idx : FluidBoundaryCells_)
     {
         int i = idx % mask_->size()[0];
@@ -317,10 +317,18 @@ void Boundary::setVelocityObstacleBC()
 }
 
 
-// bool Boundary::doCalculateF(int i, int j){
-    
-// }
+bool Boundary::doCalculateF(int i, int j) const {
+    if (mask_->isFluid(i, j) && mask_->isFluid(i + 1, j)){
+        return true;
+    } else {
+        return false;
+    }
+}
 
-// bool Boundary::doCalcuteG(int i, int j){
-
-// }
+bool Boundary::doCalculateG(int i, int j) const {
+    if (mask_->isFluid(i, j) && mask_->isFluid(i, j + 1)){
+        return true;
+    } else {
+        return false;
+    }
+}

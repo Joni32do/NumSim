@@ -14,6 +14,10 @@ class Boundary
         void setVelocityBoundaryValues();
         std::shared_ptr<Mask> mask_;
 
+
+        bool doCalculateF(int i, int j) const;
+        bool doCalculateG(int i, int j) const;
+
     private:
         void createBoundaryCellsLists();
 

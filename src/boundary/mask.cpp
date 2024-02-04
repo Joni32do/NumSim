@@ -7,6 +7,7 @@ Mask::Mask( Settings settings) : settings_(settings)
   else
   {
     assert(settings_.nCells[0] > 0 && settings_.nCells[1] > 0);
+
     size_ = {settings_.nCells[0] + 2, settings_.nCells[1] + 2};
     data_.resize(size_[0] * size_[1], FLUID);
   }
@@ -14,31 +15,27 @@ Mask::Mask( Settings settings) : settings_(settings)
   if (settings_.createRectangularObject)
     makeRectangularObstacle();
   
+  setFluidBC();
   setDomainBC();
   setObstacleBC();
-  setFluidBC();
   printMask();
 }
 
-int &Mask::operator()(int i, int j)
-{
+int &Mask::operator()(int i, int j) {
   assert(i >= 0 && i < size_[0] && j >= 0 && j < size_[1]);
   return data_[i + j * size_[0]];
 }
 
-int Mask::operator()(int i, int j) const
-{
+int Mask::operator()(int i, int j) const {
   assert(i >= 0 && i < size_[0] && j >= 0 && j < size_[1]);
   return data_[i + j * size_[0]];
 }
 
-std::array<int, 2> Mask::size() const
-{
+std::array<int, 2> Mask::size() const {
   return size_;
 }
 
-void Mask::resetMask()
-{
+void Mask::resetMask() {
   for (int i = 0; i < size_[0]; i++) {
     for (int j = 0; j < size_[1]; j++) {
       if (!isObstacle(i, j)) {
@@ -48,44 +45,36 @@ void Mask::resetMask()
   }
 }
 
-void Mask::setFluidBC()
-{
-  for (int i = 0; i < size_[0]; i++) {
-    for (int j = 0; j < size_[1]; j++) {
-      int idx = i + j * size_[0];
-
-      if (Mask::isFluid(i, j))
-      {
-        data_[idx] =  1 * !Mask::isAir(i - 1, j)
-                    + 2 * !Mask::isAir(i, j + 1)
-                    + 4 * !Mask::isAir(i + 1, j)
-                    + 8 * !Mask::isAir(i, j - 1);
-      }
-    }
-  }
-}
-
-
-bool Mask::isFluid(int i, int j) const
-    {
-      if (i < 0 || i >= size_[0] || j < 0 || j >= size_[1]){
-        return false;
-      } else {
+// Primitive type
+bool Mask::isFluid(int i, int j) const {
         return (data_[i + j * size_[0]] < FLUID_TYPE);
-      }
     }
 
-bool Mask::isObstacle(int i, int j) const
-    {
+bool Mask::isObstacle(int i, int j) const {
         return (data_[i + j * size_[0]] >= OBSTACLE);
     }
 
-
-bool Mask::isAir(int i, int j) const
-    {
+bool Mask::isAir(int i, int j) const {
         return (data_[i + j * size_[0]] == AIR);
     }
 
+// Boundary type
+bool Mask::isDomainBoundary(int i, int j) const{
+  return (*this)(i,j)>Mask::DOMAIN_BOUNDARY;
+}
+
+bool Mask::isObstacleBoundary(int i, int j) const{
+  return ((*this)(i,j)>Mask::OBSTACLE_INSIDE && 
+          (*this)(i,j)<Mask::DOMAIN_BOUNDARY);
+}
+
+bool Mask::isFluidBoundary(int i, int j) const{
+  return (*this)(i,j)<Mask::FLUID;
+}
+
+bool Mask::isInnerFluid(int i, int j) const{
+  return (*this)(i,j)==Mask::FLUID;
+}
 
 int Mask::getNumberOfFluidCells() const {
   int numFluidCells = 0;
@@ -99,18 +88,6 @@ int Mask::getNumberOfFluidCells() const {
   return numFluidCells;
 }
 
-bool Mask::isDomainBoundary(int i, int j) const{
-  return (*this)(i,j)>Mask::DOMAIN_BOUNDARY;
-}
-
-bool Mask::isObstacleBoundary(int i, int j) const{
-  return ((*this)(i,j)>Mask::OBSTACLE_INSIDE && 
-          (*this)(i,j)<Mask::DOMAIN_BOUNDARY);
-}
-
-bool Mask::isFluidBoundary(int i, int j) const{
-  return (*this)(i,j)<Mask::FLUID;
-}
 
 
 void Mask::makeRectangularObstacle()
@@ -224,6 +201,24 @@ void Mask::createMaskFromPNGBitMap()
   for (int y = 0; y < height; y++)
     delete[] row_pointers[y];
   delete[] row_pointers;
+}
+
+
+void Mask::setFluidBC()
+{
+  for (int i = 0; i < size_[0]; i++) {
+    for (int j = 0; j < size_[1]; j++) {
+      int idx = i + j * size_[0];
+
+      if (Mask::isFluid(i, j))
+      {
+        data_[idx] =  1 * !Mask::isAir(i - 1, j)
+                    + 2 * !Mask::isAir(i, j + 1)
+                    + 4 * !Mask::isAir(i + 1, j)
+                    + 8 * !Mask::isAir(i, j - 1);
+      }
+    }
+  }
 }
 
 void Mask::setDomainBC()
