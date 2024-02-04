@@ -49,12 +49,16 @@ void Boundary::setPressureDomainBC()
             discretization_->p(i, j) = discretization_->p(i, j + 1);
             break;
         case Mask::DOMAIN_LEFT_PRESSURE:
+            discretization_->p(i, j) = settings_.PressureLeft;
             break;
         case Mask::DOMAIN_TOP_PRESSURE:
+            discretization_->p(i, j) = settings_.PressureTop;
             break;
         case Mask::DOMAIN_RIGHT_PRESSURE:
+            discretization_->p(i, j) = settings_.PressureRight;
             break;
         case Mask::DOMAIN_BOTTOM_PRESSURE:
+            discretization_->p(i, j) = settings_.PressureBottom;
             break;
         }
     }
@@ -131,12 +135,28 @@ void Boundary::setVelocityDomainBC()
             discretization_->g(i, j) = discretization_->v(i, j);
             break;
         case Mask::DOMAIN_LEFT_PRESSURE:
+            discretization_->u(i, j) = discretization_->u(i+1, j);
+            discretization_->f(i, j) = discretization_->u(i, j);
+            discretization_->v(i, j) = discretization_->v(i+1, j);
+            discretization_->g(i, j) = discretization_->v(i, j);
             break;
         case Mask::DOMAIN_TOP_PRESSURE:
+            discretization_->u(i, j) = discretization_->u(i, j-1);
+            discretization_->f(i, j) = discretization_->u(i, j);
+            discretization_->v(i, j) = discretization_->v(i, j-1);
+            discretization_->g(i, j) = discretization_->v(i, j);
             break;
         case Mask::DOMAIN_RIGHT_PRESSURE:
+            discretization_->u(i, j) = discretization_->u(i-1, j);
+            discretization_->f(i, j) = discretization_->u(i, j);
+            discretization_->v(i, j) = discretization_->v(i-1, j);
+            discretization_->g(i, j) = discretization_->v(i, j);
             break;
         case Mask::DOMAIN_BOTTOM_PRESSURE:
+            discretization_->u(i, j) = discretization_->u(i, j+1);
+            discretization_->f(i, j) = discretization_->u(i, j);
+            discretization_->v(i, j) = discretization_->v(i, j+1);
+            discretization_->g(i, j) = discretization_->v(i, j);
             break;
         }
     }
