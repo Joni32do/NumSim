@@ -1,0 +1,130 @@
+\doxysection{Pressure\+Solver Class Reference}
+\hypertarget{classPressureSolver}{}\label{classPressureSolver}\index{PressureSolver@{PressureSolver}}
+
+
+Solves the Poisson problem for the pressure.  
+
+
+
+
+{\ttfamily \#include $<$pressure\+\_\+solver.\+h$>$}
+
+Inheritance diagram for Pressure\+Solver\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classPressureSolver}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPressureSolver_a10803d8c3d7f3810fc0ba059acf04058}{Pressure\+Solver}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classDiscretization}{Discretization}} $>$ discretization, double epsilon, int maximum\+Number\+Of\+Iterations, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoundary}{Boundary}} $>$ boundary)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classPressureSolver_a504ac61a1317650e0eb70d6a93212ca0}{solve}} ()=0
+\begin{DoxyCompactList}\small\item\em virtual function that starts solver. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classPressureSolver_a3c97c6f37cf2bdb3985f90afa6923f93}\label{classPressureSolver_a3c97c6f37cf2bdb3985f90afa6923f93} 
+double {\bfseries dx2}
+\item 
+\Hypertarget{classPressureSolver_a25b7ff50bdaea53d1b5c7a5cf735c5b5}\label{classPressureSolver_a25b7ff50bdaea53d1b5c7a5cf735c5b5} 
+double {\bfseries dy2}
+\begin{DoxyCompactList}\small\item\em squared mesh widths \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classPressureSolver_a458c383fcacaf54c1a333a271049ca93}{set\+Boundary\+Values}} ()
+\begin{DoxyCompactList}\small\item\em Set the \doxylink{classBoundary}{Boundary} Values. \end{DoxyCompactList}\item 
+\Hypertarget{classPressureSolver_afc51f4315c483988aeec327a16c5bb90}\label{classPressureSolver_afc51f4315c483988aeec327a16c5bb90} 
+double {\bfseries calculate\+Residuum} ()
+\begin{DoxyCompactList}\small\item\em calculate residuum of current time step \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classPressureSolver_af3ac2e53c6f49b9a362415a89595a7f0}\label{classPressureSolver_af3ac2e53c6f49b9a362415a89595a7f0} 
+int {\bfseries i\+\_\+beg}
+\begin{DoxyCompactList}\small\item\em begin of loop for rhs in x direction \end{DoxyCompactList}\item 
+\Hypertarget{classPressureSolver_a41b263980e55591d1ffdc4837c252a61}\label{classPressureSolver_a41b263980e55591d1ffdc4837c252a61} 
+int {\bfseries i\+\_\+end}
+\begin{DoxyCompactList}\small\item\em end of loop for rhs in x direction \end{DoxyCompactList}\item 
+\Hypertarget{classPressureSolver_aa309af30e5e63e09b77900091e562235}\label{classPressureSolver_aa309af30e5e63e09b77900091e562235} 
+int {\bfseries j\+\_\+beg}
+\begin{DoxyCompactList}\small\item\em begin of loop for rhs in y direction \end{DoxyCompactList}\item 
+\Hypertarget{classPressureSolver_ac2402794034dd74073700998ee2860bf}\label{classPressureSolver_ac2402794034dd74073700998ee2860bf} 
+int {\bfseries j\+\_\+end}
+\begin{DoxyCompactList}\small\item\em end of loop for rhs in y direction \end{DoxyCompactList}\item 
+\Hypertarget{classPressureSolver_af579ecebaaa8b11914293ef18af5fdc6}\label{classPressureSolver_af579ecebaaa8b11914293ef18af5fdc6} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classDiscretization}{Discretization}} $>$ {\bfseries discretization\+\_\+}
+\begin{DoxyCompactList}\small\item\em object holding the needed field variables for rhs and p \end{DoxyCompactList}\item 
+\Hypertarget{classPressureSolver_a0b17b46580d259e4bb3a05486bc06a60}\label{classPressureSolver_a0b17b46580d259e4bb3a05486bc06a60} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoundary}{Boundary}} $>$ {\bfseries boundary\+\_\+}
+\begin{DoxyCompactList}\small\item\em object managing boundary for obstacle and surface tension \end{DoxyCompactList}\item 
+\Hypertarget{classPressureSolver_a22b723f3b3ba54e47f36cfc2b9576749}\label{classPressureSolver_a22b723f3b3ba54e47f36cfc2b9576749} 
+double {\bfseries epsilon\+\_\+}
+\begin{DoxyCompactList}\small\item\em tolerance for the solver \end{DoxyCompactList}\item 
+\Hypertarget{classPressureSolver_af3b02d29bf1b21ad8b7e6edf8c2f4e87}\label{classPressureSolver_af3b02d29bf1b21ad8b7e6edf8c2f4e87} 
+int {\bfseries maximum\+Number\+Of\+Iterations\+\_\+}
+\begin{DoxyCompactList}\small\item\em maximum number of iterations \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Solves the Poisson problem for the pressure. 
+
+Interface for the pressure solver. It computes the pressure field variable such that the continuity equation is fulfilled. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classPressureSolver_a10803d8c3d7f3810fc0ba059acf04058}\label{classPressureSolver_a10803d8c3d7f3810fc0ba059acf04058} 
+\index{PressureSolver@{PressureSolver}!PressureSolver@{PressureSolver}}
+\index{PressureSolver@{PressureSolver}!PressureSolver@{PressureSolver}}
+\doxysubsubsection{\texorpdfstring{PressureSolver()}{PressureSolver()}}
+{\footnotesize\ttfamily Pressure\+Solver\+::\+Pressure\+Solver (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classDiscretization}{Discretization}} $>$}]{discretization,  }\item[{double}]{epsilon,  }\item[{int}]{maximum\+Number\+Of\+Iterations,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoundary}{Boundary}} $>$}]{boundary }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em discretization} & instance of \doxylink{classDiscretization}{Discretization} holding the needed field variables for rhs and p \\
+\hline
+{\em epsilon} & tolerance for the solver \\
+\hline
+{\em maximum\+Number\+Of\+Iterations} & maximum of iteration \\
+\hline
+{\em boundary} & object managing boundary for obstacle and surface tension \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPressureSolver_a458c383fcacaf54c1a333a271049ca93}\label{classPressureSolver_a458c383fcacaf54c1a333a271049ca93} 
+\index{PressureSolver@{PressureSolver}!setBoundaryValues@{setBoundaryValues}}
+\index{setBoundaryValues@{setBoundaryValues}!PressureSolver@{PressureSolver}}
+\doxysubsubsection{\texorpdfstring{setBoundaryValues()}{setBoundaryValues()}}
+{\footnotesize\ttfamily void Pressure\+Solver\+::set\+Boundary\+Values (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Set the \doxylink{classBoundary}{Boundary} Values. 
+
+Account for homogenous Neuman BC Has to be called every iteration \Hypertarget{classPressureSolver_a504ac61a1317650e0eb70d6a93212ca0}\label{classPressureSolver_a504ac61a1317650e0eb70d6a93212ca0} 
+\index{PressureSolver@{PressureSolver}!solve@{solve}}
+\index{solve@{solve}!PressureSolver@{PressureSolver}}
+\doxysubsubsection{\texorpdfstring{solve()}{solve()}}
+{\footnotesize\ttfamily virtual void Pressure\+Solver\+::solve (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+virtual function that starts solver. 
+
+
+
+Implemented in \mbox{\hyperlink{classGaussSeidel_a6f0eb0c6938a64f8ded186f88170a04b}{Gauss\+Seidel}}, and \mbox{\hyperlink{classSOR_a860992d85d8aacf114a3a02b5831f728}{SOR}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/jonat/\+Documents/02\+\_\+\+Workspace/05\+\_\+\+Num\+Sim\+\_\+misc/\+Project/\+Num\+Sim/src/solver/pressure\+\_\+solver.\+h\item 
+/home/jonat/\+Documents/02\+\_\+\+Workspace/05\+\_\+\+Num\+Sim\+\_\+misc/\+Project/\+Num\+Sim/src/solver/pressure\+\_\+solver.\+cpp\end{DoxyCompactItemize}

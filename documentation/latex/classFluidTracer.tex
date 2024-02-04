@@ -1,0 +1,101 @@
+\doxysection{Fluid\+Tracer Class Reference}
+\hypertarget{classFluidTracer}{}\label{classFluidTracer}\index{FluidTracer@{FluidTracer}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classFluidTracer_a0a1c9fde640a129696e5c47869948939}\label{classFluidTracer_a0a1c9fde640a129696e5c47869948939} 
+{\bfseries Fluid\+Tracer} (int num\+Particlesper\+Cell, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classDiscretization}{Discretization}} $>$ discretization, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classMask}{Mask}} $>$ mask)
+\item 
+\Hypertarget{classFluidTracer_ad7f2ef5ef8d806b87c6478e85159a873}\label{classFluidTracer_ad7f2ef5ef8d806b87c6478e85159a873} 
+{\bfseries Fluid\+Tracer} (std\+::vector$<$ double $>$ x, std\+::vector$<$ double $>$ y, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classDiscretization}{Discretization}} $>$ discretization, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classMask}{Mask}} $>$ mask)
+\item 
+void \mbox{\hyperlink{classFluidTracer_aba4d452f26e9276b91256dd251789b90}{move\+Particles}} (double dt)
+\begin{DoxyCompactList}\small\item\em Update the position of the particles according to the velocity field and sets mask accordingly. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classFluidTracer_ace163e1fe040acbd4c3122f082b08eea}{create\+Particles}} (double position\+SourceX, double position\+SourceY)
+\begin{DoxyCompactList}\small\item\em can be used to create a source cell for particles \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classFluidTracer_adc687a4988f532e21e13c9aa0591d658}{get\+Number\+Of\+Particles}} () const
+\begin{DoxyCompactList}\small\item\em Get the Number Of Particles object. \end{DoxyCompactList}\item 
+std\+::array$<$ double, 2 $>$ \mbox{\hyperlink{classFluidTracer_a37ee0325d6af08be6eba8b073162342e}{get\+Particle\+Position}} (int i) const
+\begin{DoxyCompactList}\small\item\em Get the Particle Position, index starts at 0. \end{DoxyCompactList}\item 
+\Hypertarget{classFluidTracer_a0a9c3c092d01327d636ef39b8dd36ed8}\label{classFluidTracer_a0a9c3c092d01327d636ef39b8dd36ed8} 
+std\+::array$<$ int, 2 $>$ {\bfseries cell\+Of\+Particle} (int i)
+\item 
+\Hypertarget{classFluidTracer_a052e1ab909459100cd6a6cd8e9064ba6}\label{classFluidTracer_a052e1ab909459100cd6a6cd8e9064ba6} 
+int {\bfseries val2\+CellX} (double x\+Val)
+\item 
+\Hypertarget{classFluidTracer_a7bc97a7586fa8d900a6269e77c9ccba1}\label{classFluidTracer_a7bc97a7586fa8d900a6269e77c9ccba1} 
+int {\bfseries val2\+CellY} (double y\+Val)
+\item 
+\Hypertarget{classFluidTracer_a8306a4cff0036da1fcf695713f9f4226}\label{classFluidTracer_a8306a4cff0036da1fcf695713f9f4226} 
+std\+::array$<$ double, 2 $>$ {\bfseries update\+Particle} (int i, std\+::array$<$ int, 2 $>$ idx, double dt, std\+::array$<$ double, 2 $>$ vel, int depth)
+\item 
+\Hypertarget{classFluidTracer_acdaf955221e204e107513b0e29738d53}\label{classFluidTracer_acdaf955221e204e107513b0e29738d53} 
+std\+::array$<$ double, 2 $>$ {\bfseries move\+Particles} (double dt, std\+::array$<$ double, 2 $>$ vel)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classFluidTracer_ace163e1fe040acbd4c3122f082b08eea}\label{classFluidTracer_ace163e1fe040acbd4c3122f082b08eea} 
+\index{FluidTracer@{FluidTracer}!createParticles@{createParticles}}
+\index{createParticles@{createParticles}!FluidTracer@{FluidTracer}}
+\doxysubsubsection{\texorpdfstring{createParticles()}{createParticles()}}
+{\footnotesize\ttfamily void Fluid\+Tracer\+::create\+Particles (\begin{DoxyParamCaption}\item[{double}]{position\+SourceX,  }\item[{double}]{position\+SourceY }\end{DoxyParamCaption})}
+
+
+
+can be used to create a source cell for particles 
+
+fills the cell homogenously with particles by cell \Hypertarget{classFluidTracer_adc687a4988f532e21e13c9aa0591d658}\label{classFluidTracer_adc687a4988f532e21e13c9aa0591d658} 
+\index{FluidTracer@{FluidTracer}!getNumberOfParticles@{getNumberOfParticles}}
+\index{getNumberOfParticles@{getNumberOfParticles}!FluidTracer@{FluidTracer}}
+\doxysubsubsection{\texorpdfstring{getNumberOfParticles()}{getNumberOfParticles()}}
+{\footnotesize\ttfamily int Fluid\+Tracer\+::get\+Number\+Of\+Particles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get the Number Of Particles object. 
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\Hypertarget{classFluidTracer_a37ee0325d6af08be6eba8b073162342e}\label{classFluidTracer_a37ee0325d6af08be6eba8b073162342e} 
+\index{FluidTracer@{FluidTracer}!getParticlePosition@{getParticlePosition}}
+\index{getParticlePosition@{getParticlePosition}!FluidTracer@{FluidTracer}}
+\doxysubsubsection{\texorpdfstring{getParticlePosition()}{getParticlePosition()}}
+{\footnotesize\ttfamily std\+::array$<$ double, 2 $>$ Fluid\+Tracer\+::get\+Particle\+Position (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption}) const}
+
+
+
+Get the Particle Position, index starts at 0. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::array$<$double, 2$>$ 
+\end{DoxyReturn}
+\Hypertarget{classFluidTracer_aba4d452f26e9276b91256dd251789b90}\label{classFluidTracer_aba4d452f26e9276b91256dd251789b90} 
+\index{FluidTracer@{FluidTracer}!moveParticles@{moveParticles}}
+\index{moveParticles@{moveParticles}!FluidTracer@{FluidTracer}}
+\doxysubsubsection{\texorpdfstring{moveParticles()}{moveParticles()}}
+{\footnotesize\ttfamily void Fluid\+Tracer\+::move\+Particles (\begin{DoxyParamCaption}\item[{double}]{dt }\end{DoxyParamCaption})}
+
+
+
+Update the position of the particles according to the velocity field and sets mask accordingly. 
+
+get the velocity field \$u\$ and \$v\$ Checks for collision with border or obstacle and reflects the particle at this position Update the mask where there are new Air or Fluid cells
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/jonat/\+Documents/02\+\_\+\+Workspace/05\+\_\+\+Num\+Sim\+\_\+misc/\+Project/\+Num\+Sim/src/surface/fluid\+\_\+tracer.\+h\item 
+/home/jonat/\+Documents/02\+\_\+\+Workspace/05\+\_\+\+Num\+Sim\+\_\+misc/\+Project/\+Num\+Sim/src/surface/fluid\+\_\+tracer.\+cpp\end{DoxyCompactItemize}

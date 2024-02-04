@@ -1,0 +1,175 @@
+\doxysection{Settings Struct Reference}
+\hypertarget{structSettings}{}\label{structSettings}\index{Settings@{Settings}}
+
+
+All settings that parametrize a simulation run.  
+
+
+
+
+{\ttfamily \#include $<$settings.\+h$>$}
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structSettings_1_1LineContent}{Line\+Content}}
+\begin{DoxyCompactList}\small\item\em Contains the content of a single line in a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{structSettings_a55f95e3b6e7379bef4f8399a2cd670cc}{load\+From\+File}} (std\+::string filename)
+\begin{DoxyCompactList}\small\item\em Parse a text file with settings. \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_a68ce38117dcef2cbdd3bd17f127b3078}\label{structSettings_a68ce38117dcef2cbdd3bd17f127b3078} 
+void {\bfseries print\+Settings} ()
+\begin{DoxyCompactList}\small\item\em Print all setting to terminal. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structSettings_1_1LineContent}{Line\+Content}} \mbox{\hyperlink{structSettings_a6dbc25f91b99664976cd4a0a8af153c9}{read\+Single\+Line}} (std\+::string line)
+\begin{DoxyCompactList}\small\item\em Reads one line of the settings file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structSettings_a588f30eb8d791c03ec811360386bff0d}{set\+Parameter}} (std\+::string parameter\+Name, std\+::string value)
+\begin{DoxyCompactList}\small\item\em Sets the parameter to the corresponding value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structSettings_a43a0d2ee903496bfb86693a43a891a69}\label{structSettings_a43a0d2ee903496bfb86693a43a891a69} 
+std\+::array$<$ int, 2 $>$ {\bfseries n\+Cells}
+\begin{DoxyCompactList}\small\item\em number of cells in x and y direction \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_a372a1549c306b12ca7bb0ed84f8a4cef}\label{structSettings_a372a1549c306b12ca7bb0ed84f8a4cef} 
+std\+::array$<$ double, 2 $>$ {\bfseries physical\+Size}
+\begin{DoxyCompactList}\small\item\em physical size of the domain \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_a8b8330dfa04fe849291d68eacbc8dfec}\label{structSettings_a8b8330dfa04fe849291d68eacbc8dfec} 
+double {\bfseries re} = 1000
+\begin{DoxyCompactList}\small\item\em reynolds number \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_a73cd9110793ede99e9ebe409e5e115fd}\label{structSettings_a73cd9110793ede99e9ebe409e5e115fd} 
+double {\bfseries end\+Time} = 10.\+0
+\begin{DoxyCompactList}\small\item\em end time of the simulation \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_adaa611dc8c075474d40d7149afd310d1}\label{structSettings_adaa611dc8c075474d40d7149afd310d1} 
+double {\bfseries tau} = 0.\+5
+\begin{DoxyCompactList}\small\item\em safety factor for time step width \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_a988b93fdeb6c91932043b3f746b45e86}\label{structSettings_a988b93fdeb6c91932043b3f746b45e86} 
+double {\bfseries maximum\+Dt} = 0.\+1
+\begin{DoxyCompactList}\small\item\em maximum time step width \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_a1a21237c7f5b7585e5a3545c7d4a4e8c}\label{structSettings_a1a21237c7f5b7585e5a3545c7d4a4e8c} 
+std\+::array$<$ double, 2 $>$ {\bfseries g} \{0., 0.\}
+\begin{DoxyCompactList}\small\item\em external forces \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_a05bd5ffa1e1b48f5dc99878538596db3}\label{structSettings_a05bd5ffa1e1b48f5dc99878538596db3} 
+bool {\bfseries use\+Donor\+Cell} = false
+\begin{DoxyCompactList}\small\item\em if the donor cell scheme schould be used \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_a8b3721d24a5417caa0f2ad6f5eb85782}\label{structSettings_a8b3721d24a5417caa0f2ad6f5eb85782} 
+double {\bfseries alpha} = 0.\+5
+\begin{DoxyCompactList}\small\item\em factor for donor-\/cell scheme \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_a90549573af4f6c2c60ac640321fe1956}\label{structSettings_a90549573af4f6c2c60ac640321fe1956} 
+std\+::string {\bfseries BCTop} = "{}No\+Slip"{}
+\item 
+\Hypertarget{structSettings_a4f6f4dbc9e08834584809de5e553e5cd}\label{structSettings_a4f6f4dbc9e08834584809de5e553e5cd} 
+std\+::string {\bfseries BCRight} = "{}No\+Slip"{}
+\item 
+\Hypertarget{structSettings_a8003d11fa49639f3f827123d42f5f0ce}\label{structSettings_a8003d11fa49639f3f827123d42f5f0ce} 
+std\+::string {\bfseries BCBottom} = "{}No\+Slip"{}
+\item 
+\Hypertarget{structSettings_ac411ff66a486b89fba9dc520b6e305e3}\label{structSettings_ac411ff66a486b89fba9dc520b6e305e3} 
+std\+::string {\bfseries BCLeft} = "{}No\+Slip"{}
+\item 
+\Hypertarget{structSettings_a8887591c6c157d7006051aa95896c284}\label{structSettings_a8887591c6c157d7006051aa95896c284} 
+std\+::array$<$ double, 2 $>$ {\bfseries No\+Slip\+Vel\+Top}
+\begin{DoxyCompactList}\small\item\em prescribed values of u,v at top of domain \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_a2508aa084fe48e78d72b06e67c5a2006}\label{structSettings_a2508aa084fe48e78d72b06e67c5a2006} 
+std\+::array$<$ double, 2 $>$ {\bfseries No\+Slip\+Vel\+Right}
+\begin{DoxyCompactList}\small\item\em prescribed values of u,v at right of domain \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_a13e254a0439df7f7bd24ffe4f919a1a4}\label{structSettings_a13e254a0439df7f7bd24ffe4f919a1a4} 
+std\+::array$<$ double, 2 $>$ {\bfseries No\+Slip\+Vel\+Bottom}
+\begin{DoxyCompactList}\small\item\em prescribed values of u,v at bottom of domain \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_aafaec8c10a728a0f115f3bed43a1c478}\label{structSettings_aafaec8c10a728a0f115f3bed43a1c478} 
+std\+::array$<$ double, 2 $>$ {\bfseries No\+Slip\+Vel\+Left}
+\begin{DoxyCompactList}\small\item\em prescribed values of u,v at left of domain \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_a5c8295a86e29ac27579058f07242e78c}\label{structSettings_a5c8295a86e29ac27579058f07242e78c} 
+double {\bfseries Pressure\+Top}
+\begin{DoxyCompactList}\small\item\em prescribed pressure BC top of domain \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_a8e7d49e95d30c9390fc5039f9326df32}\label{structSettings_a8e7d49e95d30c9390fc5039f9326df32} 
+double {\bfseries Pressure\+Right}
+\begin{DoxyCompactList}\small\item\em prescribed pressure BC right of domain \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_acae74bcd333251c982ea347b8eb52017}\label{structSettings_acae74bcd333251c982ea347b8eb52017} 
+double {\bfseries Pressure\+Bottom}
+\begin{DoxyCompactList}\small\item\em prescribed pressure BC bottom of domain \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_a55f2fbdeb4d9c25bc679bd1fd42f1da7}\label{structSettings_a55f2fbdeb4d9c25bc679bd1fd42f1da7} 
+double {\bfseries Pressure\+Left}
+\begin{DoxyCompactList}\small\item\em prescribed pressure BC left of domain \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_a9e871c2bbb7d1b0131eac1f30f4f7788}\label{structSettings_a9e871c2bbb7d1b0131eac1f30f4f7788} 
+bool {\bfseries create\+Rectangular\+Object} = false
+\begin{DoxyCompactList}\small\item\em wheter a rectangular object in domain should be created \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_a6300ad5a809cdaf480f4553c3e3dbf7c}\label{structSettings_a6300ad5a809cdaf480f4553c3e3dbf7c} 
+bool {\bfseries create\+Domainfrom\+Bitmap} = false
+\begin{DoxyCompactList}\small\item\em wheter domain should be created from bitmap \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_a398d6490c8731b9b74115abc34700086}\label{structSettings_a398d6490c8731b9b74115abc34700086} 
+std\+::string {\bfseries path\+To\+Bitmap}
+\begin{DoxyCompactList}\small\item\em path to bitmap \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_aff5a1563289e354946a164fd80da5bf6}\label{structSettings_aff5a1563289e354946a164fd80da5bf6} 
+std\+::array$<$ double, 2 $>$ {\bfseries obstacle\+Position}
+\begin{DoxyCompactList}\small\item\em x and y position of rectangular object \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_ae23782f18cddfea58cb843e98cb5854f}\label{structSettings_ae23782f18cddfea58cb843e98cb5854f} 
+std\+::array$<$ double, 2 $>$ {\bfseries obstacle\+Dimension}
+\begin{DoxyCompactList}\small\item\em x and y dimension of rectangular object \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_a888e2fca33db512d4e200b49f1f618f7}\label{structSettings_a888e2fca33db512d4e200b49f1f618f7} 
+std\+::string {\bfseries pressure\+Solver} = "{}SOR"{}
+\begin{DoxyCompactList}\small\item\em which pressure solver to use, "{}\+Gauss\+Seidel"{} or "{}\+SOR"{} \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_af5ac13128e8c442ba45eedfab06ba14c}\label{structSettings_af5ac13128e8c442ba45eedfab06ba14c} 
+double {\bfseries omega} = 1.\+0
+\begin{DoxyCompactList}\small\item\em overrelaxation factor \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_aa02bd91d026d9ded9e36004b41b068b1}\label{structSettings_aa02bd91d026d9ded9e36004b41b068b1} 
+double {\bfseries epsilon} = 1e-\/5
+\begin{DoxyCompactList}\small\item\em tolerance for the residual in the pressure solver \end{DoxyCompactList}\item 
+\Hypertarget{structSettings_ac118e1c6052e35fb0ee38547a85d84ba}\label{structSettings_ac118e1c6052e35fb0ee38547a85d84ba} 
+int {\bfseries maximum\+Number\+Of\+Iterations} = 1e5
+\begin{DoxyCompactList}\small\item\em maximum number of iterations in the solver \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+All settings that parametrize a simulation run. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structSettings_a55f95e3b6e7379bef4f8399a2cd670cc}\label{structSettings_a55f95e3b6e7379bef4f8399a2cd670cc} 
+\index{Settings@{Settings}!loadFromFile@{loadFromFile}}
+\index{loadFromFile@{loadFromFile}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{loadFromFile()}{loadFromFile()}}
+{\footnotesize\ttfamily void Settings\+::load\+From\+File (\begin{DoxyParamCaption}\item[{std\+::string}]{filename }\end{DoxyParamCaption})}
+
+
+
+Parse a text file with settings. 
+
+Each line contains "{}$<$parameter\+Name$>$ = $<$value$>$"{} \Hypertarget{structSettings_a6dbc25f91b99664976cd4a0a8af153c9}\label{structSettings_a6dbc25f91b99664976cd4a0a8af153c9} 
+\index{Settings@{Settings}!readSingleLine@{readSingleLine}}
+\index{readSingleLine@{readSingleLine}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{readSingleLine()}{readSingleLine()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structSettings_1_1LineContent}{Settings\+::\+Line\+Content}} Settings\+::read\+Single\+Line (\begin{DoxyParamCaption}\item[{std\+::string}]{line }\end{DoxyParamCaption})}
+
+
+
+Reads one line of the settings file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em line} & line of file to read \\
+\hline
+\end{DoxyParams}
+\Hypertarget{structSettings_a588f30eb8d791c03ec811360386bff0d}\label{structSettings_a588f30eb8d791c03ec811360386bff0d} 
+\index{Settings@{Settings}!setParameter@{setParameter}}
+\index{setParameter@{setParameter}!Settings@{Settings}}
+\doxysubsubsection{\texorpdfstring{setParameter()}{setParameter()}}
+{\footnotesize\ttfamily void Settings\+::set\+Parameter (\begin{DoxyParamCaption}\item[{std\+::string}]{parameter\+Name,  }\item[{std\+::string}]{value }\end{DoxyParamCaption})}
+
+
+
+Sets the parameter to the corresponding value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parameter\+Name} & paramter name \\
+\hline
+{\em value} & of parameter \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/jonat/\+Documents/02\+\_\+\+Workspace/05\+\_\+\+Num\+Sim\+\_\+misc/\+Project/\+Num\+Sim/src/settings\+\_\+parser/settings.\+h\item 
+/home/jonat/\+Documents/02\+\_\+\+Workspace/05\+\_\+\+Num\+Sim\+\_\+misc/\+Project/\+Num\+Sim/src/settings\+\_\+parser/settings.\+cpp\end{DoxyCompactItemize}

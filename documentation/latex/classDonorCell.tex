@@ -1,0 +1,246 @@
+\doxysection{Donor\+Cell Class Reference}
+\hypertarget{classDonorCell}{}\label{classDonorCell}\index{DonorCell@{DonorCell}}
+
+
+Discretizes the problem using the donor cell scheme.  
+
+
+
+
+{\ttfamily \#include $<$donor\+\_\+cell.\+h$>$}
+
+Inheritance diagram for Donor\+Cell\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classDonorCell}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDonorCell_a4896ad035a5ac50c85e2b66d442a5312}{Donor\+Cell}} (std\+::array$<$ int, 2 $>$ \mbox{\hyperlink{classStaggeredGrid_af37816ccb2c46e4a514dedac261897bf}{n\+Cells}}, std\+::array$<$ double, 2 $>$ \mbox{\hyperlink{classStaggeredGrid_a330856d4efe952771daf0753ef84068e}{mesh\+Width}}, double alpha)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classDonorCell_a265bdaf46ed8ba46a42ef0cb03807175}{compute\+Du2\+Dx}} (int i, int j) const override
+\begin{DoxyCompactList}\small\item\em Calculate first derivative of u\texorpdfstring{$^\wedge$}{\string^}2 with respect to x with the donor cell Scheme. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classDonorCell_a01dcfb7fcf356d5ee412107a30c26fb3}{compute\+Dv2\+Dy}} (int i, int j) const override
+\begin{DoxyCompactList}\small\item\em Calculate first derivative of v\texorpdfstring{$^\wedge$}{\string^}2 with respect to y with the donor cell Scheme. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classDonorCell_ae41b5f85743ca7f148bd829561bd9cb5}{compute\+Duv\+Dx}} (int i, int j) const override
+\begin{DoxyCompactList}\small\item\em Calculate first derivative of u\texorpdfstring{$\ast$}{*}v with respect to x with the donor cell Scheme. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classDonorCell_a285562312f08efde26afd160174d2843}{compute\+Duv\+Dy}} (int i, int j) const override
+\begin{DoxyCompactList}\small\item\em Calculate first derivative of u\texorpdfstring{$\ast$}{*}v with respect to y with the donor cell Scheme. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classDiscretization}{Discretization}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDiscretization_a4fb8cc9823938e7c2dec329b906a462c}{Discretization}} (std\+::array$<$ int, 2 $>$ \mbox{\hyperlink{classStaggeredGrid_af37816ccb2c46e4a514dedac261897bf}{n\+Cells}}, std\+::array$<$ double, 2 $>$ \mbox{\hyperlink{classStaggeredGrid_a330856d4efe952771daf0753ef84068e}{mesh\+Width}})
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual double {\bfseries compute\+D2u\+Dx2} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em Calculate second derivative of u with respect to x. \end{DoxyCompactList}\item 
+virtual double {\bfseries compute\+D2u\+Dy2} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em Calculate second derivative of u with respect to y. \end{DoxyCompactList}\item 
+virtual double {\bfseries compute\+D2v\+Dx2} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em Calculate second derivative of v with respect to x. \end{DoxyCompactList}\item 
+virtual double {\bfseries compute\+D2v\+Dy2} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em Calculate second derivative of v with respect to y. \end{DoxyCompactList}\item 
+virtual double {\bfseries compute\+Dp\+Dx} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em Calculate first derivative of p with respect to x. \end{DoxyCompactList}\item 
+virtual double {\bfseries compute\+Dp\+Dy} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em Calculate first derivative of p with respect to y. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classStaggeredGrid}{Staggered\+Grid}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStaggeredGrid_aec0990b64c559b1690f21b48fb2d13b1}{Staggered\+Grid}} (std\+::array$<$ int, 2 $>$ \mbox{\hyperlink{classStaggeredGrid_af37816ccb2c46e4a514dedac261897bf}{n\+Cells}}, std\+::array$<$ double, 2 $>$ \mbox{\hyperlink{classStaggeredGrid_a330856d4efe952771daf0753ef84068e}{mesh\+Width}})
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+const std\+::array$<$ double, 2 $>$ {\bfseries mesh\+Width} () const
+\begin{DoxyCompactList}\small\item\em Get the length of a single cell in x and y directions. \end{DoxyCompactList}\item 
+const std\+::array$<$ int, 2 $>$ {\bfseries n\+Cells} () const
+\begin{DoxyCompactList}\small\item\em Get number of cells in x and y directions. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classFieldVariable}{Field\+Variable}} \& {\bfseries u} () const
+\begin{DoxyCompactList}\small\item\em Get a reference to the field variable u. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classFieldVariable}{Field\+Variable}} \& {\bfseries v} () const
+\begin{DoxyCompactList}\small\item\em Get a reference to the field variable v. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classFieldVariable}{Field\+Variable}} \& {\bfseries p} () const
+\begin{DoxyCompactList}\small\item\em Get a reference to the field variable p. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classFieldVariable}{Field\+Variable}} \& {\bfseries rhs} () const
+\begin{DoxyCompactList}\small\item\em Get a reference to the field variable rhs. \end{DoxyCompactList}\item 
+double {\bfseries u} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em Access value of u in element (i,j), declared constant. \end{DoxyCompactList}\item 
+double \& {\bfseries u} (int i, int j)
+\begin{DoxyCompactList}\small\item\em Access value of u in element (i,j) \end{DoxyCompactList}\item 
+double {\bfseries v} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em Access value of v in element (i,j), declared constant. \end{DoxyCompactList}\item 
+double \& {\bfseries v} (int i, int j)
+\begin{DoxyCompactList}\small\item\em Access value of v in element (i,j) \end{DoxyCompactList}\item 
+double {\bfseries p} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em Access value of p in element (i,j), declared constant. \end{DoxyCompactList}\item 
+double \& {\bfseries p} (int i, int j)
+\begin{DoxyCompactList}\small\item\em Access value of p in element (i,j) \end{DoxyCompactList}\item 
+double \& {\bfseries f} (int i, int j)
+\begin{DoxyCompactList}\small\item\em Access value of f in element (i,j) \end{DoxyCompactList}\item 
+double \& {\bfseries g} (int i, int j)
+\begin{DoxyCompactList}\small\item\em Access value of g in element (i,j) \end{DoxyCompactList}\item 
+double \& {\bfseries rhs} (int i, int j)
+\begin{DoxyCompactList}\small\item\em Access value of rhs in element (i,j) \end{DoxyCompactList}\item 
+double {\bfseries dx} () const
+\begin{DoxyCompactList}\small\item\em Get the mesh width in x-\/direction. \end{DoxyCompactList}\item 
+double {\bfseries dy} () const
+\begin{DoxyCompactList}\small\item\em Get the mesh width in y-\/direction. \end{DoxyCompactList}\item 
+int {\bfseries u\+IBegin} () const
+\begin{DoxyCompactList}\small\item\em first valid index for u in x direction \end{DoxyCompactList}\item 
+int {\bfseries u\+IEnd} () const
+\begin{DoxyCompactList}\small\item\em one after last valid index for u in x direction \end{DoxyCompactList}\item 
+int {\bfseries u\+JBegin} () const
+\begin{DoxyCompactList}\small\item\em first valid index for u in y direction \end{DoxyCompactList}\item 
+int {\bfseries u\+JEnd} () const
+\begin{DoxyCompactList}\small\item\em one after last valid index for u in y direction \end{DoxyCompactList}\item 
+int {\bfseries v\+IBegin} () const
+\begin{DoxyCompactList}\small\item\em first valid index for v in x direction \end{DoxyCompactList}\item 
+int {\bfseries v\+IEnd} () const
+\begin{DoxyCompactList}\small\item\em one after last valid index for v in x direction \end{DoxyCompactList}\item 
+int {\bfseries v\+JBegin} () const
+\begin{DoxyCompactList}\small\item\em first valid index for v in y direction \end{DoxyCompactList}\item 
+int {\bfseries v\+JEnd} () const
+\begin{DoxyCompactList}\small\item\em one after last valid index for v in y direction \end{DoxyCompactList}\item 
+int {\bfseries p\+IBegin} () const
+\begin{DoxyCompactList}\small\item\em first valid index for p in x direction \end{DoxyCompactList}\item 
+int {\bfseries p\+IEnd} () const
+\begin{DoxyCompactList}\small\item\em one after last valid index for p in x direction \end{DoxyCompactList}\item 
+int {\bfseries p\+JBegin} () const
+\begin{DoxyCompactList}\small\item\em first valid index for p in y direction \end{DoxyCompactList}\item 
+int {\bfseries p\+JEnd} () const
+\begin{DoxyCompactList}\small\item\em one after last valid index for p in y direction \end{DoxyCompactList}\item 
+int {\bfseries f\+IBegin} () const
+\begin{DoxyCompactList}\small\item\em first valid index for f in x direction \end{DoxyCompactList}\item 
+int {\bfseries f\+IEnd} () const
+\begin{DoxyCompactList}\small\item\em one after last valid index for f in x direction \end{DoxyCompactList}\item 
+int {\bfseries f\+JBegin} () const
+\begin{DoxyCompactList}\small\item\em first valid index for f in y direction \end{DoxyCompactList}\item 
+int {\bfseries f\+JEnd} () const
+\begin{DoxyCompactList}\small\item\em one after last valid index for f in y direction \end{DoxyCompactList}\item 
+int {\bfseries g\+IBegin} () const
+\begin{DoxyCompactList}\small\item\em first valid index for g in x direction \end{DoxyCompactList}\item 
+int {\bfseries g\+IEnd} () const
+\begin{DoxyCompactList}\small\item\em one after last valid index for g in x direction \end{DoxyCompactList}\item 
+int {\bfseries g\+JBegin} () const
+\begin{DoxyCompactList}\small\item\em first valid index for g in y direction \end{DoxyCompactList}\item 
+int {\bfseries g\+JEnd} () const
+\begin{DoxyCompactList}\small\item\em one after last valid index for g in y direction \end{DoxyCompactList}\item 
+int {\bfseries rhs\+IBegin} () const
+\begin{DoxyCompactList}\small\item\em first valid index for rhs in x direction \end{DoxyCompactList}\item 
+int {\bfseries rhs\+IEnd} () const
+\begin{DoxyCompactList}\small\item\em one after last valid index for rhs in x direction \end{DoxyCompactList}\item 
+int {\bfseries rhs\+JBegin} () const
+\begin{DoxyCompactList}\small\item\em first valid index for rhs in y direction \end{DoxyCompactList}\item 
+int {\bfseries rhs\+JEnd} () const
+\begin{DoxyCompactList}\small\item\em one after last valid index for rhs in y direction \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classStaggeredGrid}{Staggered\+Grid}}}
+\begin{DoxyCompactItemize}
+\item 
+const std\+::array$<$ int, 2 $>$ {\bfseries n\+Cells\+\_\+}
+\begin{DoxyCompactList}\small\item\em array containing number of cells in x and y directions \end{DoxyCompactList}\item 
+const std\+::array$<$ double, 2 $>$ {\bfseries mesh\+Width\+\_\+}
+\begin{DoxyCompactList}\small\item\em array containing the sizes of cell edges in x and y directions \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classFieldVariable}{Field\+Variable}} {\bfseries u\+\_\+}
+\begin{DoxyCompactList}\small\item\em instance of the field variable u \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classFieldVariable}{Field\+Variable}} {\bfseries v\+\_\+}
+\begin{DoxyCompactList}\small\item\em instance of the field variable v \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classFieldVariable}{Field\+Variable}} {\bfseries p\+\_\+}
+\begin{DoxyCompactList}\small\item\em instance of the field variable p \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classFieldVariable}{Field\+Variable}} {\bfseries f\+\_\+}
+\begin{DoxyCompactList}\small\item\em instance of the field variable f \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classFieldVariable}{Field\+Variable}} {\bfseries g\+\_\+}
+\begin{DoxyCompactList}\small\item\em instance of the field variable g \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classFieldVariable}{Field\+Variable}} {\bfseries rhs\+\_\+}
+\begin{DoxyCompactList}\small\item\em instance of the field variable rhs \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Discretizes the problem using the donor cell scheme. 
+
+Implements the first derivatives of u\texorpdfstring{$^\wedge$}{\string^}2, v\texorpdfstring{$^\wedge$}{\string^}2 and u\texorpdfstring{$\ast$}{*}v according to the donor cell scheme 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classDonorCell_a4896ad035a5ac50c85e2b66d442a5312}\label{classDonorCell_a4896ad035a5ac50c85e2b66d442a5312} 
+\index{DonorCell@{DonorCell}!DonorCell@{DonorCell}}
+\index{DonorCell@{DonorCell}!DonorCell@{DonorCell}}
+\doxysubsubsection{\texorpdfstring{DonorCell()}{DonorCell()}}
+{\footnotesize\ttfamily Donor\+Cell\+::\+Donor\+Cell (\begin{DoxyParamCaption}\item[{std\+::array$<$ int, 2 $>$}]{n\+Cells,  }\item[{std\+::array$<$ double, 2 $>$}]{mesh\+Width,  }\item[{double}]{alpha }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+Cells} & array containing number of cells in x and y directions \\
+\hline
+{\em mesh\+Width} & array containing the length of a single cell in x and y directions \\
+\hline
+{\em alpha} & weight factor between central differences and donor cell schemes \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classDonorCell_a265bdaf46ed8ba46a42ef0cb03807175}\label{classDonorCell_a265bdaf46ed8ba46a42ef0cb03807175} 
+\index{DonorCell@{DonorCell}!computeDu2Dx@{computeDu2Dx}}
+\index{computeDu2Dx@{computeDu2Dx}!DonorCell@{DonorCell}}
+\doxysubsubsection{\texorpdfstring{computeDu2Dx()}{computeDu2Dx()}}
+{\footnotesize\ttfamily double Donor\+Cell\+::compute\+Du2\+Dx (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Calculate first derivative of u\texorpdfstring{$^\wedge$}{\string^}2 with respect to x with the donor cell Scheme. 
+
+
+
+Implements \mbox{\hyperlink{classDiscretization_acca6bf193e0e91f645d292527299254b}{Discretization}}.
+
+\Hypertarget{classDonorCell_ae41b5f85743ca7f148bd829561bd9cb5}\label{classDonorCell_ae41b5f85743ca7f148bd829561bd9cb5} 
+\index{DonorCell@{DonorCell}!computeDuvDx@{computeDuvDx}}
+\index{computeDuvDx@{computeDuvDx}!DonorCell@{DonorCell}}
+\doxysubsubsection{\texorpdfstring{computeDuvDx()}{computeDuvDx()}}
+{\footnotesize\ttfamily double Donor\+Cell\+::compute\+Duv\+Dx (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Calculate first derivative of u\texorpdfstring{$\ast$}{*}v with respect to x with the donor cell Scheme. 
+
+
+
+Implements \mbox{\hyperlink{classDiscretization_ab1c2aa237e13e7c4c9edd429de656795}{Discretization}}.
+
+\Hypertarget{classDonorCell_a285562312f08efde26afd160174d2843}\label{classDonorCell_a285562312f08efde26afd160174d2843} 
+\index{DonorCell@{DonorCell}!computeDuvDy@{computeDuvDy}}
+\index{computeDuvDy@{computeDuvDy}!DonorCell@{DonorCell}}
+\doxysubsubsection{\texorpdfstring{computeDuvDy()}{computeDuvDy()}}
+{\footnotesize\ttfamily double Donor\+Cell\+::compute\+Duv\+Dy (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Calculate first derivative of u\texorpdfstring{$\ast$}{*}v with respect to y with the donor cell Scheme. 
+
+
+
+Implements \mbox{\hyperlink{classDiscretization_a0bab86aef10a72e01b4f8102a3c91f84}{Discretization}}.
+
+\Hypertarget{classDonorCell_a01dcfb7fcf356d5ee412107a30c26fb3}\label{classDonorCell_a01dcfb7fcf356d5ee412107a30c26fb3} 
+\index{DonorCell@{DonorCell}!computeDv2Dy@{computeDv2Dy}}
+\index{computeDv2Dy@{computeDv2Dy}!DonorCell@{DonorCell}}
+\doxysubsubsection{\texorpdfstring{computeDv2Dy()}{computeDv2Dy()}}
+{\footnotesize\ttfamily double Donor\+Cell\+::compute\+Dv2\+Dy (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Calculate first derivative of v\texorpdfstring{$^\wedge$}{\string^}2 with respect to y with the donor cell Scheme. 
+
+
+
+Implements \mbox{\hyperlink{classDiscretization_a69ba136ab7f8c09d805afca159cab428}{Discretization}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/jonat/\+Documents/02\+\_\+\+Workspace/05\+\_\+\+Num\+Sim\+\_\+misc/\+Project/\+Num\+Sim/src/discretization/donor\+\_\+cell.\+h\item 
+/home/jonat/\+Documents/02\+\_\+\+Workspace/05\+\_\+\+Num\+Sim\+\_\+misc/\+Project/\+Num\+Sim/src/discretization/donor\+\_\+cell.\+cpp\end{DoxyCompactItemize}

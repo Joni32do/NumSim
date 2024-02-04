@@ -1,0 +1,50 @@
+\doxysection{donor\+\_\+cell.\+h}
+\hypertarget{donor__cell_8h_source}{}\label{donor__cell_8h_source}\index{/home/jonat/Documents/02\_Workspace/05\_NumSim\_misc/Project/NumSim/src/discretization/donor\_cell.h@{/home/jonat/Documents/02\_Workspace/05\_NumSim\_misc/Project/NumSim/src/discretization/donor\_cell.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}discretization.h"{}}}
+\DoxyCodeLine{00007\ }
+
+
+
+
+
+
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classDonorCell}{DonorCell}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classDiscretization}{Discretization}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+
+
+
+
+
+
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{classDonorCell_a4896ad035a5ac50c85e2b66d442a5312}{DonorCell}}(std::array<int,\ 2>\ \mbox{\hyperlink{classStaggeredGrid_af37816ccb2c46e4a514dedac261897bf}{nCells}},\ std::array<double,\ 2>\ \mbox{\hyperlink{classStaggeredGrid_a330856d4efe952771daf0753ef84068e}{meshWidth}},\ \textcolor{keywordtype}{double}\ alpha);}
+\DoxyCodeLine{00026\ }
+
+
+
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classDonorCell_a265bdaf46ed8ba46a42ef0cb03807175}{computeDu2Dx}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j)\ \textcolor{keyword}{const\ override};}
+
+
+
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classDonorCell_a01dcfb7fcf356d5ee412107a30c26fb3}{computeDv2Dy}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j)\ \textcolor{keyword}{const\ override};}
+
+
+
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classDonorCell_ae41b5f85743ca7f148bd829561bd9cb5}{computeDuvDx}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j)\ \textcolor{keyword}{const\ override};}
+
+
+
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classDonorCell_a285562312f08efde26afd160174d2843}{computeDuvDy}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j)\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ alpha\_;\ }
+\DoxyCodeLine{00050\ \};}
+
+\end{DoxyCode}

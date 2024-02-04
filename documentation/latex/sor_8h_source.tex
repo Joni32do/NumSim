@@ -1,0 +1,39 @@
+\doxysection{sor.\+h}
+\hypertarget{sor_8h_source}{}\label{sor_8h_source}\index{/home/jonat/Documents/02\_Workspace/05\_NumSim\_misc/Project/NumSim/src/solver/sor.h@{/home/jonat/Documents/02\_Workspace/05\_NumSim\_misc/Project/NumSim/src/solver/sor.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}pressure\_solver.h"{}}}
+\DoxyCodeLine{00004\ }
+
+
+
+
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSOR}{SOR}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classPressureSolver}{PressureSolver}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+
+
+
+
+
+
+
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classSOR_a357cfea8935f4b2dfee06f2d8e1461a8}{SOR}}(\textcolor{keyword}{const}\ std::shared\_ptr<Discretization>\ \&data,}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ epsilon,}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ maximumNumberOfIterations,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ std::shared\_ptr<Boundary>\ boundary,}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ omega);}
+\DoxyCodeLine{00027\ }
+
+
+
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSOR_a860992d85d8aacf114a3a02b5831f728}{solve}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{double}\ omega\_;\ }
+\DoxyCodeLine{00036\ \};}
+
+\end{DoxyCode}

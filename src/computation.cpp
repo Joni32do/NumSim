@@ -75,9 +75,9 @@ void Computation::runSimulation()
         //fluidTracer_->createAndKillParticles(dt_);
 
         // std::cout << "Particles: " << fluidTracer_->getNumberOfParticles() << std::endl;
-        // //mask_->printMask();
-        // usleep(100000);
-        // std::cout << "\033[2J\033[1;1H";
+        std::cout << "\033[2J\033[1;1H";
+        mask_->printMask();
+        // usleep(1000000);
 
 
         computeTimeStepWidth(currentTime);
@@ -87,8 +87,8 @@ void Computation::runSimulation()
         computeVelocities();
         
         applyBoundaryValues();
-        // fluidTracer_->moveParticles(dt_);
-        // applyBoundaryValues();
+        fluidTracer_->moveParticles(dt_);
+        applyBoundaryValues();
 
 
 

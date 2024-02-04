@@ -1,0 +1,70 @@
+\doxysection{pressure\+\_\+solver.\+h}
+\hypertarget{pressure__solver_8h_source}{}\label{pressure__solver_8h_source}\index{/home/jonat/Documents/02\_Workspace/05\_NumSim\_misc/Project/NumSim/src/solver/pressure\_solver.h@{/home/jonat/Documents/02\_Workspace/05\_NumSim\_misc/Project/NumSim/src/solver/pressure\_solver.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}../storage/field\_variable.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}../discretization/discretization.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}../boundary/boundary.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ }
+
+
+
+
+
+
+
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPressureSolver}{PressureSolver}}}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+
+
+
+
+
+
+
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{classPressureSolver_a10803d8c3d7f3810fc0ba059acf04058}{PressureSolver}}(std::shared\_ptr<Discretization>\ discretization,}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ epsilon,}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ maximumNumberOfIterations,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<Boundary>\ boundary);}
+\DoxyCodeLine{00035\ \ }
+
+
+
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPressureSolver_a504ac61a1317650e0eb70d6a93212ca0}{solve}}()\ =\ 0;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{double}\ dx2,\ \mbox{\hyperlink{classPressureSolver_a25b7ff50bdaea53d1b5c7a5cf735c5b5}{dy2}};\ }
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{protected}:}
+
+
+
+
+
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPressureSolver_a458c383fcacaf54c1a333a271049ca93}{setBoundaryValues}}();}
+\DoxyCodeLine{00052\ }
+
+
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classPressureSolver_afc51f4315c483988aeec327a16c5bb90}{calculateResiduum}}();}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPressureSolver_af3ac2e53c6f49b9a362415a89595a7f0}{i\_beg}};\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPressureSolver_a41b263980e55591d1ffdc4837c252a61}{i\_end}};\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPressureSolver_aa309af30e5e63e09b77900091e562235}{j\_beg}};\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPressureSolver_ac2402794034dd74073700998ee2860bf}{j\_end}};\ }
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ std::shared\_ptr<Discretization>\ \mbox{\hyperlink{classPressureSolver_af579ecebaaa8b11914293ef18af5fdc6}{discretization\_}};\ }
+\DoxyCodeLine{00064\ \ \ \ \ std::shared\_ptr<Boundary>\ \mbox{\hyperlink{classPressureSolver_a0b17b46580d259e4bb3a05486bc06a60}{boundary\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classPressureSolver_a22b723f3b3ba54e47f36cfc2b9576749}{epsilon\_}};\ }
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPressureSolver_af3b02d29bf1b21ad8b7e6edf8c2f4e87}{maximumNumberOfIterations\_}};\ }
+\DoxyCodeLine{00069\ \};}
+
+\end{DoxyCode}

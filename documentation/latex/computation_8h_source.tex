@@ -1,0 +1,94 @@
+\doxysection{computation.\+h}
+\hypertarget{computation_8h_source}{}\label{computation_8h_source}\index{/home/jonat/Documents/02\_Workspace/05\_NumSim\_misc/Project/NumSim/src/computation.h@{/home/jonat/Documents/02\_Workspace/05\_NumSim\_misc/Project/NumSim/src/computation.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}discretization/discretization.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}discretization/donor\_cell.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}discretization/central\_differences.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}solver/pressure\_solver.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}solver/sor.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}solver/gauss\_seidel.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}output\_writer/output\_writer\_paraview.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}output\_writer/output\_writer\_text.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}settings\_parser/settings.h"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}boundary/boundary.h"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}boundary/mask.h"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}surface/fluid\_tracer.h"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <unistd.h>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00023\ }
+
+
+
+
+
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classComputation}{Computation}}}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+
+
+
+
+
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classComputation_a4a344479797b15bd5c9ed2f262657339}{initialize}}(\textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ *argv[]);}
+\DoxyCodeLine{00040\ }
+
+
+
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classComputation_ad20ce6e82ec9a918e6ac03840bc688d5}{runSimulation}}();}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{private}:}
+
+
+
+
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ computeTimeStepWidth(\textcolor{keywordtype}{double}\ currentTime);}
+\DoxyCodeLine{00056\ }
+
+
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ applyBoundaryValues();}
+\DoxyCodeLine{00061\ }
+
+
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ computePreliminaryVelocities();}
+\DoxyCodeLine{00066\ }
+
+
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ computeRightHandSide();}
+\DoxyCodeLine{00071\ }
+
+
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ computePressure();}
+\DoxyCodeLine{00076\ }
+
+
+
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ computeVelocities();}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{structSettings}{Settings}}\ settings\_;}
+\DoxyCodeLine{00084\ \ \ \ \ std::shared\_ptr<Discretization>\ discretization\_;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ std::shared\_ptr<Mask>\ mask\_;}
+\DoxyCodeLine{00087\ \ \ \ \ std::shared\_ptr<Boundary>\ boundary\_;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00088\ \ \ \ \ std::shared\_ptr<FluidTracer>\ fluidTracer\_;}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ std::unique\_ptr<PressureSolver>\ pressureSolver\_;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00091\ \ \ \ \ std::unique\_ptr<OutputWriterParaview>\ outputWriterParaview\_;\ }
+\DoxyCodeLine{00092\ \ \ \ \ std::unique\_ptr<OutputWriterText>\ outputWriterText\_;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00093\ \ \ \ \ std::array<double,\ 2>\ meshWidth\_;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{double}\ dt\_;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00095\ \};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ }
+
+\end{DoxyCode}

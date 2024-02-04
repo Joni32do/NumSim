@@ -1,0 +1,34 @@
+\doxysection{gauss\+\_\+seidel.\+h}
+\hypertarget{gauss__seidel_8h_source}{}\label{gauss__seidel_8h_source}\index{/home/jonat/Documents/02\_Workspace/05\_NumSim\_misc/Project/NumSim/src/solver/gauss\_seidel.h@{/home/jonat/Documents/02\_Workspace/05\_NumSim\_misc/Project/NumSim/src/solver/gauss\_seidel.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}pressure\_solver.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ }
+
+
+
+
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classGaussSeidel}{GaussSeidel}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classPressureSolver}{PressureSolver}}}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{public}:}
+
+
+
+
+
+
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classGaussSeidel_af31cc1ace2d616ebb8e0592c06865b9c}{GaussSeidel}}(\textcolor{keyword}{const}\ std::shared\_ptr<Discretization>\ \&data,}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ epsilon,}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ maximumNumberOfIterations,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<Boundary>\ boundary);}
+
+
+
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classGaussSeidel_a6f0eb0c6938a64f8ded186f88170a04b}{solve}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00031\ \};}
+
+\end{DoxyCode}
