@@ -52,8 +52,8 @@ createDomainfromBitmap = false
 pathToBitmap = /home/lukas/Documents/SimTech/Semester2/NumSim/Submission4/Bitmaps/aerodynamic_obstacle.png
 
 # Discretization parameters
-nCellsX = 20          # number of cells in x and y direction
-nCellsY = 20
+nCellsX = 3          # number of cells in x and y direction
+nCellsY = 3
 useDonorCell = true   # if donor cell discretization should be used, possible values: true false
 alpha = 0.5           # factor for donor-cell scheme, 0 is equivalent to central differences
 tau = 0.5             # safety factor for time step width
