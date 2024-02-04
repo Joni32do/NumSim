@@ -1,6 +1,8 @@
 #include "computation.h"
 #include "surface/fluid_tracer.h"
 
+#include <unistd.h>
+
 void Computation::initialize(int argc, char *argv[])
 {
 
@@ -57,14 +59,31 @@ void Computation::initialize(int argc, char *argv[])
 void Computation::runSimulation()
 {
     double currentTime = 0.;
+
+    applyBoundaryValues();
     do
     {
-        applyBoundaryValues();
+        
+        // fluidTracer_->createParticles(0.1, 1.4);
+        fluidTracer_->createAndKillParticles(dt_);
+
+        std::cout << "Particles: " << fluidTracer_->getNumberOfParticles() << std::endl;
+        mask_->printMask();
+        usleep(100000);
+        std::cout << "\033[2J\033[1;1H";
+
+
         computeTimeStepWidth(currentTime);
         computePreliminaryVelocities();
         computeRightHandSide();
         computePressure();
         computeVelocities();
+        
+        applyBoundaryValues();
+        // fluidTracer_->moveParticles(dt_);
+        // applyBoundaryValues();
+
+
 
         currentTime += dt_;
         outputWriterParaview_->writeFile(currentTime);

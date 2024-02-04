@@ -25,7 +25,6 @@ FluidTracer::FluidTracer(int numParticlesPerCell,
     seedRelationDyDx_ = discretization_->dy()/ discretization_->dx();
     n_x = static_cast<int>(std::ceil(std::sqrt(numParticlesPerCell/seedRelationDyDx_)));
     n_y = static_cast<int>(std::ceil(n_x * seedRelationDyDx_));
-    std::cout << "n_x " << n_x << " n_y " << n_y << std::endl;
     
     numParticlesPerCell_ = n_x * n_y;
     numParticles_ = numParticlesPerCell_ * mask_->getNumberOfFluidCells();
