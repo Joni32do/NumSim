@@ -76,7 +76,7 @@ class FluidTracer {
          */
         void initializeFluidCell(int i, int j, int idx);
 
-        void updateParticle(int i, double dt, double vel_x, double vel_y, int depth);
+        std::array<int, 2> updateParticle(int i, std::array<int, 2>, double dt, std::array<double,2> vel);
 
 
         int numParticles_;
