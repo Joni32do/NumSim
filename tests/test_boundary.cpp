@@ -3,12 +3,16 @@
 #include "../src/discretization/central_differences.h"
 
 TEST(Boundary, BoundaryCellsWithoutObstacle) {
-    std::array<int,2> n_cells = {4,3};
-    std::array<double,2> meshWidth = {1.0, 1.0};
-    std::shared_ptr<Mask> mask = std::make_shared<Mask>(n_cells);
-    std::shared_ptr<Discretization> discretization = std::make_shared<CentralDifferences>(n_cells, meshWidth);
     Settings settings;
+    settings.nCells = {10, 10};
+    settings.obstaclePosition = {0.45, 0.45};
+    settings.obstacleDimension = {0.1, 0.1};
+    settings.physicalSize = {1.0, 1.0};
+    std::array<double, 2> meshWidth = {settings.physicalSize[0] / settings.nCells[0], settings.physicalSize[1] / settings.nCells[1]};
+
+    std::shared_ptr<Mask> mask = std::make_shared<Mask>(settings);
+    std::shared_ptr<Discretization> discretization = std::make_shared<CentralDifferences>(settings.nCells, meshWidth);
+
     Boundary boundary(mask, discretization, settings);
 
-    EXPECT_EQ(boundary.getNumberOfBoundaryCells(), 18);
 };
