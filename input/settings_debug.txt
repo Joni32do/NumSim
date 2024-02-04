@@ -39,7 +39,7 @@ PressureLeft   = 100.0
 
 # Create Rectangular object in domain 
 
-createRectangularObject = false
+createRectangularObject = true
 
 obstaclePositionX = 0.5
 obstaclePositionY = 0.5

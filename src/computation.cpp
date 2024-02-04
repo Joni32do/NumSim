@@ -1,4 +1,5 @@
 #include "computation.h"
+#include "surface/fluid_tracer.h"
 
 void Computation::initialize(int argc, char *argv[])
 {
@@ -23,6 +24,7 @@ void Computation::initialize(int argc, char *argv[])
         discretization_ = std::make_shared<CentralDifferences>(settings_.nCells, meshWidth_);
     }
 
+    // create boundary and tracer
     mask_ = std::make_shared<Mask>(settings_);
 
     std::vector<double> traceX = {1.8};
@@ -54,7 +56,7 @@ void Computation::runSimulation()
 {
     double currentTime = 0.;
     do
-    {   
+    {
         applyBoundaryValues();
         computeTimeStepWidth(currentTime);
         computePreliminaryVelocities();
@@ -76,6 +78,7 @@ void Computation::runSimulation()
 
 void Computation::applyBoundaryValues()
 {
+    // set Dirichlet BC
     boundary_->setVelocityBoundaryValues();
 }
 
@@ -102,30 +105,30 @@ void Computation::computeTimeStepWidth(double currentTime)
 
 void Computation::computePreliminaryVelocities()
 {
-    // Compute F
+    // F
     for (int i = discretization_->fIBegin(); i < discretization_->fIEnd(); i++)
     {
         for (int j = discretization_->fJBegin(); j < discretization_->fJEnd(); j++)
         {
-            if (mask_->isFluid(i, j))
+            if ((*mask_)(i, j) == 15 && (*mask_)(i + 1, j) == 15)
             {
                 double diffusion = 1 / settings_.re * (discretization_->computeD2uDx2(i, j) + discretization_->computeD2uDy2(i, j));
                 double convection = -discretization_->computeDu2Dx(i, j) - discretization_->computeDuvDy(i, j);
-                discretization_->f(i, j) = discretization_->u(i, j) + dt_ * (diffusion + convection + settings_.g[0]);
+                discretization_->f(i, j) = discretization_->u(i, j) + dt_ * (diffusion + convection + settings_.g[0]);   
             }
         }
     }
 
-    // Compute G
+    // G
     for (int i = discretization_->gIBegin(); i < discretization_->gIEnd(); i++)
     {
         for (int j = discretization_->gJBegin(); j < discretization_->gJEnd(); j++)
         {
-            if (mask_->isFluid(i, j))
+            if ((*mask_)(i, j) == 15 && (*mask_)(i, j + 1) == 15)
             {
-            double diffusion = 1 / settings_.re * (discretization_->computeD2vDx2(i, j) + discretization_->computeD2vDy2(i, j));
-            double convection = -discretization_->computeDv2Dy(i, j) - discretization_->computeDuvDx(i, j);
-            discretization_->g(i, j) = discretization_->v(i, j) + dt_ * (diffusion + convection + settings_.g[1]);
+                double diffusion = 1 / settings_.re * (discretization_->computeD2vDx2(i, j) + discretization_->computeD2vDy2(i, j));
+                double convection = -discretization_->computeDv2Dy(i, j) - discretization_->computeDuvDx(i, j);
+                discretization_->g(i, j) = discretization_->v(i, j) + dt_ * (diffusion + convection + settings_.g[1]);
             }
         }
     }
@@ -133,15 +136,19 @@ void Computation::computePreliminaryVelocities()
 
 void Computation::computeRightHandSide()
 {
+
+    // Interior
+    
     for (int i = discretization_->rhsIBegin(); i < discretization_->rhsIEnd(); i++)
     {
         for (int j = discretization_->rhsJBegin(); j < discretization_->rhsJEnd(); j++)
-        {   
-            if (mask_->isFluid(i, j))
+        {
+            if ((*mask_)(i, j) == 15)
             {
-            double dF = (1 / discretization_->dx()) * (discretization_->f(i, j) - discretization_->f(i - 1, j));
-            double dG = (1 / discretization_->dy()) * (discretization_->g(i, j) - discretization_->g(i, j - 1));
-            discretization_->rhs(i, j) = (1 / dt_) * (dF + dG);
+                double dF = (1 / discretization_->dx()) * (discretization_->f(i, j) - discretization_->f(i - 1, j));
+                double dG = (1 / discretization_->dy()) * (discretization_->g(i, j) - discretization_->g(i, j - 1));
+                discretization_->rhs(i, j) = (1 / dt_) * (dF + dG);
+                
             }
         }
     }
@@ -154,23 +161,22 @@ void Computation::computePressure()
 
 void Computation::computeVelocities()
 {
-    // Compute u
-    for (int i = discretization_->uIBegin(); i < discretization_->uIEnd(); i++)
+    for (int i = discretization_->uIBegin() + 1; i < discretization_->uIEnd() - 1; i++)
     {
-        for (int j = discretization_->uJBegin(); j < discretization_->uJEnd(); j++)
+        for (int j = discretization_->uJBegin() + 1; j < discretization_->uJEnd() - 1; j++)
         {
-            if (mask_->isFluid(i, j))
+            if ((*mask_)(i, j) == 15 && (*mask_)(i + 1, j) == 15)
                 discretization_->u(i, j) = discretization_->f(i, j) - dt_ * discretization_->computeDpDx(i, j);
         }
     }
 
-    // Compute v
     for (int i = discretization_->vIBegin() + 1; i < discretization_->vIEnd() - 1; i++)
     {
         for (int j = discretization_->vJBegin() + 1; j < discretization_->vJEnd() - 1; j++)
         {
-            if (mask_->isFluid(i, j))
-            discretization_->v(i, j) = discretization_->g(i, j) - dt_ * discretization_->computeDpDy(i, j);
+            if ((*mask_)(i, j) == 15 && (*mask_)(i, j + 1) == 15){
+                discretization_->v(i, j) = discretization_->g(i, j) - dt_ * discretization_->computeDpDy(i, j);
+            }
         }
     }
 }

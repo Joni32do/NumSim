@@ -46,14 +46,12 @@ double PressureSolver::calculateResiduum()
     {
         for (int j = j_beg; j < j_end; j++)
         {
-            // if (mask_->isNotFluid(i, j))
-            // {
-            //     continue;
-            // }
-            pxx = (discretization_->p(i - 1, j) - 2 * discretization_->p(i, j) + discretization_->p(i + 1, j)) / dx2;
-            pyy = (discretization_->p(i, j - 1) - 2 * discretization_->p(i, j) + discretization_->p(i, j + 1)) / dy2;
-            res_current_point = pxx + pyy - discretization_->rhs(i, j);
-            sum_of_squares += pow(res_current_point, 2);
+            if(boundary_->mask_->isFluid(i,j)){
+                pxx = (discretization_->p(i - 1, j) - 2 * discretization_->p(i, j) + discretization_->p(i + 1, j)) / dx2;
+                pyy = (discretization_->p(i, j - 1) - 2 * discretization_->p(i, j) + discretization_->p(i, j + 1)) / dy2;
+                res_current_point = pxx + pyy - discretization_->rhs(i, j);
+                sum_of_squares += pow(res_current_point, 2);
+            }
         }
     }
     return sqrt(sum_of_squares / N);
