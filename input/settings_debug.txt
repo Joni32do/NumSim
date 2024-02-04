@@ -49,7 +49,7 @@ obstacleDimensionY = 0.5
 # Create domain from PNGBitmap
 
 createDomainfromBitmap = true
-pathToBitmap = /home/lukas/Documents/SimTech/Semester2/NumSim/Submission4/Bitmaps/aerodynamic_obstacle.png
+pathToBitmap = /home/lukas/Documents/SimTech/Semester2/NumSim/Submission4/Bitmaps/air_water_obstacle.png
 
 # Discretization parameters
 nCellsX = 20          # number of cells in x and y direction

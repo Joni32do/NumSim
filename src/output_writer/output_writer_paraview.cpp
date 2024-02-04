@@ -68,6 +68,7 @@ void OutputWriterParaview::writeFile(double currentTime)
 
   int OBSTACLE = 2;
   int FLUID = 1;
+  int AIR = 3;
 
   int index = 0;
   for (int j = 0; j < n_cells_y; j++)
@@ -82,6 +83,9 @@ void OutputWriterParaview::writeFile(double currentTime)
         if (mask_->isObstacle(i_bottom_left, j_bootom_left) || mask_->isObstacle(i_bottom_left + 1, j_bootom_left) || mask_->isObstacle(i_bottom_left, j_bootom_left + 1) || mask_->isObstacle(i_bottom_left + 1, j_bootom_left + 1)){
           arrayMask->SetValue(index, OBSTACLE);
         }
+        else if (mask_->isAir(i_bottom_left, j_bootom_left) && mask_->isAir(i_bottom_left + 1, j_bootom_left) && mask_->isAir(i_bottom_left, j_bootom_left + 1) && mask_->isAir(i_bottom_left + 1, j_bootom_left + 1)){
+          arrayMask->SetValue(index, AIR);
+        }
         else{
           arrayMask->SetValue(index, FLUID);
         }
@@ -94,7 +98,9 @@ void OutputWriterParaview::writeFile(double currentTime)
         if (mask_->isObstacle(i_new, j_new)){
           arrayMask->SetValue(index, OBSTACLE);
         }
-        else{
+        else if (mask_->isAir(i_new, j_new)) {
+          arrayMask->SetValue(index, AIR);
+        } else {
           arrayMask->SetValue(index, FLUID);
         }
       }
@@ -106,7 +112,9 @@ void OutputWriterParaview::writeFile(double currentTime)
         if (mask_->isObstacle(i_bottom, j_bottom) || mask_->isObstacle(i_bottom, j_bottom + 1)){
           arrayMask->SetValue(index, OBSTACLE);
         }
-        else{
+        else if (mask_->isAir(i_bottom, j_bottom) && mask_->isAir(i_bottom, j_bottom + 1)){
+          arrayMask->SetValue(index, AIR);
+        } else {
           arrayMask->SetValue(index, FLUID);
         }
       }
@@ -118,7 +126,9 @@ void OutputWriterParaview::writeFile(double currentTime)
         if (mask_->isObstacle(i_left, j_left) || mask_->isObstacle(i_left + 1, j_left)){
           arrayMask->SetValue(index, OBSTACLE);
         }
-        else{
+        else if (mask_->isAir(i_left, j_left) || mask_->isAir(i_left + 1, j_left)){
+          arrayMask->SetValue(index, AIR);
+        } else {
           arrayMask->SetValue(index, FLUID);
         }
       }
