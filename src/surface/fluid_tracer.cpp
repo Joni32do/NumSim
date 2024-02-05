@@ -1,22 +1,5 @@
 #include "fluid_tracer.h"
 
-FluidTracer::FluidTracer(std::vector<double> x, std::vector<double> y,
-                        std::shared_ptr<Discretization> discretization,
-                        std::shared_ptr<Mask> mask) {
-    x_ = x;
-    y_ = y;
-    discretization_ = discretization;
-    mask_ = mask;
-    numParticles_ = x_.size();
-
-    numParticlesPerCell_ = 1;
-    n_x = 1;
-    n_y = 1;
-    // hack to init currentParticlesPerCell_
-    currentParticlesPerCell_.resize(mask_->size()[0] * mask_->size()[1]);
-    moveParticles(0.0); 
-}
-
 
 FluidTracer::FluidTracer(int numParticlesPerCell,
                          std::shared_ptr<Discretization> discretization,
@@ -25,6 +8,10 @@ FluidTracer::FluidTracer(int numParticlesPerCell,
     discretization_ = discretization;
     mask_ = mask;
 
+    initializeHomogenousParticleDistribution(numParticlesPerCell); 
+}
+
+void FluidTracer::initializeHomogenousParticleDistribution(int numParticlesPerCell){
     seedRelationDyDx_ = discretization_->dy()/ discretization_->dx();
     n_x = static_cast<int>(std::ceil(std::sqrt(numParticlesPerCell/seedRelationDyDx_)));
     n_y = static_cast<int>(std::ceil(n_x * seedRelationDyDx_));
@@ -44,6 +31,7 @@ FluidTracer::FluidTracer(int numParticlesPerCell,
                 initializeFluidCell(i, j, placedParticles);
                 placedParticles += numParticlesPerCell_;
                 currentParticlesPerCell_[i + j * mask_->size()[0]] = numParticlesPerCell_;
+                numFluidCells_++;
             }
         }
     }
@@ -102,37 +90,51 @@ std::array<double, 2> FluidTracer::getParticlePosition(int i) const {
     return {x_[i], y_[i]};
 }
 
-
-void FluidTracer::printParticles() {
-    for (int j = mask_->size()[1] - 1; j >= 0; j--){
-        for (int i = 0; i < mask_->size()[0]; i++){
-          std::cout << std::setw(5) << std::setfill(' ') << currentParticlesPerCell_[i + j * mask_->size()[0]] << " ";
+int FluidTracer::getThresholdParticlesFluidCell() {
+    std::priority_queue<int, std::vector<int>, std::greater<int>> heap;
+    for (int particles: currentParticlesPerCell_){
+        heap.push(particles);
+        if (heap.size() > numFluidCells_) {
+            heap.pop();
         }
-        std::cout << std::endl;
     }
+    
+    int threshold = heap.top();
+    if (threshold < 1){
+        threshold = 1;
+        std::cout << "DANGER: Threshold is 0" << std::endl;
+    }
+    return threshold;
 }
 
 
+
 void FluidTracer::moveParticles(double dt) {
-    // Cells without particle are air or obstacle
+    // Reset
     mask_->resetMask();
     std::fill(currentParticlesPerCell_.begin(), currentParticlesPerCell_.end(), 0);
 
     for (int i = 0; i < numParticles_; i++) {
-        
         std::array<double, 2> vel = {discretization_->u().interpolateAt(x_[i], y_[i]),
                                      discretization_->v().interpolateAt(x_[i], y_[i])};
         std::array<int, 2> idx = cellOfParticle(i);
         std::array<int, 2> newIdx = updateParticle(i, idx, dt, vel);
 
-        // Safety feature -> can be removed for speed up
-        if (!mask_->isObstacle(newIdx[0], newIdx[1])){
-            (*mask_)(newIdx[0], newIdx[1]) = Mask::FLUID;
-        }
-        
         currentParticlesPerCell_[newIdx[0] + newIdx[1] * mask_->size()[0]] += 1;
         
     }
+
+    int threshold = getThresholdParticlesFluidCell();
+    
+    for (int i = 0; i < mask_->size()[0]; i++){
+        for (int j = 0; j < mask_->size()[1]; j++){
+            if (currentParticlesPerCell_[i + j * mask_->size()[0]] >= threshold){
+                (*mask_)(i, j) = Mask::FLUID;
+            }
+        }
+    }
+    // std::cout<< "Threshold: " << threshold << std::endl;
+    // Update BC in mask
     mask_->setFluidBC();
 }
 
@@ -300,13 +302,42 @@ std::array<int, 2> FluidTracer::updateParticle(int i, std::array<int, 2> idx, do
 }
 
 
+//////////////////////////////////////////////////////
 
-
-
+//  T  E  S  T  I  N  G
 
 //////////////////////////////////////////////////////
 
 // ONLY FOR TESTING PURPOSES
+
+
+void FluidTracer::printParticles() {
+    for (int j = mask_->size()[1] - 1; j >= 0; j--){
+        for (int i = 0; i < mask_->size()[0]; i++){
+          std::cout << std::setw(5) << std::setfill(' ') << currentParticlesPerCell_[i + j * mask_->size()[0]] << " ";
+        }
+        std::cout << std::endl;
+    }
+}
+
+
+FluidTracer::FluidTracer(std::vector<double> x, std::vector<double> y,
+                        std::shared_ptr<Discretization> discretization,
+                        std::shared_ptr<Mask> mask) {
+    x_ = x;
+    y_ = y;
+    discretization_ = discretization;
+    mask_ = mask;
+    numParticles_ = x_.size();
+
+    numParticlesPerCell_ = 1;
+    n_x = 1;
+    n_y = 1;
+    // hack to init currentParticlesPerCell_
+    currentParticlesPerCell_.resize(mask_->size()[0] * mask_->size()[1]);
+    moveParticles(0.0); 
+}
+
 
 std::array<double, 2> FluidTracer::moveParticles(double dt, std::array<double, 2> vel) {
     // Cells without particle are air or obstacle

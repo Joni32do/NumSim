@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <queue>
 #include <algorithm>
 #include <memory>
 #include <cmath>
@@ -59,7 +60,6 @@ class FluidTracer {
         /**
          * @brief Get the Particle Position, index starts at 0
          * 
-         * @param i 
          * @return std::array<double, 2> 
          */
         std::array<double, 2> getParticlePosition(int i) const;
@@ -78,29 +78,32 @@ class FluidTracer {
 
 
     private:
+        void initializeHomogenousParticleDistribution(int numParticlesPerCell);
         /**
          * @brief initializes a single cell according to nx, ny and numParticlesPerCell_
-         * 
-         * @param i index of inner cells in x direction
-         * @param j index of inner cells in y direction
-         * @param idx current number of particles
          */
         void initializeFluidCell(int i, int j, int idx);
 
+
+        // Helper for move Particles
+        int getThresholdParticlesFluidCell();
         std::array<int, 2> updateParticle(int i, std::array<int, 2>, double dt, std::array<double,2> vel);
 
 
         int numParticles_;
         int numParticlesPerCell_; // <! is usually because of ceil larger then numParticlesPerCell> 
+
+        // aspect ratio e.g. 1.0 for square cells and 0.5 for (dx = 2*dy) cells
         double seedRelationDyDx_;
-        int n_x;
-        int n_y;
+        // how many particles are placed in each direction per cell
+        int n_x, n_y;
+        // inital count of fluid cells
+        int numFluidCells_;
 
         std::shared_ptr<Discretization> discretization_;
         std::shared_ptr<Mask> mask_;
         std::vector<double> x_;
         std::vector<double> y_;
         std::vector<int> currentParticlesPerCell_;
-
 
 };

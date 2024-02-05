@@ -76,11 +76,10 @@ void Computation::runSimulation()
 
         // std::cout << "\033[2J\033[1;1H";
 #ifndef NDEBUG
-        std::cout << "Particles: " << fluidTracer_->getNumberOfParticles() << std::endl;
-        fluidTracer_->printParticles();
-        usleep(100000);
-#endif
+        // fluidTracer_->printParticles();
         // mask_->printMask();
+        // usleep(1000000);
+#endif
 
 
         computeTimeStepWidth(currentTime);

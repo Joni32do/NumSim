@@ -20,11 +20,11 @@ BCLeft = NoSlip
 
 # NoSlip boundary conditions
 
-NoSlipVelTopX    = 0
+NoSlipVelTopX    = 1
 NoSlipVelTopY    = 0
 NoSlipVelRightX  = 0
 NoSlipVelRightY  = 0
-NoSlipVelBottomX = 0.1
+NoSlipVelBottomX = 0
 NoSlipVelBottomY = 0
 NoSlipVelLeftX   = 0
 NoSlipVelLeftY   = 0
@@ -48,7 +48,7 @@ obstacleDimensionY = 0.5
 
 # Create domain from PNGBitmap
 
-createDomainfromBitmap = true
+createDomainfromBitmap = false
 pathToBitmap = /home/jonat/Documents/02_Workspace/05_NumSim_misc/Project/Bitmap/simple2.png
 
 # Discretization parameters
