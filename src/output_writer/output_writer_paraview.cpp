@@ -1,6 +1,8 @@
 #include "output_writer_paraview.h"
 
-OutputWriterParaview::OutputWriterParaview(std::shared_ptr<Discretization> discretization, std::shared_ptr<Mask> mask) : OutputWriter(discretization), mask_(mask)
+OutputWriterParaview::OutputWriterParaview(std::shared_ptr<Discretization> discretization,
+                                           std::shared_ptr<Mask> mask,
+                                           std::shared_ptr<FluidTracer> fluidTracer): OutputWriter(discretization), mask_(mask), fluidTracer_(fluidTracer)
 {
   // Create a vtkWriter_
   vtkWriter_ = vtkSmartPointer<vtkXMLImageDataWriter>::New();
@@ -39,35 +41,47 @@ void OutputWriterParaview::writeFile(double currentTime)
   // ---------------------------
   vtkSmartPointer<vtkDoubleArray> arrayPressure = vtkDoubleArray::New();
   vtkSmartPointer<vtkDoubleArray> arrayMask = vtkDoubleArray::New();
+  vtkSmartPointer<vtkDoubleArray> arrayParticles = vtkDoubleArray::New();
 
   // the pressure is a scalar which means the number of components is 1
   arrayPressure->SetNumberOfComponents(1);
   arrayMask->SetNumberOfComponents(1);
+  arrayParticles->SetNumberOfComponents(1);
 
   // Set the number of pressure values and allocate memory for it. We already know the number, it has to be the same as there are nodes in the mesh.
   arrayPressure->SetNumberOfTuples(dataSet->GetNumberOfPoints());
   arrayMask->SetNumberOfTuples(dataSet->GetNumberOfPoints());
+  arrayParticles->SetNumberOfTuples(dataSet->GetNumberOfPoints());
 
   arrayPressure->SetName("pressure");
   arrayMask->SetName("mask");
+  arrayParticles->SetName("particles");
 
   // loop over the nodes of the mesh and assign the interpolated p values in the vtk data structure
   // we only consider the cells that are the actual computational domain, not the helper values in the "halo"
 
   // index for the vtk data structure, will be incremented in the inner loop
-  int index_ = 0;
+  int idxParticles = 0;
   for (int j = 0; j < n_cells_y; j++)
   {
-    for (int i = 0; i < n_cells_x; i++, index_++)
+    for (int i = 0; i < n_cells_x; i++, idxParticles++)
     {
       const double x = i * dx;
       const double y = j * dy;
-      arrayPressure->SetValue(index_, discretization_->p().interpolateAt(x, y));
+      arrayPressure->SetValue(idxParticles, discretization_->p().interpolateAt(x, y));
     }
   }
 
-  int OBSTACLE = 2;
+  // set the array to particles per cell
+  int index_ = 0;
+  for (int j = 2; j < n_cells_y + 2; j++) {
+    for (int i = 2; i < n_cells_x + 2; i++, index_++) {
+      arrayParticles->SetValue(index_, fluidTracer_->getNumberOfParticles(i/2, j/2));
+    }
+  }
+
   int FLUID = 1;
+  int OBSTACLE = 2;
   int AIR = 3;
 
   int index = 0;
@@ -126,7 +140,7 @@ void OutputWriterParaview::writeFile(double currentTime)
         if (mask_->isObstacle(i_left, j_left) || mask_->isObstacle(i_left + 1, j_left)){
           arrayMask->SetValue(index, OBSTACLE);
         }
-        else if (mask_->isAir(i_left, j_left) || mask_->isAir(i_left + 1, j_left)){
+        else if (mask_->isAir(i_left, j_left) && mask_->isAir(i_left + 1, j_left)){
           arrayMask->SetValue(index, AIR);
         } else {
           arrayMask->SetValue(index, FLUID);
@@ -141,6 +155,7 @@ void OutputWriterParaview::writeFile(double currentTime)
   // add the field variable to the data set
   dataSet->GetPointData()->AddArray(arrayPressure);
   dataSet->GetPointData()->AddArray(arrayMask);
+  dataSet->GetPointData()->AddArray(arrayParticles);
 
   // add velocity field variable
   // ---------------------------

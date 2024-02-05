@@ -7,7 +7,7 @@ physicalSizeY = 2.0
 endTime = 10.0        # duration of the simulation
 re = 1000             # Reynolds number
 gX = 0.0              # external forces, set to (gX,gY) = (0,-9.81) to account for gravity
-gY = -10.0
+gY = 0.0
 
 
 # Boundary Conditions Type
@@ -24,7 +24,7 @@ NoSlipVelTopX    = 0
 NoSlipVelTopY    = 0
 NoSlipVelRightX  = 0
 NoSlipVelRightY  = 0
-NoSlipVelBottomX = 0
+NoSlipVelBottomX = 0.1
 NoSlipVelBottomY = 0
 NoSlipVelLeftX   = 0
 NoSlipVelLeftY   = 0

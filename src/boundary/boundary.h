@@ -18,6 +18,7 @@ class Boundary
 
         bool doCalculateF(int i, int j) const;
         bool doCalculateG(int i, int j) const;
+        void updateBoundary();
 
     private:
         void createBoundaryCellsLists();
@@ -38,8 +39,8 @@ class Boundary
         std::shared_ptr<Discretization> discretization_;
         Settings settings_;
 
-        std::vector<int> DomainBoundaryCells_;
-        std::vector<int> ObstacleBoundaryCells_;
-        std::vector<int> FluidBoundaryCells_;
+        std::vector<int> domainBoundaryCells_;
+        std::vector<int> obstacleBoundaryCells_;
+        std::vector<int> fluidBoundaryCells_;
 
 };

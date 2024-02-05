@@ -59,7 +59,7 @@ void Computation::initialize(int argc, char *argv[])
                                                         boundary_);
     }
 
-    outputWriterParaview_ = std::make_unique<OutputWriterParaview>(discretization_, mask_);
+    outputWriterParaview_ = std::make_unique<OutputWriterParaview>(discretization_, mask_, fluidTracer_);
     outputWriterText_ = std::make_unique<OutputWriterText>(discretization_);
 }
 
@@ -74,10 +74,13 @@ void Computation::runSimulation()
         // fluidTracer_->createParticles(0.1, 1.4);
         //fluidTracer_->createAndKillParticles(dt_);
 
-        // std::cout << "Particles: " << fluidTracer_->getNumberOfParticles() << std::endl;
-        std::cout << "\033[2J\033[1;1H";
-        mask_->printMask();
-        // usleep(1000000);
+        // std::cout << "\033[2J\033[1;1H";
+#ifndef NDEBUG
+        std::cout << "Particles: " << fluidTracer_->getNumberOfParticles() << std::endl;
+        fluidTracer_->printParticles();
+        usleep(100000);
+#endif
+        // mask_->printMask();
 
 
         computeTimeStepWidth(currentTime);
@@ -86,9 +89,11 @@ void Computation::runSimulation()
         computePressure();
         computeVelocities();
         
-        boundary_->setVelocityBoundaryValues();
-        fluidTracer_->moveParticles(dt_);
         boundary_->setVelocityBoundaryValues(dt_);
+        fluidTracer_->moveParticles(dt_);
+        boundary_->updateBoundary();
+        // Update velocity without new timestep
+        boundary_->setVelocityBoundaryValues();
 
 
 

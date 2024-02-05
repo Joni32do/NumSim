@@ -12,6 +12,9 @@ FluidTracer::FluidTracer(std::vector<double> x, std::vector<double> y,
     numParticlesPerCell_ = 1;
     n_x = 1;
     n_y = 1;
+    // hack to init currentParticlesPerCell_
+    currentParticlesPerCell_.resize(mask_->size()[0] * mask_->size()[1]);
+    moveParticles(0.0); 
 }
 
 
@@ -32,6 +35,7 @@ FluidTracer::FluidTracer(int numParticlesPerCell,
     // Resize for speed up
     x_.resize(numParticles_);
     y_.resize(numParticles_);
+    currentParticlesPerCell_.resize(mask_->size()[0] * mask_->size()[1]);
     
     int placedParticles = 0;
     for (int i = 1; i < mask_->size()[0] - 1; i++) {
@@ -39,6 +43,7 @@ FluidTracer::FluidTracer(int numParticlesPerCell,
             if (mask_->isFluid(i, j)) {
                 initializeFluidCell(i, j, placedParticles);
                 placedParticles += numParticlesPerCell_;
+                currentParticlesPerCell_[i + j * mask_->size()[0]] = numParticlesPerCell_;
             }
         }
     }
@@ -77,6 +82,10 @@ int FluidTracer::getNumberOfParticles() const {
     return numParticles_;
 }
 
+int FluidTracer::getNumberOfParticles(int i, int j) const {
+    return currentParticlesPerCell_[i + j * mask_->size()[0]];
+}
+
 std::array<int, 2> FluidTracer::cellOfParticle(int i){
     return {val2CellX(x_[i]), val2CellY(y_[i])};
 }
@@ -94,9 +103,20 @@ std::array<double, 2> FluidTracer::getParticlePosition(int i) const {
 }
 
 
+void FluidTracer::printParticles() {
+    for (int j = mask_->size()[1] - 1; j >= 0; j--){
+        for (int i = 0; i < mask_->size()[0]; i++){
+          std::cout << std::setw(5) << std::setfill(' ') << currentParticlesPerCell_[i + j * mask_->size()[0]] << " ";
+        }
+        std::cout << std::endl;
+    }
+}
+
+
 void FluidTracer::moveParticles(double dt) {
     // Cells without particle are air or obstacle
     mask_->resetMask();
+    std::fill(currentParticlesPerCell_.begin(), currentParticlesPerCell_.end(), 0);
 
     for (int i = 0; i < numParticles_; i++) {
         
@@ -109,6 +129,9 @@ void FluidTracer::moveParticles(double dt) {
         if (!mask_->isObstacle(newIdx[0], newIdx[1])){
             (*mask_)(newIdx[0], newIdx[1]) = Mask::FLUID;
         }
+        
+        currentParticlesPerCell_[newIdx[0] + newIdx[1] * mask_->size()[0]] += 1;
+        
     }
     mask_->setFluidBC();
 }

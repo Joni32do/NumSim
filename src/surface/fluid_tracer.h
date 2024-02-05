@@ -1,6 +1,8 @@
 #pragma once
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 #include <memory>
 #include <cmath>
 #include <cassert>
@@ -40,11 +42,18 @@ class FluidTracer {
         void createParticles(double positionSourceX, double positionSourceY);
 
         /**
-         * @brief Get the Number Of Particles object
+         * @brief Total number of Particles
          * 
          * @return int 
          */
         int getNumberOfParticles() const;
+
+        /**
+         * @brief Particles of specified cell
+         * 
+         * uses mask Grid
+         */
+        int getNumberOfParticles(int i, int j) const;
 
 
         /**
@@ -64,6 +73,8 @@ class FluidTracer {
         // Only test
         std::array<double, 2> updateParticle(int i, std::array<int, 2> idx, double dt, std::array<double,2> vel, int depth);
         std::array<double, 2> moveParticles(double dt, std::array<double, 2> vel);
+
+        void printParticles();
 
 
     private:
@@ -89,6 +100,7 @@ class FluidTracer {
         std::shared_ptr<Mask> mask_;
         std::vector<double> x_;
         std::vector<double> y_;
+        std::vector<int> currentParticlesPerCell_;
 
 
 };

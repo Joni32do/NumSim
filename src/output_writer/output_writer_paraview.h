@@ -12,6 +12,7 @@
 #include <memory>
 #include <iostream>
 #include "../boundary/mask.h"
+#include "../surface/fluid_tracer.h"
 
 /**
  * @class OutputWriterParaview
@@ -29,7 +30,9 @@ public:
    *
    * @param discretization shared pointer to the discretization object that will contain all the data to be written to the file
    */
-  OutputWriterParaview(std::shared_ptr<Discretization> discretization, std::shared_ptr<Mask> mask);
+  OutputWriterParaview(std::shared_ptr<Discretization> discretization,
+                       std::shared_ptr<Mask> mask,
+                       std::shared_ptr<FluidTracer> fluidTracer);
 
   /**
    * @brief Write current velocities to file, filename is output_<count>.vti
@@ -41,4 +44,5 @@ public:
 private:
   vtkSmartPointer<vtkXMLImageDataWriter> vtkWriter_; //!< vtk writer to write ImageData
   std::shared_ptr<Mask> mask_;
+  std::shared_ptr<FluidTracer> fluidTracer_;
 };

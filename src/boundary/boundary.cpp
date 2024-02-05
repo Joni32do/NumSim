@@ -15,11 +15,11 @@ void Boundary::createBoundaryCellsLists()
         {
             int idx = i + j * mask_->size()[0];
             if (mask_->isDomainBoundary(i, j))
-                DomainBoundaryCells_.push_back(idx);
+                domainBoundaryCells_.push_back(idx);
             if (mask_->isObstacleBoundary(i, j))
-                ObstacleBoundaryCells_.push_back(idx);
+                obstacleBoundaryCells_.push_back(idx);
             if (mask_->isFluidBoundary(i, j))
-                FluidBoundaryCells_.push_back(idx);
+                fluidBoundaryCells_.push_back(idx);
         }
     }
 }
@@ -31,9 +31,20 @@ void Boundary::setPressureBoundaryValues()
     setPressureObstacleBC();
 }
 
+void Boundary::updateBoundary(){
+    fluidBoundaryCells_ = {};
+    for (int i = 0; i < mask_->size()[0]; i++) {
+        for (int j = 0; j < mask_->size()[1]; j++) {
+            int idx = i + j * mask_->size()[0];
+            if (mask_->isFluidBoundary(i, j))
+                fluidBoundaryCells_.push_back(idx);
+        }
+    }
+}
+
 void Boundary::setPressureDomainBC()
 {
-    for (int idx : DomainBoundaryCells_)
+    for (int idx : domainBoundaryCells_)
     {
         int i = idx % mask_->size()[0];
         int j = idx / mask_->size()[0];
@@ -70,7 +81,7 @@ void Boundary::setPressureDomainBC()
 
 void Boundary::setPressureObstacleBC()
 {
-    for (int idx : ObstacleBoundaryCells_)
+    for (int idx : obstacleBoundaryCells_)
     {
         int i = idx % mask_->size()[0];
         int j = idx / mask_->size()[0];
@@ -109,7 +120,7 @@ void Boundary::setPressureSurfaceBC()
     double dx = discretization_->dx();
     double dy = discretization_->dy();
 
-    for (int idx : FluidBoundaryCells_)
+    for (int idx : fluidBoundaryCells_)
     {
         int i = idx % mask_->size()[0];
         int j = idx / mask_->size()[0];
@@ -202,7 +213,7 @@ void Boundary::setVelocityBoundaryValues(double dt){
 
 void Boundary::setVelocityDomainBC()
 {
-    for (int idx : DomainBoundaryCells_)
+    for (int idx : domainBoundaryCells_)
     {
         int i = idx % mask_->size()[0];
         int j = idx / mask_->size()[0];
@@ -258,7 +269,7 @@ void Boundary::setVelocityDomainBC()
 
 void Boundary::setVelocityObstacleBC()
 {
-    for (int idx : ObstacleBoundaryCells_)
+    for (int idx : obstacleBoundaryCells_)
     {
         int i = idx % mask_->size()[0];
         int j = idx / mask_->size()[0];
@@ -327,7 +338,7 @@ void Boundary::setVelocitySurfaceBC(){
     // Should the dt update step happen here? Then per loop only one execution is allowed
     double dt = 1;
     
-    for (int idx : FluidBoundaryCells_)
+    for (int idx : fluidBoundaryCells_)
     {
         int i = idx % mask_->size()[0];
         int j = idx / mask_->size()[0];
@@ -449,7 +460,7 @@ void Boundary::setVelocitySurfaceBC(){
                     - dxByDy * (discretization_->u(i, j) - discretization_->u(i, j - 1));
             }
             break;
-        // case Mask::FLUID_SINGLE_LEFT:
+        case Mask::FLUID_SINGLE_LEFT:
         //     // v
         //     discretization_->v(i, j) = discretization_->v(i, j) + dt * settings_.g[1];
         //     discretization_->v(i, j - 1) = discretization_->v(i, j - 1) + dt * settings_.g[1];
@@ -465,8 +476,8 @@ void Boundary::setVelocitySurfaceBC(){
         //         discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j);
         //         discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1);
         //     }
-        //     break;
-        // case Mask::FLUID_SINGLE_TOP:
+            break;
+        case Mask::FLUID_SINGLE_TOP:
         //     // u
         //     discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];
         //     discretization_->u(i - 1, j) = discretization_->u(i - 1, j) + dt * settings_.g[0];
@@ -492,8 +503,8 @@ void Boundary::setVelocitySurfaceBC(){
         //         discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1)
         //             - dxByDy * (discretization_->u(i, j) - discretization_->u(i, j - 1));
         //     }
-        //     break;
-        // case Mask::FLUID_SINGLE_RIGHT:
+            break;
+        case Mask::FLUID_SINGLE_RIGHT:
         //     // v
         //     discretization_->v(i, j) = discretization_->v(i, j) + dt * settings_.g[1];
         //     discretization_->v(i, j - 1) = discretization_->v(i, j - 1) + dt * settings_.g[1];
@@ -521,8 +532,8 @@ void Boundary::setVelocitySurfaceBC(){
         //             - dyByDx * (discretization_->v(i, j) - discretization_->v(i - 1, j));
         //     }
 
-        //     break;
-        // case Mask::FLUID_SINGLE_BOTTOM:
+            break;
+        case Mask::FLUID_SINGLE_BOTTOM:
         //     // u
         //     discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];
         //     discretization_->u(i - 1, j) = discretization_->u(i - 1, j) + dt * settings_.g[0];
@@ -538,7 +549,8 @@ void Boundary::setVelocitySurfaceBC(){
         //         discretization_->u(i, j - 1) = discretization_->u(i, j);
         //         discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1);
         //     }
-        // case Mask::FLUID_DROPLET:
+            break;
+        case Mask::FLUID_DROPLET:
         //     // u
         //     discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];
         //     discretization_->u(i - 1, j) = discretization_->u(i - 1, j) + dt * settings_.g[0];
@@ -563,9 +575,9 @@ void Boundary::setVelocitySurfaceBC(){
         //         discretization_->u(i, j - 1) = discretization_->u(i, j);
         //         discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1);
         //     }
-        //     break;
+            break;
         default:
-            std::cout << "ERROR" << std::endl;
+            std::cout << "ERROR" << (*mask_)(i, j) << "i" << i << " j " << j << std::endl;
     }
     }
 }
@@ -578,7 +590,7 @@ void Boundary::setVelocitySurfaceBC(double dt){
     double dyByDx = discretization_->dy() / discretization_->dx();
     // Should the dt update step happen here? Then per loop only one execution is allowed
     
-    for (int idx : FluidBoundaryCells_)
+    for (int idx : fluidBoundaryCells_)
     {
         int i = idx % mask_->size()[0];
         int j = idx / mask_->size()[0];
@@ -789,6 +801,7 @@ void Boundary::setVelocitySurfaceBC(double dt){
                 discretization_->u(i, j - 1) = discretization_->u(i, j);
                 discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1);
             }
+            break;
         case Mask::FLUID_DROPLET:
             // u
             discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];

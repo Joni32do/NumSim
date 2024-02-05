@@ -3,9 +3,7 @@ cmake_minimum_required(VERSION 3.14)
 # 'Google_test' is the subproject name
 project(tests)
 
-# 'lib' is the folder with Google Test sources
-find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIRS})
+
 
 # 'Google_Tests_run' is the target name
 # 'test1.cpp test2.cpp' are source files with tests
@@ -18,6 +16,7 @@ add_executable(run_tests
     test_mask.cpp
     test_boundary.cpp
     test_fluid_tracer.cpp
+    # test_computation.cpp
     ../src/storage/array2D.cpp
     ../src/storage/field_variable.cpp
     ../src/discretization/staggered_grid.cpp
@@ -27,12 +26,21 @@ add_executable(run_tests
     ../src/boundary/mask.cpp
     ../src/boundary/boundary.cpp
     ../src/surface/fluid_tracer.cpp
+    # ../src/computation.cpp
 )
 
+# 'lib' is the folder with Google Test sources
+find_package(GTest REQUIRED)
 
+# find_package(VTK)
 find_package(PNG REQUIRED)
 
-target_link_libraries(run_tests gtest gtest_main ${PNG_LIBRARIES})
+
+include_directories(${GTEST_INCLUDE_DIRS}) # ${VTK_INCLUDE_DIRS}               
+
+
+# add the libraries for the linker
+target_link_libraries(run_tests gtest gtest_main ${PNG_LIBRARIES}) # ${VTK_LIBRARIES} 
 
 # Set the version of the C++ standard to use, we use C++17, published in 2014
 set(CMAKE_CXX_STANDARD 17)
