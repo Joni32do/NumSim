@@ -16,6 +16,9 @@ void Computation::initialize(int argc, char *argv[])
 
     // create boundary and tracer
     mask_ = std::make_shared<Mask>(settings_);
+#ifndef NDEBUG
+    mask_->printMask();
+#endif
 
     std::array<int,2> n_Cells = {mask_->size()[0]-2, mask_->size()[1]-2};
 
