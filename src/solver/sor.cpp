@@ -23,7 +23,7 @@ void SOR::solve()
         {
             for (int j = j_beg; j < j_end; j++)
             {
-                if (boundary_->mask_->isFluid(i, j))
+                if (boundary_->mask_->isInnerFluid(i, j))
                 {
                     p_x = 1 / dx2 * (discretization_->p(i + 1, j) + discretization_->p(i - 1, j));
                     p_y = 1 / dy2 * (discretization_->p(i, j + 1) + discretization_->p(i, j - 1));

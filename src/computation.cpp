@@ -35,7 +35,7 @@ void Computation::initialize(int argc, char *argv[])
 
     // create boundary and trace
     // TODO: read particles per cell from settings file
-    fluidTracer_ = std::make_shared<FluidTracer>(100, discretization_, mask_);
+    fluidTracer_ = std::make_shared<FluidTracer>(10, discretization_, mask_);
 
     // std::vector<double> traceX = {1.8};
     // std::vector<double> traceY = {1.8};
@@ -92,7 +92,7 @@ void Computation::runSimulation()
         fluidTracer_->moveParticles(dt_);
         boundary_->updateBoundary();
         // Update velocity without new timestep
-        boundary_->setVelocityBoundaryValues();
+        // boundary_->setVelocityBoundaryValues();
 
 
 

@@ -46,7 +46,7 @@ double PressureSolver::calculateResiduum()
     {
         for (int j = j_beg; j < j_end; j++)
         {
-            if(boundary_->mask_->isFluid(i,j)){
+            if(boundary_->mask_->isInnerFluid(i,j)){
                 pxx = (discretization_->p(i - 1, j) - 2 * discretization_->p(i, j) + discretization_->p(i + 1, j)) / dx2;
                 pyy = (discretization_->p(i, j - 1) - 2 * discretization_->p(i, j) + discretization_->p(i, j + 1)) / dy2;
                 res_current_point = pxx + pyy - discretization_->rhs(i, j);
