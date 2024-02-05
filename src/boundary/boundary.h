@@ -12,6 +12,7 @@ class Boundary
         Boundary(std::shared_ptr<Mask> mask, std::shared_ptr<Discretization> discretization, Settings settings);
         void setPressureBoundaryValues();
         void setVelocityBoundaryValues();
+        void setVelocityBoundaryValues(double dt);
         std::shared_ptr<Mask> mask_;
 
 
@@ -31,6 +32,7 @@ class Boundary
         void setVelocityDomainBC();
         void setVelocityObstacleBC();
         void setVelocitySurfaceBC();
+        void setVelocitySurfaceBC(double dt);
 
 
         std::shared_ptr<Discretization> discretization_;

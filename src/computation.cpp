@@ -67,7 +67,7 @@ void Computation::runSimulation()
 {
     double currentTime = 0.;
 
-    applyBoundaryValues();
+    boundary_->setVelocityBoundaryValues();
     do
     {
         
@@ -86,9 +86,9 @@ void Computation::runSimulation()
         computePressure();
         computeVelocities();
         
-        applyBoundaryValues();
+        boundary_->setVelocityBoundaryValues();
         fluidTracer_->moveParticles(dt_);
-        applyBoundaryValues();
+        boundary_->setVelocityBoundaryValues(dt_);
 
 
 
@@ -109,6 +109,7 @@ void Computation::applyBoundaryValues()
     // set Dirichlet BC
     boundary_->setVelocityBoundaryValues();
 }
+
 
 void Computation::computeTimeStepWidth(double currentTime)
 {
