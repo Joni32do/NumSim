@@ -24,13 +24,6 @@ void Boundary::createBoundaryCellsLists()
     }
 }
 
-void Boundary::setPressureBoundaryValues()
-{
-    setPressureSurfaceBC();
-    setPressureDomainBC();
-    setPressureObstacleBC();
-}
-
 void Boundary::updateBoundary(){
     fluidBoundaryCells_ = {};
     for (int i = 0; i < mask_->size()[0]; i++) {
@@ -41,6 +34,13 @@ void Boundary::updateBoundary(){
         }
     }
 }
+
+void Boundary::setPressureBoundaryValues()
+{
+    setPressureDomainBC();
+    setPressureObstacleBC();
+}
+
 
 void Boundary::setPressureDomainBC()
 {
@@ -143,35 +143,36 @@ void Boundary::setPressureSurfaceBC()
             discretization_->p(i, j) = 2/settings_.re*(discretization_->v(i, j) - discretization_->v(i, j - 1))/dy;
             break;
         case Mask::FLUID_CORNER_TOP_LEFT:
+            // the same calculation for all CORNERS
             discretization_->p(i, j) = -1/(2 * settings_.re) * (
                 1/(2*dy) * (discretization_->u(i, j) + discretization_->u(i - 1, j) 
-                    +discretization_->u(i, j - 1) - discretization_->u(i - 1, j - 1))
+                    -discretization_->u(i, j - 1) - discretization_->u(i - 1, j - 1))
               + 1/(2*dx) * (discretization_->v(i, j) + discretization_->v(i, j - 1) 
-                    +discretization_->v(i - 1, j) - discretization_->v(i - 1, j - 1))
+                    -discretization_->v(i - 1, j) - discretization_->v(i - 1, j - 1))
             );
             break;
         case Mask::FLUID_CORNER_TOP_RIGHT:
             discretization_->p(i, j) = 1/(2 * settings_.re) * (
                 1/(2*dy) * (discretization_->u(i, j) + discretization_->u(i - 1, j) 
-                    +discretization_->u(i, j - 1) - discretization_->u(i - 1, j - 1))
+                    -discretization_->u(i, j - 1) - discretization_->u(i - 1, j - 1))
               + 1/(2*dx) * (discretization_->v(i, j) + discretization_->v(i, j - 1) 
-                    +discretization_->v(i - 1, j) - discretization_->v(i - 1, j - 1))
+                    -discretization_->v(i - 1, j) - discretization_->v(i - 1, j - 1))
             );
             break;
         case Mask::FLUID_CORNER_BOTTOM_RIGHT:
             discretization_->p(i, j) =-1/(2 * settings_.re) * (
                 1/(2*dy) * (discretization_->u(i, j) + discretization_->u(i - 1, j) 
-                    +discretization_->u(i, j - 1) - discretization_->u(i - 1, j - 1))
+                    -discretization_->u(i, j - 1) - discretization_->u(i - 1, j - 1))
               + 1/(2*dx) * (discretization_->v(i, j) + discretization_->v(i, j - 1) 
-                    +discretization_->v(i - 1, j) - discretization_->v(i - 1, j - 1))
+                    -discretization_->v(i - 1, j) - discretization_->v(i - 1, j - 1))
             );
             break;
         case Mask::FLUID_CORNER_BOTTOM_LEFT:
             discretization_->p(i, j) = 1/(2 * settings_.re) * (
                 1/(2*dy) * (discretization_->u(i, j) + discretization_->u(i - 1, j) 
-                    +discretization_->u(i, j - 1) - discretization_->u(i - 1, j - 1))
-              + 1/(2*dy) * (discretization_->v(i, j) + discretization_->v(i, j - 1) 
-                    +discretization_->v(i - 1, j) - discretization_->v(i - 1, j - 1))
+                    -discretization_->u(i, j - 1) - discretization_->u(i - 1, j - 1))
+              + 1/(2*dx) * (discretization_->v(i, j) + discretization_->v(i, j - 1) 
+                    -discretization_->v(i - 1, j) - discretization_->v(i - 1, j - 1))
             );
             break;
         case Mask::FLUID_COLUMN_VERTICAL:
@@ -195,22 +196,24 @@ void Boundary::setPressureSurfaceBC()
         case Mask::FLUID_DROPLET:
             discretization_->p(i, j) = 0;
             break;
-
+        default:
+            std::cout << "ERROR" << std::endl;
+            break;
         }
     }
 }
 
 void Boundary::setVelocityBoundaryValues()
 {
+    // setAirCellsZero();
     setVelocitySurfaceBC();
     setVelocityDomainBC();
     setVelocityObstacleBC();
 }
 
 void Boundary::setVelocityBoundaryValues(double dt){
-    setVelocitySurfaceBC(dt);
-    setVelocityDomainBC();
-    setVelocityObstacleBC();
+    updateVelocitySurfaceBC(dt);
+    setVelocityBoundaryValues();
 }
 
 void Boundary::setVelocityDomainBC()
@@ -358,10 +361,12 @@ void Boundary::updateVelocitySurfaceBC(double dt){
 
         switch ((*mask_)(i, j)){
             case Mask::FLUID_COLUMN_HORIZONTAL:
+                // v
                 discretization_->v(i, j) = discretization_->v(i, j) + dt * settings_.g[1];
                 discretization_->v(i, j - 1) = discretization_->v(i, j - 1) + dt * settings_.g[1];
                 break;
             case Mask::FLUID_COLUMN_VERTICAL:
+                // u
                 discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];
                 discretization_->u(i - 1, j) = discretization_->u(i - 1, j) + dt * settings_.g[0];
                 break;
@@ -370,8 +375,6 @@ void Boundary::updateVelocitySurfaceBC(double dt){
                 discretization_->v(i, j) = discretization_->v(i, j) + dt * settings_.g[1];
                 discretization_->v(i, j - 1) = discretization_->v(i, j - 1) + dt * settings_.g[1];
                 break;
-            
-
             case Mask::FLUID_SINGLE_BOTTOM:
                 // u
                 discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];
@@ -396,9 +399,7 @@ void Boundary::updateVelocitySurfaceBC(double dt){
                 discretization_->v(i, j - 1) = discretization_->v(i, j - 1) + dt * settings_.g[1];
                 break;
             default:
-                std::cout << " AHA " << std::endl;
                 break;
-
         }
     }
 }
@@ -419,15 +420,11 @@ void Boundary::setVelocitySurfaceBC(){
             // u - CONTINUITY
             discretization_->u(i - 1, j) = discretization_->u(i, j) 
                 + dxByDy * (discretization_->v(i, j) - discretization_->v(i, j - 1));
-            // f
-            discretization_->f(i - 1, j) = discretization_->u(i - 1, j);
 
             // v - TANGENTIAL
-            if (mask_->isAir(i - 1, j - 1)){
+            if (!mask_->isFluid(i - 1, j - 1)){
                 discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1)
                     + dxByDy * (discretization_->u(i - 1, j) - discretization_->u(i - 1, j - 1));
-                // g
-                discretization_->g(i - 1, j - 1) = discretization_->v(i - 1, j - 1);
             }
             break;
 
@@ -435,41 +432,31 @@ void Boundary::setVelocitySurfaceBC(){
             // v - CONTINUITY
             discretization_->v(i, j) = discretization_->v(i, j - 1)
                 + dyByDx * (discretization_->u(i, j) - discretization_->u(i - 1, j));
-            // f
-            discretization_->f(i, j) = discretization_->u(i, j);
 
             // u - TANGENTIAL
-            if (mask_->isAir(i - 1, j + 1)){
+            if (!mask_->isFluid(i - 1, j + 1)){
                 discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j)
                     - dyByDx * (discretization_->v(i, j) - discretization_->v(i - 1, j));
-                // g
-                discretization_->g(i - 1, j + 1) = discretization_->v(i - 1, j + 1);
             }
             break;
         case Mask::FLUID_BORDER_RIGHT:
             // u - CONTINUITY
             discretization_->u(i, j) = discretization_->u(i - 1, j)
                 - dxByDy * (discretization_->v(i, j) - discretization_->v(i, j - 1));
-            // f
-            discretization_->f(i, j) = discretization_->u(i, j);
 
             // v - TANGENTIAL
-            if (mask_->isAir(i + 1, j - 1)){
+            if (!mask_->isFluid(i + 1, j - 1)){
                 discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1)
                     + dxByDy * (discretization_->u(i, j) - discretization_->u(i, j - 1));
-                // g
-                discretization_->g(i + 1, j - 1) = discretization_->v(i + 1, j - 1);
             }
             break;
         case Mask::FLUID_BORDER_BOTTOM:
             // v - CONTINUITY
             discretization_->v(i, j - 1) = discretization_->v(i, j)
                 + dyByDx * (discretization_->u(i, j) - discretization_->u(i - 1, j));
-            // g
-            discretization_->g(i, j - 1) = discretization_->v(i, j - 1);
             
             // u - TANGENTIAL
-            if (mask_->isAir(i - 1, j - 1)){
+            if (!mask_->isFluid(i - 1, j - 1)){
                 discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j)
                     + dyByDx * (discretization_->v(i, j - 1) - discretization_->v(i - 1, j - 1));
                 // f
@@ -481,13 +468,13 @@ void Boundary::setVelocitySurfaceBC(){
             discretization_->u(i - 1, j) = discretization_->u(i, j);
             discretization_->v(i, j) = discretization_->v(i, j - 1);
 
-            if (mask_->isAir(i - 1, j + 1)) {
+            if (!mask_->isFluid(i - 1, j + 1)) {
                 discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j); // chain, u(i, j) is equvivalent
                 discretization_->v(i - 1, j) = discretization_->v(i, j);
             }
 
             // v - TANGENTIAL
-            if (mask_->isAir(i - 1, j - 1)) {
+            if (!mask_->isFluid(i - 1, j - 1)) {
             discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1)
                 + dxByDy * (discretization_->u(i - 1, j) - discretization_->u(i - 1, j - 1));
 
@@ -497,17 +484,17 @@ void Boundary::setVelocitySurfaceBC(){
             // u & v - CONTINUITY and TANGENTIAL -> 0 derivative
             discretization_->u(i, j) = discretization_->u(i - 1, j);
             discretization_->v(i, j) = discretization_->v(i, j - 1);
-            if (mask_->isAir(i + 1, j + 1)){
+            if (!mask_->isFluid(i + 1, j + 1)){
                 discretization_->u(i, j + 1) = discretization_->u(i, j);
                 discretization_->v(i + 1, j) = discretization_->v(i, j);
             }
 
             // u & v - TANGENTIAL
-            if (mask_->isAir(i - 1, j + 1)) {
+            if (!mask_->isFluid(i - 1, j + 1)) {
                 discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j)
                     - dyByDx * (discretization_->v(i, j) - discretization_->v(i - 1, j));
             }
-            if (mask_->isAir(i + 1, j - 1)){
+            if (!mask_->isFluid(i + 1, j - 1)){
                 discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1)
                     - dxByDy * (discretization_->u(i, j) - discretization_->u(i, j - 1));
             }
@@ -516,13 +503,13 @@ void Boundary::setVelocitySurfaceBC(){
             // u & v - CONTINUITY and TANGENTIAL -> 0 derivative
             discretization_->u(i, j) = discretization_->u(i - 1, j);
             discretization_->v(i, j - 1) = discretization_->v(i, j);
-            if (mask_->isAir(i + 1, j - 1)){
+            if (!mask_->isFluid(i + 1, j - 1)){
                 discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1);
                 discretization_->u(i, j - 1) = discretization_->u(i, j);
             } 
 
             // u - TANGENTIAL
-            if (mask_->isAir(i - 1, j - 1)) {
+            if (!mask_->isFluid(i - 1, j - 1)) {
                 discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j)
                     + dyByDx * (discretization_->v(i, j - 1) - discretization_->v(i - 1, j - 1));
             }
@@ -531,7 +518,7 @@ void Boundary::setVelocitySurfaceBC(){
             // u & v - CONTINUITY and TANGENTIAL -> 0 derivative
             discretization_->u(i - 1, j) = discretization_->u(i, j);
             discretization_->v(i, j - 1) = discretization_->v(i, j);
-            if (mask_->isAir(i - 1, j - 1))
+            if (!mask_->isFluid(i - 1, j - 1))
             {
                 discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j);
                 discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1);
@@ -541,11 +528,11 @@ void Boundary::setVelocitySurfaceBC(){
             // v - ONLY SUBJECT TO GRAVITY -> no update necessary
 
             // u - TANGENTIAL
-            if (mask_->isAir(i - 1, j + 1)){
+            if (!mask_->isFluid(i - 1, j + 1)){
                 discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j) 
                     - dyByDx * (discretization_->v(i, j) - discretization_->v(i - 1, j));
             }
-            if (mask_->isAir(i - 1, j - 1)){
+            if (!mask_->isFluid(i - 1, j - 1)){
                 discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j) 
                     + dyByDx * (discretization_->v(i, j - 1) - discretization_->v(i - 1, j - 1));
             }
@@ -554,11 +541,11 @@ void Boundary::setVelocitySurfaceBC(){
             // u - ONLY SUBJECT TO GRAVITY -> no update necessary
 
             // v - TANGENTIAL
-            if (mask_->isAir(i - 1, j - 1)){
+            if (!mask_->isFluid(i - 1, j - 1)){
                 discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1) 
                     + dxByDy * (discretization_->u(i - 1, j) - discretization_->u(i - 1, j - 1));
             }
-            if (mask_->isAir(i + 1, j - 1)){
+            if (!mask_->isFluid(i + 1, j - 1)){
                 discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1) 
                     - dxByDy * (discretization_->u(i, j) - discretization_->u(i, j - 1));
             }
@@ -570,21 +557,21 @@ void Boundary::setVelocitySurfaceBC(){
             discretization_->u(i, j) = discretization_->u(i - 1, j)
                 - dxByDy * (discretization_->v(i, j) - discretization_->v(i, j - 1));
             // CHAIN
-            if (mask_->isAir(i + 1, j + 1)){
+            if (!mask_->isFluid(i + 1, j + 1)){
                 discretization_->u(i, j + 1) = discretization_->u(i, j);
                 discretization_->v(i + 1, j) = discretization_->v(i, j);
             }
-            if (mask_->isAir(i + 1, j - 1)){
+            if (!mask_->isFluid(i + 1, j - 1)){
                 discretization_->u(i, j - 1) = discretization_->u(i, j);
                 discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1);
             }
 
             // u - TANGENTIAL
-            if (mask_->isAir(i - 1, j - 1)){
+            if (!mask_->isFluid(i - 1, j - 1)){
                 discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j)
                     + dyByDx * (discretization_->v(i, j - 1) - discretization_->v(i - 1, j - 1));
             }
-            if (mask_->isAir(i - 1, j + 1)){
+            if (!mask_->isFluid(i - 1, j + 1)){
                 discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j)
                     - dyByDx * (discretization_->v(i, j) - discretization_->v(i - 1, j));
             }
@@ -595,11 +582,11 @@ void Boundary::setVelocitySurfaceBC(){
                 + dyByDx * (discretization_->u(i, j) - discretization_->u(i - 1, j));
             
             // CHAIN
-            if (mask_->isAir(i - 1, j - 1)){
+            if (!mask_->isFluid(i - 1, j - 1)){
                 discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j);
                 discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1);
             }
-            if (mask_->isAir(i + 1, j - 1)){
+            if (!mask_->isFluid(i + 1, j - 1)){
                 discretization_->u(i, j - 1) = discretization_->u(i, j);
                 discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1);
             }
@@ -614,11 +601,11 @@ void Boundary::setVelocitySurfaceBC(){
                 + dxByDy * (discretization_->v(i, j) - discretization_->v(i, j - 1));
             
             // Chain
-            if (mask_->isAir(i - 1, j - 1)){
+            if (!mask_->isFluid(i - 1, j - 1)){
                 discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j);
                 discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1);
             }
-            if (mask_->isAir(i - 1, j + 1)){
+            if (!mask_->isFluid(i - 1, j + 1)){
                 discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j);
                 discretization_->v(i - 1, j) = discretization_->v(i, j);
             }
@@ -633,40 +620,40 @@ void Boundary::setVelocitySurfaceBC(){
                 - dyByDx * (discretization_->u(i, j) - discretization_->u(i - 1, j));
 
             // CHAIN 
-            if (mask_->isAir(i - 1, j + 1)){
+            if (!mask_->isFluid(i - 1, j + 1)){
                 discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j);
                 discretization_->v(i - 1, j) = discretization_->v(i, j);
             }
-            if (mask_->isAir(i + 1, j + 1)){
+            if (!mask_->isFluid(i + 1, j + 1)){
                 discretization_->u(i, j + 1) = discretization_->u(i, j);
                 discretization_->v(i + 1, j) = discretization_->v(i, j);
             }
 
             // v - TANGENTIAL
-            if (mask_->isAir(i - 1, j - 1)){
+            if (!mask_->isFluid(i - 1, j - 1)){
                 discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1)
                     + dxByDy * (discretization_->u(i - 1, j) - discretization_->u(i - 1, j - 1));
             }
-            if (mask_->isAir(i + 1, j - 1)){
+            if (!mask_->isFluid(i + 1, j - 1)){
                 discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1)
                     - dxByDy * (discretization_->u(i, j) - discretization_->u(i, j - 1));
             }
             break;
         case Mask::FLUID_DROPLET:
             // CHAIN
-            if (mask_->isAir(i - 1, j - 1)){
+            if (!mask_->isFluid(i - 1, j - 1)){
                 discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j);
                 discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1);
             }
-            if (mask_->isAir(i - 1, j + 1)){
+            if (!mask_->isFluid(i - 1, j + 1)){
                 discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j);
                 discretization_->v(i - 1, j) = discretization_->v(i, j);
             }
-            if (mask_->isAir(i + 1, j + 1)){
+            if (!mask_->isFluid(i + 1, j + 1)){
                 discretization_->u(i, j + 1) = discretization_->u(i, j);
                 discretization_->v(i + 1, j) = discretization_->v(i, j);
             }
-            if (mask_->isAir(i + 1, j - 1)){
+            if (!mask_->isFluid(i + 1, j - 1)){
                 discretization_->u(i, j - 1) = discretization_->u(i, j);
                 discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1);
             }
@@ -678,25 +665,10 @@ void Boundary::setVelocitySurfaceBC(){
 }
 
 
-
-
-
-
-
-
-
 bool Boundary::doCalculateF(int i, int j) const {
-    if (mask_->isFluid(i, j) && mask_->isFluid(i + 1, j)){
-        return true;
-    } else {
-        return false;
-    }
+    return (mask_->isFluid(i, j) && mask_->isFluid(i + 1, j));
 }
 
 bool Boundary::doCalculateG(int i, int j) const {
-    if (mask_->isFluid(i, j) && mask_->isFluid(i, j + 1)){
-        return true;
-    } else {
-        return false;
-    }
+    return (mask_->isFluid(i, j) && mask_->isFluid(i, j + 1));
 }

@@ -17,12 +17,12 @@ void Computation::initialize(int argc, char *argv[])
     // create boundary and tracer
     mask_ = std::make_shared<Mask>(settings_);
 
+    // Read in nCells from BitMap
     std::array<int,2> n_Cells = {mask_->size()[0]-2, mask_->size()[1]-2};
 
-    std::cout << n_Cells[0] << " " << n_Cells[1] << "\n";
+    
+    std::array<double, 2> meshWidth_ = {0.1, 0.1};
 
-    std::array<double, 2> meshWidth_ = {(n_Cells[0]/10.0) / n_Cells[0],
-                                        (n_Cells[1]/10.0) / n_Cells[1]};
 
     if (settings_.useDonorCell)
     {
@@ -32,18 +32,9 @@ void Computation::initialize(int argc, char *argv[])
     {
         discretization_ = std::make_shared<CentralDifferences>(n_Cells, meshWidth_);
     }
-
-    // create boundary and trace
-    // TODO: read particles per cell from settings file
-    // if (settings_.useParticleTracer){
-        fluidTracer_ = std::make_shared<FluidTracer>(100, discretization_, mask_);
-    // }
-
-    // std::vector<double> traceX = {1.8};
-    // std::vector<double> traceY = {1.8};
-
-
+    // Boundary    
     boundary_ = std::make_shared<Boundary>(mask_, discretization_, settings_);
+
 
     if (settings_.pressureSolver == "SOR")
     {
@@ -61,28 +52,40 @@ void Computation::initialize(int argc, char *argv[])
                                                         boundary_);
     }
 
+    // Fluid Tracker
+    if (settings_.useFluidTracer)
+    {
+        fluidTracer_ = std::make_shared<FluidTracer>(settings_.particlePerCell, discretization_, mask_);
+    }
+
+
+    // Output
     outputWriterParaview_ = std::make_unique<OutputWriterParaview>(discretization_, mask_, fluidTracer_);
     outputWriterText_ = std::make_unique<OutputWriterText>(discretization_);
 }
 
 void Computation::runSimulation()
 {
+    // setting
+    double printInterval = 0.005;
+
+    // initialize
     double currentTime = 0.;
+    double printTime = 0.;
+    int stepsBetweenPrints = 0;
 
     boundary_->setVelocityBoundaryValues();
+    boundary_->setPressureSurfaceBC();
     do
     {
-        
         // fluidTracer_->createParticles(0.1, 1.4);
-        //fluidTracer_->createAndKillParticles(dt_);
 
-        // std::cout << "\033[2J\033[1;1H";
 #ifndef NDEBUG
-        // fluidTracer_->printParticles();
+        std::cout << settings_.useFluidTracer << settings_.particlePerCell << settings_.fluidTracerMethod << std::endl;
         // mask_->printMask();
-        // usleep(1000000);
+        usleep(1000000);
+        std::cout << "\033[2J\033[1;1H";
 #endif
-
 
         computeTimeStepWidth(currentTime);
         computePreliminaryVelocities();
@@ -92,14 +95,24 @@ void Computation::runSimulation()
         
         boundary_->setVelocityBoundaryValues(dt_);
         fluidTracer_->moveParticles(dt_);
+        // TODO: make mask update explicit
+
         boundary_->updateBoundary();
         // Update velocity without new timestep
         boundary_->setVelocityBoundaryValues();
+        // surface pressure is fix for one timestep
+        boundary_->setPressureSurfaceBC();
 
 
 
         currentTime += dt_;
-        outputWriterParaview_->writeFile(currentTime);
+        if (currentTime > printTime) {
+            outputWriterParaview_->writeFile(currentTime);
+            printTime += printInterval;
+            std::cout << currentTime << " -> write file, took steps: " << stepsBetweenPrints << std::endl;
+            stepsBetweenPrints = 0;
+        }
+        stepsBetweenPrints++;
 
 #ifndef NDEBUG
         outputWriterText_->writeFile(currentTime);

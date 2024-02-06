@@ -11,6 +11,10 @@ class Boundary
     public:
         Boundary(std::shared_ptr<Mask> mask, std::shared_ptr<Discretization> discretization, Settings settings);
         void setPressureBoundaryValues();
+        
+        // Only needs to be set once -> no need to update each solver iteration
+        void setPressureSurfaceBC();
+
         void setVelocityBoundaryValues();
         void setVelocityBoundaryValues(double dt);
         std::shared_ptr<Mask> mask_;
@@ -26,7 +30,6 @@ class Boundary
         // Set Pressure
         void setPressureDomainBC();
         void setPressureObstacleBC();
-        void setPressureSurfaceBC();
 
 
         // Set Velocity

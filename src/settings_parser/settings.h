@@ -57,6 +57,20 @@ struct Settings
   double epsilon = 1e-5;               //!< tolerance for the residual in the pressure solver
   int maximumNumberOfIterations = 1e5; //!< maximum number of iterations in the solver
 
+
+  // Fluid Tracer
+  bool useFluidTracer = true; //!< Enables Open Surface Evolution
+  int particlePerCell = 100; //!< Initializes with given virtual particles per cell
+  /**
+   * `single` -> one virtual particles is enough for fluid cell
+   * `threshold` -> aims at a constant amount of fluid cells 
+   */
+  std::string fluidTracerMethod = "single";
+
+  
+
+  // Writer Options
+
   /**
    * @brief Parse a text file with settings.
    *

@@ -138,21 +138,21 @@ void Settings::setParameter(std::string parameterName, std::string value)
     }
 
     // NoSlip boundary conditions
-    else if (parameterName == "NoSlipVelTopX")
+    else if (parameterName == "NoSlipVelTopX" || parameterName == "dirichletTopX")
         Settings::NoSlipVelTop[0] = atof(value.c_str());
-    else if (parameterName == "NoSlipVelTopY")
+    else if (parameterName == "NoSlipVelTopY" || parameterName == "dirichtelTopY")
         Settings::NoSlipVelTop[1] = atof(value.c_str());
-    else if (parameterName == "NoSlipVelRightX")
+    else if (parameterName == "NoSlipVelRightX"  || parameterName == "dirichtelRightX")
         Settings::NoSlipVelRight[0] = atof(value.c_str());
-    else if (parameterName == "NoSlipVelRightY")
+    else if (parameterName == "NoSlipVelRightY"  || parameterName == "dirichtelRightY")
         Settings::NoSlipVelRight[1] = atof(value.c_str());
-    else if (parameterName == "NoSlipVelBottomX")
+    else if (parameterName == "NoSlipVelBottomX"  || parameterName == "dirichtelBottomX")
         Settings::NoSlipVelBottom[0] = atof(value.c_str());
-    else if (parameterName == "NoSlipVelBottomY")
+    else if (parameterName == "NoSlipVelBottomY"  || parameterName == "dirichtelBottomY")
         Settings::NoSlipVelBottom[1] = atof(value.c_str());
-    else if (parameterName == "NoSlipVelLeftX")
+    else if (parameterName == "NoSlipVelLeftX"  || parameterName == "dirichtelLeftX")
         Settings::NoSlipVelLeft[0] = atof(value.c_str());
-    else if (parameterName == "NoSlipVelLeftY")
+    else if (parameterName == "NoSlipVelLeftY"  || parameterName == "dirichtelLeftY")
         Settings::NoSlipVelLeft[1] = atof(value.c_str());
 
     // Pressure BoundaryConditions. 
@@ -234,4 +234,22 @@ void Settings::setParameter(std::string parameterName, std::string value)
         Settings::epsilon = atof(value.c_str());
     else if (parameterName == "maximumNumberOfIterations")
         Settings::maximumNumberOfIterations = atof(value.c_str());
+
+
+    else if(parameterName == "useFluidTracer")
+    {
+        if (value == "true" || value == "True")
+            Settings::useFluidTracer = true;
+        else if (value == "false" || value == "False")
+            Settings::useFluidTracer = false;
+        else
+            throw std::invalid_argument("createDomainfromBitmap must be a boolean (true or false)."); 
+    }
+    else if(parameterName == "particlePerCell")
+        particlePerCell = atof(value.c_str());
+    else if(parameterName == "fluidTracerMethod")
+        if (value == "single" || value == "threshold")
+            Settings::fluidTracerMethod = value;
+        else
+            throw std::invalid_argument("Supported values for fluidTracerMethod are single and threshold");
 }

@@ -18,6 +18,7 @@ fi
 make install -j4
 
 ./numsim ../input/settings_debug_joni.txt
+# ./numsim ../input/settings_damBreak.txt
 
 
 

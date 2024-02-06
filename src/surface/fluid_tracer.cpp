@@ -8,21 +8,24 @@ FluidTracer::FluidTracer(int numParticlesPerCell,
     discretization_ = discretization;
     mask_ = mask;
 
-    initializeHomogenousParticleDistribution(numParticlesPerCell); 
-}
-
-void FluidTracer::initializeHomogenousParticleDistribution(int numParticlesPerCell){
     seedRelationDyDx_ = discretization_->dy()/ discretization_->dx();
     n_x = static_cast<int>(std::ceil(std::sqrt(numParticlesPerCell/seedRelationDyDx_)));
     n_y = static_cast<int>(std::ceil(n_x * seedRelationDyDx_));
-    
     numParticlesPerCell_ = n_x * n_y;
     numParticles_ = numParticlesPerCell_ * mask_->getNumberOfFluidCells();
-    
+
     // Resize for speed up
     x_.resize(numParticles_);
     y_.resize(numParticles_);
+
+    initializeHomogenousParticleDistribution(); 
+}
+
+void FluidTracer::initializeHomogenousParticleDistribution(){
+    
+    
     currentParticlesPerCell_.resize(mask_->size()[0] * mask_->size()[1]);
+    numFluidCells_ = 0;
     
     int placedParticles = 0;
     for (int i = 1; i < mask_->size()[0] - 1; i++) {
@@ -35,7 +38,8 @@ void FluidTracer::initializeHomogenousParticleDistribution(int numParticlesPerCe
             }
         }
     }
-    assert(placedParticles == numParticles_);
+    numParticles_ = placedParticles;
+    // assert(placedParticles == numParticles_);
 }
 
 
@@ -91,18 +95,17 @@ std::array<double, 2> FluidTracer::getParticlePosition(int i) const {
 }
 
 int FluidTracer::getThresholdParticlesFluidCell() {
-    std::priority_queue<int, std::vector<int>, std::greater<int>> heap;
-    for (int particles: currentParticlesPerCell_){
-        heap.push(particles);
-        if (heap.size() > numFluidCells_) {
-            heap.pop();
-        }
+    std::vector<int> copy = currentParticlesPerCell_;
+    std::sort(copy.begin(), copy.end(), std::greater<int>());
+    if (numFluidCells_ > copy.size()){
+        std::cout << " WARNING, NO FLUID CELLS" << std::endl;
+        std::cout << numFluidCells_ << " "  << std::endl;
+        return 1;
     }
-    
-    int threshold = heap.top();
+    int threshold = copy[numFluidCells_ - 1];
     if (threshold < 1){
-        threshold = 1;
-        std::cout << "DANGER: Threshold is 0" << std::endl;
+        std::cout << " WARNING, THRESHOLD LOW" << std::endl;
+        return 1;
     }
     return threshold;
 }
@@ -110,6 +113,7 @@ int FluidTracer::getThresholdParticlesFluidCell() {
 
 
 void FluidTracer::moveParticles(double dt) {
+    // initializeHomogenousParticleDistribution();
     // Reset
     mask_->resetMask();
     std::fill(currentParticlesPerCell_.begin(), currentParticlesPerCell_.end(), 0);
@@ -125,7 +129,6 @@ void FluidTracer::moveParticles(double dt) {
         (*mask_)(newIdx[0], newIdx[1]) = Mask::FLUID;
         
     }
-
     // int threshold = getThresholdParticlesFluidCell();
     
     // for (int i = 0; i < mask_->size()[0]; i++){

@@ -78,7 +78,7 @@ class FluidTracer {
 
 
     private:
-        void initializeHomogenousParticleDistribution(int numParticlesPerCell);
+        void initializeHomogenousParticleDistribution();
         /**
          * @brief initializes a single cell according to nx, ny and numParticlesPerCell_
          */
