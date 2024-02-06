@@ -121,6 +121,7 @@ void FluidTracer::moveParticles(double dt) {
         std::array<int, 2> newIdx = updateParticle(i, idx, dt, vel);
 
         currentParticlesPerCell_[newIdx[0] + newIdx[1] * mask_->size()[0]] += 1;
+        // TODO: uncomment this if threshold instead of singleParticle
         (*mask_)(newIdx[0], newIdx[1]) = Mask::FLUID;
         
     }

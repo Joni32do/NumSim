@@ -333,33 +333,101 @@ void Boundary::setVelocityObstacleBC()
     }
 }
 
+
+void Boundary::setAirCellsZero() {
+    for (int i = 1; i < mask_->size()[0] - 1; i++) {
+        for (int j = 1; j < mask_->size()[1] - 1; j++) {
+            if (mask_->isAir(i, j)) {
+                discretization_->p(i, j) = 0;
+                discretization_->u(i, j) = 0;
+                discretization_->v(i, j) = 0;
+                discretization_->f(i, j) = 0;
+                discretization_->g(i, j) = 0;
+                discretization_->rhs(i, j) = 0;
+            }
+        }
+    }
+}
+
+void Boundary::updateVelocitySurfaceBC(double dt){
+
+    for (int idx : fluidBoundaryCells_){
+
+        int i = idx % mask_->size()[0];
+        int j = idx / mask_->size()[0];
+
+        switch ((*mask_)(i, j)){
+            case Mask::FLUID_COLUMN_HORIZONTAL:
+                discretization_->v(i, j) = discretization_->v(i, j) + dt * settings_.g[1];
+                discretization_->v(i, j - 1) = discretization_->v(i, j - 1) + dt * settings_.g[1];
+                break;
+            case Mask::FLUID_COLUMN_VERTICAL:
+                discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];
+                discretization_->u(i - 1, j) = discretization_->u(i - 1, j) + dt * settings_.g[0];
+                break;
+            case Mask::FLUID_SINGLE_LEFT:
+                // v
+                discretization_->v(i, j) = discretization_->v(i, j) + dt * settings_.g[1];
+                discretization_->v(i, j - 1) = discretization_->v(i, j - 1) + dt * settings_.g[1];
+                break;
+            
+
+            case Mask::FLUID_SINGLE_BOTTOM:
+                // u
+                discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];
+                discretization_->u(i - 1, j) = discretization_->u(i - 1, j) + dt * settings_.g[0];
+                break;
+            
+            case Mask::FLUID_SINGLE_TOP:
+                // u
+                discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];
+                discretization_->u(i - 1, j) = discretization_->u(i - 1, j) + dt * settings_.g[0];
+            break;
+            case Mask::FLUID_SINGLE_RIGHT:
+                // v
+                discretization_->v(i, j) = discretization_->v(i, j) + dt * settings_.g[1];
+                discretization_->v(i, j - 1) = discretization_->v(i, j - 1) + dt * settings_.g[1];
+            case Mask::FLUID_DROPLET:
+                // u
+                discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];
+                discretization_->u(i - 1, j) = discretization_->u(i - 1, j) + dt * settings_.g[0];
+                // v
+                discretization_->v(i, j) = discretization_->v(i, j) + dt * settings_.g[1];
+                discretization_->v(i, j - 1) = discretization_->v(i, j - 1) + dt * settings_.g[1];
+                break;
+            default:
+                std::cout << " AHA " << std::endl;
+                break;
+
+        }
+    }
+}
+
 void Boundary::setVelocitySurfaceBC(){
 
     double dxByDy = discretization_->dx() / discretization_->dy();
     double dyByDx = discretization_->dy() / discretization_->dx();
     // Should the dt update step happen here? Then per loop only one execution is allowed
-    double dt = 1;
-    
+   
     for (int idx : fluidBoundaryCells_)
     {
         int i = idx % mask_->size()[0];
         int j = idx / mask_->size()[0];
-        
-    // should be solved in the following order:
-    //     from left to right (increasing i)
-    //     from bottom to top (increasing j)
-    
 
     switch ((*mask_)(i, j)) {
         case Mask::FLUID_BORDER_LEFT:
             // u - CONTINUITY
             discretization_->u(i - 1, j) = discretization_->u(i, j) 
                 + dxByDy * (discretization_->v(i, j) - discretization_->v(i, j - 1));
+            // f
+            discretization_->f(i - 1, j) = discretization_->u(i - 1, j);
 
             // v - TANGENTIAL
             if (mask_->isAir(i - 1, j - 1)){
                 discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1)
                     + dxByDy * (discretization_->u(i - 1, j) - discretization_->u(i - 1, j - 1));
+                // g
+                discretization_->g(i - 1, j - 1) = discretization_->v(i - 1, j - 1);
             }
             break;
 
@@ -367,39 +435,52 @@ void Boundary::setVelocitySurfaceBC(){
             // v - CONTINUITY
             discretization_->v(i, j) = discretization_->v(i, j - 1)
                 + dyByDx * (discretization_->u(i, j) - discretization_->u(i - 1, j));
+            // f
+            discretization_->f(i, j) = discretization_->u(i, j);
 
             // u - TANGENTIAL
             if (mask_->isAir(i - 1, j + 1)){
                 discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j)
                     - dyByDx * (discretization_->v(i, j) - discretization_->v(i - 1, j));
+                // g
+                discretization_->g(i - 1, j + 1) = discretization_->v(i - 1, j + 1);
             }
             break;
         case Mask::FLUID_BORDER_RIGHT:
             // u - CONTINUITY
             discretization_->u(i, j) = discretization_->u(i - 1, j)
                 - dxByDy * (discretization_->v(i, j) - discretization_->v(i, j - 1));
+            // f
+            discretization_->f(i, j) = discretization_->u(i, j);
 
             // v - TANGENTIAL
             if (mask_->isAir(i + 1, j - 1)){
                 discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1)
                     + dxByDy * (discretization_->u(i, j) - discretization_->u(i, j - 1));
+                // g
+                discretization_->g(i + 1, j - 1) = discretization_->v(i + 1, j - 1);
             }
             break;
         case Mask::FLUID_BORDER_BOTTOM:
             // v - CONTINUITY
             discretization_->v(i, j - 1) = discretization_->v(i, j)
                 + dyByDx * (discretization_->u(i, j) - discretization_->u(i - 1, j));
+            // g
+            discretization_->g(i, j - 1) = discretization_->v(i, j - 1);
             
             // u - TANGENTIAL
             if (mask_->isAir(i - 1, j - 1)){
                 discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j)
                     + dyByDx * (discretization_->v(i, j - 1) - discretization_->v(i - 1, j - 1));
+                // f
+                discretization_->f(i - 1, j - 1) = discretization_->u(i - 1, j - 1);
             }
             break;
         case Mask::FLUID_CORNER_TOP_LEFT:
-            // u & v - CONTINUITY (CHAIN)
+            // u & v - CONTINUITY and TANGENTIAL -> 0 derivative
             discretization_->u(i - 1, j) = discretization_->u(i, j);
             discretization_->v(i, j) = discretization_->v(i, j - 1);
+
             if (mask_->isAir(i - 1, j + 1)) {
                 discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j); // chain, u(i, j) is equvivalent
                 discretization_->v(i - 1, j) = discretization_->v(i, j);
@@ -413,7 +494,7 @@ void Boundary::setVelocitySurfaceBC(){
             }
             break;
         case Mask::FLUID_CORNER_TOP_RIGHT:
-            // u & v - CONTINUITY (CHAIN)
+            // u & v - CONTINUITY and TANGENTIAL -> 0 derivative
             discretization_->u(i, j) = discretization_->u(i - 1, j);
             discretization_->v(i, j) = discretization_->v(i, j - 1);
             if (mask_->isAir(i + 1, j + 1)){
@@ -432,7 +513,7 @@ void Boundary::setVelocitySurfaceBC(){
             }
             break;
         case Mask::FLUID_CORNER_BOTTOM_RIGHT:
-            // u & v - CONTINUITY (CHAIN)
+            // u & v - CONTINUITY and TANGENTIAL -> 0 derivative
             discretization_->u(i, j) = discretization_->u(i - 1, j);
             discretization_->v(i, j - 1) = discretization_->v(i, j);
             if (mask_->isAir(i + 1, j - 1)){
@@ -447,7 +528,7 @@ void Boundary::setVelocitySurfaceBC(){
             }
             break;
         case Mask::FLUID_CORNER_BOTTOM_LEFT:
-            // u & v - CONTINUITY (CHAIN)
+            // u & v - CONTINUITY and TANGENTIAL -> 0 derivative
             discretization_->u(i - 1, j) = discretization_->u(i, j);
             discretization_->v(i, j - 1) = discretization_->v(i, j);
             if (mask_->isAir(i - 1, j - 1))
@@ -457,284 +538,9 @@ void Boundary::setVelocitySurfaceBC(){
             } 
             break;
         case Mask::FLUID_COLUMN_HORIZONTAL:
-            // // v
-            // discretization_->v(i, j) = discretization_->v(i, j) + dt * settings_.g[1];
-            // discretization_->v(i, j - 1) = discretization_->v(i, j - 1) + dt * settings_.g[1];
-            // // u
-            // if (mask_->isAir(i - 1, j + 1)){
-            //     discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j) 
-            //         - dyByDx * (discretization_->v(i, j) - discretization_->v(i - 1, j));
-            // }
-            // if (mask_->isAir(i - 1, j - 1)){
-            //     discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j) 
-            //         + dyByDx * (discretization_->v(i, j - 1) - discretization_->v(i - 1, j - 1));
-            // }
-            break;
-        case Mask::FLUID_COLUMN_VERTICAL:
-            // // u
-            // discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];
-            // discretization_->u(i - 1, j) = discretization_->u(i - 1, j) + dt * settings_.g[0];
-
-            // if (mask_->isAir(i - 1, j - 1)){
-            //     discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1) 
-            //         + dxByDy * (discretization_->u(i - 1, j) - discretization_->u(i - 1, j - 1));
-            // }
-            // if (mask_->isAir(i + 1, j - 1)){
-            //     discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1) 
-            //         - dxByDy * (discretization_->u(i, j) - discretization_->u(i, j - 1));
-            // }
-            break;
-        case Mask::FLUID_SINGLE_LEFT:
-        //     // v
-        //     discretization_->v(i, j) = discretization_->v(i, j) + dt * settings_.g[1];
-        //     discretization_->v(i, j - 1) = discretization_->v(i, j - 1) + dt * settings_.g[1];
-        //     // u
-        //     discretization_->u(i - 1, j) = discretization_->u(i, j)
-        //         + dxByDy * (discretization_->v(i, j) - discretization_->v(i, j - 1));
-        //     // others
-        //     if (mask_->isAir(i - 1, j + 1)){
-        //         discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j);
-        //         discretization_->v(i - 1, j) = discretization_->v(i, j);
-        //     }
-        //     if (mask_->isAir(i - 1, j - 1)){
-        //         discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j);
-        //         discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1);
-        //     }
-            break;
-        case Mask::FLUID_SINGLE_TOP:
-        //     // u
-        //     discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];
-        //     discretization_->u(i - 1, j) = discretization_->u(i - 1, j) + dt * settings_.g[0];
-        //     // v
-        //     discretization_->v(i, j) = discretization_->v(i, j - 1)
-        //         - dyByDx * (discretization_->u(i, j) - discretization_->u(i - 1, j));
-        //     // others
-        //     if (mask_->isAir(i - 1, j + 1)){
-        //         discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j);
-        //         discretization_->v(i - 1, j) = discretization_->v(i, j);
-        //     }
-        //     if (mask_->isAir(i + 1, j + 1)){
-        //         discretization_->u(i, j + 1) = discretization_->u(i, j);
-        //         discretization_->v(i + 1, j) = discretization_->v(i, j);
-        //     }
-
-        //     // Tangential stress condition
-        //     if (mask_->isAir(i - 1, j - 1)){
-        //         discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1)
-        //             + dxByDy * (discretization_->u(i - 1, j) - discretization_->u(i - 1, j - 1));
-        //     }
-        //     if (mask_->isAir(i + 1, j - 1)){
-        //         discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1)
-        //             - dxByDy * (discretization_->u(i, j) - discretization_->u(i, j - 1));
-        //     }
-            break;
-        case Mask::FLUID_SINGLE_RIGHT:
-        //     // v
-        //     discretization_->v(i, j) = discretization_->v(i, j) + dt * settings_.g[1];
-        //     discretization_->v(i, j - 1) = discretization_->v(i, j - 1) + dt * settings_.g[1];
-
-        //     // u
-        //     discretization_->u(i, j) = discretization_->u(i - 1, j)
-        //         - dxByDy * (discretization_->v(i, j) - discretization_->v(i, j - 1));
-        //     // others
-        //     if (mask_->isAir(i + 1, j + 1)){
-        //         discretization_->u(i, j + 1) = discretization_->u(i, j);
-        //         discretization_->v(i + 1, j) = discretization_->v(i, j);
-        //     }
-        //     if (mask_->isAir(i + 1, j - 1)){
-        //         discretization_->u(i + 1, j - 1) = discretization_->u(i, j);
-        //         discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1);
-        //     }
-
-        //     // Tangential stress condition
-        //     if (mask_->isAir(i - 1, j - 1)){
-        //         discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j)
-        //             + dyByDx * (discretization_->v(i, j - 1) - discretization_->v(i - 1, j - 1));
-        //     }
-        //     if (mask_->isAir(i - 1, j + 1)){
-        //         discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j)
-        //             - dyByDx * (discretization_->v(i, j) - discretization_->v(i - 1, j));
-        //     }
-
-            break;
-        case Mask::FLUID_SINGLE_BOTTOM:
-        //     // u
-        //     discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];
-        //     discretization_->u(i - 1, j) = discretization_->u(i - 1, j) + dt * settings_.g[0];
-        //     // v
-        //     discretization_->v(i, j - 1) = discretization_->v(i, j)
-        //         + dyByDx * (discretization_->u(i, j) - discretization_->u(i - 1, j));
-        //     // others
-        //     if (mask_->isAir(i - 1, j - 1)){
-        //         discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j);
-        //         discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1);
-        //     }
-        //     if (mask_->isAir(i + 1, j - 1)){
-        //         discretization_->u(i, j - 1) = discretization_->u(i, j);
-        //         discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1);
-        //     }
-            break;
-        case Mask::FLUID_DROPLET:
-        //     // u
-        //     discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];
-        //     discretization_->u(i - 1, j) = discretization_->u(i - 1, j) + dt * settings_.g[0];
-        //     // v
-        //     discretization_->v(i, j) = discretization_->v(i, j) + dt * settings_.g[1];
-        //     discretization_->v(i, j - 1) = discretization_->v(i, j - 1) + dt * settings_.g[1];
-
-        //     // others
-        //     if (mask_->isAir(i - 1, j - 1)){
-        //         discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j);
-        //         discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1);
-        //     }
-        //     if (mask_->isAir(i - 1, j + 1)){
-        //         discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j);
-        //         discretization_->v(i - 1, j) = discretization_->v(i, j);
-        //     }
-        //     if (mask_->isAir(i + 1, j + 1)){
-        //         discretization_->u(i, j + 1) = discretization_->u(i, j);
-        //         discretization_->v(i + 1, j) = discretization_->v(i, j);
-        //     }
-        //     if (mask_->isAir(i + 1, j - 1)){
-        //         discretization_->u(i, j - 1) = discretization_->u(i, j);
-        //         discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1);
-        //     }
-            break;
-        default:
-            std::cout << "ERROR" << (*mask_)(i, j) << "i" << i << " j " << j << std::endl;
-    }
-    }
-}
-
-
-
-void Boundary::setVelocitySurfaceBC(double dt){
-
-    double dxByDy = discretization_->dx() / discretization_->dy();
-    double dyByDx = discretization_->dy() / discretization_->dx();
-    // Should the dt update step happen here? Then per loop only one execution is allowed
-    
-    for (int idx : fluidBoundaryCells_)
-    {
-        int i = idx % mask_->size()[0];
-        int j = idx / mask_->size()[0];
-        
-    // should be solved in the following order:
-    //     from left to right (increasing i)
-    //     from bottom to top (increasing j)
-    
-
-    switch ((*mask_)(i, j)) {
-        case Mask::FLUID_BORDER_LEFT:
-            // u - CONTINUITY
-            discretization_->u(i - 1, j) = discretization_->u(i, j) 
-                + dxByDy * (discretization_->v(i, j) - discretization_->v(i, j - 1));
-
-            // v - TANGENTIAL
-            if (mask_->isAir(i - 1, j - 1)){
-                discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1)
-                    + dxByDy * (discretization_->u(i - 1, j) - discretization_->u(i - 1, j - 1));
-            }
-            break;
-
-        case Mask::FLUID_BORDER_TOP:
-            // v - CONTINUITY
-            discretization_->v(i, j) = discretization_->v(i, j - 1)
-                + dyByDx * (discretization_->u(i, j) - discretization_->u(i - 1, j));
+            // v - ONLY SUBJECT TO GRAVITY -> no update necessary
 
             // u - TANGENTIAL
-            if (mask_->isAir(i - 1, j + 1)){
-                discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j)
-                    - dyByDx * (discretization_->v(i, j) - discretization_->v(i - 1, j));
-            }
-            break;
-        case Mask::FLUID_BORDER_RIGHT:
-            // u - CONTINUITY
-            discretization_->u(i, j) = discretization_->u(i - 1, j)
-                - dxByDy * (discretization_->v(i, j) - discretization_->v(i, j - 1));
-
-            // v - TANGENTIAL
-            if (mask_->isAir(i + 1, j - 1)){
-                discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1)
-                    + dxByDy * (discretization_->u(i, j) - discretization_->u(i, j - 1));
-            }
-            break;
-        case Mask::FLUID_BORDER_BOTTOM:
-            // v - CONTINUITY
-            discretization_->v(i, j - 1) = discretization_->v(i, j)
-                + dyByDx * (discretization_->u(i, j) - discretization_->u(i - 1, j));
-            
-            // u - TANGENTIAL
-            if (mask_->isAir(i - 1, j - 1)){
-                discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j)
-                    + dyByDx * (discretization_->v(i, j - 1) - discretization_->v(i - 1, j - 1));
-            }
-            break;
-        case Mask::FLUID_CORNER_TOP_LEFT:
-            // u & v - CONTINUITY (CHAIN)
-            discretization_->u(i - 1, j) = discretization_->u(i, j);
-            discretization_->v(i, j) = discretization_->v(i, j - 1);
-            if (mask_->isAir(i - 1, j + 1)) {
-                discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j); // chain, u(i, j) is equvivalent
-                discretization_->v(i - 1, j) = discretization_->v(i, j);
-            }
-
-            // v - TANGENTIAL
-            if (mask_->isAir(i - 1, j - 1)) {
-            discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1)
-                + dxByDy * (discretization_->u(i - 1, j) - discretization_->u(i - 1, j - 1));
-
-            }
-            break;
-        case Mask::FLUID_CORNER_TOP_RIGHT:
-            // u & v - CONTINUITY (CHAIN)
-            discretization_->u(i, j) = discretization_->u(i - 1, j);
-            discretization_->v(i, j) = discretization_->v(i, j - 1);
-            if (mask_->isAir(i + 1, j + 1)){
-                discretization_->u(i, j + 1) = discretization_->u(i, j);
-                discretization_->v(i + 1, j) = discretization_->v(i, j);
-            }
-
-            // u & v - TANGENTIAL
-            if (mask_->isAir(i - 1, j + 1)) {
-                discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j)
-                    - dyByDx * (discretization_->v(i, j) - discretization_->v(i - 1, j));
-            }
-            if (mask_->isAir(i + 1, j - 1)){
-                discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1)
-                    - dxByDy * (discretization_->u(i, j) - discretization_->u(i, j - 1));
-            }
-            break;
-        case Mask::FLUID_CORNER_BOTTOM_RIGHT:
-            // u & v - CONTINUITY (CHAIN)
-            discretization_->u(i, j) = discretization_->u(i - 1, j);
-            discretization_->v(i, j - 1) = discretization_->v(i, j);
-            if (mask_->isAir(i + 1, j - 1)){
-                discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1);
-                discretization_->u(i, j - 1) = discretization_->u(i, j);
-            } 
-
-            // u - TANGENTIAL
-            if (mask_->isAir(i - 1, j - 1)) {
-                discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j)
-                    + dyByDx * (discretization_->v(i, j - 1) - discretization_->v(i - 1, j - 1));
-            }
-            break;
-        case Mask::FLUID_CORNER_BOTTOM_LEFT:
-            // u & v - CONTINUITY (CHAIN)
-            discretization_->u(i - 1, j) = discretization_->u(i, j);
-            discretization_->v(i, j - 1) = discretization_->v(i, j);
-            if (mask_->isAir(i - 1, j - 1))
-            {
-                discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j);
-                discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1);
-            } 
-            break;
-        case Mask::FLUID_COLUMN_HORIZONTAL:
-            // v
-            discretization_->v(i, j) = discretization_->v(i, j) + dt * settings_.g[1];
-            discretization_->v(i, j - 1) = discretization_->v(i, j - 1) + dt * settings_.g[1];
-            // u
             if (mask_->isAir(i - 1, j + 1)){
                 discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j) 
                     - dyByDx * (discretization_->v(i, j) - discretization_->v(i - 1, j));
@@ -745,10 +551,9 @@ void Boundary::setVelocitySurfaceBC(double dt){
             }
             break;
         case Mask::FLUID_COLUMN_VERTICAL:
-            // u
-            discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];
-            discretization_->u(i - 1, j) = discretization_->u(i - 1, j) + dt * settings_.g[0];
+            // u - ONLY SUBJECT TO GRAVITY -> no update necessary
 
+            // v - TANGENTIAL
             if (mask_->isAir(i - 1, j - 1)){
                 discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1) 
                     + dxByDy * (discretization_->u(i - 1, j) - discretization_->u(i - 1, j - 1));
@@ -759,30 +564,75 @@ void Boundary::setVelocitySurfaceBC(double dt){
             }
             break;
         case Mask::FLUID_SINGLE_LEFT:
-            // v
-            discretization_->v(i, j) = discretization_->v(i, j) + dt * settings_.g[1];
-            discretization_->v(i, j - 1) = discretization_->v(i, j - 1) + dt * settings_.g[1];
-            // u
-            discretization_->u(i - 1, j) = discretization_->u(i, j)
-                + dxByDy * (discretization_->v(i, j) - discretization_->v(i, j - 1));
-            // others
-            if (mask_->isAir(i - 1, j + 1)){
-                discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j);
-                discretization_->v(i - 1, j) = discretization_->v(i, j);
+            // v - ONLY SUBJECT TO GRAVITY -> no update necessary
+
+            // u - CONTINUITY
+            discretization_->u(i, j) = discretization_->u(i - 1, j)
+                - dxByDy * (discretization_->v(i, j) - discretization_->v(i, j - 1));
+            // CHAIN
+            if (mask_->isAir(i + 1, j + 1)){
+                discretization_->u(i, j + 1) = discretization_->u(i, j);
+                discretization_->v(i + 1, j) = discretization_->v(i, j);
             }
+            if (mask_->isAir(i + 1, j - 1)){
+                discretization_->u(i, j - 1) = discretization_->u(i, j);
+                discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1);
+            }
+
+            // u - TANGENTIAL
+            if (mask_->isAir(i - 1, j - 1)){
+                discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j)
+                    + dyByDx * (discretization_->v(i, j - 1) - discretization_->v(i - 1, j - 1));
+            }
+            if (mask_->isAir(i - 1, j + 1)){
+                discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j)
+                    - dyByDx * (discretization_->v(i, j) - discretization_->v(i - 1, j));
+            }
+            break;
+        case Mask::FLUID_SINGLE_TOP:
+            // v - CONTINUITY
+            discretization_->v(i, j - 1) = discretization_->v(i, j)
+                + dyByDx * (discretization_->u(i, j) - discretization_->u(i - 1, j));
+            
+            // CHAIN
             if (mask_->isAir(i - 1, j - 1)){
                 discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j);
                 discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1);
             }
+            if (mask_->isAir(i + 1, j - 1)){
+                discretization_->u(i, j - 1) = discretization_->u(i, j);
+                discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1);
+            }
+
+            // Tangential stress is calculated by TOP cell
             break;
-        case Mask::FLUID_SINGLE_TOP:
-            // u
-            discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];
-            discretization_->u(i - 1, j) = discretization_->u(i - 1, j) + dt * settings_.g[0];
-            // v
+        case Mask::FLUID_SINGLE_RIGHT:
+            // v - ONLY SUBJECT TO GRAVITY -> no update necessary
+
+            // u - CONTINUITY
+            discretization_->u(i - 1, j) = discretization_->u(i, j)
+                + dxByDy * (discretization_->v(i, j) - discretization_->v(i, j - 1));
+            
+            // Chain
+            if (mask_->isAir(i - 1, j - 1)){
+                discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j);
+                discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1);
+            }
+            if (mask_->isAir(i - 1, j + 1)){
+                discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j);
+                discretization_->v(i - 1, j) = discretization_->v(i, j);
+            }
+
+            // Tangential stress is calculated by RIGHT cell
+            break;
+        case Mask::FLUID_SINGLE_BOTTOM:
+            // u - ONLY SUBJECT TO GRAVITY -> no update necessary
+
+            // v - CONTINUITY
             discretization_->v(i, j) = discretization_->v(i, j - 1)
                 - dyByDx * (discretization_->u(i, j) - discretization_->u(i - 1, j));
-            // others
+
+            // CHAIN 
             if (mask_->isAir(i - 1, j + 1)){
                 discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j);
                 discretization_->v(i - 1, j) = discretization_->v(i, j);
@@ -792,7 +642,7 @@ void Boundary::setVelocitySurfaceBC(double dt){
                 discretization_->v(i + 1, j) = discretization_->v(i, j);
             }
 
-            // Tangential stress condition
+            // v - TANGENTIAL
             if (mask_->isAir(i - 1, j - 1)){
                 discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1)
                     + dxByDy * (discretization_->u(i - 1, j) - discretization_->u(i - 1, j - 1));
@@ -802,61 +652,8 @@ void Boundary::setVelocitySurfaceBC(double dt){
                     - dxByDy * (discretization_->u(i, j) - discretization_->u(i, j - 1));
             }
             break;
-        case Mask::FLUID_SINGLE_RIGHT:
-            // v
-            discretization_->v(i, j) = discretization_->v(i, j) + dt * settings_.g[1];
-            discretization_->v(i, j - 1) = discretization_->v(i, j - 1) + dt * settings_.g[1];
-
-            // u
-            discretization_->u(i, j) = discretization_->u(i - 1, j)
-                - dxByDy * (discretization_->v(i, j) - discretization_->v(i, j - 1));
-            // others
-            if (mask_->isAir(i + 1, j + 1)){
-                discretization_->u(i, j + 1) = discretization_->u(i, j);
-                discretization_->v(i + 1, j) = discretization_->v(i, j);
-            }
-            if (mask_->isAir(i + 1, j - 1)){
-                discretization_->u(i + 1, j - 1) = discretization_->u(i, j);
-                discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1);
-            }
-
-            // Tangential stress condition
-            if (mask_->isAir(i - 1, j - 1)){
-                discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j)
-                    + dyByDx * (discretization_->v(i, j - 1) - discretization_->v(i - 1, j - 1));
-            }
-            if (mask_->isAir(i - 1, j + 1)){
-                discretization_->u(i - 1, j + 1) = discretization_->u(i - 1, j)
-                    - dyByDx * (discretization_->v(i, j) - discretization_->v(i - 1, j));
-            }
-
-            break;
-        case Mask::FLUID_SINGLE_BOTTOM:
-            // u
-            discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];
-            discretization_->u(i - 1, j) = discretization_->u(i - 1, j) + dt * settings_.g[0];
-            // v
-            discretization_->v(i, j - 1) = discretization_->v(i, j)
-                + dyByDx * (discretization_->u(i, j) - discretization_->u(i - 1, j));
-            // others
-            if (mask_->isAir(i - 1, j - 1)){
-                discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j);
-                discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1);
-            }
-            if (mask_->isAir(i + 1, j - 1)){
-                discretization_->u(i, j - 1) = discretization_->u(i, j);
-                discretization_->v(i + 1, j - 1) = discretization_->v(i, j - 1);
-            }
-            break;
         case Mask::FLUID_DROPLET:
-            // u
-            discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];
-            discretization_->u(i - 1, j) = discretization_->u(i - 1, j) + dt * settings_.g[0];
-            // v
-            discretization_->v(i, j) = discretization_->v(i, j) + dt * settings_.g[1];
-            discretization_->v(i, j - 1) = discretization_->v(i, j - 1) + dt * settings_.g[1];
-
-            // others
+            // CHAIN
             if (mask_->isAir(i - 1, j - 1)){
                 discretization_->u(i - 1, j - 1) = discretization_->u(i - 1, j);
                 discretization_->v(i - 1, j - 1) = discretization_->v(i, j - 1);
@@ -875,13 +672,11 @@ void Boundary::setVelocitySurfaceBC(double dt){
             }
             break;
         default:
-            std::cout << "ERROR" << std::endl;
-            break;
+            std::cout << "ERROR" << (*mask_)(i, j) << "i" << i << " j " << j << std::endl;
     }
-    
-
     }
 }
+
 
 
 

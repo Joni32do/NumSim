@@ -33,7 +33,9 @@ class Boundary
         void setVelocityDomainBC();
         void setVelocityObstacleBC();
         void setVelocitySurfaceBC();
-        void setVelocitySurfaceBC(double dt);
+
+        void updateVelocitySurfaceBC(double dt);
+        void setAirCellsZero();
 
 
         std::shared_ptr<Discretization> discretization_;
