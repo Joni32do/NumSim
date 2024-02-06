@@ -1,6 +1,6 @@
 #include "computation.h"
-#include "surface/fluid_tracer.h"
 
+#include "surface/fluid_tracer.h"
 #include <unistd.h>
 
 void Computation::initialize(int argc, char *argv[])

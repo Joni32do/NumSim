@@ -1,5 +1,7 @@
 #include "array2D.h"
 
+#include <iostream>
+
 Array2D::Array2D(std::array<int, 2> size) : size_(size)
 {
   assert(size[0] > 0 && size[1] > 0);
@@ -23,6 +25,10 @@ double Array2D::operator()(int i, int j) const
   const int index = j * size_[0] + i;
 
   // Assert that indices are inside size of array
+    if (i < 0 || i >= size_[0])
+  {
+    std::cout << "i: " << i << " size: " << size_[0] << std::endl;
+  }
   assert(0 <= i && i < size_[0]);
   assert(0 <= j && j < size_[1]);
   assert(j * size_[0] + i < (int)data_.size());

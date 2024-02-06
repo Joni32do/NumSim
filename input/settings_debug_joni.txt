@@ -5,9 +5,9 @@
 physicalSizeX = 2.0   # physical size of the domain
 physicalSizeY = 2.0
 endTime = 10.0        # duration of the simulation
-re = 1000             # Reynolds number
-gX = -1.0              # external forces, set to (gX,gY) = (0,-9.81) to account for gravity
-gY = 0
+re = 100             # Reynolds number
+gX = 0.0              # external forces, set to (gX,gY) = (0,-9.81) to account for gravity
+gY = -10.0
 
 
 # Boundary Conditions Type
@@ -49,7 +49,7 @@ obstacleDimensionY = 0.5
 # Create domain from PNGBitmap
 
 createDomainfromBitmap = true
-pathToBitmap = /home/jonat/Documents/02_Workspace/05_NumSim_misc/Project/Bitmap/drop2.png
+pathToBitmap = /home/jonat/Documents/02_Workspace/05_NumSim_misc/Project/Bitmap/drop3.png
 
 # Discretization parameters
 nCellsX = 20          # number of cells in x and y direction
@@ -58,7 +58,7 @@ nCellsY = 20
 useDonorCell = true   # if donor cell discretization should be used, possible values: true false
 alpha = 0.5           # factor for donor-cell scheme, 0 is equivalent to central differences
 tau = 0.5             # safety factor for time step width
-maximumDt = 0.01       # maximum values for time step width
+maximumDt = 0.005       # maximum values for time step width
 
 # Solver parameters
 pressureSolver = SOR  # which pressure solver to use, possible values: GaussSeidel SOR CG
