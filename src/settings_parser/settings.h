@@ -66,6 +66,8 @@ struct Settings
    * `threshold` -> aims at a constant amount of fluid cells 
    */
   std::string fluidTracerMethod = "single";
+  // bool useParticleSource = false; //!< Enables virtual particles source
+  // std::array<double, 2> particleSource = {0.5, 0.5}; //!< Source of virtual particles
 
   
 

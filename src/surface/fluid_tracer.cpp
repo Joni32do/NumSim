@@ -124,9 +124,17 @@ void FluidTracer::moveParticles(double dt) {
         std::array<int, 2> idx = cellOfParticle(i);
         std::array<int, 2> newIdx = updateParticle(i, idx, dt, vel);
 
-        currentParticlesPerCell_[newIdx[0] + newIdx[1] * mask_->size()[0]] += 1;
         // TODO: uncomment this if threshold instead of singleParticle
-        (*mask_)(newIdx[0], newIdx[1]) = Mask::FLUID;
+        if (mask_->isObstacle(newIdx[0], newIdx[1])){
+            std::cout<< "???????????????????ERROR???????????????????" << std::endl;
+            // remove from domain
+            x_[i] = 0.5;
+            y_[i] = 0.5;
+
+        } else { 
+            currentParticlesPerCell_[newIdx[0] + newIdx[1] * mask_->size()[0]] += 1;
+            (*mask_)(newIdx[0], newIdx[1]) = Mask::FLUID;
+        }
         
     }
     // int threshold = getThresholdParticlesFluidCell();

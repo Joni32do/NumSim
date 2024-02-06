@@ -81,10 +81,9 @@ void Computation::runSimulation()
         // fluidTracer_->createParticles(0.1, 1.4);
 
 #ifndef NDEBUG
-        std::cout << settings_.useFluidTracer << settings_.particlePerCell << settings_.fluidTracerMethod << std::endl;
         // mask_->printMask();
-        usleep(1000000);
-        std::cout << "\033[2J\033[1;1H";
+        // usleep(1000000);
+        // std::cout << "\033[2J\033[1;1H";
 #endif
 
         computeTimeStepWidth(currentTime);
@@ -93,14 +92,16 @@ void Computation::runSimulation()
         computePressure();
         computeVelocities();
         
-        boundary_->setVelocityBoundaryValues(dt_);
-        fluidTracer_->moveParticles(dt_);
-        // TODO: make mask update explicit
-
+        if (settings_.useFluidTracer)
+        {
+            // if (settings_.useParticleSource) {
+            //     fluidTracer_->createParticles(settings_.particleSource[0], settings_.particleSource[1]);
+            // }
+            boundary_->setVelocityBoundaryValues(dt_);
+            fluidTracer_->moveParticles(dt_);
+        }
         boundary_->updateBoundary();
-        // Update velocity without new timestep
         boundary_->setVelocityBoundaryValues();
-        // surface pressure is fix for one timestep
         boundary_->setPressureSurfaceBC();
 
 

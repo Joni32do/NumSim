@@ -147,8 +147,9 @@ void Boundary::setPressureSurfaceBC()
             discretization_->p(i, j) = -1/(2 * settings_.re) * (
                 1/(2*dy) * (discretization_->u(i, j) + discretization_->u(i - 1, j) 
                     -discretization_->u(i, j - 1) - discretization_->u(i - 1, j - 1))
-              + 1/(2*dx) * (discretization_->v(i, j) + discretization_->v(i, j - 1) 
-                    -discretization_->v(i - 1, j) - discretization_->v(i - 1, j - 1))
+              + 1/(2*dx) * (discretization_->v(i + 1, j) + discretization_->v(i + 1, j - 1) 
+                    -discretization_->v(i, j) - discretization_->v(i, j - 1))
+                
             );
             break;
         case Mask::FLUID_CORNER_TOP_RIGHT:
@@ -161,18 +162,18 @@ void Boundary::setPressureSurfaceBC()
             break;
         case Mask::FLUID_CORNER_BOTTOM_RIGHT:
             discretization_->p(i, j) =-1/(2 * settings_.re) * (
-                1/(2*dy) * (discretization_->u(i, j) + discretization_->u(i - 1, j) 
-                    -discretization_->u(i, j - 1) - discretization_->u(i - 1, j - 1))
+                1/(2*dy) * (discretization_->u(i, j + 1) + discretization_->u(i - 1, j + 1) 
+                    -discretization_->u(i, j) - discretization_->u(i - 1, j))
               + 1/(2*dx) * (discretization_->v(i, j) + discretization_->v(i, j - 1) 
                     -discretization_->v(i - 1, j) - discretization_->v(i - 1, j - 1))
             );
             break;
         case Mask::FLUID_CORNER_BOTTOM_LEFT:
             discretization_->p(i, j) = 1/(2 * settings_.re) * (
-                1/(2*dy) * (discretization_->u(i, j) + discretization_->u(i - 1, j) 
-                    -discretization_->u(i, j - 1) - discretization_->u(i - 1, j - 1))
-              + 1/(2*dx) * (discretization_->v(i, j) + discretization_->v(i, j - 1) 
-                    -discretization_->v(i - 1, j) - discretization_->v(i - 1, j - 1))
+                1/(2*dy) * (discretization_->u(i, j + 1) + discretization_->u(i - 1, j + 1) 
+                    -discretization_->u(i, j) - discretization_->u(i - 1, j))
+              + 1/(2*dx) * (discretization_->v(i + 1, j) + discretization_->v(i + 1, j - 1) 
+                    -discretization_->v(i, j) - discretization_->v(i, j - 1))
             );
             break;
         case Mask::FLUID_COLUMN_VERTICAL:
