@@ -100,9 +100,9 @@ void Computation::runSimulation()
             boundary_->setVelocityBoundaryValues(dt_);
             fluidTracer_->moveParticles(dt_);
         }
-        boundary_->updateBoundary();
+        //boundary_->updateBoundary();
         boundary_->setVelocityBoundaryValues();
-        boundary_->setPressureSurfaceBC();
+        //boundary_->setPressureSurfaceBC();
 
 
 
@@ -110,9 +110,10 @@ void Computation::runSimulation()
         if (currentTime > printTime) {
             outputWriterParaview_->writeFile(currentTime);
             printTime += printInterval;
-            std::cout << currentTime << " -> write file, took steps: " << stepsBetweenPrints << std::endl;
+            // std::cout << currentTime << " -> write file, took steps: " << stepsBetweenPrints << std::endl;
             stepsBetweenPrints = 0;
         }
+
         stepsBetweenPrints++;
 
 #ifndef NDEBUG

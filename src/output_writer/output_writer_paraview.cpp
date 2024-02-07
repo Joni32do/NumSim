@@ -76,7 +76,10 @@ void OutputWriterParaview::writeFile(double currentTime)
   int index_ = 0;
   for (int j = 2; j < n_cells_y + 2; j++) {
     for (int i = 2; i < n_cells_x + 2; i++, index_++) {
-      arrayParticles->SetValue(index_, fluidTracer_->getNumberOfParticles(i/2, j/2));
+      if (fluidTracer_.get() == nullptr)
+        arrayParticles->SetValue(index_, 0.0);
+      else 
+        arrayParticles->SetValue(index_, fluidTracer_->getNumberOfParticles(i/2, j/2));
     }
   }
 

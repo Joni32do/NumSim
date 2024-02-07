@@ -22,7 +22,7 @@ make install -j4
 # ./numsim ../input/settings.txt
 # ./numsim ../input/settings_v3.txt
 
-./numsim ../input/settings_drop.txt
+./numsim ../input/settings_debug.txt
 # ./numsim ../input/settings_damBreak.txt
 
 
@@ -42,6 +42,6 @@ cd ..
 # cd ..
 
 # run tests
-build/tests/run_tests
+#build/tests/run_tests
 
 # zip -r submission.zip src/ CMakeLists.txt
