@@ -97,6 +97,7 @@ std::array<double, 2> FluidTracer::getParticlePosition(int i) const {
 int FluidTracer::getThresholdParticlesFluidCell() {
     std::vector<int> copy = currentParticlesPerCell_;
     std::sort(copy.begin(), copy.end(), std::greater<int>());
+
     if (numFluidCells_ > copy.size()){
         std::cout << " WARNING, NO FLUID CELLS" << std::endl;
         std::cout << numFluidCells_ << " "  << std::endl;
@@ -122,14 +123,15 @@ void FluidTracer::moveParticles(double dt) {
         std::array<double, 2> vel = {discretization_->u().interpolateAt(x_[i], y_[i]),
                                      discretization_->v().interpolateAt(x_[i], y_[i])};
         std::array<int, 2> idx = cellOfParticle(i);
+
         std::array<int, 2> newIdx = updateParticle(i, idx, dt, vel);
 
         // TODO: uncomment this if threshold instead of singleParticle
         if (mask_->isObstacle(newIdx[0], newIdx[1])){
-            std::cout<< "???????????????????ERROR???????????????????" << std::endl;
+            std::cout<< "CFL Violated" << std::endl;
             // remove from domain
-            x_[i] = 0.5;
-            y_[i] = 0.5;
+            x_[i] = 0;
+            y_[i] = 0;
 
         } else { 
             currentParticlesPerCell_[newIdx[0] + newIdx[1] * mask_->size()[0]] += 1;
@@ -147,11 +149,26 @@ void FluidTracer::moveParticles(double dt) {
     //     }
     // }
     // std::cout<< "Threshold: " << threshold << std::endl;
+    
+    resetVelocityInAirCells();
+    
     // Update BC in mask
     mask_->setFluidBC();
 }
 
+void FluidTracer::resetVelocityInAirCells(){
+    for (int i = 1; i < mask_->size()[0]-1; i++){
+        for (int j = 1; j < mask_->size()[1]-1; j++){
+            if (mask_->isAir(i, j) && mask_->isAir(i + 1, j)){
+                discretization_->u(i, j) = 0;
+            }
+            if (mask_->isAir(i, j) && mask_->isAir(i, j + 1)){
+                discretization_->v(i, j) = 0;
+            }
+        }
+    }
 
+}
 
 
 std::array<int, 2> FluidTracer::updateParticle(int i, std::array<int, 2> idx, double dt, std::array<double,2> vel) {

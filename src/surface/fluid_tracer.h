@@ -87,7 +87,8 @@ class FluidTracer {
 
         // Helper for move Particles
         int getThresholdParticlesFluidCell();
-        std::array<int, 2> updateParticle(int i, std::array<int, 2>, double dt, std::array<double,2> vel);
+        std::array<int, 2> updateParticle(int i, std::array<int, 2> idx, double dt, std::array<double,2> vel);
+        void resetVelocityInAirCells();
 
 
         int numParticles_;

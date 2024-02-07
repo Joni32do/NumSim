@@ -66,7 +66,7 @@ omega = 1.6           # overrelaxation factor, only for SOR solver
 epsilon = 1e-5        # tolerance for 2-norm of residual
 maximumNumberOfIterations = 1e5    # maximum number of iterations in the solver
 
-# Particle Tracker
+# Fluid Tracker
 useFluidTracer = true
 particlePerCell = 100
 fluidTracerMethod = single
