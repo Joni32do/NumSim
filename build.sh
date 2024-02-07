@@ -22,7 +22,7 @@ make install -j4
 # ./numsim ../input/settings.txt
 # ./numsim ../input/settings_v3.txt
 
-./numsim ../input/settings_debug.txt
+./numsim ../input/settings_aerodynamic_obstacle.txt
 # ./numsim ../input/settings_damBreak.txt
 
 

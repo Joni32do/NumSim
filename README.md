@@ -83,8 +83,8 @@ pixels you will essentially simulate an empty space, so always add colored pixel
 for fluid as well.
 
 Safe the bitmap as a png, specify the path to that file in the settings.txt file 
-and set **createDomainfromBitmap** to true. In the bitmap folder you can find 
-example files that you can simulate as well
+and set **createDomainfromBitmap** to true. In the input/ bitmap folder you can find 
+example files that you can simulate. 
 
 
 ## Display simulation results in ParaView

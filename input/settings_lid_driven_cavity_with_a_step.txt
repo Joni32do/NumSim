@@ -4,24 +4,56 @@
 # Problem description
 physicalSizeX = 2.0   # physical size of the domain
 physicalSizeY = 2.0
-endTime = 10.0        # duration of the simulation
-re = 100             # Reynolds number
+endTime = 20.0        # duration of the simulation
+re = 1000             # Reynolds number
 gX = 0.0              # external forces, set to (gX,gY) = (0,-9.81) to account for gravity
 gY = 0.0
 
-# Dirichlet boundary conditions
-dirichletBottomX = 0
-dirichletBottomY = 0
-dirichletTopX    = 1
-dirichletTopY    = 0
-dirichletLeftX   = 0
-dirichletLeftY   = 0
-dirichletRightX  = 0
-dirichletRightY  = 0
+
+# Boundary Conditions Type
+
+BCTop = NoSlip
+BCRight = NoSlip
+BCBottom = NoSlip
+BCLeft = NoSlip
+
+
+# NoSlip boundary conditions
+
+NoSlipVelTopX    = 1
+NoSlipVelTopY    = 0
+NoSlipVelRightX  = 0
+NoSlipVelRightY  = 0
+NoSlipVelBottomX = 0
+NoSlipVelBottomY = 0
+NoSlipVelLeftX   = 0
+NoSlipVelLeftY   = 0
+
+
+# Pressure BoundaryConditions 
+
+PressureTop    = 0
+PressureRight  = 100.0
+PressureBottom = 0
+PressureLeft   = 200.0
+
+# Create Rectangular object in domain 
+
+createRectangularObject = true
+
+obstaclePositionX = 1.5
+obstaclePositionY = 1.5
+obstacleDimensionX = 0.5
+obstacleDimensionY = 0.5
+
+# Create domain from PNGBitmap
+
+createDomainfromBitmap = false
+pathToBitmap = /home/lukas/Documents/SimTech/Semester2/NumSim/Submission4/Bitmaps/wing_large.png
 
 # Discretization parameters
-nCellsX = 20          # number of cells in x and y direction
-nCellsY = 20
+nCellsX = 40          # number of cells in x and y direction
+nCellsY = 40
 useDonorCell = true   # if donor cell discretization should be used, possible values: true false
 alpha = 0.5           # factor for donor-cell scheme, 0 is equivalent to central differences
 tau = 0.5             # safety factor for time step width
