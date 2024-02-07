@@ -9,7 +9,7 @@ Project for the lecture Numerische Simulation at the University of Stuttgart. De
 
 
 ## Run the simulation
-We recommend to run the simulation using the provided bash script `build.sh`. In that file enter the path of the settings file you would like to use. You can uncomment the doxygen part to build the documentation. Tests can be executed by uncommenting the run_test line
+We recommend to run the simulation using the provided bash script `build.sh`. In that file enter the path of the settings file you would like to use. You can uncomment the **doxygen** part to build the documentation. **Tests** using gtest can be executed by uncommenting the run_test line
 
 ## Adjust the settings file
 For the user there is the settings.txt file that can be adjusted to 
