@@ -18,10 +18,12 @@ fi
 make install -j4
 
 # ./numsim ../input/settings_debug_joni.txt
-./numsim ../input/settings.txt
-./numsim ../input/settings_v3.txt
+
+# ./numsim ../input/settings.txt
+# ./numsim ../input/settings_v3.txt
+
+./numsim ../input/settings_drop.txt
 # ./numsim ../input/settings_damBreak.txt
-# ./numsim ../input/settings_drop.txt
 
 
 

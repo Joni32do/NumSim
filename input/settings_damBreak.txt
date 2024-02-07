@@ -49,7 +49,7 @@ obstacleDimensionY = 0.32
 # Create domain from PNGBitmap 12 x 23
 
 createDomainfromBitmap = true
-pathToBitmap = ../input/damBreak.png
+pathToBitmap = ../input/bitmap/damBreak.png
 
 # Discretization parameters
 nCellsX = 100          # number of cells in x and y direction
