@@ -126,7 +126,7 @@ void OutputWriterParaview::writeFile(double currentTime)
         if (mask_->isObstacle(i_left, j_left) || mask_->isObstacle(i_left + 1, j_left)){
           arrayMask->SetValue(index, OBSTACLE);
         }
-        else if (mask_->isAir(i_left, j_left) || mask_->isAir(i_left + 1, j_left)){
+        else if (mask_->isAir(i_left, j_left) && mask_->isAir(i_left + 1, j_left)){
           arrayMask->SetValue(index, AIR);
         } else {
           arrayMask->SetValue(index, FLUID);

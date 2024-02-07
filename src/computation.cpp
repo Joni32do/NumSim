@@ -87,8 +87,8 @@ void Computation::runSimulation()
         computeVelocities();
         
         applyBoundaryValues();
-        // fluidTracer_->moveParticles(dt_);
-        // applyBoundaryValues();
+        //fluidTracer_->moveParticles(dt_);
+        applyBoundaryValues();
 
 
 

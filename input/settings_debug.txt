@@ -4,8 +4,8 @@
 # Problem description
 physicalSizeX = 2.0   # physical size of the domain
 physicalSizeY = 2.0
-endTime = 10.0        # duration of the simulation
-re = 1000             # Reynolds number
+endTime = 15.0        # duration of the simulation
+re = 10000             # Reynolds number
 gX = 0.0              # external forces, set to (gX,gY) = (0,-9.81) to account for gravity
 gY = 0.0
 
@@ -35,7 +35,7 @@ NoSlipVelLeftY   = 0
 PressureTop    = 0
 PressureRight  = 0.0
 PressureBottom = 0
-PressureLeft   = 100.0
+PressureLeft   = 10.0
 
 # Create Rectangular object in domain 
 
@@ -49,7 +49,7 @@ obstacleDimensionY = 0.5
 # Create domain from PNGBitmap
 
 createDomainfromBitmap = true
-pathToBitmap = /home/lukas/Documents/SimTech/Semester2/NumSim/Submission4/Bitmaps/air_water_obstacle.png
+pathToBitmap = /home/lukas/Documents/SimTech/Semester2/NumSim/Submission4/Bitmaps/wing.png
 
 # Discretization parameters
 nCellsX = 20          # number of cells in x and y direction
