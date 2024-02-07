@@ -17,13 +17,11 @@ public:
     /**
      * @brief constructor.
      *
-     * @param size size of array in x and y direction
+     * @param setting settings containing necessary user input
      */
     Mask(Settings settings);
 
-    // TODO: it is weird but if we would use `char` instead of int, we would use less memory
-
-    enum CellType
+    enum CellType //!< enums used to encode cell type and boundary condition
     {
         FLUID_DROPLET = 0,
 
@@ -104,7 +102,7 @@ public:
     void resetMask();
 
     // ********************************************************
-    // R E Q U E S T S 
+    // R E Q U E S T S
 
     /**
      * @brief Cell at (i,j) is fluid or not
@@ -124,7 +122,6 @@ public:
      */
     bool isObstacle(int i, int j) const;
 
-
     /**
      * @brief Cell at (i,j) is a air cell or not
      *
@@ -134,13 +131,44 @@ public:
      * If i and j are out of bond returns false
      */
     bool isAir(int i, int j) const;
+
+    /**
+     * @brief Cell at (i,j) is a inner fluid cell or not
+     *
+     * @param i index in x direction
+     * @param j index in y direction
+     *
+     * Checks if fluid is sourrounded by only fluid cells
+     * If i and j are out of bond returns false
+     */
     bool isInnerFluid(int i, int j) const;
 
-
+    /**
+     * @brief Cecks if cell at index is domain boundary
+     *
+     * @param i index in x direction
+     * @param j index in y direction
+     *
+     */
     bool isDomainBoundary(int i, int j) const;
-    bool isObstacleBoundary(int i, int j) const;
-    bool isFluidBoundary(int i, int j) const;
 
+    /**
+     * @brief Cecks if cell at index is obstacle boundary
+     *
+     * @param i index in x direction
+     * @param j index in y direction
+     *
+     */
+    bool isObstacleBoundary(int i, int j) const;
+
+    /**
+     * @brief Cecks if cell at index is fluid boundary
+     *
+     * @param i index in x direction
+     * @param j index in y direction
+     *
+     */
+    bool isFluidBoundary(int i, int j) const;
 
     /**
      * @brief number of fluid cells
@@ -150,26 +178,46 @@ public:
      */
     int getNumberOfFluidCells() const;
 
-    // For initialization
+    /**
+     * @brief creates rectangulat objecct inside domain
+     *
+     * location and size are specified in settings file by user
+     */
     void makeRectangularObstacle();
+
+    /**
+     * @brief creates mask by reading in bitmap
+     *
+     * path to bitmap saved as png is specified in settings file by user
+     */
     void createMaskFromPNGBitMap();
 
-
-
-
-    // Sets Enums for Boundary Types from type FLUID, AIR, OBSTACLE, DOMAIN
-    //  - uses `settings` and neighbours
+    /**
+     * @brief sets enums for all cells that belong to domain boundary
+     *
+     * type of domain boundary condition is specified in settings file by user
+     */
     void setDomainBC();
+
+    /**
+     * @brief sets enums for all cells that belong to an obstacle
+     */
     void setObstacleBC();
+
+    /**
+     * @brief sets enums for all fluid cells that belong are located at a surface
+     */
     void setFluidBC();
 
+    /**
+     * @brief print mask enums to terminal
+     */
     void printMask() const;
 
-
 protected:
-    std::array<int, 2> size_; //!< size of array in x and y direction
-    std::vector<int> data_;         //!< storage array values, in row-major order
-    std::vector<int> boundary_list; //!< stores the indices of the boundary cells
-    Settings settings_;
-    int forbiddenObstacleFluidCombinations[7] = {105,107,110,111,113,114,115};
+    std::array<int, 2> size_;                                                        //!< size of array in x and y direction
+    std::vector<int> data_;                                                          //!< storage array values, in row-major order
+    std::vector<int> boundary_list;                                                  //!< stores the indices of the boundary cells
+    Settings settings_;                                                              //!< settings entity
+    int forbiddenObstacleFluidCombinations[7] = {105, 107, 110, 111, 113, 114, 115}; //!< enums that singnal forbidden obstacle - fluid cell combinations
 };

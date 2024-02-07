@@ -43,6 +43,6 @@ public:
 
 private:
   vtkSmartPointer<vtkXMLImageDataWriter> vtkWriter_; //!< vtk writer to write ImageData
-  std::shared_ptr<Mask> mask_;
-  std::shared_ptr<FluidTracer> fluidTracer_;
+  std::shared_ptr<Mask> mask_;                       //!< mask used to display different cell types in ParaView
+  std::shared_ptr<FluidTracer> fluidTracer_;         //!< fluid tracer used to display fluid particles in ParaView
 };
