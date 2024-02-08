@@ -1,0 +1,105 @@
+\doxysection{boundary.\+h}
+\hypertarget{boundary_8h_source}{}\label{boundary_8h_source}\index{/home/jonat/Documents/01\_Studium/NumSim/src/boundary/boundary.h@{/home/jonat/Documents/01\_Studium/NumSim/src/boundary/boundary.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}mask.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}../discretization/discretization.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}../settings\_parser/settings.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00008\ }
+
+
+
+
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classBoundary}{Boundary}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+
+
+
+
+
+
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classBoundary_a4c78a28ad0839810f15229382f642cf1}{Boundary}}(std::shared\_ptr<Mask>\ mask,\ std::shared\_ptr<Discretization>\ discretization,\ \mbox{\hyperlink{structSettings}{Settings}}\ settings);}
+\DoxyCodeLine{00025\ }
+
+
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classBoundary_a77c90b2a43220ce9796d098158e4376d}{setPressureBoundaryValues}}();}
+\DoxyCodeLine{00030\ }
+
+
+
+
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classBoundary_ac603742c37221bd82cbb545b6cdbe6cb}{setPressureSurfaceBC}}();}
+\DoxyCodeLine{00037\ }
+
+
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classBoundary_ab7e15ee44237de051ff8347f2f9c770b}{setVelocityBoundaryValues}}();}
+\DoxyCodeLine{00042\ }
+
+
+
+
+
+
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classBoundary_ab7e15ee44237de051ff8347f2f9c770b}{setVelocityBoundaryValues}}(\textcolor{keywordtype}{double}\ dt);}
+\DoxyCodeLine{00051\ }
+
+
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classBoundary_ac76b887d65491d38c093ca50333697a9}{doCalculateF}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00056\ }
+
+
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classBoundary_aacf325c02e71925b7847d7189282b5c1}{doCalculateG}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00061\ }
+
+
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classBoundary_a9910a68c5dec5845ef4cdde98e680155}{updateBoundary}}();}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ std::shared\_ptr<Mask>\ \mbox{\hyperlink{classBoundary_a25d33b12fbdf312cf319713ff88b3d38}{mask\_}};\ }
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{private}:}
+
+
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ createBoundaryCellsLists();}
+\DoxyCodeLine{00074\ }
+
+
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{void}\ setPressureDomainBC();}
+\DoxyCodeLine{00079\ }
+
+
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ setPressureObstacleBC();}
+\DoxyCodeLine{00084\ }
+
+
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{void}\ setVelocityDomainBC();}
+\DoxyCodeLine{00089\ }
+
+
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ setVelocityObstacleBC();}
+\DoxyCodeLine{00094\ }
+
+
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{void}\ setVelocitySurfaceBC();}
+\DoxyCodeLine{00099\ }
+
+
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{void}\ updateVelocitySurfaceBC(\textcolor{keywordtype}{double}\ dt);}
+\DoxyCodeLine{00104\ }
+
+
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{void}\ setAirCellsZero();}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ std::shared\_ptr<Discretization>\ discretization\_;\ }
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{structSettings}{Settings}}\ settings\_;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ std::vector<int>\ domainBoundaryCells\_;\ \ \ }
+\DoxyCodeLine{00114\ \ \ \ \ std::vector<int>\ obstacleBoundaryCells\_;\ }
+\DoxyCodeLine{00115\ \ \ \ \ std::vector<int>\ fluidBoundaryCells\_;\ \ \ \ }
+\DoxyCodeLine{00116\ \};}
+
+\end{DoxyCode}

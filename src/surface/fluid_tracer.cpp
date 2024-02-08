@@ -117,6 +117,8 @@ void FluidTracer::moveParticles(double dt) {
     // initializeHomogenousParticleDistribution();
     // Reset
     mask_->resetMask();
+    std::vector<int> oldParticlesPerCell;
+    oldParticlesPerCell = currentParticlesPerCell_; 
     std::fill(currentParticlesPerCell_.begin(), currentParticlesPerCell_.end(), 0);
 
     for (int i = 0; i < numParticles_; i++) {
@@ -130,7 +132,6 @@ void FluidTracer::moveParticles(double dt) {
         std::array<int, 2> newIdx = cellOfParticle(i);
 
 
-        // TODO: uncomment this if threshold instead of singleParticle
         if (mask_->isObstacle(newIdx[0], newIdx[1])){
             std::cout<< "CFL Violated" << std::endl;
             // remove from domain
@@ -141,25 +142,51 @@ void FluidTracer::moveParticles(double dt) {
             currentParticlesPerCell_[newIdx[0] + newIdx[1] * mask_->size()[0]] += 1;
             (*mask_)(newIdx[0], newIdx[1]) = Mask::FLUID;
         }
-        
     }
-    // int threshold = getThresholdParticlesFluidCell();
+    int threshold = 0; //getThresholdParticlesFluidCell();
     
-    // for (int i = 0; i < mask_->size()[0]; i++){
-    //     for (int j = 0; j < mask_->size()[1]; j++){
-    //         if (currentParticlesPerCell_[i + j * mask_->size()[0]] >= threshold){
-    //             (*mask_)(i, j) = Mask::FLUID;
-    //         }
-    //     }
-    // }
+    for (int i = 0; i < mask_->size()[0]; i++){
+        for (int j = 0; j < mask_->size()[1]; j++){
+            if (currentParticlesPerCell_[i + j * mask_->size()[0]] > threshold){
+                (*mask_)(i, j) = Mask::FLUID;
+            }
+        }
+    }
     // std::cout<< "Threshold: " << threshold << std::endl;
     
     resetVelocityInAirCells();
     
     // Update BC in mask
     mask_->setFluidBC();
+
+
+    for (int i = 0; i < mask_->size()[0]; i++){
+        for (int j = 0; j < mask_->size()[1]; j++){
+            
+            if (currentParticlesPerCell_[i + j * mask_->size()[0]] > 0 && oldParticlesPerCell[i + j * mask_->size()[0]] == 0){
+                // std::cout << std::setw(2) << std::setfill('0') << i << " " << std::setw(2) << std::setfill('0') << j << " " << " New Fluid" << std::endl;
+                switch ((*mask_)(i, j)){
+                    case Mask::FLUID_SINGLE_RIGHT:
+                        discretization_->u(i, j) = discretization_->u(i + 1, j);
+                        break;
+                    case Mask::FLUID_SINGLE_BOTTOM:
+                        discretization_->v(i, j - 1) = discretization_->v(i, j - 2);
+                        break;
+                    case Mask::FLUID_SINGLE_LEFT:
+                        discretization_->u(i - 1, j) = discretization_->u(i - 2, j);
+                        break;
+                    case Mask::FLUID_SINGLE_TOP:
+                        discretization_->v(i, j) = discretization_->v(i, j + 1);
+                        break;
+                }
+            }
+        }
+    }
+
+
 }
 
+// TODO: remove
 void FluidTracer::resetVelocityInAirCells(){
     for (int i = 1; i < mask_->size()[0]-1; i++){
         for (int j = 1; j < mask_->size()[1]-1; j++){

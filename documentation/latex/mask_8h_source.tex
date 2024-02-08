@@ -1,0 +1,210 @@
+\doxysection{mask.\+h}
+\hypertarget{mask_8h_source}{}\label{mask_8h_source}\index{/home/jonat/Documents/01\_Studium/NumSim/src/boundary/mask.h@{/home/jonat/Documents/01\_Studium/NumSim/src/boundary/mask.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <cassert>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <png.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}../settings\_parser/settings.h"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classMask}{Mask}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+
+
+
+
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classMask_a5d65d3a108a79864bc69994f5e56f6c3}{Mask}}(\mbox{\hyperlink{structSettings}{Settings}}\ settings);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classMask_ad74a26afe88ebadafebd733837f3252a}{CellType}}\ }
+\DoxyCodeLine{00025\ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ FLUID\_DROPLET\ =\ 0,}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ FLUID\_SINGLE\_LEFT\ =\ 1,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ FLUID\_SINGLE\_TOP\ =\ 2,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ FLUID\_SINGLE\_RIGHT\ =\ 4,}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ FLUID\_SINGLE\_BOTTOM\ =\ 8,}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ FLUID\_CORNER\_BOTTOM\_LEFT\ =\ 6,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ FLUID\_CORNER\_TOP\_LEFT\ =\ 12,}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ FLUID\_CORNER\_TOP\_RIGHT\ =\ 9,}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ FLUID\_CORNER\_BOTTOM\_RIGHT\ =\ 3,}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ FLUID\_COLUMN\_HORIZONTAL\ =\ 5,}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ FLUID\_COLUMN\_VERTICAL\ =\ 10,}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ FLUID\_BORDER\_LEFT\ =\ 14,}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ FLUID\_BORDER\_TOP\ =\ 13,}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ FLUID\_BORDER\_RIGHT\ =\ 11,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ FLUID\_BORDER\_BOTTOM\ =\ 7,}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ FLUID\ =\ 15,}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ FLUID\_TYPE\ =\ 50,}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ AIR\ =\ 64,}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ OBSTACLE\ =\ 99,}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ OBSTACLE\_INSIDE\ =\ 100,}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ OBSTACLE\_BORDER\_LEFT\ =\ 101,}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ OBSTACLE\_BORDER\_TOP\ =\ 102,}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ OBSTACLE\_CORNER\_TOP\_LEFT\ =\ 103,}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ OBSTACLE\_BORDER\_RIGHT\ =\ 104,}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ OBSTACLE\_CORNER\_TOP\_RIGHT\ =\ 106,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ OBSTACLE\_BORDER\_BOTTOM\ =\ 108,}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ OBSTACLE\_CORNER\_BOTTOM\_LEFT\ =\ 109,}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ OBSTACLE\_CORNER\_BOTTOM\_RIGHT\ =\ 112,}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ DOMAIN\_BOUNDARY\ =\ 200,}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ DOMAIN\_LEFT\_NOSLIP\ =\ 201,}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ DOMAIN\_TOP\_NOSLIP\ =\ 202,}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ DOMAIN\_RIGHT\_NOSLIP\ =\ 203,}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ DOMAIN\_BOTTOM\_NOSLIP\ =\ 204,}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ DOMAIN\_LEFT\_PRESSURE\ =\ 205,}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ DOMAIN\_TOP\_PRESSURE\ =\ 206,}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ DOMAIN\_RIGHT\_PRESSURE\ =\ 207,}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ DOMAIN\_BOTTOM\_PRESSURE\ =\ 208,}
+\DoxyCodeLine{00073\ \ \ \ \ \};}
+\DoxyCodeLine{00074\ }
+
+
+
+
+
+
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{int}\ \&\mbox{\hyperlink{classMask_a6d612f1ac2185304b3ad7432d90dcd2b}{operator()}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j);}
+\DoxyCodeLine{00083\ }
+
+
+
+
+
+
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classMask_a6d612f1ac2185304b3ad7432d90dcd2b}{operator()}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00092\ }
+
+
+\DoxyCodeLine{00096\ \ \ \ \ std::array<int,\ 2>\ \mbox{\hyperlink{classMask_aafa0857af35b02ba6070e76f82d51c7b}{size}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00097\ }
+
+
+
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMask_ac30997cdd83faef98290733acb325cf8}{resetMask}}();}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{comment}{//\ ********************************************************}}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{//\ R\ E\ Q\ U\ E\ S\ T\ S}}
+\DoxyCodeLine{00106\ }
+
+
+
+
+
+
+
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classMask_aadacef52f95b796920864b8519d0594b}{isFluid}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00116\ }
+
+
+
+
+
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classMask_a53e4e7c0b29234856cbee33386cc5c18}{isObstacle}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00124\ }
+
+
+
+
+
+
+
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classMask_a7eb34f789ef96c622ab93718d5278d77}{isAir}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00134\ }
+
+
+
+
+
+
+
+
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classMask_a5f3d53087eb5a1d9427716804e280751}{isInnerFluid}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00145\ }
+
+
+
+
+
+
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classMask_a9f76177c70d7cab7f268c8fd9a102e73}{isDomainBoundary}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00154\ }
+
+
+
+
+
+
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classMask_ada8b2531a4a16703f145fd6f708f21ff}{isObstacleBoundary}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00163\ }
+
+
+
+
+
+
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classMask_a2ffcf2b70edede392422ea692e49d313}{isFluidBoundary}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00172\ }
+
+
+
+
+
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classMask_a3471a6026ce7eab118f660557a8abac6}{getNumberOfFluidCells}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00180\ }
+
+
+
+
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMask_a75a1750221e41c1b34f80d4d352163ac}{makeRectangularObstacle}}();}
+\DoxyCodeLine{00187\ }
+
+
+
+
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMask_ad69aefd91f740d6758cdedf0df8c8ca6}{createMaskFromPNGBitMap}}();}
+\DoxyCodeLine{00194\ }
+
+
+
+
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMask_aacf4d2cfe1362df85ed08fd3b0fc6d6b}{setDomainBC}}();}
+\DoxyCodeLine{00201\ }
+
+
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMask_a644a84aca88442b72b5cd87ee80f1724}{setObstacleBC}}();}
+\DoxyCodeLine{00206\ }
+
+
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMask_a41bf0aa100e2554eaea3ab29a999c0ee}{setFluidBC}}();}
+\DoxyCodeLine{00211\ }
+
+
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMask_a372d2a81ff261f126b11fdfcfd2f845e}{printMask}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00218\ \ \ \ \ std::array<int,\ 2>\ \mbox{\hyperlink{classMask_a84bff46271e16eb8639c1831403c1bb9}{size\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00219\ \ \ \ \ std::vector<int>\ \mbox{\hyperlink{classMask_acdb73aee935b502fecc8de6bf1e32a09}{data\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00220\ \ \ \ \ std::vector<int>\ \mbox{\hyperlink{classMask_a3c5a51f6d03bb4a5e1742537a22ec441}{boundary\_list}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00221\ \ \ \ \ \mbox{\hyperlink{structSettings}{Settings}}\ \mbox{\hyperlink{classMask_acb8b165d56689722fd836569e066fdd4}{settings\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classMask_abe4f6f251b0517f01d0f58f9042d3af4}{forbiddenObstacleFluidCombinations}}[7]\ =\ \{105,\ 107,\ 110,\ 111,\ 113,\ 114,\ 115\};\ }
+\DoxyCodeLine{00223\ \};}
+
+\end{DoxyCode}

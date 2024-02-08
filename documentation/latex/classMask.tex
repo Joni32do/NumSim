@@ -1,0 +1,339 @@
+\doxysection{Mask Class Reference}
+\hypertarget{classMask}{}\label{classMask}\index{Mask@{Mask}}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classMask_ad74a26afe88ebadafebd733837f3252a}\label{classMask_ad74a26afe88ebadafebd733837f3252a} 
+enum \mbox{\hyperlink{classMask_ad74a26afe88ebadafebd733837f3252a}{Cell\+Type}} \{ \newline
+{\bfseries FLUID\+\_\+\+DROPLET} = 0
+, {\bfseries FLUID\+\_\+\+SINGLE\+\_\+\+LEFT} = 1
+, {\bfseries FLUID\+\_\+\+SINGLE\+\_\+\+TOP} = 2
+, {\bfseries FLUID\+\_\+\+SINGLE\+\_\+\+RIGHT} = 4
+, \newline
+{\bfseries FLUID\+\_\+\+SINGLE\+\_\+\+BOTTOM} = 8
+, {\bfseries FLUID\+\_\+\+CORNER\+\_\+\+BOTTOM\+\_\+\+LEFT} = 6
+, {\bfseries FLUID\+\_\+\+CORNER\+\_\+\+TOP\+\_\+\+LEFT} = 12
+, {\bfseries FLUID\+\_\+\+CORNER\+\_\+\+TOP\+\_\+\+RIGHT} = 9
+, \newline
+{\bfseries FLUID\+\_\+\+CORNER\+\_\+\+BOTTOM\+\_\+\+RIGHT} = 3
+, {\bfseries FLUID\+\_\+\+COLUMN\+\_\+\+HORIZONTAL} = 5
+, {\bfseries FLUID\+\_\+\+COLUMN\+\_\+\+VERTICAL} = 10
+, {\bfseries FLUID\+\_\+\+BORDER\+\_\+\+LEFT} = 14
+, \newline
+{\bfseries FLUID\+\_\+\+BORDER\+\_\+\+TOP} = 13
+, {\bfseries FLUID\+\_\+\+BORDER\+\_\+\+RIGHT} = 11
+, {\bfseries FLUID\+\_\+\+BORDER\+\_\+\+BOTTOM} = 7
+, {\bfseries FLUID} = 15
+, \newline
+{\bfseries FLUID\+\_\+\+TYPE} = 50
+, {\bfseries AIR} = 64
+, {\bfseries OBSTACLE} = 99
+, {\bfseries OBSTACLE\+\_\+\+INSIDE} = 100
+, \newline
+{\bfseries OBSTACLE\+\_\+\+BORDER\+\_\+\+LEFT} = 101
+, {\bfseries OBSTACLE\+\_\+\+BORDER\+\_\+\+TOP} = 102
+, {\bfseries OBSTACLE\+\_\+\+CORNER\+\_\+\+TOP\+\_\+\+LEFT} = 103
+, {\bfseries OBSTACLE\+\_\+\+BORDER\+\_\+\+RIGHT} = 104
+, \newline
+{\bfseries OBSTACLE\+\_\+\+CORNER\+\_\+\+TOP\+\_\+\+RIGHT} = 106
+, {\bfseries OBSTACLE\+\_\+\+BORDER\+\_\+\+BOTTOM} = 108
+, {\bfseries OBSTACLE\+\_\+\+CORNER\+\_\+\+BOTTOM\+\_\+\+LEFT} = 109
+, {\bfseries OBSTACLE\+\_\+\+CORNER\+\_\+\+BOTTOM\+\_\+\+RIGHT} = 112
+, \newline
+{\bfseries DOMAIN\+\_\+\+BOUNDARY} = 200
+, {\bfseries DOMAIN\+\_\+\+LEFT\+\_\+\+NOSLIP} = 201
+, {\bfseries DOMAIN\+\_\+\+TOP\+\_\+\+NOSLIP} = 202
+, {\bfseries DOMAIN\+\_\+\+RIGHT\+\_\+\+NOSLIP} = 203
+, \newline
+{\bfseries DOMAIN\+\_\+\+BOTTOM\+\_\+\+NOSLIP} = 204
+, {\bfseries DOMAIN\+\_\+\+LEFT\+\_\+\+PRESSURE} = 205
+, {\bfseries DOMAIN\+\_\+\+TOP\+\_\+\+PRESSURE} = 206
+, {\bfseries DOMAIN\+\_\+\+RIGHT\+\_\+\+PRESSURE} = 207
+, \newline
+{\bfseries DOMAIN\+\_\+\+BOTTOM\+\_\+\+PRESSURE} = 208
+ \}
+\begin{DoxyCompactList}\small\item\em \texorpdfstring{$<$}{<} enums used to encode cell type and boundary condition \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMask_a5d65d3a108a79864bc69994f5e56f6c3}{Mask}} (\mbox{\hyperlink{structSettings}{Settings}} settings)
+\begin{DoxyCompactList}\small\item\em constructor. \end{DoxyCompactList}\item 
+int \& \mbox{\hyperlink{classMask_a6d612f1ac2185304b3ad7432d90dcd2b}{operator()}} (int i, int j)
+\begin{DoxyCompactList}\small\item\em set array value. Overloads the () operator \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classMask_a154acb41f2695c2a6ace82b5ebccbb1c}{operator()}} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em get array value. Overloads the () operator \end{DoxyCompactList}\item 
+\Hypertarget{classMask_aafa0857af35b02ba6070e76f82d51c7b}\label{classMask_aafa0857af35b02ba6070e76f82d51c7b} 
+std\+::array$<$ int, 2 $>$ {\bfseries size} () const
+\begin{DoxyCompactList}\small\item\em get size of array in x and y direction \end{DoxyCompactList}\item 
+\Hypertarget{classMask_ac30997cdd83faef98290733acb325cf8}\label{classMask_ac30997cdd83faef98290733acb325cf8} 
+void {\bfseries reset\+Mask} ()
+\begin{DoxyCompactList}\small\item\em sets all not obstacle cells to air \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMask_aadacef52f95b796920864b8519d0594b}{is\+Fluid}} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em Cell at (i,j) is fluid or not. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMask_a53e4e7c0b29234856cbee33386cc5c18}{is\+Obstacle}} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em True if Cell at (i,j) is either obstacle or boundary. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMask_a7eb34f789ef96c622ab93718d5278d77}{is\+Air}} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em Cell at (i,j) is a air cell or not. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMask_a5f3d53087eb5a1d9427716804e280751}{is\+Inner\+Fluid}} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em Cell at (i,j) is a inner fluid cell or not. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMask_a9f76177c70d7cab7f268c8fd9a102e73}{is\+Domain\+Boundary}} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em Cecks if cell at index is domain boundary. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMask_ada8b2531a4a16703f145fd6f708f21ff}{is\+Obstacle\+Boundary}} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em Cecks if cell at index is obstacle boundary. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMask_a2ffcf2b70edede392422ea692e49d313}{is\+Fluid\+Boundary}} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em Cecks if cell at index is fluid boundary. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classMask_a3471a6026ce7eab118f660557a8abac6}{get\+Number\+Of\+Fluid\+Cells}} () const
+\begin{DoxyCompactList}\small\item\em number of fluid cells \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMask_a75a1750221e41c1b34f80d4d352163ac}{make\+Rectangular\+Obstacle}} ()
+\begin{DoxyCompactList}\small\item\em creates rectangulat objecct inside domain \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMask_ad69aefd91f740d6758cdedf0df8c8ca6}{create\+Mask\+From\+PNGBit\+Map}} ()
+\begin{DoxyCompactList}\small\item\em creates mask by reading in bitmap \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMask_aacf4d2cfe1362df85ed08fd3b0fc6d6b}{set\+Domain\+BC}} ()
+\begin{DoxyCompactList}\small\item\em sets enums for all cells that belong to domain boundary \end{DoxyCompactList}\item 
+\Hypertarget{classMask_a644a84aca88442b72b5cd87ee80f1724}\label{classMask_a644a84aca88442b72b5cd87ee80f1724} 
+void {\bfseries set\+Obstacle\+BC} ()
+\begin{DoxyCompactList}\small\item\em sets enums for all cells that belong to an obstacle \end{DoxyCompactList}\item 
+\Hypertarget{classMask_a41bf0aa100e2554eaea3ab29a999c0ee}\label{classMask_a41bf0aa100e2554eaea3ab29a999c0ee} 
+void {\bfseries set\+Fluid\+BC} ()
+\begin{DoxyCompactList}\small\item\em sets enums for all fluid cells that belong are located at a surface \end{DoxyCompactList}\item 
+\Hypertarget{classMask_a372d2a81ff261f126b11fdfcfd2f845e}\label{classMask_a372d2a81ff261f126b11fdfcfd2f845e} 
+void {\bfseries print\+Mask} () const
+\begin{DoxyCompactList}\small\item\em print mask enums to terminal \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classMask_a84bff46271e16eb8639c1831403c1bb9}\label{classMask_a84bff46271e16eb8639c1831403c1bb9} 
+std\+::array$<$ int, 2 $>$ {\bfseries size\+\_\+}
+\begin{DoxyCompactList}\small\item\em size of array in x and y direction \end{DoxyCompactList}\item 
+\Hypertarget{classMask_acdb73aee935b502fecc8de6bf1e32a09}\label{classMask_acdb73aee935b502fecc8de6bf1e32a09} 
+std\+::vector$<$ int $>$ {\bfseries data\+\_\+}
+\begin{DoxyCompactList}\small\item\em storage array values, in row-\/major order \end{DoxyCompactList}\item 
+\Hypertarget{classMask_a3c5a51f6d03bb4a5e1742537a22ec441}\label{classMask_a3c5a51f6d03bb4a5e1742537a22ec441} 
+std\+::vector$<$ int $>$ {\bfseries boundary\+\_\+list}
+\begin{DoxyCompactList}\small\item\em stores the indices of the boundary cells \end{DoxyCompactList}\item 
+\Hypertarget{classMask_acb8b165d56689722fd836569e066fdd4}\label{classMask_acb8b165d56689722fd836569e066fdd4} 
+\mbox{\hyperlink{structSettings}{Settings}} {\bfseries settings\+\_\+}
+\begin{DoxyCompactList}\small\item\em settings entity \end{DoxyCompactList}\item 
+\Hypertarget{classMask_abe4f6f251b0517f01d0f58f9042d3af4}\label{classMask_abe4f6f251b0517f01d0f58f9042d3af4} 
+int {\bfseries forbidden\+Obstacle\+Fluid\+Combinations} \mbox{[}7\mbox{]} = \{105, 107, 110, 111, 113, 114, 115\}
+\begin{DoxyCompactList}\small\item\em enums that singnal forbidden obstacle -\/ fluid cell combinations \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classMask_a5d65d3a108a79864bc69994f5e56f6c3}\label{classMask_a5d65d3a108a79864bc69994f5e56f6c3} 
+\index{Mask@{Mask}!Mask@{Mask}}
+\index{Mask@{Mask}!Mask@{Mask}}
+\doxysubsubsection{\texorpdfstring{Mask()}{Mask()}}
+{\footnotesize\ttfamily Mask\+::\+Mask (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSettings}{Settings}}}]{settings }\end{DoxyParamCaption})}
+
+
+
+constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em setting} & settings containing necessary user input \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classMask_ad69aefd91f740d6758cdedf0df8c8ca6}\label{classMask_ad69aefd91f740d6758cdedf0df8c8ca6} 
+\index{Mask@{Mask}!createMaskFromPNGBitMap@{createMaskFromPNGBitMap}}
+\index{createMaskFromPNGBitMap@{createMaskFromPNGBitMap}!Mask@{Mask}}
+\doxysubsubsection{\texorpdfstring{createMaskFromPNGBitMap()}{createMaskFromPNGBitMap()}}
+{\footnotesize\ttfamily void Mask\+::create\+Mask\+From\+PNGBit\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+creates mask by reading in bitmap 
+
+path to bitmap saved as png is specified in settings file by user \Hypertarget{classMask_a3471a6026ce7eab118f660557a8abac6}\label{classMask_a3471a6026ce7eab118f660557a8abac6} 
+\index{Mask@{Mask}!getNumberOfFluidCells@{getNumberOfFluidCells}}
+\index{getNumberOfFluidCells@{getNumberOfFluidCells}!Mask@{Mask}}
+\doxysubsubsection{\texorpdfstring{getNumberOfFluidCells()}{getNumberOfFluidCells()}}
+{\footnotesize\ttfamily int Mask\+::get\+Number\+Of\+Fluid\+Cells (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+number of fluid cells 
+
+not efficient but is only used once in the creation of the fluid tracer \Hypertarget{classMask_a7eb34f789ef96c622ab93718d5278d77}\label{classMask_a7eb34f789ef96c622ab93718d5278d77} 
+\index{Mask@{Mask}!isAir@{isAir}}
+\index{isAir@{isAir}!Mask@{Mask}}
+\doxysubsubsection{\texorpdfstring{isAir()}{isAir()}}
+{\footnotesize\ttfamily bool Mask\+::is\+Air (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption}) const}
+
+
+
+Cell at (i,j) is a air cell or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & index in x direction \\
+\hline
+{\em j} & index in y direction\\
+\hline
+\end{DoxyParams}
+If i and j are out of bond returns false \Hypertarget{classMask_a9f76177c70d7cab7f268c8fd9a102e73}\label{classMask_a9f76177c70d7cab7f268c8fd9a102e73} 
+\index{Mask@{Mask}!isDomainBoundary@{isDomainBoundary}}
+\index{isDomainBoundary@{isDomainBoundary}!Mask@{Mask}}
+\doxysubsubsection{\texorpdfstring{isDomainBoundary()}{isDomainBoundary()}}
+{\footnotesize\ttfamily bool Mask\+::is\+Domain\+Boundary (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption}) const}
+
+
+
+Cecks if cell at index is domain boundary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & index in x direction \\
+\hline
+{\em j} & index in y direction \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classMask_aadacef52f95b796920864b8519d0594b}\label{classMask_aadacef52f95b796920864b8519d0594b} 
+\index{Mask@{Mask}!isFluid@{isFluid}}
+\index{isFluid@{isFluid}!Mask@{Mask}}
+\doxysubsubsection{\texorpdfstring{isFluid()}{isFluid()}}
+{\footnotesize\ttfamily bool Mask\+::is\+Fluid (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption}) const}
+
+
+
+Cell at (i,j) is fluid or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & index in x direction \\
+\hline
+{\em j} & index in y direction\\
+\hline
+\end{DoxyParams}
+If i and j are out of bond returns false \Hypertarget{classMask_a2ffcf2b70edede392422ea692e49d313}\label{classMask_a2ffcf2b70edede392422ea692e49d313} 
+\index{Mask@{Mask}!isFluidBoundary@{isFluidBoundary}}
+\index{isFluidBoundary@{isFluidBoundary}!Mask@{Mask}}
+\doxysubsubsection{\texorpdfstring{isFluidBoundary()}{isFluidBoundary()}}
+{\footnotesize\ttfamily bool Mask\+::is\+Fluid\+Boundary (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption}) const}
+
+
+
+Cecks if cell at index is fluid boundary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & index in x direction \\
+\hline
+{\em j} & index in y direction \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classMask_a5f3d53087eb5a1d9427716804e280751}\label{classMask_a5f3d53087eb5a1d9427716804e280751} 
+\index{Mask@{Mask}!isInnerFluid@{isInnerFluid}}
+\index{isInnerFluid@{isInnerFluid}!Mask@{Mask}}
+\doxysubsubsection{\texorpdfstring{isInnerFluid()}{isInnerFluid()}}
+{\footnotesize\ttfamily bool Mask\+::is\+Inner\+Fluid (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption}) const}
+
+
+
+Cell at (i,j) is a inner fluid cell or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & index in x direction \\
+\hline
+{\em j} & index in y direction\\
+\hline
+\end{DoxyParams}
+Checks if fluid is sourrounded by only fluid cells If i and j are out of bond returns false \Hypertarget{classMask_a53e4e7c0b29234856cbee33386cc5c18}\label{classMask_a53e4e7c0b29234856cbee33386cc5c18} 
+\index{Mask@{Mask}!isObstacle@{isObstacle}}
+\index{isObstacle@{isObstacle}!Mask@{Mask}}
+\doxysubsubsection{\texorpdfstring{isObstacle()}{isObstacle()}}
+{\footnotesize\ttfamily bool Mask\+::is\+Obstacle (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption}) const}
+
+
+
+True if Cell at (i,j) is either obstacle or boundary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & index in x direction \\
+\hline
+{\em j} & index in y direction \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classMask_ada8b2531a4a16703f145fd6f708f21ff}\label{classMask_ada8b2531a4a16703f145fd6f708f21ff} 
+\index{Mask@{Mask}!isObstacleBoundary@{isObstacleBoundary}}
+\index{isObstacleBoundary@{isObstacleBoundary}!Mask@{Mask}}
+\doxysubsubsection{\texorpdfstring{isObstacleBoundary()}{isObstacleBoundary()}}
+{\footnotesize\ttfamily bool Mask\+::is\+Obstacle\+Boundary (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption}) const}
+
+
+
+Cecks if cell at index is obstacle boundary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & index in x direction \\
+\hline
+{\em j} & index in y direction \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classMask_a75a1750221e41c1b34f80d4d352163ac}\label{classMask_a75a1750221e41c1b34f80d4d352163ac} 
+\index{Mask@{Mask}!makeRectangularObstacle@{makeRectangularObstacle}}
+\index{makeRectangularObstacle@{makeRectangularObstacle}!Mask@{Mask}}
+\doxysubsubsection{\texorpdfstring{makeRectangularObstacle()}{makeRectangularObstacle()}}
+{\footnotesize\ttfamily void Mask\+::make\+Rectangular\+Obstacle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+creates rectangulat objecct inside domain 
+
+location and size are specified in settings file by user \Hypertarget{classMask_a6d612f1ac2185304b3ad7432d90dcd2b}\label{classMask_a6d612f1ac2185304b3ad7432d90dcd2b} 
+\index{Mask@{Mask}!operator()@{operator()}}
+\index{operator()@{operator()}!Mask@{Mask}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily int \& Mask\+::operator() (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption})}
+
+
+
+set array value. Overloads the () operator 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & index in x direction \\
+\hline
+{\em j} & index in y direction \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classMask_a154acb41f2695c2a6ace82b5ebccbb1c}\label{classMask_a154acb41f2695c2a6ace82b5ebccbb1c} 
+\index{Mask@{Mask}!operator()@{operator()}}
+\index{operator()@{operator()}!Mask@{Mask}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily int Mask\+::operator() (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption}) const}
+
+
+
+get array value. Overloads the () operator 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & index in x direction \\
+\hline
+{\em j} & index in y direction \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classMask_aacf4d2cfe1362df85ed08fd3b0fc6d6b}\label{classMask_aacf4d2cfe1362df85ed08fd3b0fc6d6b} 
+\index{Mask@{Mask}!setDomainBC@{setDomainBC}}
+\index{setDomainBC@{setDomainBC}!Mask@{Mask}}
+\doxysubsubsection{\texorpdfstring{setDomainBC()}{setDomainBC()}}
+{\footnotesize\ttfamily void Mask\+::set\+Domain\+BC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+sets enums for all cells that belong to domain boundary 
+
+type of domain boundary condition is specified in settings file by user 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/jonat/\+Documents/01\+\_\+\+Studium/\+Num\+Sim/src/boundary/mask.\+h\item 
+/home/jonat/\+Documents/01\+\_\+\+Studium/\+Num\+Sim/src/boundary/mask.\+cpp\end{DoxyCompactItemize}

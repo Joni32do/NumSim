@@ -1,0 +1,84 @@
+\doxysection{Output\+Writer Class Reference}
+\hypertarget{classOutputWriter}{}\label{classOutputWriter}\index{OutputWriter@{OutputWriter}}
+
+
+Inteface class for writing simulation data output.  
+
+
+
+
+{\ttfamily \#include $<$output\+\_\+writer.\+h$>$}
+
+Inheritance diagram for Output\+Writer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classOutputWriter}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classOutputWriter_a4f3180552b8102c27e087357b9cdd1f7}{Output\+Writer}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classDiscretization}{Discretization}} $>$ discretization)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classOutputWriter_ac625c204affdc05919388a3549c2e945}{write\+File}} (double current\+Time)=0
+\begin{DoxyCompactList}\small\item\em Write current velocities to file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classOutputWriter_a0587b2dc160a9b1393411433dfc23b68}\label{classOutputWriter_a0587b2dc160a9b1393411433dfc23b68} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classDiscretization}{Discretization}} $>$ {\bfseries discretization\+\_\+}
+\begin{DoxyCompactList}\small\item\em shared pointer, discretization object containing data to be written to file \end{DoxyCompactList}\item 
+\Hypertarget{classOutputWriter_a69d167e2526407602dce26ca7a2b9248}\label{classOutputWriter_a69d167e2526407602dce26ca7a2b9248} 
+int {\bfseries file\+No\+\_\+}
+\begin{DoxyCompactList}\small\item\em a counter that increments for every file written to disk \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Inteface class for writing simulation data output. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classOutputWriter_a4f3180552b8102c27e087357b9cdd1f7}\label{classOutputWriter_a4f3180552b8102c27e087357b9cdd1f7} 
+\index{OutputWriter@{OutputWriter}!OutputWriter@{OutputWriter}}
+\index{OutputWriter@{OutputWriter}!OutputWriter@{OutputWriter}}
+\doxysubsubsection{\texorpdfstring{OutputWriter()}{OutputWriter()}}
+{\footnotesize\ttfamily Output\+Writer\+::\+Output\+Writer (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classDiscretization}{Discretization}} $>$}]{discretization }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em discretization} & discretization object containing data to be written to file \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classOutputWriter_ac625c204affdc05919388a3549c2e945}\label{classOutputWriter_ac625c204affdc05919388a3549c2e945} 
+\index{OutputWriter@{OutputWriter}!writeFile@{writeFile}}
+\index{writeFile@{writeFile}!OutputWriter@{OutputWriter}}
+\doxysubsubsection{\texorpdfstring{writeFile()}{writeFile()}}
+{\footnotesize\ttfamily virtual void Output\+Writer\+::write\+File (\begin{DoxyParamCaption}\item[{double}]{current\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Write current velocities to file. 
+
+Filename is output\+\_\+$<$file\+No\+\_\+$>$.\+vti
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Time} & current time of simulation \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classOutputWriterParaview_a9e203b63d0e2f26ad53d18ee1821c6bb}{Output\+Writer\+Paraview}}, and \mbox{\hyperlink{classOutputWriterText_a25a12ea2524fc34e9acb19ef1f4c7431}{Output\+Writer\+Text}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/jonat/\+Documents/01\+\_\+\+Studium/\+Num\+Sim/src/output\+\_\+writer/output\+\_\+writer.\+h\item 
+/home/jonat/\+Documents/01\+\_\+\+Studium/\+Num\+Sim/src/output\+\_\+writer/output\+\_\+writer.\+cpp\end{DoxyCompactItemize}

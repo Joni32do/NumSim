@@ -1,0 +1,113 @@
+\doxysection{SOR Class Reference}
+\hypertarget{classSOR}{}\label{classSOR}\index{SOR@{SOR}}
+
+
+Successive over-\/relaxation solver.  
+
+
+
+
+{\ttfamily \#include $<$sor.\+h$>$}
+
+Inheritance diagram for SOR\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classSOR}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSOR_a357cfea8935f4b2dfee06f2d8e1461a8}{SOR}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classDiscretization}{Discretization}} $>$ \&data, double epsilon, int maximum\+Number\+Of\+Iterations, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoundary}{Boundary}} $>$ boundary, double omega)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSOR_a860992d85d8aacf114a3a02b5831f728}{solve}} () override
+\begin{DoxyCompactList}\small\item\em override function that starts solver. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classPressureSolver}{Pressure\+Solver}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPressureSolver_a10803d8c3d7f3810fc0ba059acf04058}{Pressure\+Solver}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classDiscretization}{Discretization}} $>$ discretization, double epsilon, int maximum\+Number\+Of\+Iterations, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoundary}{Boundary}} $>$ boundary)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classPressureSolver}{Pressure\+Solver}}}
+\begin{DoxyCompactItemize}
+\item 
+double {\bfseries dx2}
+\item 
+double {\bfseries dy2}
+\begin{DoxyCompactList}\small\item\em squared mesh widths \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classPressureSolver}{Pressure\+Solver}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classPressureSolver_a458c383fcacaf54c1a333a271049ca93}{set\+Boundary\+Values}} ()
+\begin{DoxyCompactList}\small\item\em Set the \doxylink{classBoundary}{Boundary} Values. \end{DoxyCompactList}\item 
+double {\bfseries calculate\+Residuum} ()
+\begin{DoxyCompactList}\small\item\em calculate residuum of current time step \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classPressureSolver}{Pressure\+Solver}}}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries i\+\_\+beg}
+\begin{DoxyCompactList}\small\item\em begin of loop for rhs in x direction \end{DoxyCompactList}\item 
+int {\bfseries i\+\_\+end}
+\begin{DoxyCompactList}\small\item\em end of loop for rhs in x direction \end{DoxyCompactList}\item 
+int {\bfseries j\+\_\+beg}
+\begin{DoxyCompactList}\small\item\em begin of loop for rhs in y direction \end{DoxyCompactList}\item 
+int {\bfseries j\+\_\+end}
+\begin{DoxyCompactList}\small\item\em end of loop for rhs in y direction \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classDiscretization}{Discretization}} $>$ {\bfseries discretization\+\_\+}
+\begin{DoxyCompactList}\small\item\em object holding the needed field variables for rhs and p \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoundary}{Boundary}} $>$ {\bfseries boundary\+\_\+}
+\begin{DoxyCompactList}\small\item\em object managing boundary for obstacle and surface tension \end{DoxyCompactList}\item 
+double {\bfseries epsilon\+\_\+}
+\begin{DoxyCompactList}\small\item\em tolerance for the solver \end{DoxyCompactList}\item 
+int {\bfseries maximum\+Number\+Of\+Iterations\+\_\+}
+\begin{DoxyCompactList}\small\item\em maximum number of iterations \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Successive over-\/relaxation solver. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classSOR_a357cfea8935f4b2dfee06f2d8e1461a8}\label{classSOR_a357cfea8935f4b2dfee06f2d8e1461a8} 
+\index{SOR@{SOR}!SOR@{SOR}}
+\index{SOR@{SOR}!SOR@{SOR}}
+\doxysubsubsection{\texorpdfstring{SOR()}{SOR()}}
+{\footnotesize\ttfamily SOR\+::\+SOR (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classDiscretization}{Discretization}} $>$ \&}]{data,  }\item[{double}]{epsilon,  }\item[{int}]{maximum\+Number\+Of\+Iterations,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classBoundary}{Boundary}} $>$}]{boundary,  }\item[{double}]{omega }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & instance of \doxylink{classDiscretization}{Discretization} holding the needed field variables for rhs and p \\
+\hline
+{\em epsilon} & tolerance for the solver \\
+\hline
+{\em maximum\+Number\+Of\+Iterations} & maximum of iteration \\
+\hline
+{\em omega} & relaxation factor \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSOR_a860992d85d8aacf114a3a02b5831f728}\label{classSOR_a860992d85d8aacf114a3a02b5831f728} 
+\index{SOR@{SOR}!solve@{solve}}
+\index{solve@{solve}!SOR@{SOR}}
+\doxysubsubsection{\texorpdfstring{solve()}{solve()}}
+{\footnotesize\ttfamily void SOR\+::solve (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+override function that starts solver. 
+
+
+
+Implements \mbox{\hyperlink{classPressureSolver_a504ac61a1317650e0eb70d6a93212ca0}{Pressure\+Solver}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/jonat/\+Documents/01\+\_\+\+Studium/\+Num\+Sim/src/solver/sor.\+h\item 
+/home/jonat/\+Documents/01\+\_\+\+Studium/\+Num\+Sim/src/solver/sor.\+cpp\end{DoxyCompactItemize}

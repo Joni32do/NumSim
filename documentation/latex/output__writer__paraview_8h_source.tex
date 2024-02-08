@@ -1,0 +1,51 @@
+\doxysection{output\+\_\+writer\+\_\+paraview.\+h}
+\hypertarget{output__writer__paraview_8h_source}{}\label{output__writer__paraview_8h_source}\index{/home/jonat/Documents/01\_Studium/NumSim/src/output\_writer/output\_writer\_paraview.h@{/home/jonat/Documents/01\_Studium/NumSim/src/output\_writer/output\_writer\_paraview.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}output\_writer.h"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vtkSmartPointer.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vtkXMLImageDataWriter.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <vtkImageData.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <vtkDoubleArray.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <vtkPointData.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}../boundary/mask.h"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}../surface/fluid\_tracer.h"{}}}
+\DoxyCodeLine{00016\ }
+
+
+
+
+
+
+
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classOutputWriterParaview}{OutputWriterParaview}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classOutputWriter}{OutputWriter}}}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+
+
+
+
+\DoxyCodeLine{00033\ \ \ \mbox{\hyperlink{classOutputWriterParaview_ab2d30ea87bf48abef82f95976c662cc1}{OutputWriterParaview}}(std::shared\_ptr<Discretization>\ discretization,}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<Mask>\ mask,}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<FluidTracer>\ fluidTracer);}
+\DoxyCodeLine{00036\ }
+
+
+
+
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classOutputWriterParaview_a9e203b63d0e2f26ad53d18ee1821c6bb}{writeFile}}(\textcolor{keywordtype}{double}\ currentTime);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00045\ \ \ vtkSmartPointer<vtkXMLImageDataWriter>\ vtkWriter\_;\ }
+\DoxyCodeLine{00046\ \ \ std::shared\_ptr<Mask>\ mask\_;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ \ \ std::shared\_ptr<FluidTracer>\ fluidTracer\_;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00048\ \};}
+
+\end{DoxyCode}

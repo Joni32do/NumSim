@@ -1,0 +1,110 @@
+\doxysection{Field\+Variable Class Reference}
+\hypertarget{classFieldVariable}{}\label{classFieldVariable}\index{FieldVariable@{FieldVariable}}
+
+
+\doxylink{classDiscretization}{Discretization} of a scalar function.  
+
+
+
+
+{\ttfamily \#include $<$field\+\_\+variable.\+h$>$}
+
+Inheritance diagram for Field\+Variable\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classFieldVariable}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classFieldVariable_aa0985778bc6331b74904a03c3ef67a98}{Field\+Variable}} (std\+::array$<$ int, 2 $>$ \mbox{\hyperlink{classArray2D_accf87be860645d6c50d6ba6fa39ec6f9}{size}}, std\+::array$<$ double, 2 $>$ origin, std\+::array$<$ double, 2 $>$ mesh\+Width)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classFieldVariable_a2949624f1d2d7e29872f743db0b1d83b}{interpolate\+At}} (double x, double y) const
+\begin{DoxyCompactList}\small\item\em Interpolates value of field variable in domain using x and y coordinates. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classFieldVariable_a55168fd422c70c8386ba311909427cf7}{find\+Abs\+Max}} () const
+\begin{DoxyCompactList}\small\item\em Find point in \doxylink{classArray2D}{Array2D} of Fieldvariable with maximum value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classArray2D}{Array2D}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classArray2D_a16521417dfdf67ec694bfb7747df9000}{Array2D}} (std\+::array$<$ int, 2 $>$ \mbox{\hyperlink{classArray2D_accf87be860645d6c50d6ba6fa39ec6f9}{size}})
+\begin{DoxyCompactList}\small\item\em constructor. \end{DoxyCompactList}\item 
+double \& \mbox{\hyperlink{classArray2D_a9d49e5544f4acf51a57dcbb0ed1bb0f8}{operator()}} (int i, int j)
+\begin{DoxyCompactList}\small\item\em set array value. Overloads the () operator \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classArray2D_af745718ec25b815051de2d0c3c94e0d2}{operator()}} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em get array value. Overloads the () operator \end{DoxyCompactList}\item 
+std\+::array$<$ int, 2 $>$ {\bfseries size} () const
+\begin{DoxyCompactList}\small\item\em get size of array in x and y direction \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classArray2D}{Array2D}}}
+\begin{DoxyCompactItemize}
+\item 
+const std\+::array$<$ int, 2 $>$ {\bfseries size\+\_\+}
+\begin{DoxyCompactList}\small\item\em size of array in x and y direction \end{DoxyCompactList}\item 
+std\+::vector$<$ double $>$ {\bfseries data\+\_\+}
+\begin{DoxyCompactList}\small\item\em storage array values, in row-\/major order \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classDiscretization}{Discretization} of a scalar function. 
+
+A field variable is the discretization of a scalar function f(x) with x in the computational domain. More specifically, a scalar value is stored at discrete nodes/points. The nodes are arranged in an equidistant mesh with specified mesh width. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classFieldVariable_aa0985778bc6331b74904a03c3ef67a98}\label{classFieldVariable_aa0985778bc6331b74904a03c3ef67a98} 
+\index{FieldVariable@{FieldVariable}!FieldVariable@{FieldVariable}}
+\index{FieldVariable@{FieldVariable}!FieldVariable@{FieldVariable}}
+\doxysubsubsection{\texorpdfstring{FieldVariable()}{FieldVariable()}}
+{\footnotesize\ttfamily Field\+Variable\+::\+Field\+Variable (\begin{DoxyParamCaption}\item[{std\+::array$<$ int, 2 $>$}]{size,  }\item[{std\+::array$<$ double, 2 $>$}]{origin,  }\item[{std\+::array$<$ double, 2 $>$}]{mesh\+Width }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & number of cells in x and y direction \\
+\hline
+{\em origin} & orgin of Fieldvariable relative to domain origin \\
+\hline
+{\em meshwidth} & mesh width in x and y direction \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classFieldVariable_a55168fd422c70c8386ba311909427cf7}\label{classFieldVariable_a55168fd422c70c8386ba311909427cf7} 
+\index{FieldVariable@{FieldVariable}!findAbsMax@{findAbsMax}}
+\index{findAbsMax@{findAbsMax}!FieldVariable@{FieldVariable}}
+\doxysubsubsection{\texorpdfstring{findAbsMax()}{findAbsMax()}}
+{\footnotesize\ttfamily double Field\+Variable\+::find\+Abs\+Max (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Find point in \doxylink{classArray2D}{Array2D} of Fieldvariable with maximum value. 
+
+Finds maximum by iterating through all values in Fiel\+Variable \Hypertarget{classFieldVariable_a2949624f1d2d7e29872f743db0b1d83b}\label{classFieldVariable_a2949624f1d2d7e29872f743db0b1d83b} 
+\index{FieldVariable@{FieldVariable}!interpolateAt@{interpolateAt}}
+\index{interpolateAt@{interpolateAt}!FieldVariable@{FieldVariable}}
+\doxysubsubsection{\texorpdfstring{interpolateAt()}{interpolateAt()}}
+{\footnotesize\ttfamily double Field\+Variable\+::interpolate\+At (\begin{DoxyParamCaption}\item[{double}]{x,  }\item[{double}]{y }\end{DoxyParamCaption}) const}
+
+
+
+Interpolates value of field variable in domain using x and y coordinates. 
+
+Interpolates by using bilinear interpolation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & x postion of point to interpolate \\
+\hline
+{\em y} & y postion of point to interpolate \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/jonat/\+Documents/01\+\_\+\+Studium/\+Num\+Sim/src/storage/field\+\_\+variable.\+h\item 
+/home/jonat/\+Documents/01\+\_\+\+Studium/\+Num\+Sim/src/storage/field\+\_\+variable.\+cpp\end{DoxyCompactItemize}

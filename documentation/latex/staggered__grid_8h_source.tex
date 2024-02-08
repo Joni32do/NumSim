@@ -1,0 +1,180 @@
+\doxysection{staggered\+\_\+grid.\+h}
+\hypertarget{staggered__grid_8h_source}{}\label{staggered__grid_8h_source}\index{/home/jonat/Documents/01\_Studium/NumSim/src/discretization/staggered\_grid.h@{/home/jonat/Documents/01\_Studium/NumSim/src/discretization/staggered\_grid.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}../storage/field\_variable.h"{}}}
+\DoxyCodeLine{00005\ }
+
+
+
+
+
+
+
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classStaggeredGrid}{StaggeredGrid}}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+
+
+
+
+
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{classStaggeredGrid_aec0990b64c559b1690f21b48fb2d13b1}{StaggeredGrid}}(std::array<int,\ 2>\ \mbox{\hyperlink{classStaggeredGrid_af37816ccb2c46e4a514dedac261897bf}{nCells}},\ std::array<double,\ 2>\ \mbox{\hyperlink{classStaggeredGrid_a330856d4efe952771daf0753ef84068e}{meshWidth}});}
+\DoxyCodeLine{00024\ }
+
+
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{const}\ std::array<double,\ 2>\ \mbox{\hyperlink{classStaggeredGrid_a330856d4efe952771daf0753ef84068e}{meshWidth}}()\ \textcolor{keyword}{const};}
+
+
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{const}\ std::array<int,\ 2>\ \mbox{\hyperlink{classStaggeredGrid_af37816ccb2c46e4a514dedac261897bf}{nCells}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00033\ }
+
+
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classFieldVariable}{FieldVariable}}\ \&\mbox{\hyperlink{classStaggeredGrid_a87cee12621c641ab143a8b1a61b2ef7e}{u}}()\ \textcolor{keyword}{const};}
+
+
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classFieldVariable}{FieldVariable}}\ \&\mbox{\hyperlink{classStaggeredGrid_a26e478abba632554652c9e05a279d1ca}{v}}()\ \textcolor{keyword}{const};}
+
+
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classFieldVariable}{FieldVariable}}\ \&\mbox{\hyperlink{classStaggeredGrid_aafe6e0bb3509f6aad272b94f74e7ffec}{p}}()\ \textcolor{keyword}{const};}
+
+
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classFieldVariable}{FieldVariable}}\ \&\mbox{\hyperlink{classStaggeredGrid_a3f36422a02b9b18d1577d61e406f08cf}{rhs}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00050\ }
+
+
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classStaggeredGrid_a87cee12621c641ab143a8b1a61b2ef7e}{u}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j)\ \textcolor{keyword}{const};}
+
+
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{double}\ \&\mbox{\hyperlink{classStaggeredGrid_a87cee12621c641ab143a8b1a61b2ef7e}{u}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j);}
+\DoxyCodeLine{00059\ }
+
+
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classStaggeredGrid_a26e478abba632554652c9e05a279d1ca}{v}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j)\ \textcolor{keyword}{const};}
+
+
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{double}\ \&\mbox{\hyperlink{classStaggeredGrid_a26e478abba632554652c9e05a279d1ca}{v}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j);}
+\DoxyCodeLine{00068\ }
+
+
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classStaggeredGrid_aafe6e0bb3509f6aad272b94f74e7ffec}{p}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j)\ \textcolor{keyword}{const};}
+
+
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{double}\ \&\mbox{\hyperlink{classStaggeredGrid_aafe6e0bb3509f6aad272b94f74e7ffec}{p}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j);}
+\DoxyCodeLine{00077\ }
+
+
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{double}\ \&\mbox{\hyperlink{classStaggeredGrid_adb05c59512dc8993367e4beddba05785}{f}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j);}
+
+
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{double}\ \&\mbox{\hyperlink{classStaggeredGrid_aaf849bec40f7fa7c68823038f0877341}{g}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j);}
+
+
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{double}\ \&\mbox{\hyperlink{classStaggeredGrid_a3f36422a02b9b18d1577d61e406f08cf}{rhs}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j);}
+\DoxyCodeLine{00090\ }
+
+
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classStaggeredGrid_aec8490affea703cdd73b1febaed68968}{dx}}()\ \textcolor{keyword}{const};}
+
+
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classStaggeredGrid_abde2da10e0c130fb0f206de64c9b4956}{dy}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00099\ }
+
+
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaggeredGrid_a31e2d3a0b6e03685380810a7c2f323e1}{uIBegin}}()\ \textcolor{keyword}{const};}
+
+
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaggeredGrid_a641e473d72e1d02ba3de1c16e9d0d332}{uIEnd}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00108\ }
+
+
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaggeredGrid_a9b0e97704e1871441a8e713ecaa2cff5}{uJBegin}}()\ \textcolor{keyword}{const};}
+
+
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaggeredGrid_a3393aa91b17054d2d700de308ae25632}{uJEnd}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00117\ }
+
+
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaggeredGrid_ace7bf8cb1d279131739d5d12de302d09}{vIBegin}}()\ \textcolor{keyword}{const};}
+
+
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaggeredGrid_aa5a44aa088b5a7923fa952af1ecb5778}{vIEnd}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00126\ }
+
+
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaggeredGrid_a7f8468d672411c0e3a5eeb67788fc826}{vJBegin}}()\ \textcolor{keyword}{const};}
+
+
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaggeredGrid_ab67e8d9d8d76d34fb02d4d644f0b3795}{vJEnd}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00135\ }
+
+
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaggeredGrid_a9922c955707f2a31a4a27d1d696f002e}{pIBegin}}()\ \textcolor{keyword}{const};}
+
+
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaggeredGrid_a34f16fdf87971fe84ffc3c84722bb2c7}{pIEnd}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00144\ }
+
+
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaggeredGrid_ae4c9ba16c5635dc1ffaa264fbcc3e034}{pJBegin}}()\ \textcolor{keyword}{const};}
+
+
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaggeredGrid_ad9928ee522eedb7d7fd48ca0b92f2795}{pJEnd}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00153\ }
+
+
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaggeredGrid_a5cc368f9ede58a3cb689705df998f750}{fIBegin}}()\ \textcolor{keyword}{const};}
+
+
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaggeredGrid_a8162b849231354ba73aacb085b5cd665}{fIEnd}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00162\ }
+
+
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaggeredGrid_ab92aca90331200d0cc7bc0c0a857b4ef}{fJBegin}}()\ \textcolor{keyword}{const};}
+
+
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaggeredGrid_a7ac43ac86231987bc0bf6565589d52e1}{fJEnd}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00171\ }
+
+
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaggeredGrid_a061fb6d6948cdc3054171dd60842a8c3}{gIBegin}}()\ \textcolor{keyword}{const};}
+
+
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaggeredGrid_aebc76693e5dd61db521d6763236bf664}{gIEnd}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00180\ }
+
+
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaggeredGrid_a18ca3a121787b19c18886b0945aca2e3}{gJBegin}}()\ \textcolor{keyword}{const};}
+
+
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaggeredGrid_a7a29456e1bce9efffa27de0b41957b50}{gJEnd}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00189\ }
+
+
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaggeredGrid_ad5c16b00d9dbf0f115e1ded81203edce}{rhsIBegin}}()\ \textcolor{keyword}{const};}
+
+
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaggeredGrid_ae11e8842fdd508b914dc8f24b09b36a9}{rhsIEnd}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00198\ }
+
+
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaggeredGrid_a28c36939e3d3cc8df76e7aa91f0e0804}{rhsJBegin}}()\ \textcolor{keyword}{const};}
+
+
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classStaggeredGrid_a953ec890a986473bffe87ea26dfcd782}{rhsJEnd}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keyword}{const}\ std::array<int,\ 2>\ \mbox{\hyperlink{classStaggeredGrid_acacffb5739539d9015c986080bb5ed44}{nCells\_}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keyword}{const}\ std::array<double,\ 2>\ \mbox{\hyperlink{classStaggeredGrid_a9603c3334440aab082dda48947e5ce6e}{meshWidth\_}};\ }
+\DoxyCodeLine{00211\ \ \ \ \ \mbox{\hyperlink{classFieldVariable}{FieldVariable}}\ \mbox{\hyperlink{classStaggeredGrid_adcef36b4ce8cc6843a2b6f603b62c763}{u\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00212\ \ \ \ \ \mbox{\hyperlink{classFieldVariable}{FieldVariable}}\ \mbox{\hyperlink{classStaggeredGrid_a20ec43568fe937b194561e21a0b84ad9}{v\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00213\ \ \ \ \ \mbox{\hyperlink{classFieldVariable}{FieldVariable}}\ \mbox{\hyperlink{classStaggeredGrid_a2ea3c93dd401ac06461ade9a74e76459}{p\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00214\ \ \ \ \ \mbox{\hyperlink{classFieldVariable}{FieldVariable}}\ \mbox{\hyperlink{classStaggeredGrid_a94933ac0c6e0d2a794f46c7a97d72f75}{f\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00215\ \ \ \ \ \mbox{\hyperlink{classFieldVariable}{FieldVariable}}\ \mbox{\hyperlink{classStaggeredGrid_a5f5c88f603d4e503cba4c44ed43de46a}{g\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00216\ \ \ \ \ \mbox{\hyperlink{classFieldVariable}{FieldVariable}}\ \mbox{\hyperlink{classStaggeredGrid_a496206955162452a0629a7742fe92a84}{rhs\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00217\ \};}
+
+\end{DoxyCode}

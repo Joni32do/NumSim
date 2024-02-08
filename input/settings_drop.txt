@@ -5,7 +5,7 @@
 physicalSizeX = 2.0   # physical size of the domain
 physicalSizeY = 2.0
 endTime = 10.0        # duration of the simulation
-re = 100             # Reynolds number
+re = 1000             # Reynolds number
 gX = 0.0              # external forces, set to (gX,gY) = (0,-9.81) to account for gravity
 gY = -0.5
 
@@ -32,10 +32,10 @@ NoSlipVelLeftY   = 0
 
 # Pressure BoundaryConditions 
 
-PressureTop    = 0
+PressureTop    = 0.0
 PressureRight  = 0.0
-PressureBottom = 0
-PressureLeft   = 100.0
+PressureBottom = 0.0
+PressureLeft   = 0.0
 
 # Create Rectangular object in domain 
 

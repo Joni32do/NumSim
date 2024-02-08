@@ -1,0 +1,113 @@
+\doxysection{settings.\+h}
+\hypertarget{settings_8h_source}{}\label{settings_8h_source}\index{/home/jonat/Documents/01\_Studium/NumSim/src/settings\_parser/settings.h@{/home/jonat/Documents/01\_Studium/NumSim/src/settings\_parser/settings.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00008\ }
+
+
+
+\DoxyCodeLine{00013\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structSettings}{Settings}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ std::array<int,\ 2>\ \mbox{\hyperlink{structSettings_a43a0d2ee903496bfb86693a43a891a69}{nCells}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00016\ \ \ std::array<double,\ 2>\ \mbox{\hyperlink{structSettings_a372a1549c306b12ca7bb0ed84f8a4cef}{physicalSize}};\ }
+\DoxyCodeLine{00017\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structSettings_a8b8330dfa04fe849291d68eacbc8dfec}{re}}\ =\ 1000;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00018\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structSettings_a73cd9110793ede99e9ebe409e5e115fd}{endTime}}\ =\ 10.0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00019\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structSettings_adaa611dc8c075474d40d7149afd310d1}{tau}}\ =\ 0.5;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00020\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structSettings_a988b93fdeb6c91932043b3f746b45e86}{maximumDt}}\ =\ 0.1;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ std::array<double,\ 2>\ \mbox{\hyperlink{structSettings_a1a21237c7f5b7585e5a3545c7d4a4e8c}{g}}\{0.,\ 0.\};\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structSettings_a05bd5ffa1e1b48f5dc99878538596db3}{useDonorCell}}\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structSettings_a8b3721d24a5417caa0f2ad6f5eb85782}{alpha}}\ =\ 0.5;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \textcolor{comment}{//\ Boundary\ Conditions\ Type}}
+\DoxyCodeLine{00028\ \ \ std::string\ BCTop\ =\ \textcolor{stringliteral}{"{}NoSlip"{}};}
+\DoxyCodeLine{00029\ \ \ std::string\ BCRight\ =\ \textcolor{stringliteral}{"{}NoSlip"{}};}
+\DoxyCodeLine{00030\ \ \ std::string\ BCBottom\ =\ \textcolor{stringliteral}{"{}NoSlip"{}};}
+\DoxyCodeLine{00031\ \ \ std::string\ BCLeft\ =\ \textcolor{stringliteral}{"{}NoSlip"{}};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \textcolor{comment}{//\ NoSlip\ boundary\ conditions}}
+\DoxyCodeLine{00034\ \ \ std::array<double,\ 2>\ \mbox{\hyperlink{structSettings_a8887591c6c157d7006051aa95896c284}{NoSlipVelTop}};\ \ \ \ }
+\DoxyCodeLine{00035\ \ \ std::array<double,\ 2>\ \mbox{\hyperlink{structSettings_a2508aa084fe48e78d72b06e67c5a2006}{NoSlipVelRight}};\ \ }
+\DoxyCodeLine{00036\ \ \ std::array<double,\ 2>\ \mbox{\hyperlink{structSettings_a13e254a0439df7f7bd24ffe4f919a1a4}{NoSlipVelBottom}};\ }
+\DoxyCodeLine{00037\ \ \ std::array<double,\ 2>\ \mbox{\hyperlink{structSettings_aafaec8c10a728a0f115f3bed43a1c478}{NoSlipVelLeft}};\ \ \ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \textcolor{comment}{//\ Pressure\ boundary\ conditions}}
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structSettings_a5c8295a86e29ac27579058f07242e78c}{PressureTop}};\ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structSettings_a8e7d49e95d30c9390fc5039f9326df32}{PressureRight}};\ \ }
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structSettings_acae74bcd333251c982ea347b8eb52017}{PressureBottom}};\ }
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structSettings_a55f2fbdeb4d9c25bc679bd1fd42f1da7}{PressureLeft}};\ \ \ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \textcolor{comment}{//\ Create\ rectangular\ obstacle\ in\ domain}}
+\DoxyCodeLine{00046\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structSettings_a9e871c2bbb7d1b0131eac1f30f4f7788}{createRectangularObject}}\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \textcolor{comment}{//\ Create\ domain\ from\ PNGBitmap}}
+\DoxyCodeLine{00049\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structSettings_a6300ad5a809cdaf480f4553c3e3dbf7c}{createDomainfromBitmap}}\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00050\ \ \ std::string\ \mbox{\hyperlink{structSettings_a398d6490c8731b9b74115abc34700086}{pathToBitmap}};\ }
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ std::array<double,\ 2>\ \mbox{\hyperlink{structSettings_aff5a1563289e354946a164fd80da5bf6}{obstaclePosition}};\ }
+\DoxyCodeLine{00053\ \ \ std::array<double,\ 2>\ \mbox{\hyperlink{structSettings_ae23782f18cddfea58cb843e98cb5854f}{obstacleDimension}};\ }
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ std::string\ \mbox{\hyperlink{structSettings_a888e2fca33db512d4e200b49f1f618f7}{pressureSolver}}\ =\ \textcolor{stringliteral}{"{}SOR"{}};\ \ }
+\DoxyCodeLine{00056\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structSettings_af5ac13128e8c442ba45eedfab06ba14c}{omega}}\ =\ 1.0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structSettings_aa02bd91d026d9ded9e36004b41b068b1}{epsilon}}\ =\ 1e-\/5;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00058\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structSettings_ac118e1c6052e35fb0ee38547a85d84ba}{maximumNumberOfIterations}}\ =\ 1e5;\ }
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \textcolor{comment}{//\ Fluid\ Tracer}}
+\DoxyCodeLine{00062\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structSettings_a7f3405eef6ef103b60e7c2b01088c5ec}{useFluidTracer}}\ =\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00063\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structSettings_ab24c3f0faab5278e400792f8b172322a}{particlePerCell}}\ =\ 100;\ }
+
+
+
+\DoxyCodeLine{00068\ \ \ std::string\ \mbox{\hyperlink{structSettings_a70a321e56d7bc445f58a8662430fd68d}{fluidTracerMethod}}\ =\ \textcolor{stringliteral}{"{}single"{}};}
+\DoxyCodeLine{00069\ \ \ \textcolor{comment}{//\ bool\ useParticleSource\ =\ false;\ //!<\ Enables\ virtual\ particles\ source}}
+\DoxyCodeLine{00070\ \ \ \textcolor{comment}{//\ std::array<double,\ 2>\ particleSource\ =\ \{0.5,\ 0.5\};\ //!<\ Source\ of\ virtual\ particles}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \textcolor{comment}{//\ Writer\ Options}}
+\DoxyCodeLine{00075\ }
+
+
+
+
+\DoxyCodeLine{00081\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structSettings_a55f95e3b6e7379bef4f8399a2cd670cc}{loadFromFile}}(std::string\ filename);}
+\DoxyCodeLine{00082\ }
+
+
+\DoxyCodeLine{00086\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structSettings_a68ce38117dcef2cbdd3bd17f127b3078}{printSettings}}();}
+\DoxyCodeLine{00087\ }
+
+
+
+\DoxyCodeLine{00092\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structSettings_1_1LineContent}{LineContent}}}
+\DoxyCodeLine{00093\ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ std::string\ \mbox{\hyperlink{structSettings_1_1LineContent_a2fa37c56a8ebe361c95b8332fa0262d3}{parameterName}};\ }
+\DoxyCodeLine{00095\ \ \ \ \ std::string\ \mbox{\hyperlink{structSettings_1_1LineContent_a0bb96393366f2e5035379ab5b99d3ab2}{value}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structSettings_1_1LineContent_aa2af8a274c468eb68c61cd93171748e5}{isContent}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00097\ \ \ \};}
+\DoxyCodeLine{00098\ }
+
+
+
+
+\DoxyCodeLine{00104\ \ \ \mbox{\hyperlink{structSettings_1_1LineContent}{LineContent}}\ \mbox{\hyperlink{structSettings_a6dbc25f91b99664976cd4a0a8af153c9}{readSingleLine}}(std::string\ line);}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \textcolor{comment}{//\ sets\ the\ parameter\ to\ the\ corresponding\ value}}
+
+
+
+
+
+\DoxyCodeLine{00113\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structSettings_a588f30eb8d791c03ec811360386bff0d}{setParameter}}(std::string\ parameterName,\ std::string\ value);}
+\DoxyCodeLine{00114\ \};}
+
+\end{DoxyCode}

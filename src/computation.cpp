@@ -23,6 +23,9 @@ void Computation::initialize(int argc, char *argv[])
     }
 
     meshWidth_ = {settings_.physicalSize[0] / settings_.nCells[0], settings_.physicalSize[1] / settings_.nCells[1]};
+
+    // TODO: remove prints
+    std::cout << "Pyhsical size: " << settings_.physicalSize[0] << " " << settings_.physicalSize[1] << std::endl;
     std::cout << "Meshwidth: " << meshWidth_[0] << " " << meshWidth_[1] << std::endl;
     usleep(1000000);
 

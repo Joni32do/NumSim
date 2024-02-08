@@ -49,7 +49,7 @@ obstacleDimensionY = 0.5
 # Create domain from PNGBitmap
 
 createDomainfromBitmap = true
-pathToBitmap = /home/jonat/Documents/02_Workspace/05_NumSim_misc/Project/Bitmap/drop3.png
+pathToBitmap = ../input/Bitmap/doubleDam/doubleDam.png
 
 # Discretization parameters
 nCellsX = 20          # number of cells in x and y direction

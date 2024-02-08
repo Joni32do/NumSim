@@ -1,0 +1,104 @@
+\doxysection{Array2D Class Reference}
+\hypertarget{classArray2D}{}\label{classArray2D}\index{Array2D@{Array2D}}
+
+
+This class represents a 2D array of double values.  
+
+
+
+
+{\ttfamily \#include $<$array2\+D.\+h$>$}
+
+Inheritance diagram for Array2D\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classArray2D}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classArray2D_a16521417dfdf67ec694bfb7747df9000}{Array2D}} (std\+::array$<$ int, 2 $>$ \mbox{\hyperlink{classArray2D_accf87be860645d6c50d6ba6fa39ec6f9}{size}})
+\begin{DoxyCompactList}\small\item\em constructor. \end{DoxyCompactList}\item 
+double \& \mbox{\hyperlink{classArray2D_a9d49e5544f4acf51a57dcbb0ed1bb0f8}{operator()}} (int i, int j)
+\begin{DoxyCompactList}\small\item\em set array value. Overloads the () operator \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classArray2D_af745718ec25b815051de2d0c3c94e0d2}{operator()}} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em get array value. Overloads the () operator \end{DoxyCompactList}\item 
+\Hypertarget{classArray2D_accf87be860645d6c50d6ba6fa39ec6f9}\label{classArray2D_accf87be860645d6c50d6ba6fa39ec6f9} 
+std\+::array$<$ int, 2 $>$ {\bfseries size} () const
+\begin{DoxyCompactList}\small\item\em get size of array in x and y direction \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classArray2D_a75bc7a1ff6f218c38f6ab94ec34e9472}\label{classArray2D_a75bc7a1ff6f218c38f6ab94ec34e9472} 
+const std\+::array$<$ int, 2 $>$ {\bfseries size\+\_\+}
+\begin{DoxyCompactList}\small\item\em size of array in x and y direction \end{DoxyCompactList}\item 
+\Hypertarget{classArray2D_af1572f75d219caab4b2372a98341b991}\label{classArray2D_af1572f75d219caab4b2372a98341b991} 
+std\+::vector$<$ double $>$ {\bfseries data\+\_\+}
+\begin{DoxyCompactList}\small\item\em storage array values, in row-\/major order \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class represents a 2D array of double values. 
+
+Internally they are stored consecutively in memory. The entries can be accessed by two indices i,j. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classArray2D_a16521417dfdf67ec694bfb7747df9000}\label{classArray2D_a16521417dfdf67ec694bfb7747df9000} 
+\index{Array2D@{Array2D}!Array2D@{Array2D}}
+\index{Array2D@{Array2D}!Array2D@{Array2D}}
+\doxysubsubsection{\texorpdfstring{Array2D()}{Array2D()}}
+{\footnotesize\ttfamily Array2\+D\+::\+Array2D (\begin{DoxyParamCaption}\item[{std\+::array$<$ int, 2 $>$}]{size }\end{DoxyParamCaption})}
+
+
+
+constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & size of array in x and y direction \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classArray2D_a9d49e5544f4acf51a57dcbb0ed1bb0f8}\label{classArray2D_a9d49e5544f4acf51a57dcbb0ed1bb0f8} 
+\index{Array2D@{Array2D}!operator()@{operator()}}
+\index{operator()@{operator()}!Array2D@{Array2D}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily double \& Array2\+D\+::operator() (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption})}
+
+
+
+set array value. Overloads the () operator 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & index in x direction \\
+\hline
+{\em j} & index in y direction \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classArray2D_af745718ec25b815051de2d0c3c94e0d2}\label{classArray2D_af745718ec25b815051de2d0c3c94e0d2} 
+\index{Array2D@{Array2D}!operator()@{operator()}}
+\index{operator()@{operator()}!Array2D@{Array2D}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily double Array2\+D\+::operator() (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j }\end{DoxyParamCaption}) const}
+
+
+
+get array value. Overloads the () operator 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & index in x direction \\
+\hline
+{\em j} & index in y direction \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/jonat/\+Documents/01\+\_\+\+Studium/\+Num\+Sim/src/storage/array2\+D.\+h\item 
+/home/jonat/\+Documents/01\+\_\+\+Studium/\+Num\+Sim/src/storage/array2\+D.\+cpp\end{DoxyCompactItemize}

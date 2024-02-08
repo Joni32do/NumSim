@@ -378,21 +378,21 @@ void Boundary::updateVelocitySurfaceBC(double dt){
                 discretization_->v(i, j) = discretization_->v(i, j) + dt * settings_.g[1];
                 discretization_->v(i, j - 1) = discretization_->v(i, j - 1) + dt * settings_.g[1];
                 break;
+            case Mask::FLUID_SINGLE_TOP:
+                // u
+                discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];
+                discretization_->u(i - 1, j) = discretization_->u(i - 1, j) + dt * settings_.g[0];
+                break;
+            case Mask::FLUID_SINGLE_RIGHT:
+                // v
+                discretization_->v(i, j) = discretization_->v(i, j) + dt * settings_.g[1];
+                discretization_->v(i, j - 1) = discretization_->v(i, j - 1) + dt * settings_.g[1];
+                break;
             case Mask::FLUID_SINGLE_BOTTOM:
                 // u
                 discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];
                 discretization_->u(i - 1, j) = discretization_->u(i - 1, j) + dt * settings_.g[0];
                 break;
-            
-            case Mask::FLUID_SINGLE_TOP:
-                // u
-                discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];
-                discretization_->u(i - 1, j) = discretization_->u(i - 1, j) + dt * settings_.g[0];
-            break;
-            case Mask::FLUID_SINGLE_RIGHT:
-                // v
-                discretization_->v(i, j) = discretization_->v(i, j) + dt * settings_.g[1];
-                discretization_->v(i, j - 1) = discretization_->v(i, j - 1) + dt * settings_.g[1];
             case Mask::FLUID_DROPLET:
                 // u
                 discretization_->u(i, j) = discretization_->u(i, j) + dt * settings_.g[0];

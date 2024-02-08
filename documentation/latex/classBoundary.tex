@@ -1,0 +1,102 @@
+\doxysection{Boundary Class Reference}
+\hypertarget{classBoundary}{}\label{classBoundary}\index{Boundary@{Boundary}}
+
+
+Class responsible to caluclate boundary conditions.  
+
+
+
+
+{\ttfamily \#include $<$boundary.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classBoundary_a4c78a28ad0839810f15229382f642cf1}{Boundary}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classMask}{Mask}} $>$ mask, std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classDiscretization}{Discretization}} $>$ discretization, \mbox{\hyperlink{structSettings}{Settings}} settings)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\Hypertarget{classBoundary_a77c90b2a43220ce9796d098158e4376d}\label{classBoundary_a77c90b2a43220ce9796d098158e4376d} 
+void {\bfseries set\+Pressure\+Boundary\+Values} ()
+\begin{DoxyCompactList}\small\item\em calculates and sets the pressure boundary values for obstacles and domain boundary \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBoundary_ac603742c37221bd82cbb545b6cdbe6cb}{set\+Pressure\+Surface\+BC}} ()
+\begin{DoxyCompactList}\small\item\em calculates and sets the pressure boundary values for surface boundary \end{DoxyCompactList}\item 
+\Hypertarget{classBoundary_ab7e15ee44237de051ff8347f2f9c770b}\label{classBoundary_ab7e15ee44237de051ff8347f2f9c770b} 
+void {\bfseries set\+Velocity\+Boundary\+Values} ()
+\begin{DoxyCompactList}\small\item\em calculates and sets the velocity boundary values for surface, obstacle and domain boundary \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBoundary_a81d6f13c90f37e63fc0cad27a6999915}{set\+Velocity\+Boundary\+Values}} (double dt)
+\begin{DoxyCompactList}\small\item\em overloaded function that sets velocity boundary \end{DoxyCompactList}\item 
+\Hypertarget{classBoundary_ac76b887d65491d38c093ca50333697a9}\label{classBoundary_ac76b887d65491d38c093ca50333697a9} 
+bool {\bfseries do\+CalculateF} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em returns true if cell left and rigt of F value are fluid (not a boundary value) \end{DoxyCompactList}\item 
+\Hypertarget{classBoundary_aacf325c02e71925b7847d7189282b5c1}\label{classBoundary_aacf325c02e71925b7847d7189282b5c1} 
+bool {\bfseries do\+CalculateG} (int i, int j) const
+\begin{DoxyCompactList}\small\item\em returns true if cell top and bottom of G value are fluid (not a boundary value) \end{DoxyCompactList}\item 
+\Hypertarget{classBoundary_a9910a68c5dec5845ef4cdde98e680155}\label{classBoundary_a9910a68c5dec5845ef4cdde98e680155} 
+void {\bfseries update\+Boundary} ()
+\begin{DoxyCompactList}\small\item\em updates fluid boundary cell list \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classBoundary_a25d33b12fbdf312cf319713ff88b3d38}\label{classBoundary_a25d33b12fbdf312cf319713ff88b3d38} 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classMask}{Mask}} $>$ {\bfseries mask\+\_\+}
+\begin{DoxyCompactList}\small\item\em shared pointer to mask entity \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class responsible to caluclate boundary conditions. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classBoundary_a4c78a28ad0839810f15229382f642cf1}\label{classBoundary_a4c78a28ad0839810f15229382f642cf1} 
+\index{Boundary@{Boundary}!Boundary@{Boundary}}
+\index{Boundary@{Boundary}!Boundary@{Boundary}}
+\doxysubsubsection{\texorpdfstring{Boundary()}{Boundary()}}
+{\footnotesize\ttfamily Boundary\+::\+Boundary (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classMask}{Mask}} $>$}]{mask,  }\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classDiscretization}{Discretization}} $>$}]{discretization,  }\item[{\mbox{\hyperlink{structSettings}{Settings}}}]{settings }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em discretization} & instance of \doxylink{classDiscretization}{Discretization} holding the needed field variables for rhs and p \\
+\hline
+{\em mask} & instance of mask holding the boundary condition enums for each cell tolerance for the solver \\
+\hline
+{\em settings} & holding the necessary domainn boundary condition \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classBoundary_ac603742c37221bd82cbb545b6cdbe6cb}\label{classBoundary_ac603742c37221bd82cbb545b6cdbe6cb} 
+\index{Boundary@{Boundary}!setPressureSurfaceBC@{setPressureSurfaceBC}}
+\index{setPressureSurfaceBC@{setPressureSurfaceBC}!Boundary@{Boundary}}
+\doxysubsubsection{\texorpdfstring{setPressureSurfaceBC()}{setPressureSurfaceBC()}}
+{\footnotesize\ttfamily void Boundary\+::set\+Pressure\+Surface\+BC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+calculates and sets the pressure boundary values for surface boundary 
+
+Only needs to be set once -\/\texorpdfstring{$>$}{>} no need to update each solver iteration \Hypertarget{classBoundary_a81d6f13c90f37e63fc0cad27a6999915}\label{classBoundary_a81d6f13c90f37e63fc0cad27a6999915} 
+\index{Boundary@{Boundary}!setVelocityBoundaryValues@{setVelocityBoundaryValues}}
+\index{setVelocityBoundaryValues@{setVelocityBoundaryValues}!Boundary@{Boundary}}
+\doxysubsubsection{\texorpdfstring{setVelocityBoundaryValues()}{setVelocityBoundaryValues()}}
+{\footnotesize\ttfamily void Boundary\+::set\+Velocity\+Boundary\+Values (\begin{DoxyParamCaption}\item[{double}]{dt }\end{DoxyParamCaption})}
+
+
+
+overloaded function that sets velocity boundary 
+
+necessary when fluid tracker is used
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & current time step \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/jonat/\+Documents/01\+\_\+\+Studium/\+Num\+Sim/src/boundary/boundary.\+h\item 
+/home/jonat/\+Documents/01\+\_\+\+Studium/\+Num\+Sim/src/boundary/boundary.\+cpp\end{DoxyCompactItemize}
