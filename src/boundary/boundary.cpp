@@ -14,6 +14,7 @@ void Boundary::createBoundaryCellsLists()
         for (int j = 0; j < mask_->size()[1]; j++)
         {
             int idx = i + j * mask_->size()[0];
+
             if (mask_->isDomainBoundary(i, j))
                 domainBoundaryCells_.push_back(idx);
             if (mask_->isObstacleBoundary(i, j))
@@ -143,7 +144,6 @@ void Boundary::setPressureSurfaceBC()
             discretization_->p(i, j) = 2/settings_.re*(discretization_->v(i, j) - discretization_->v(i, j - 1))/dy;
             break;
         case Mask::FLUID_CORNER_TOP_LEFT:
-            // the same calculation for all CORNERS
             discretization_->p(i, j) = -1/(2 * settings_.re) * (
                 1/(2*dy) * (discretization_->u(i, j) + discretization_->u(i - 1, j) 
                     -discretization_->u(i, j - 1) - discretization_->u(i - 1, j - 1))
@@ -206,6 +206,8 @@ void Boundary::setPressureSurfaceBC()
 
 void Boundary::setVelocityBoundaryValues()
 {
+    setVelocityDomainBC();
+    setVelocityObstacleBC();
     // setAirCellsZero();
     setVelocitySurfaceBC();
     setVelocityDomainBC();
@@ -432,7 +434,7 @@ void Boundary::setVelocitySurfaceBC(){
         case Mask::FLUID_BORDER_TOP:
             // v - CONTINUITY
             discretization_->v(i, j) = discretization_->v(i, j - 1)
-                + dyByDx * (discretization_->u(i, j) - discretization_->u(i - 1, j));
+                - dyByDx * (discretization_->u(i, j) - discretization_->u(i - 1, j));
 
             // u - TANGENTIAL
             if (!mask_->isFluid(i - 1, j + 1)){
@@ -455,6 +457,7 @@ void Boundary::setVelocitySurfaceBC(){
             // v - CONTINUITY
             discretization_->v(i, j - 1) = discretization_->v(i, j)
                 + dyByDx * (discretization_->u(i, j) - discretization_->u(i - 1, j));
+            
             
             // u - TANGENTIAL
             if (!mask_->isFluid(i - 1, j - 1)){

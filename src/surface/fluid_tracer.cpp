@@ -124,14 +124,18 @@ void FluidTracer::moveParticles(double dt) {
                                      discretization_->v().interpolateAt(x_[i], y_[i])};
         std::array<int, 2> idx = cellOfParticle(i);
 
-        std::array<int, 2> newIdx = updateParticle(i, idx, dt, vel);
+        // std::array<int, 2> newIdx = updateParticle(i, idx, dt, vel);
+        x_[i] += vel[0] * dt;
+        y_[i] += vel[1] * dt;
+        std::array<int, 2> newIdx = cellOfParticle(i);
+
 
         // TODO: uncomment this if threshold instead of singleParticle
         if (mask_->isObstacle(newIdx[0], newIdx[1])){
             std::cout<< "CFL Violated" << std::endl;
             // remove from domain
-            x_[i] = 0;
-            y_[i] = 0;
+            x_.erase(x_.begin() + i);
+            y_.erase(y_.begin() + i);
 
         } else { 
             currentParticlesPerCell_[newIdx[0] + newIdx[1] * mask_->size()[0]] += 1;
@@ -159,10 +163,17 @@ void FluidTracer::moveParticles(double dt) {
 void FluidTracer::resetVelocityInAirCells(){
     for (int i = 1; i < mask_->size()[0]-1; i++){
         for (int j = 1; j < mask_->size()[1]-1; j++){
-            if (mask_->isAir(i, j) && mask_->isAir(i + 1, j)){
+            if (!mask_->isFluid(i- 1, j - 1) 
+                && !mask_->isFluid(i, j - 1)
+                && !mask_->isFluid(i + 1, j - 1)
+                && !mask_->isFluid(i - 1, j)
+                && !mask_->isFluid(i, j)
+                && !mask_->isFluid(i + 1, j)
+                && !mask_->isFluid(i - 1, j + 1)
+                && !mask_->isFluid(i, j + 1)
+                && !mask_->isFluid(i + 1, j + 1)
+            ){
                 discretization_->u(i, j) = 0;
-            }
-            if (mask_->isAir(i, j) && mask_->isAir(i, j + 1)){
                 discretization_->v(i, j) = 0;
             }
         }
@@ -200,9 +211,10 @@ std::array<int, 2> FluidTracer::updateParticle(int i, std::array<int, 2> idx, do
         std::array<double, 2> newVel = vel;
 
         // if any collision    
-        double eps = 1e-10;
+        double eps = 1e-14;
 
         if (dt < eps){
+            // Source of error
             return newIdx;
         }
 
@@ -227,7 +239,7 @@ std::array<int, 2> FluidTracer::updateParticle(int i, std::array<int, 2> idx, do
                     dtBeforeCollision = dt_y;
                 } else {
                     // collision RIGHT
-                    if (mask_->isObstacle(idx[0] + 1, idx[1])){ //TODO: change 
+                    if (mask_->isObstacle(idx[0] + 1, idx[1])){
                         newVel[0] = -vel[0];
                     } else {
                         newIdx[0] += 1;
@@ -249,7 +261,7 @@ std::array<int, 2> FluidTracer::updateParticle(int i, std::array<int, 2> idx, do
                     dtBeforeCollision = dt_y;
                 } else  {
                     // collision RIGHT
-                    if (mask_->isObstacle(idx[0] + 1, idx[1])){   // TODO: change
+                    if (mask_->isObstacle(idx[0] + 1, idx[1])){
                         newVel[0] = -vel[0];
                     } else {
                         newIdx[0] += 1;
@@ -277,7 +289,7 @@ std::array<int, 2> FluidTracer::updateParticle(int i, std::array<int, 2> idx, do
                     dtBeforeCollision = dt_y;
                 } else {
                     // collision LEFT
-                    if (mask_->isObstacle(idx[0] - 1, idx[1])){ // TODO: change
+                    if (mask_->isObstacle(idx[0] - 1, idx[1])){
                         newVel[0] = -vel[0];
                     } else {
                         newIdx[0] -= 1;
@@ -299,7 +311,7 @@ std::array<int, 2> FluidTracer::updateParticle(int i, std::array<int, 2> idx, do
                     dtBeforeCollision = dt_y;
                 } else {
                     // collision LEFT
-                    if (mask_->isObstacle(idx[0] - 1, idx[1])){ //TODO: change
+                    if (mask_->isObstacle(idx[0] - 1, idx[1])){
                         newVel[0] = -vel[0];
                     } else {
                         newIdx[0] -= 1;
@@ -456,7 +468,7 @@ std::array<double, 2> FluidTracer::updateParticle(int i, std::array<int, 2> idx,
                     dtBeforeCollision = dt_y;
                 } else {
                     // collision RIGHT
-                    if (mask_->isObstacle(idx[0] + 1, idx[1])){ //TODO: change 
+                    if (mask_->isObstacle(idx[0] + 1, idx[1])){
                         newVel[0] = -vel[0];
                     } else {
                         newIdx[0] += 1;
@@ -478,7 +490,7 @@ std::array<double, 2> FluidTracer::updateParticle(int i, std::array<int, 2> idx,
                     dtBeforeCollision = dt_y;
                 } else  {
                     // collision RIGHT
-                    if (mask_->isObstacle(idx[0] + 1, idx[1])){   // TODO: change
+                    if (mask_->isObstacle(idx[0] + 1, idx[1])){
                         newVel[0] = -vel[0];
                     } else {
                         newIdx[0] += 1;
@@ -506,7 +518,7 @@ std::array<double, 2> FluidTracer::updateParticle(int i, std::array<int, 2> idx,
                     dtBeforeCollision = dt_y;
                 } else {
                     // collision LEFT
-                    if (mask_->isObstacle(idx[0] - 1, idx[1])){ // TODO: change
+                    if (mask_->isObstacle(idx[0] - 1, idx[1])){
                         newVel[0] = -vel[0];
                     } else {
                         newIdx[0] -= 1;
@@ -528,7 +540,7 @@ std::array<double, 2> FluidTracer::updateParticle(int i, std::array<int, 2> idx,
                     dtBeforeCollision = dt_y;
                 } else {
                     // collision LEFT
-                    if (mask_->isObstacle(idx[0] - 1, idx[1])){ //TODO: change
+                    if (mask_->isObstacle(idx[0] - 1, idx[1])){
                         newVel[0] = -vel[0];
                     } else {
                         newIdx[0] -= 1;

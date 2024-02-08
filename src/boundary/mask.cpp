@@ -227,7 +227,7 @@ void Mask::setDomainBC()
   for (int i = 0; i < size_[0]; i++)
   {
     // Bottom Domain Boundary
-    if (data_[i + size_[0]] != FLUID)
+    if (data_[i + size_[0]] > OBSTACLE)
       data_[i] = OBSTACLE_INSIDE;
     else if (settings_.BCBottom == "NoSlip")
       data_[i] = DOMAIN_BOTTOM_NOSLIP;
@@ -235,7 +235,7 @@ void Mask::setDomainBC()
       data_[i] = DOMAIN_BOTTOM_PRESSURE;
 
     // Top Domain Boundary
-    if (data_[i + (size_[1] - 2) * size_[0]] != FLUID)
+    if (data_[i + (size_[1] - 2) * size_[0]] > OBSTACLE)
       data_[i + (size_[1] - 1) * size_[0]] = OBSTACLE_INSIDE;
     else if (settings_.BCTop == "NoSlip")
       data_[i + (size_[1] - 1) * size_[0]] = DOMAIN_TOP_NOSLIP;
@@ -246,7 +246,7 @@ void Mask::setDomainBC()
   for (int j = 0; j < size_[1]; j++)
   {
     // Left Domain Boundary
-    if (data_[j * size_[0] + 1] != FLUID)
+    if (data_[j * size_[0] + 1] > OBSTACLE)
       data_[j * size_[0]] = OBSTACLE_INSIDE;
     else if (settings_.BCLeft == "NoSlip")
       data_[j * size_[0]] = DOMAIN_LEFT_NOSLIP;
@@ -254,7 +254,7 @@ void Mask::setDomainBC()
       data_[j * size_[0]] = DOMAIN_LEFT_PRESSURE;
 
     // Right Domain Boundary
-    if (data_[(size_[0] - 2) + j * size_[0]] != FLUID)
+    if (data_[(size_[0] - 2) + j * size_[0]] > OBSTACLE)
       data_[(size_[0] - 1) + j * size_[0]] = OBSTACLE_INSIDE;
     else if (settings_.BCRight == "NoSlip")
       data_[(size_[0] - 1) + j * size_[0]] = DOMAIN_RIGHT_NOSLIP;

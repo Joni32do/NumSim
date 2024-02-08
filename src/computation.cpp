@@ -17,20 +17,22 @@ void Computation::initialize(int argc, char *argv[])
     // create boundary and tracer
     mask_ = std::make_shared<Mask>(settings_);
 
-    // Read in nCells from BitMap
-    std::array<int,2> n_Cells = {mask_->size()[0]-2, mask_->size()[1]-2};
+    if (settings_.createDomainfromBitmap){
+        settings_.nCells = {mask_->size()[0]-2, mask_->size()[1]-2};
+        settings_.physicalSize = {settings_.physicalSize[0], settings_.physicalSize[0] * settings_.nCells[1] / settings_.nCells[0]};
+    }
 
-    
-    std::array<double, 2> meshWidth_ = {0.1, 0.1};
-
+    meshWidth_ = {settings_.physicalSize[0] / settings_.nCells[0], settings_.physicalSize[1] / settings_.nCells[1]};
+    std::cout << "Meshwidth: " << meshWidth_[0] << " " << meshWidth_[1] << std::endl;
+    usleep(1000000);
 
     if (settings_.useDonorCell)
     {
-        discretization_ = std::make_shared<DonorCell>(n_Cells, meshWidth_, settings_.alpha);
+        discretization_ = std::make_shared<DonorCell>(settings_.nCells, meshWidth_, settings_.alpha);
     }
     else
     {
-        discretization_ = std::make_shared<CentralDifferences>(n_Cells, meshWidth_);
+        discretization_ = std::make_shared<CentralDifferences>(settings_.nCells, meshWidth_);
     }
     // Boundary    
     boundary_ = std::make_shared<Boundary>(mask_, discretization_, settings_);
@@ -67,7 +69,7 @@ void Computation::initialize(int argc, char *argv[])
 void Computation::runSimulation()
 {
     // setting
-    double printInterval = 0.005;
+    double printInterval = 0.05;
 
     // initialize
     double currentTime = 0.;
@@ -80,11 +82,9 @@ void Computation::runSimulation()
     {
         // fluidTracer_->createParticles(0.1, 1.4);
 
-#ifndef NDEBUG
         // mask_->printMask();
-        // usleep(1000000);
+        // usleep(100000000);
         // std::cout << "\033[2J\033[1;1H";
-#endif
 
         computeTimeStepWidth(currentTime);
         computePreliminaryVelocities();
@@ -98,19 +98,21 @@ void Computation::runSimulation()
             //     fluidTracer_->createParticles(settings_.particleSource[0], settings_.particleSource[1]);
             // }
             boundary_->setVelocityBoundaryValues(dt_);
+            currentTime += dt_;
+            computeTimeStepWidth(currentTime);
             fluidTracer_->moveParticles(dt_);
         }
-        //boundary_->updateBoundary();
+        boundary_->updateBoundary();
         boundary_->setVelocityBoundaryValues();
-        //boundary_->setPressureSurfaceBC();
+        boundary_->setPressureSurfaceBC();
 
 
 
-        currentTime += dt_;
+        // currentTime += dt_;
         if (currentTime > printTime) {
             outputWriterParaview_->writeFile(currentTime);
             printTime += printInterval;
-            // std::cout << currentTime << " -> write file, took steps: " << stepsBetweenPrints << std::endl;
+            std::cout << currentTime << " -> write file, took steps: " << stepsBetweenPrints << std::endl;
             stepsBetweenPrints = 0;
         }
 
@@ -120,6 +122,7 @@ void Computation::runSimulation()
         outputWriterText_->writeFile(currentTime);
         outputWriterText_->writePressureFile();
         std::cout << currentTime << std::endl;
+        // usleep(100000000);
 #endif
 
     } while (currentTime < settings_.endTime);
