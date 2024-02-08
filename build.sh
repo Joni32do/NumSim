@@ -19,18 +19,30 @@ make install -j4
 
 
 # ./numsim ../input/settings.txt
-# ./numsim ../input/settings_aerodynamic_obstacle.txt
+./numsim ../input/settings_aerodynamic_obstacle.txt
 # ./numsim ../input/settings_damBreak.txt
-./numsim ../input/settings_drop.txt
+# ./numsim ../input/settings_drop.txt
+# ./numsim ../input/settings_quadruple_cavity.txt
+# ./numsim ../input/settings_lid_driven_cavity_with_a_step.txt
+
+# ./numsim ../input/settings_debug_joni.txt # maze
+# ./numsim ../input/settings_water_tap.txt
 
 ######################
 ## DEBUG -> DELETE ##
 ######################
 dir="/home/jonat/Documents/02_Workspace/05_NumSim_misc/Project/Simulations/data"
-newdir="dropTheComet"
-rm -rf $dir/$newdir
-mkdir $dir/$newdir
-cp -r out $dir/$newdir/
+
+# rm -rf $dir/damBreak/slow
+# mkdir $dir/damBreak/slow
+# cp -r out $dir/damBreak/slow
+
+
+# ./numsim ../input/settings_drop.txt
+# newdir="dropTheCometHard"
+# rm -rf $dir/$newdir
+# mkdir $dir/$newdir
+# cp -r out $dir/$newdir/
 
 
 

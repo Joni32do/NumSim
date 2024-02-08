@@ -101,8 +101,6 @@ public:
      */
     void resetMask();
 
-    // ********************************************************
-    // R E Q U E S T S
 
     /**
      * @brief Cell at (i,j) is fluid or not

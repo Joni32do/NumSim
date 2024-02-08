@@ -64,16 +64,30 @@ class FluidTracer {
          */
         std::array<double, 2> getParticlePosition(int i) const;
 
+        /**
+         * @brief returns the 2D idx of particle `i`
+         * 
+         * @param i 
+         * @return std::array<int, 2> 
+         */
         std::array<int, 2> cellOfParticle(int i);
+
+        /**
+         * @brief translates from x-coordinate to cell index in x-direction
+         */
         int val2CellX(double xVal);
+        /**
+         * @brief translate from y-coordinate to cell index in y-direction
+        */
         int val2CellY(double yVal);
 
 
 
-        // Only test
+        /**
+         * Methods for debugging and test purposes
+         */
         std::array<double, 2> updateParticle(int i, std::array<int, 2> idx, double dt, std::array<double,2> vel, int depth);
         std::array<double, 2> moveParticles(double dt, std::array<double, 2> vel);
-
         void printParticles();
 
 
@@ -85,13 +99,29 @@ class FluidTracer {
         void initializeFluidCell(int i, int j, int idx);
 
 
-        // Helper for move Particles
-        int getThresholdParticlesFluidCell();
+        /**
+         * @brief updates the position of particle `i` according to the velocity field and possible collisions (recursive function)
+         * 
+         * @param i particle to move
+         * @param idx 2D idx of the cell in which particle `i` currently is
+         * @param dt time step (particle will travel with *remainder* of dt if it collides with border or obstacle in opposite direction)
+         * @param vel velocity derived from flow field
+         * @return std::array<int, 2> new 2D idx of the cell in which particle `i` is after update
+         */
         std::array<int, 2> updateParticle(int i, std::array<int, 2> idx, double dt, std::array<double,2> vel);
-        void resetVelocityInAirCells();
+
+        /**
+         * @brief Updates velocities if a new cell is created to avoid **rocket** effect for droplets
+         * 
+         * @param oldParticlesPerCell 
+         */
+        void checkForNewCreatedFluidCells(std::vector<int> oldParticlesPerCell);
+
+        // Under construction: for making fluid update step more stable, by majority vote of particles in cell
+        int getThresholdParticlesFluidCell();
 
 
-        int numParticles_;
+        int numParticles_; //<! number of virtual particles
         int numParticlesPerCell_; // <! is usually because of ceil larger then numParticlesPerCell> 
 
         // aspect ratio e.g. 1.0 for square cells and 0.5 for (dx = 2*dy) cells
@@ -105,6 +135,6 @@ class FluidTracer {
         std::shared_ptr<Mask> mask_;
         std::vector<double> x_;
         std::vector<double> y_;
-        std::vector<int> currentParticlesPerCell_;
+        std::vector<int> currentParticlesPerCell_; //<! stores how many particle are in each cell (lexigraphic ordering)
 
 };

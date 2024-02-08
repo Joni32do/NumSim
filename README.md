@@ -15,7 +15,7 @@ We recommend to run the simulation using the provided bash script `build.sh`. In
 For the user there is the settings.txt file that can be adjusted to 
 fit the specific simulation needs. 
 
-### General geometry of the simulation domain:
+### General
 
 * `physicalSizeX` and `physicalSizeY`: The domain size in meters. *If* bitmap has other ratio, will rescale `physicalSizeY` automatically.
 * `endTime`: The endtime of the simulation in seconds.
@@ -64,6 +64,7 @@ In the following you can specify wheter you want to load your domain from a bitm
 * `alpha`: Factor for donor-cell scheme between 0 and 1. 0 is equivalent to central differences
 * `epsilon`: Tolerance of the 2-norm residual 
 * `maximumNumberOfIterations`: Maximum number of iterations of the pressure solver 
+* `printInterval` the time which shall pass between output vtk files
 
 ### Open surfaces
 
@@ -92,12 +93,39 @@ example files that you can simulate.
 
 ## Display simulation results in ParaView
 You can display your simulation results using ParaView. The necessary vtk files
-will be written to the build/out folder during simulation. 
+will be written to the `build/out` folder during simulation. 
 
 When the files are loaded into paraview you should apply a threshold to the mask 
 field to make obstacle visible in paraview (see image). Then use the threshold field to perform further visualizations. 
 
 ![mask](media/mask.png)
+
+
+
+## Results
+
+### Quadrupel Lid-Driven Cavity
+
+As an example, that there is no interaction through obstacles we implemented a somewhat circular Lid-Driven-Cavity. The settings and bitmap are provided in the `input` folder, [here](input/settings_quadruple_cavity.txt).
+
+
+![Example_QuadLidDrivenCavity](media/Example_QuadLidDrivenCavity.png)
+
+### Cavity with a step
+
+Again the settings are provided [here](input/settings_cavity_with_a_step.txt)
+
+![Cavity Step](media/CavityStep.png)
+
+### Aerodynamic
+With pressure Boundary Condition and a bitmap an aerodynamic shape can be simulated. The settings can be found [here](input/settings_aerodynamic_obstacle.txt).
+
+
+
+### Water drop
+
+
+### Dam break
 
 
 

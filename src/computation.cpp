@@ -71,20 +71,15 @@ void Computation::initialize(int argc, char *argv[])
 
 void Computation::runSimulation()
 {
-    // setting
-    double printInterval = 0.05;
-
     // initialize
     double currentTime = 0.;
-    double printTime = 0.;
+    double nextPrintTime = 0.;
     int stepsBetweenPrints = 0;
 
     boundary_->setVelocityBoundaryValues();
     boundary_->setPressureSurfaceBC();
     do
     {
-        // fluidTracer_->createParticles(0.1, 1.4);
-
         // mask_->printMask();
         // usleep(100000000);
         // std::cout << "\033[2J\033[1;1H";
@@ -94,28 +89,29 @@ void Computation::runSimulation()
         computeRightHandSide();
         computePressure();
         computeVelocities();
+        currentTime += dt_;
         
         if (settings_.useFluidTracer)
         {
-            // if (settings_.useParticleSource) {
-            //     fluidTracer_->createParticles(settings_.particleSource[0], settings_.particleSource[1]);
-            // }
             boundary_->setVelocityBoundaryValues(dt_);
-            currentTime += dt_;
+            // Fulfill CFL condition for particles
             computeTimeStepWidth(currentTime);
             fluidTracer_->moveParticles(dt_);
+            boundary_->updateBoundary();
         }
-        boundary_->updateBoundary();
+
         boundary_->setVelocityBoundaryValues();
         boundary_->setPressureSurfaceBC();
 
+        if (currentTime > nextPrintTime) {
 
+            if (settings_.useParticleSource) {
+                fluidTracer_->createParticles(settings_.particleSource[0], settings_.particleSource[1]);
+            }
 
-        // currentTime += dt_;
-        if (currentTime > printTime) {
             outputWriterParaview_->writeFile(currentTime);
-            printTime += printInterval;
-            std::cout << currentTime << " -> write file, took steps: " << stepsBetweenPrints << std::endl;
+            nextPrintTime += settings_.printInterval;
+            std::cout << currentTime << " -> Write VTK, took: " << stepsBetweenPrints << " steps" << std::endl;
             stepsBetweenPrints = 0;
         }
 
@@ -125,7 +121,6 @@ void Computation::runSimulation()
         outputWriterText_->writeFile(currentTime);
         outputWriterText_->writePressureFile();
         std::cout << currentTime << std::endl;
-        // usleep(100000000);
 #endif
 
     } while (currentTime < settings_.endTime);

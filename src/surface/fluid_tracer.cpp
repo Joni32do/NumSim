@@ -99,13 +99,12 @@ int FluidTracer::getThresholdParticlesFluidCell() {
     std::sort(copy.begin(), copy.end(), std::greater<int>());
 
     if (numFluidCells_ > copy.size()){
-        std::cout << " WARNING, NO FLUID CELLS" << std::endl;
-        std::cout << numFluidCells_ << " "  << std::endl;
+        std::cout << "PARTICLE COUNT CURROPTED" << std::endl;
         return 1;
     }
     int threshold = copy[numFluidCells_ - 1];
     if (threshold < 1){
-        std::cout << " WARNING, THRESHOLD LOW" << std::endl;
+        std::cout << " WARNING, THRESHOLD 0" << std::endl;
         return 1;
     }
     return threshold;
@@ -124,26 +123,25 @@ void FluidTracer::moveParticles(double dt) {
     for (int i = 0; i < numParticles_; i++) {
         std::array<double, 2> vel = {discretization_->u().interpolateAt(x_[i], y_[i]),
                                      discretization_->v().interpolateAt(x_[i], y_[i])};
+        
         std::array<int, 2> idx = cellOfParticle(i);
-
-        // std::array<int, 2> newIdx = updateParticle(i, idx, dt, vel);
-        x_[i] += vel[0] * dt;
-        y_[i] += vel[1] * dt;
-        std::array<int, 2> newIdx = cellOfParticle(i);
+        std::array<int, 2> newIdx = updateParticle(i, idx, dt, vel);
+        // x_[i] += vel[0] * dt;
+        // y_[i] += vel[1] * dt;
+        // std::array<int, 2> newIdx = cellOfParticle(i);
 
 
         if (mask_->isObstacle(newIdx[0], newIdx[1])){
-            std::cout<< "CFL Violated" << std::endl;
-            // remove from domain
+            // SAFETY FEATURE -> if bug
             x_.erase(x_.begin() + i);
             y_.erase(y_.begin() + i);
-
         } else { 
             currentParticlesPerCell_[newIdx[0] + newIdx[1] * mask_->size()[0]] += 1;
             (*mask_)(newIdx[0], newIdx[1]) = Mask::FLUID;
         }
     }
-    int threshold = 0; //getThresholdParticlesFluidCell();
+    int threshold = 0; 
+    //getThresholdParticlesFluidCell();
     
     for (int i = 0; i < mask_->size()[0]; i++){
         for (int j = 0; j < mask_->size()[1]; j++){
@@ -152,19 +150,20 @@ void FluidTracer::moveParticles(double dt) {
             }
         }
     }
-    // std::cout<< "Threshold: " << threshold << std::endl;
-    
-    resetVelocityInAirCells();
     
     // Update BC in mask
     mask_->setFluidBC();
 
+    checkForNewCreatedFluidCells(oldParticlesPerCell);
+}
 
+
+void FluidTracer::checkForNewCreatedFluidCells(std::vector<int> oldParticlesPerCell){
+    // Debug against Rocket Phenomen, that a drop with small velocity in tangential direction builds up momentum
     for (int i = 0; i < mask_->size()[0]; i++){
         for (int j = 0; j < mask_->size()[1]; j++){
             
             if (currentParticlesPerCell_[i + j * mask_->size()[0]] > 0 && oldParticlesPerCell[i + j * mask_->size()[0]] == 0){
-                // std::cout << std::setw(2) << std::setfill('0') << i << " " << std::setw(2) << std::setfill('0') << j << " " << " New Fluid" << std::endl;
                 switch ((*mask_)(i, j)){
                     case Mask::FLUID_SINGLE_RIGHT:
                         discretization_->u(i, j) = discretization_->u(i + 1, j);
@@ -182,32 +181,7 @@ void FluidTracer::moveParticles(double dt) {
             }
         }
     }
-
-
 }
-
-// TODO: remove
-void FluidTracer::resetVelocityInAirCells(){
-    for (int i = 1; i < mask_->size()[0]-1; i++){
-        for (int j = 1; j < mask_->size()[1]-1; j++){
-            if (!mask_->isFluid(i- 1, j - 1) 
-                && !mask_->isFluid(i, j - 1)
-                && !mask_->isFluid(i + 1, j - 1)
-                && !mask_->isFluid(i - 1, j)
-                && !mask_->isFluid(i, j)
-                && !mask_->isFluid(i + 1, j)
-                && !mask_->isFluid(i - 1, j + 1)
-                && !mask_->isFluid(i, j + 1)
-                && !mask_->isFluid(i + 1, j + 1)
-            ){
-                discretization_->u(i, j) = 0;
-                discretization_->v(i, j) = 0;
-            }
-        }
-    }
-
-}
-
 
 std::array<int, 2> FluidTracer::updateParticle(int i, std::array<int, 2> idx, double dt, std::array<double,2> vel) {
     
@@ -356,7 +330,7 @@ std::array<int, 2> FluidTracer::updateParticle(int i, std::array<int, 2> idx, do
         if (dt < dtBeforeCollision) {
             x_[i] += dt * vel[0];
             y_[i] += dt * vel[1];
-            return newIdx;
+            return idx;
         }
 
         x_[i] += dtBeforeCollision * vel[0];

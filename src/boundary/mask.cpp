@@ -88,7 +88,6 @@ int Mask::getNumberOfFluidCells() const {
 }
 
 
-
 void Mask::makeRectangularObstacle()
 {
 
@@ -298,7 +297,6 @@ void Mask::setObstacleBC()
     }
   }
 }
-
 
 
 void Mask::printMask() const{

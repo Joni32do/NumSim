@@ -2,12 +2,12 @@
 # Run ./numsim lid_driven_cavity.txt
 
 # Problem description
-physicalSizeX = 2.0   # physical size of the domain
-physicalSizeY = 2.0
+physicalSizeX = 10.0   # physical size of the domain
+physicalSizeY = 10.0
 endTime = 10.0        # duration of the simulation
 re = 100             # Reynolds number
 gX = 0.0              # external forces, set to (gX,gY) = (0,-9.81) to account for gravity
-gY = -0.5
+gY = -10.0
 
 
 # Boundary Conditions Type
@@ -35,7 +35,7 @@ NoSlipVelLeftY   = 0
 PressureTop    = 0
 PressureRight  = 0.0
 PressureBottom = 0
-PressureLeft   = 100.0
+PressureLeft   = 0.0
 
 # Create Rectangular object in domain 
 
@@ -49,7 +49,7 @@ obstacleDimensionY = 0.5
 # Create domain from PNGBitmap
 
 createDomainfromBitmap = true
-pathToBitmap = ../input/Bitmap/doubleDam/doubleDam.png
+pathToBitmap = ../input/bitmap/maze3.png
 
 # Discretization parameters
 nCellsX = 20          # number of cells in x and y direction
@@ -69,5 +69,5 @@ maximumNumberOfIterations = 1e5    # maximum number of iterations in the solver
 # Particle Tracker
 useFluidTracer = true
 particlePerCell = 100
-fluidTracerMethod = single
+fluidTracerMethod = fixed
 

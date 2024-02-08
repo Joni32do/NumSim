@@ -248,8 +248,25 @@ void Settings::setParameter(std::string parameterName, std::string value)
     else if(parameterName == "particlePerCell")
         particlePerCell = atof(value.c_str());
     else if(parameterName == "fluidTracerMethod")
-        if (value == "single" || value == "threshold")
+        if (value == "fixed" || value == "calculated")
             Settings::fluidTracerMethod = value;
         else
             throw std::invalid_argument("Supported values for fluidTracerMethod are single and threshold");
+    else if(parameterName == "fluidTracerThreshold")
+        fluidTracerThreshold = atof(value.c_str());
+    else if(parameterName == "useParticleSource")
+    {
+        if (value == "true" || value == "True")
+            Settings::useParticleSource = true;
+        else if (value == "false" || value == "False")
+            Settings::useParticleSource = false;
+        else
+            throw std::invalid_argument("useParticleSource must be a boolean (true or false).");
+    }
+    else if(parameterName == "particleSourceX")
+        particleSource[0] = atof(value.c_str());
+    else if(parameterName == "particleSourceY")
+        particleSource[1] = atof(value.c_str());
+    else if(parameterName == "printInterval")
+        printInterval = atof(value.c_str());
 }

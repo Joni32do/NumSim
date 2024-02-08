@@ -206,9 +206,7 @@ void Boundary::setPressureSurfaceBC()
 
 void Boundary::setVelocityBoundaryValues()
 {
-    setVelocityDomainBC();
-    setVelocityObstacleBC();
-    // setAirCellsZero();
+    setAirCellsZero();
     setVelocitySurfaceBC();
     setVelocityDomainBC();
     setVelocityObstacleBC();
@@ -347,9 +345,6 @@ void Boundary::setAirCellsZero() {
                 discretization_->p(i, j) = 0;
                 discretization_->u(i, j) = 0;
                 discretization_->v(i, j) = 0;
-                discretization_->f(i, j) = 0;
-                discretization_->g(i, j) = 0;
-                discretization_->rhs(i, j) = 0;
             }
         }
     }

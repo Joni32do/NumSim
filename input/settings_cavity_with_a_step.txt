@@ -48,8 +48,8 @@ obstacleDimensionY = 1.0
 
 # Create domain from PNGBitmap
 
-createDomainfromBitmap = true
-pathToBitmap = /home/lukas/Documents/SimTech/Semester2/NumSim/Submission4/Bitmaps/double_cavity.png
+# createDomainfromBitmap = true
+# pathToBitmap = /home/lukas/Documents/SimTech/Semester2/NumSim/Submission4/Bitmaps/double_cavity.png
 
 # Discretization parameters
 nCellsX = 40          # number of cells in x and y direction

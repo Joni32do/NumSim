@@ -59,15 +59,18 @@ struct Settings
 
 
   // Fluid Tracer
-  bool useFluidTracer = true; //!< Enables Open Surface Evolution
+  bool useFluidTracer = false; //!< Enables Open Surface Evolution
   int particlePerCell = 100; //!< Initializes with given virtual particles per cell
   /**
-   * `single` -> one virtual particles is enough for fluid cell
-   * `threshold` -> aims at a constant amount of fluid cells 
+   * `fixed` -> `n` virtual particles is enough for fluid cell, standard is 1
+   * `calculated` -> aims at a constant amount of fluid cells and calculates the threshold accordingly
    */
-  std::string fluidTracerMethod = "single";
-  // bool useParticleSource = false; //!< Enables virtual particles source
-  // std::array<double, 2> particleSource = {0.5, 0.5}; //!< Source of virtual particles
+  std::string fluidTracerMethod = "fixed";
+  int fluidTracerThreshold = 1; //!< Threshold for fluidTracerMethod `fixed`
+  bool useParticleSource = false; //!< Enables virtual particles source
+  std::array<double, 2> particleSource = {0.0, 0.0}; //!< Source of virtual particles
+
+  double printInterval = 0.05; //!< generates output VTK every `printInterval` seconds 
 
   
 

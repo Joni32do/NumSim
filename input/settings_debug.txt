@@ -68,5 +68,5 @@ maximumNumberOfIterations = 1e4    # maximum number of iterations in the solver
 # Particle Tracker
 useFluidTracer = false
 particlePerCell = 100
-fluidTracerMethod = single
+fluidTracerMethod = fixed
 
