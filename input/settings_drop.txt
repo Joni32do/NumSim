@@ -50,7 +50,7 @@ obstacleDimensionY = 0.5
 
 createDomainfromBitmap = true
 # pathToBitmap = ../input/bitmap/drop3.png
-pathToBitmap = ../input/bitmap/dropWater.png
+pathToBitmap = ../input/bitmap/drop/dropTheComet.png
 
 # Discretization parameters
 nCellsX = 20          # number of cells in x and y direction

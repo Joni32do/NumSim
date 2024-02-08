@@ -15,57 +15,60 @@ We recommend to run the simulation using the provided bash script `build.sh`. In
 For the user there is the settings.txt file that can be adjusted to 
 fit the specific simulation needs. 
 
-The first part of the settings file specifies the general geometry 
-of the simulation domain:
+### General geometry of the simulation domain:
 
-* **physicalSizeX** and **physicalSizeY**: The domain size in meters.
-* **endTime**: The endtime of the simulation in seconds.
-* **re**: The reynolds number (specfies indirectly the viscosity of the fluid).
-* **gX** and **gY**: Acceleration resulting from external forces.
+* `physicalSizeX` and `physicalSizeY`: The domain size in meters. *If* bitmap has other ratio, will rescale `physicalSizeY` automatically.
+* `endTime`: The endtime of the simulation in seconds.
+* `re`: The reynolds number (specfies indirectly the viscosity of the fluid).
+* `gX` and `gY`: Acceleration resulting from external forces.
+
+### Domain Boundary Conditions
 
 Subsequently the domain boundary conditions are specified. You can choose between Pressure and NoSlip.
 
-* **BcTop**, **BcRight**, **BcBottom** and **BCLeft**: Type of boundary condition on either side of the domain. Can be either "NoSlip" or Pressure.
+* `BcTop`, `BcRight`, `BcBottom` and `BCLeft`: Type of boundary condition on either side of the domain. Can be either "NoSlip" or Pressure.
 
 Then the specific values for the NoSlip domain boundary conditions follow.
 
-* **NoSlipVelTopX/Y**: Noslip boundary velocities directly at the domain top in m/s.
-* **NoSlipVelRightX/Y**: Noslip boundary velocities directly at the domain right in m/s.
-* **NoSlipVelBottomX/Y**: Noslip boundary velocities directly at the domain bottom in m/s.
-* **NoSlipVelLeftX/Y**: Noslip boundary velocities directly at the domain left in m/s.
+* `NoSlipVelTopX/Y`: Noslip boundary velocities directly at the domain top in m/s.
+* `NoSlipVelRightX/Y`: Noslip boundary velocities directly at the domain right in m/s.
+* `NoSlipVelBottomX/Y`: Noslip boundary velocities directly at the domain bottom in m/s.
+* `NoSlipVelLeftX/Y`: Noslip boundary velocities directly at the domain left in m/s.
 
 Then the specific values for the Pressure domain boundary conditions follow.
 
-* **PressureTop**: Pressure directly at the top of the domain in Pa
-* **PressureRight**: Pressure directly at the right of the domain in Pa
-* **PressureBottom**: Pressure directly at the bottom of the domain in Pa
-* **PressureLeft**: Pressure directly at the left of the domain in Pa
+* `PressureTop`: Pressure directly at the top of the domain in Pa
+* `PressureRight`: Pressure directly at the right of the domain in Pa
+* `PressureBottom`: Pressure directly at the bottom of the domain in Pa
+* `PressureLeft`: Pressure directly at the left of the domain in Pa
+
+### Geometry
 
 If you want to put a rectangular object in the domain you can specfiy its location 
 and dimension with the following setting.
 
-* **createRectangularObject**: Set to true if you want to add a rectangular object
-* **obstaclePositionX/Y**: Position of the left lower corner of the rectangle in the domain in m 
-* **obstacleDimensionX/Y**: Dimension of the object in x and y direction in m
+* `createRectangularObject`: Set to true if you want to add a rectangular object
+* `obstaclePositionX/Y`: Position of the left lower corner of the rectangle in the domain in m 
+* `obstacleDimensionX/Y`: Dimension of the object in x and y direction in m
 
 In the following you can specify wheter you want to load your domain from a bitmap.
 
-* **createDomainfromBitmap**: Set to true if you want to load your domain from a bitmap
+* `createDomainfromBitmap`: Set to true if you want to load your domain from a bitmap
 
-* **pathToBitmap**: path to the location of the bitmap saved as a png.
+* `pathToBitmap`: path to the location of the bitmap saved as a png.
 
-Then follows more paramters considering the discretization
+### Discretization
 
-* **nCellsX/Y**: Number of cells in x and y direction as int
-* **useDonorCell**: Set to true if you want to use the Donor Cell scheme
-* **alpha**: Factor for donor-cell scheme between 0 and 1. 0 is equivalent to central differences
-* **epsilon**: Tolerance of the 2-norm residual 
-* **maximumNumberOfIterations**: Maximum number of iterations of the pressure solver 
+* `nCellsX/Y`: Number of cells in x and y direction as int, *if* bitmap is provided will be ignored 
+* `useDonorCell`: Set to true if you want to use the Donor Cell scheme
+* `alpha`: Factor for donor-cell scheme between 0 and 1. 0 is equivalent to central differences
+* `epsilon`: Tolerance of the 2-norm residual 
+* `maximumNumberOfIterations`: Maximum number of iterations of the pressure solver 
 
-Finally a few parameters for open surfaces follow:
+### Open surfaces
 
-* **useFluidTracer**: Set to true if you want to simulate free surfaces
-* **particlesPerCell**: Number of fluid particles per cell as integer
+* `useFluidTracer`: Set to true if you want to simulate free surfaces
+* `particlesPerCell`: Number of fluid particles per cell as integer
 
 
 
@@ -94,7 +97,7 @@ will be written to the build/out folder during simulation.
 When the files are loaded into paraview you should apply a threshold to the mask 
 field to make obstacle visible in paraview (see image). Then use the threshold field to perform further visualizations. 
 
-![mask](mask.png)
+![mask](media/mask.png)
 
 
 

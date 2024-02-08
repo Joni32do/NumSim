@@ -20,12 +20,19 @@ make install -j4
 
 # ./numsim ../input/settings.txt
 # ./numsim ../input/settings_aerodynamic_obstacle.txt
-./numsim ../input/settings_damBreak.txt
+# ./numsim ../input/settings_damBreak.txt
+./numsim ../input/settings_drop.txt
 
 ######################
 ## DEBUG -> DELETE ##
 ######################
-# dir="/home/jonat/Documents/02_Workspace/05_NumSim_misc/Project/Simulations/data"
+dir="/home/jonat/Documents/02_Workspace/05_NumSim_misc/Project/Simulations/data"
+newdir="dropTheComet"
+rm -rf $dir/$newdir
+mkdir $dir/$newdir
+cp -r out $dir/$newdir/
+
+
 
 # ./numsim ../input/bitmap/doubleDam/doubleDam.txt
 # rm -rf "$dir"/doubleDam/*
