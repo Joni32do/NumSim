@@ -69,8 +69,7 @@ In the following you can specify wheter you want to load your domain from a bitm
 ### Open surfaces
 
 * `useFluidTracer`: Set to true if you want to simulate free surfaces
-* `particlesPerCell`: Number of fluid particles per cell as integer
-
+* `particlePerCell`: Number of fluid particles per cell as integer
 
 
 ## Creating a domain using a bitmap
@@ -120,13 +119,22 @@ Again the settings are provided [here](input/settings_cavity_with_a_step.txt)
 ### Aerodynamic
 With pressure Boundary Condition and a bitmap an aerodynamic shape can be simulated. The settings can be found [here](input/settings_aerodynamic_obstacle.txt).
 
-
+![Aero with Glyphs](media/aero_vector.png)
 
 ### Water drop
+
+A water drop falls with gravity in shallow fluid, where generated waves propagate.
+
+![drop](media/drop.png)
 
 
 ### Dam break
 
+A scenario which was also simulated with *OpenFOAM*. Our solver has yet to improve to achieve the same accuarcy.
+
+<img src="media/damBreak1.png" width=200>
+<img src="media/damBreak2.png" width=200>
+<img src="media/damBreak3.png" width=200>
 
 
 ## Contributors

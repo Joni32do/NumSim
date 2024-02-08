@@ -41,4 +41,5 @@ build/
 resources/
 
 sol/
+input/bitmap/others
 .vscode/
