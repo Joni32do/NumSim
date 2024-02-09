@@ -70,6 +70,10 @@ In the following you can specify wheter you want to load your domain from a bitm
 
 * `useFluidTracer`: Set to true if you want to simulate free surfaces
 * `particlePerCell`: Number of fluid particles per cell as integer
+* `useParticleSource`: Enables the creation of particle at a specified location
+* `particleSourceX`, `particleSourceY`: specifies the location
+
+Since it yielded the best results, the settings `fluidTracerMethod` is always *fixed* with `fluidTracerThreshold` of 1 as introduced in the lecture. This means that one virtual particle is enough for a cell to be declared fluid instead of e.g. $k$ or a *calculated* which aims at a constant number of fluid cells. 
 
 
 ## Creating a domain using a bitmap
@@ -135,6 +139,8 @@ A scenario which was also simulated with *OpenFOAM*. Our solver has yet to impro
 <img src="media/damBreak1.png" width=200>
 <img src="media/damBreak2.png" width=200>
 <img src="media/damBreak3.png" width=200>
+
+The simulation doesn't complete, since there are some mistakes in creating particles in the air, which violates the velocity condition.
 
 
 ## Contributors
